@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { BarChart3, Search } from 'lucide-react';
 import { RightPanel } from './RightPanel';
 import { QueryPanel } from './QueryPanel';
-import { ModuleAnalyticsPanel } from './ModuleAnalyticsPanel';
 import { BaseLayerDefaultPanel } from './BaseLayerDefaultPanel';
 import type { Sector, Scenario } from '../App';
-import type { CWISModule } from './ModuleNavigationTabs';
 
 interface RightPanelContainerProps {
   activeSector: Sector;
@@ -55,7 +53,6 @@ interface RightPanelContainerProps {
   selectedDonutCategory?: string | null; // NEW: Selected donut category for map filtering
   onDonutCategorySelect?: (category: string | null) => void; // NEW: Callback to select donut category
   // NEW: CWIS Module props
-  activeModule?: CWISModule;
   activeFstpLayers?: any[];
   selectedLguName?: string;
   totalResidentialBuildings?: number; // NEW: Sum of Res_Buildings from loaded barangay boundaries
@@ -116,7 +113,6 @@ export function RightPanelContainer({
   onResetBarChartFilters,
   selectedDonutCategory = null,
   onDonutCategorySelect,
-  activeModule,
   selectedLguName,
   totalResidentialBuildings = 0,
   totalAreaKm2 = 0,
@@ -134,7 +130,6 @@ export function RightPanelContainer({
   console.log('🏠 [RightPanelContainer] Received totalResidentialBuildings:', totalResidentialBuildings);
   console.log('📐 [RightPanelContainer] Received totalAreaKm2:', totalAreaKm2.toFixed(2), 'km²');
   console.log('👥 [RightPanelContainer] Received totalPopulation2024:', totalPopulation2024.toLocaleString());
-  console.log('🏠 [RightPanelContainer] activeModule:', activeModule);
   
   return (
     <div 
@@ -144,20 +139,7 @@ export function RightPanelContainer({
       {/* Panel Content */}
       <div className="flex-1 overflow-hidden flex flex-col">
         {/* Priority 1: Show Module Analytics if a module is active */}
-        {activeModule ? (
-          <ModuleAnalyticsPanel 
-            activeModule={activeModule} 
-            selectedLguName={selectedLguName || 'Bohol'}
-            totalResidentialBuildings={totalResidentialBuildings}
-            totalAreaKm2={totalAreaKm2}
-            isScenarioRunning={isScenarioRunning}
-            totalPopulation2024={totalPopulation2024}
-            scenarioStats={scenarioStats}
-            onZoneClick={onZoneClick}
-            activeFstpLayers={activeFstpLayers}
-          />
-        ) : !showQueryPanel ? (
-          // Priority 2: Show base layer default panel
+        {!showQueryPanel ? (
           <BaseLayerDefaultPanel
             totalPopulation2024={totalPopulation2024}
             totalAreaKm2={totalAreaKm2}

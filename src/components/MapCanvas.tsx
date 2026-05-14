@@ -80,7 +80,7 @@ import { EducationPopup } from './EducationPopup';
 import { HealthcarePopup } from './HealthcarePopup';
 import { PublicAmenitiesPopup } from './PublicAmenitiesPopup';
 import { TransportPopup } from './TransportPopup';
-import { RoadSafetyPopup } from './RoadSafetyPopup';
+
 import { PanoramaViewerModal } from './PanoramaViewerModal';
 import { PANORAMA_GEOJSON } from '../config/panoramaLocations';
 import { fetchWithTimeout } from '../utils/fetchWithTimeout';
@@ -167,7 +167,6 @@ import {
   getWMSTileUrl, 
   geoserverLayers 
 } from '../config/geoserverLayers';
-import { getCWISLayerWMSUrl, getCWISLayerConfig } from '../config/cwisLayersConfig';
 import { getEnvironmentalLayerWMSUrl, getEnvironmentalLayerConfig } from '../config/environmentalLayers';
 
 // Helper function to get icon component for each infrastructure type
@@ -2080,9 +2079,9 @@ export function MapCanvas({
       console.log('🎯 [LAYER LOAD] Processing layer ID:', layerId);
       {
         // Check layer type first
-        const isCWISLayer = ['flood_hazard', 'storm_surge', 'urban_waterlogging', 'heat_stress_index', 'land_surface_temperature', 'urban_heat_island', 'wet_bulb_temperature'].includes(layerId);
+        const isCWISLayer = false; // CWIS layers removed for tourism dashboard
         const isEnvironmentalLayer = ['soil_classification', 'groundwater_depth', 'geology', 'sinkhole', 'groundwater_infiltration_vulnerability'].includes(layerId);
-        console.log('🔍 [LAYER LOAD] Layer type check:', { isCWISLayer, isEnvironmentalLayer });
+
         
         let tileUrl: string | null = null;
         let layerName: string = '';

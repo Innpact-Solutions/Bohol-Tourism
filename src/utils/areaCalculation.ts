@@ -2,7 +2,6 @@
 
 import type { Sector, Scenario } from '../App';
 import { getLayerNameForScenario } from '../config/geoserverLayers';
-import { CWIS_HAZARD_LAYERS as CWIS_LAYERS } from '../config/cwisLayersConfig';
 import { ENVIRONMENTAL_LAYERS } from '../config/environmentalLayers';
 
 // ⚠️ DEPRECATED: Old GIZ_BBSR workspace removed - area calculations disabled until new Bohol layers connected

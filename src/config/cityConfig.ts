@@ -14,7 +14,7 @@ export const CITY_CONFIG = {
   name: 'Bohol',
   country: 'Philippines',
   region: 'Central Visayas',
-  displayName: 'Bohol Citywide Inclusive Sanitation (CWIS) Planning & Decision Support Dashboard',
+  displayName: 'Bohol Tourism Dashboard',
   shortCode: 'BOHOL',
   timezone: 'Asia/Manila',
 };
@@ -121,18 +121,6 @@ export const HAZARD_SECTORS = {
     hasHistorical: false,
     layers: ['flood_fhi'],
   },
-  multiHazard: {
-    enabled: true,
-    hasScenarios: false,
-    hasHistorical: false,
-    layers: ['multihazard_assessment'],
-  },
-  roadSafety: {
-    enabled: true,
-    hasScenarios: false,
-    hasHistorical: false,
-    layers: ['irap_vehicle', 'irap_motorcycle', 'irap_bicycle', 'irap_pedestrian'],
-  },
 };
 
 export const INFRASTRUCTURE_CONFIG = {
@@ -198,12 +186,12 @@ export const EXPORT_CONFIG = {
 export const FEATURE_FLAGS = {
   tutorial: true,
   comparison: true,
-  scenarioPlanning: true,
+  scenarioPlanning: false,
   historicalTrends: true,
   climateProjections: true,
   imdHeatAnalytics: true,
   buildingAnalysis: true,
-  roadSafetyAnalysis: true,
+  roadSafetyAnalysis: false,
   poiQueries: true,
   opacityControl: true,
   layerOrdering: true,
@@ -225,8 +213,6 @@ export const BRANDING_CONFIG = {
     heat: '#EF4444',
     air: '#8B5CF6',
     flood: '#3B82F6',
-    multiHazard: '#F59E0B',
-    roadSafety: '#14B8A6',
   },
   footer: {
     copyright: `© ${new Date().getFullYear()} Your Organization`,

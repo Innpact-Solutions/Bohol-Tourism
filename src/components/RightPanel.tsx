@@ -14,7 +14,7 @@ import {
   getTransportHazardExposure
 } from '../utils/infrastructureData';
 import { formatHazardExposure, calculateHazardExposure, type HazardExposure } from '../utils/hazardExposure';
-import { fetchRoadSafetyStarRatings } from '../utils/roadSafetyData';
+// roadSafetyData removed
 import {
   fetchHazardLegend,
   fetchInfrastructurePointCounts,
@@ -26,11 +26,7 @@ import { ImpactDistributionDataDriven } from './ImpactDistributionDataDriven';
 import { DetailedBreakdownDataDriven } from './DetailedBreakdownDataDriven';
 import { useRoadNetworkData } from '../hooks/useRoadNetworkData';
 import { RoadNetworkStackedBarChart } from './RoadNetworkStackedBarChart';
-import { useRoadSafetyData } from '../hooks/useRoadSafetyData';
-import { RoadSafetyStackedBarChart } from './RoadSafetyStackedBarChart';
-import { RoadNameStarRatingChart } from './RoadNameStarRatingChart';
-import { useRoadSafetyFilters } from '../hooks/useRoadSafetyFilters';
-import { RoadSafetyFilterPanel } from './RoadSafetyFilterPanel';
+// road safety hooks/components removed
 import { useKPIAreaData } from '../hooks/useKPIAreaData';
 import { useHazardKPI, formatKPIValue, formatKPIPercentage } from '../hooks/useHazardKPI';
 import type { Scenario as ScenarioType } from '../utils/hazardKpiConfig';
@@ -313,15 +309,13 @@ function RoadSafetyIRAPView({
   onResetBarChartFilters // NEW: Accept the reset callback
 }: RoadSafetyIRAPViewProps) {
   
-  // NEW: Use road safety filters hook
-  const {
-    availableFilters,
-    appliedFilters,
-    isLoadingFilters,
-    updateFilter,
-    resetFilters,
-    hasActiveFilters
-  } = useRoadSafetyFilters(activeLayerId, scenario);
+  // road safety filters stubbed
+  const availableFilters: any = {};
+  const appliedFilters: any = {};
+  const isLoadingFilters = false;
+  const updateFilter = (_k: string, _v: any) => {};
+  const resetFilters = () => {};
+  const hasActiveFilters = false;
   
   // Auto-update vehicle_type filter based on active road safety sub-layer from left panel
   useEffect(() => {
@@ -385,7 +379,7 @@ function RoadSafetyIRAPView({
   const effectiveLayerId = activeSector === 'roadsafety' && !activeLayerId 
     ? 'heat_ast' // Default to a basic hazard layer for pure star rating analysis
     : activeLayerId;
-  const roadSafetyAnalysisData = useRoadSafetyData(effectiveLayerId, scenario, appliedFilters);
+  const roadSafetyAnalysisData = { data: null, loading: false };
   
   // State for road safety star rating data
   const [roadSafetyData, setRoadSafetyData] = useState({
@@ -423,14 +417,7 @@ function RoadSafetyIRAPView({
     }
   });
 
-  // Fetch road safety star ratings when ward or road name changes
-  useEffect(() => {
-    const loadStarRatings = async () => {
-      const ratings = await fetchRoadSafetyStarRatings(selectedWardId, selectedRoadName);
-      setRoadSafetyData(ratings);
-    };
-    loadStarRatings();
-  }, [selectedWardId, selectedRoadName]);
+  // fetchRoadSafetyStarRatings removed
   
   // Star rating colors
   const STAR_COLORS = {
@@ -464,15 +451,7 @@ function RoadSafetyIRAPView({
 
   return (
     <>
-      {/* Road Safety Filters */}
-      <RoadSafetyFilterPanel
-        availableFilters={availableFilters}
-        appliedFilters={appliedFilters}
-        onFilterChange={updateFilter}
-        onResetFilters={resetFilters}
-        hasActiveFilters={hasActiveFilters}
-        isLoading={isLoadingFilters}
-      />
+      {/* Road Safety Filters removed */}
 
       {/* Road Safety Assessment Section Header */}
       <div className="mb-3">
@@ -671,13 +650,7 @@ function RoadSafetyIRAPView({
           />
           
           {/* Road Name Star Rating Distribution Chart - Fetches directly from GeoServer */}
-          <RoadNameStarRatingChart 
-            vehicleType={appliedFilters.vehicle_type || 'vehicle'}
-            selectedWardId={selectedWardId}
-            selectedRoadName={appliedFilters.road_name || undefined}
-            onSegmentClick={onZoomToRoadStarSegment}
-            onReset={onResetBarChartFilters}
-          />
+          {/* RoadNameStarRatingChart removed */}
         </div>
       ) : (
         // Cross-Hazard Panels: Show original Road Safety Hazard Analysis
@@ -718,7 +691,7 @@ function RoadSafetyIRAPView({
           {roadSafetyAnalysisData.data && !roadSafetyAnalysisData.loading && (
             <>
               {/* Stacked Horizontal Bar Chart - Individual Roads with Hazard Breakdown */}
-              <RoadSafetyStackedBarChart data={roadSafetyAnalysisData.data} />
+              {/* RoadSafetyStackedBarChart removed */}
             </>
           )}
         </div>

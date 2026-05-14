@@ -3,7 +3,7 @@ import worldBankLogo from 'figma:asset/28a68ce6f762781887d81ef25d37ca6723765991.
 import boholLogo from 'figma:asset/675d206072795155b568af95dfafe18a05d798b5.png';
 import { useState, useEffect, useRef } from 'react';
 import { Building2, MapPin, ChevronDown, Filter, GitCompare, Search, X } from 'lucide-react';
-import { RoadNameFilter } from './RoadNameFilter';
+
 
 interface HeaderProps {
   onReset: () => void;
@@ -14,11 +14,7 @@ interface HeaderProps {
   onWardSelect: (wardId: string, wardName: string, munName?: string) => void;
   selectedLguId: string;
   onLguSelect: (lguId: string, lguName: string) => void;
-  selectedRoadName: string;
-  onRoadNameSelect: (roadName: string) => void;
-  activeRoadSafetySubLayers: string[];
-  onRoadZoom?: (bounds: [number, number, number, number]) => void;
-  onResetView?: () => void;
+
   isComparisonMode?: boolean;
   onExitComparison?: () => void;
   disableWardFilter?: boolean; // Disable ward filtering when query panel is open
@@ -46,7 +42,7 @@ interface LGU {
 
 
 
-export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle, selectedWardId, onWardSelect, selectedLguId, onLguSelect, selectedRoadName, onRoadNameSelect, activeRoadSafetySubLayers, onRoadZoom, onResetView, isComparisonMode, onExitComparison, disableWardFilter, onLguZoom, onBarangayZoom, onInfoOpen, onTutorialOpen, showTutorialPulse }: HeaderProps) {
+export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle, selectedWardId, onWardSelect, selectedLguId, onLguSelect, isComparisonMode, onExitComparison, disableWardFilter, onLguZoom, onBarangayZoom, onInfoOpen, onTutorialOpen, showTutorialPulse }: HeaderProps) {
   const [wardFilterOpen, setWardFilterOpen] = useState(false);
   const [wards, setWards] = useState<Ward[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -266,14 +262,6 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
       </div>
 
       <div className="flex items-center gap-3">
-        {/* Road Name Filter Dropdown Widget - Only visible when iRAP layers are active */}
-        <RoadNameFilter
-          selectedRoadName={selectedRoadName}
-          onRoadNameSelect={onRoadNameSelect}
-          activeRoadSafetySubLayers={activeRoadSafetySubLayers}
-          onRoadZoom={onRoadZoom}
-          onResetView={onResetView}
-        />
 
         {/* LGU (Local Government Unit) Filter Dropdown Widget */}
         <div className="flex items-center gap-1">

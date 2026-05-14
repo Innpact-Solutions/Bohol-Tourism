@@ -72,7 +72,7 @@ export * as AirPollutionContent from './airPollutionContent';
 export * as FloodContent from './floodContent';
 export * as MultiHazardContent from './multiHazardContent';
 export * as InfrastructureContent from './infrastructureContent';
-export * as RoadSafetyContent from './roadSafetyContent';
+// RoadSafetyContent removed
 
 // Export legacy KPI labels (still in use throughout the app)
 export { KPI_LABELS, getHazardExposureSubtitle } from './kpiLabels';

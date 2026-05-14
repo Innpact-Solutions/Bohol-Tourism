@@ -11,7 +11,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { X, Flame, Wind, Droplets, AlertTriangle, ChevronDown, Maximize2, Minimize2, Layers, Loader2, Home, ZoomIn, ZoomOut, Map, Satellite, Info, Box, Building2 } from 'lucide-react';
 import type { Sector, Scenario, Basemap } from '../App';
 import { getLayerNameForScenario, getWMSTileUrl } from '../config/geoserverLayers';
-import { getCWISLayerWMSUrl } from '../config/cwisLayersConfig';
 import { getEnvironmentalLayerWMSUrl } from '../config/environmentalLayers';
 import { getUILayerLegend, type LegendEntry } from '../utils/legendLoader';
 import { Header } from './Header';
@@ -140,8 +139,7 @@ function getComparisonLayerTileUrl(sector: string, layerId: string): string | nu
       const ln = getLayerNameForScenario(layerId, 'baseline_2025');
       return ln ? getWMSTileUrl(ln) : null;
     }
-    // flood_hazard and storm_surge use the CWIS WMS URL
-    return getCWISLayerWMSUrl(layerId) ?? null;
+    return null; // CWIS layers removed
   }
   if (sector === 'env_vulnerability') {
     return getEnvironmentalLayerWMSUrl(layerId) ?? null;

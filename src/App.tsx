@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
 import { Header } from './components/Header';
 import { LeftDrawer } from './components/LeftDrawer';
-import { ModuleNavigationTabs, type CWISModule } from './components/ModuleNavigationTabs';
-import { ModulePanel, DEFAULT_FSTP_LAYERS } from './components/ModulePanel';
-import type { FstpFacilityState } from './components/ModulePanel';
 import { FloatingLegendPanel } from './components/FloatingLegendPanel';
 import { MapCanvas } from './components/MapCanvas';
 import { RightPanelContainer } from './components/RightPanelContainer';
@@ -23,10 +20,8 @@ import { fetchEducationCounts } from './utils/educationData';
 import { fetchHealthcareCounts } from './utils/healthcareData';
 import { fetchPublicAmenitiesCounts } from './utils/publicAmenitiesData';
 import { fetchTransportCounts } from './utils/transportData';
-import { fetchRoadSafetyStarRatings, fetchRoadSafetyBounds } from './utils/roadSafetyData';
-import { fetchRoadNetworkLengths } from './utils/roadNetworkData';
 
-export type Sector = 'heat' | 'air' | 'flood' | 'multihazard' | 'roadsafety' | 'base_layers' | 'climate_hazard' | 'env_vulnerability';
+export type Sector = 'heat' | 'air' | 'flood' | 'base_layers' | 'climate_hazard' | 'env_vulnerability';
 export type Scenario = 'baseline_2025' | 'ssp1_2040' | 'ssp2_2040' | 'ssp5_2040' | '2015' | '2016' | '2017' | '2018' | '2019' | '2020' | '2021' | '2022' | '2023' | '2024';
 export type Basemap = 'light' | 'dark' | 'satellite';
 
@@ -107,33 +102,13 @@ function AppContent({
 
   // All useState hooks MUST be called before any returns
   const [activeSector, setActiveSector] = useState<Sector>('heat');
-  const [activeModule, setActiveModule] = useState<CWISModule>(null); // CWIS module state - default is null (no module active)
-  const [activeFstpLayers, setActiveFstpLayers] = useState<FstpFacilityState[]>(DEFAULT_FSTP_LAYERS);
-  const [showFstpBuildings, setShowFstpBuildings] = useState(false);
-  const [activeFleetClasses, setActiveFleetClasses] = useState<string[]>(['10 KL Truck', '5 KL Truck', 'With Booster Pump', 'Hard to Access']);
-  const [fleetOpacity, setFleetOpacity] = useState(0.75);
-  const [fstpOpacity, setFstpOpacity] = useState(0.75);
-
-  // Mutual exclusivity: fleet accessibility ↔ desludging travel time
-  const handleFleetClassesChange = (classes: string[]) => {
-    setActiveFleetClasses(classes);
-    if (classes.length > 0) {
-      setActiveFstpLayers(prev => prev.map(f => ({ ...f, enabled: false })));
-      setShowFstpBuildings(false);
-    }
-  };
-  const handleFstpLayersChange = (layers: FstpFacilityState[]) => {
-    setActiveFstpLayers(layers);
-    if (layers.some(f => f.enabled)) {
-      setActiveFleetClasses([]);
-    }
-  };
   const [activeLayerPerSector, setActiveLayerPerSector] = useState({
     heat: 'heat_hhi',
     air: 'air_aqi',
     flood: 'flood_fhi',
-    multihazard: 'multihazard_assessment',
-    roadsafety: ''  // Road safety doesn't use hazard layers
+    base_layers: '',
+    climate_hazard: '',
+    env_vulnerability: ''
   });
   const [scenario, setScenario] = useState<Scenario>('baseline_2025');
   const [selectedWard, setSelectedWard] = useState<string | null>(null);
@@ -145,78 +120,10 @@ function AppContent({
   const [activePublicAmenitiesSubLayers, setActivePublicAmenitiesSubLayers] = useState<string[]>([]);
   const [activeTransportSubLayers, setActiveTransportSubLayers] = useState<string[]>([]);
   
-  // ROAD SAFETY MAIN PANEL STATE (activeSector === 'roadsafety')
-  // Independent state for Road Safety main hazard panel
-  const [rsMainActiveLayer, setRsMainActiveLayer] = useState<string[]>([]); // Start empty - only activate when user enters Road Safety sector
-  const [rsMainIRAPType, setRsMainIRAPType] = useState<string | null>(null);
-  const [rsMainStarRatings, setRsMainStarRatings] = useState<Record<string, string | null>>({
-    irap_vehicle: null,
-    irap_motorcycle: null,
-    irap_bicycle: null,
-    irap_pedestrian: null
-  });
-  
-  // Donut chart filter state - for highlighting specific categories on the map
-  const [selectedDonutCategory, setSelectedDonutCategory] = useState<string | null>(null);
-  
-  // CROSS-HAZARD PANELS STATE (Heat, Air, Flood, Multi-Hazard)
-  // Shared state across Heat/Air/Flood/Multi-Hazard panels - persists when switching between them
-  const [rsXHazardActiveLayer, setRsXHazardActiveLayer] = useState<string[]>([]);
-  const [rsXHazardIRAPType, setRsXHazardIRAPType] = useState<string | null>(null);
-  const [rsXHazardStarRatings, setRsXHazardStarRatings] = useState<Record<string, string | null>>({
-    irap_vehicle: null,
-    irap_motorcycle: null,
-    irap_bicycle: null,
-    irap_pedestrian: null
-  });
-  
-  // DEPRECATED: These will be removed after migration
-  const [activeRoadNetworkIRAPType, setActiveRoadNetworkIRAPType] = useState<string | null>(null);
-  const [activeRoadSafetySubLayers, setActiveRoadSafetySubLayers] = useState<string[]>([]);
-  const [roadSafetyStarRatings, setRoadSafetyStarRatings] = useState<Record<string, string | null>>({
-    irap_vehicle: null,
-    irap_motorcycle: null,
-    irap_bicycle: null,
-    irap_pedestrian: null
-  }); // Track star rating filter for each road safety layer (1-5 stars or null for all)
-  
   const [activeInfraLayers, setActiveInfraLayers] = useState<string[]>([]);
-  const [activeSubLayers, setActiveSubLayers] = useState<string[]>([]);
-  const [sectorOpacity, setSectorOpacity] = useState(0.7);
-  const [showQueryPanel, setShowQueryPanel] = useState(false);
-  const [activeBaseLayers, setActiveBaseLayers] = useState<string[]>(['ward_boundary', 'waterbody', 'road_network_base', 'municipal_boundary', 'buildings']); // Added 'buildings' to default layers
-  const [activeBuildingCategories, setActiveBuildingCategories] = useState<string[]>(['residential', 'commercial', 'education', 'government', 'health', 'religious', 'industrial', 'transport']); // Building Use layer on by default
-  const [activeBuildingSubcategories, setActiveBuildingSubcategories] = useState<string[]>([]); // Active building subcategories (BLDG_USE values)
-  const [previousBuildingCategories, setPreviousBuildingCategories] = useState<string[]>([]); // Store previous state before subcategory selection
-  const [isEconomicVulnerabilityActive, setIsEconomicVulnerabilityActive] = useState(false); // Economic Vulnerability layer state
-  const [activeBuildingHeightCategories, setActiveBuildingHeightCategories] = useState<string[]>([]); // Building Height layer active categories
-  const [activeBuildingAreaCategories, setActiveBuildingAreaCategories] = useState<string[]>([]); // Building Floor Area active categories
-  const [activeSewerCategories, setActiveSewerCategories] = useState<string[]>([]); // Sewer feasibility categories for Module 1 building filter
-  const [activeGridSewerCategories] = useState<string[]>([]); // kept for MapCanvas prop compatibility (unused)
-  const [scenarioGridGeoJSON, setScenarioGridGeoJSON] = useState<any | null>(null); // Module 1 scenario result overlay
-  const [scenarioNetworkGids, setScenarioNetworkGids] = useState<number[] | null>(null); // Grid GIDs qualifying for network coverage
-  const [bufferBldgIds, setBufferBldgIds] = useState<number[]>([]); // Building IDs within 120m buffer zone
-  const [bufferGeoJSON, setBufferGeoJSON] = useState<GeoJSON.Geometry | null>(null); // Buffer polygon GeoJSON
-  const [excludedBldgIds, setExcludedBldgIds] = useState<number[]>([]); // Building IDs excluded from network (e.g. elevation)
-  const [scenarioStats, setScenarioStats] = useState<{
-    grid_count: number; area_ha: number;
-    network_bldgs: number; onsite_bldgs: number; nonnetwork_bldgs: number; total_bldgs: number;
-    by_municipality: Array<{ mun: string; network: number; onsite: number; nonnetwork: number }>;
-    buffer_bldgs?: number;
-    buffer_area_ha?: number | null;
-    density_stop?: number; gwd_stop?: number; gwi_stop?: number; fld_stop?: number;
-    zones?: Array<{ cluster_id: number; mun: string; network_bldgs: number; grid_cells: number; area_ha: number; tourism_cells: number; centroid_lng: number; centroid_lat: number; bbox_minlng: number; bbox_minlat: number; bbox_maxlng: number; bbox_maxlat: number; brgy_names: string[]; use_type_pct: Array<{ name: string; pct: number }>; buffer_geom_geojson?: any; buffer_area_ha?: number | null; buffer_bldgs?: number }>;
-    zone_breakdown?: {
-      network:    { useType: { name: string; value: number }[]; hazard: { name: string; value: number }[] };
-      buffer:     { useType: { name: string; value: number }[]; hazard: { name: string; value: number }[] };
-      nonNetwork: { useType: { name: string; value: number }[]; hazard: { name: string; value: number }[] };
-    } | null;
-  } | null>(null); // Module 1 live scenario stats
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lng: number; name: string; geojson?: any } | null>(null);
   const [currentZoom, setCurrentZoom] = useState(11); // Track current map zoom level
-  const [selectedRoadName, setSelectedRoadName] = useState<string>('all'); // Road filter for iRAP layers
-  const [roadBounds, setRoadBounds] = useState<[number, number, number, number] | null>(null); // Bounds for road zoom
   
   // Track total residential buildings (sum of Res_Buildings from loaded barangay boundaries)
   const [totalResidentialBuildings, setTotalResidentialBuildings] = useState<number>(0);
@@ -252,9 +159,6 @@ function AppContent({
   
   // Selected road network result for map highlighting
   const [selectedRoadNetworkResult, setSelectedRoadNetworkResult] = useState<{ category: string; gridcode: string; hazardColor?: string; activeUserType?: string; isStarRating?: boolean } | null>(null);
-
-  // Selected road name + star rating for right panel chart click (NEW)
-  const [selectedRoadStarSegment, setSelectedRoadStarSegment] = useState<{ roadName: string; starRating: string; vehicleType: string } | null>(null);
 
   // Track if infrastructure layers were auto-enabled by query panel
   const [infraLayersAutoEnabled, setInfraLayersAutoEnabled] = useState(false);
@@ -327,6 +231,44 @@ function AppContent({
   const [publicAmenitiesCounts, setPublicAmenitiesCounts] = useState<Record<string, number>>({});
   const [transportCounts, setTransportCounts] = useState<Record<string, number>>({});
 
+  // Missing state stubs (kept for prop compatibility)
+  const [showQueryPanel, setShowQueryPanel] = useState(false);
+  const [activeSubLayers, setActiveSubLayers] = useState<string[]>([]);
+  const [activeBuildingCategories, setActiveBuildingCategories] = useState<string[]>(['residential', 'commercial', 'education', 'government', 'health', 'religious', 'industrial', 'transport']);
+  const [activeBuildingSubcategories, setActiveBuildingSubcategories] = useState<string[]>([]);
+  const [previousBuildingCategories, setPreviousBuildingCategories] = useState<string[]>([]);
+  const [isEconomicVulnerabilityActive, setIsEconomicVulnerabilityActive] = useState(false);
+  const [activeBuildingHeightCategories, setActiveBuildingHeightCategories] = useState<string[]>([]);
+  const [activeBuildingAreaCategories, setActiveBuildingAreaCategories] = useState<string[]>([]);
+
+  // Legacy sanitation state stubs (kept for prop compatibility — values are always empty/null)
+  const [activeSewerCategories] = useState<string[]>([]);
+  const [activeGridSewerCategories] = useState<string[]>([]);
+  const [scenarioGridGeoJSON] = useState<any>(null);
+  const [scenarioNetworkGids] = useState<number[] | null>(null);
+  const [bufferBldgIds] = useState<number[]>([]);
+  const [bufferGeoJSON] = useState<any>(null);
+  const [excludedBldgIds] = useState<number[]>([]);
+  const [scenarioStats] = useState<any>(null);
+  const [activeFstpLayers] = useState<any[]>([]);
+  const [showFstpBuildings] = useState(false);
+  const [activeFleetClasses] = useState<string[]>([]);
+  const [fleetOpacity, setFleetOpacity] = useState(0.75);
+  const [fstpOpacity, setFstpOpacity] = useState(0.75);
+  const [activeRoadNetworkIRAPType, setActiveRoadNetworkIRAPType] = useState<string | null>(null);
+  const [activeRoadSafetySubLayers, setActiveRoadSafetySubLayers] = useState<string[]>([]);
+  const [roadSafetyStarRatings, setRoadSafetyStarRatings] = useState<Record<string, string | null>>({});
+  const [selectedRoadName, setSelectedRoadName] = useState<string>('all');
+  const [roadBounds, setRoadBounds] = useState<[number, number, number, number] | null>(null);
+  const [selectedRoadStarSegment, setSelectedRoadStarSegment] = useState<any>(null);
+  const [selectedDonutCategory, setSelectedDonutCategory] = useState<string | null>(null);
+  const [sectorOpacity, setSectorOpacity] = useState(0.8);
+  const [activeBaseLayers, setActiveBaseLayers] = useState<string[]>(['ward_boundary', 'waterbody', 'road_network_base', 'municipal_boundary']);
+  const handleZoomToStarRating = () => {};
+  const handleZoomToRoadStarSegment = () => {};
+  const handleZoomToRoadSegment = () => {};
+  const handleResetBarChartFilters = () => {};
+
   const activeLayerId = activeLayerPerSector[activeSector];
   console.log('🔑 [APP] activeLayerId derived from sector:', { activeSector, activeLayerId, activeLayerPerSector });
 
@@ -338,94 +280,7 @@ function AppContent({
   
   console.log(`🔑 [APP] Active Hazard Key: ${activeHazardKey} (from ${activeHazardLayerId})`);
   
-  // ALL useEffect HOOKS MUST BE BEFORE ANY CONDITIONAL RETURNS
-  // Log module changes and auto-collapse/expand left drawer based on module state
-  useEffect(() => {
-    console.log('🔧 CWIS Module changed:', activeModule);
-    if (activeModule) {
-      // Module opened - fit map to the extent of currently filtered barangays
-      if (mapInstance) {
-        if (selectedWardId && selectedWardId !== 'all') {
-          // A single barangay is filtered — zoom to it
-          handleZoomToBarangay(selectedWardId, selectedWardName);
-        } else if (selectedLguName && selectedLguName !== 'all' && selectedLguName !== 'All LGUs') {
-          // An LGU is filtered — zoom to all its barangays
-          handleZoomToLgu(selectedLguName);
-        } else {
-          // No filter — zoom to full study area extent
-          const barangayBounds = (mapInstance as any)._barangayBounds;
-          if (barangayBounds) {
-            mapInstance.fitBounds(barangayBounds, { padding: 80, duration: 1000 });
-          }
-        }
-      }
 
-      // Module opened - collapse left drawer
-      setLeftDrawerCollapsed(true);
-
-      // ── Clear all default-panel layers ──────────────────────────────────────
-      // Building use / sublayers
-      setActiveBuildingCategories([]);
-      setActiveBuildingSubcategories([]);
-      setPreviousBuildingCategories([]);
-      setActiveBuildingHeightCategories([]);
-      setActiveBuildingAreaCategories([]);
-      setIsEconomicVulnerabilityActive(false);
-
-      // Base layers: keep boundaries/roads/water, remove thematic base layers
-      setActiveBaseLayers(prev =>
-        prev.filter(id =>
-          id === 'ward_boundary' ||
-          id === 'waterbody' ||
-          id === 'road_network_base' ||
-          id === 'municipal_boundary'
-        )
-      );
-
-      // Turn off active hazard layer
-      setActiveLayerPerSector(prev => ({
-        ...prev,
-        [activeSector]: ''
-      }));
-
-      // ── Module 1: start in buildings mode by default ──
-      if (activeModule === 'module1_suitability') {
-        setActiveSewerCategories(['Sewer Feasible', 'On-site Treatment', 'Non-Sewer']);
-        // Lock the map immediately — keeps the overlay covering the amber flash
-        // and the auto-load API fetch + render, all in one continuous loader
-        setIsScenarioRunning(true);
-      }
-    } else {
-      // Module closed - expand left drawer and restore building use layer
-      setLeftDrawerCollapsed(false);
-      setActiveBuildingCategories(['residential', 'commercial', 'education', 'government', 'health', 'religious', 'industrial', 'transport']);
-      setActiveBaseLayers(prev =>
-        prev.includes('buildings') ? prev : [...prev, 'buildings']
-      );
-    }
-
-    // Clear sewer categories when leaving Module 1
-    if (activeModule !== 'module1_suitability') {
-      setActiveSewerCategories([]);
-      setIsScenarioRunning(false);
-      setScenarioGridGeoJSON(null);
-      setScenarioNetworkGids(null);
-      setBufferBldgIds([]);
-      setBufferGeoJSON(null);
-      setExcludedBldgIds([]);
-      setScenarioStats(null);
-    }
-  }, [activeModule]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Ensure buildings layer is active when sewer categories are selected (Module 1)
-  useEffect(() => {
-    if (activeSewerCategories.length > 0) {
-      setActiveBaseLayers(prev =>
-        prev.includes('buildings') ? prev : [...prev, 'buildings']
-      );
-    }
-  }, [activeSewerCategories]);
-  
   // Reset donut category filter when hazard layer changes
   useEffect(() => {
     console.log('🔄 Layer changed, resetting donut category filter');
@@ -496,62 +351,7 @@ function AppContent({
     loadInfrastructureCounts();
   }, [selectedWardId]);
 
-  // Fetch road safety star ratings when ward changes
-  useEffect(() => {
-    const loadRoadSafetyStats = async () => {
-      console.log('🛡️ [APP] Fetching road safety star ratings for ward:', selectedWardId, 'road:', selectedRoadName);
-      const wardParam = selectedWardId === 'all' ? undefined : selectedWardId;
-      const roadParam = selectedRoadName === 'all' ? undefined : selectedRoadName;
-      
-      const stats = await fetchRoadSafetyStarRatings(wardParam, roadParam);
-      setRoadSafetyStats(stats);
-      
-      console.log('✅ [APP] Road safety star ratings loaded:', stats);
-    };
-    loadRoadSafetyStats();
-  }, [selectedWardId, selectedRoadName]);
 
-  // Fetch road network lengths when ward changes
-  useEffect(() => {
-    const loadRoadNetworkStats = async () => {
-      console.log('🛣️ [APP] Fetching road network lengths for ward:', selectedWardId);
-      const wardParam = selectedWardId === 'all' ? undefined : selectedWardId;
-      
-      const stats = await fetchRoadNetworkLengths(wardParam);
-      setRoadNetworkStats(stats);
-      
-      console.log('✅ [APP] Road network lengths loaded:', stats);
-    };
-    loadRoadNetworkStats();
-  }, [selectedWardId]);
-
-  // Auto-adjust background hazard layer opacity when road safety layers or road query results are active
-  useEffect(() => {
-    // Check BOTH rsMain and rsXHazard for active road safety layers
-    const hasRoadSafetyActive = rsMainActiveLayer.length > 0 || rsXHazardActiveLayer.length > 0 || activeRoadSafetySubLayers.length > 0;
-    const hasRoadQueryResults = queryResults !== null && queryResults.length > 0;
-    const shouldReduceOpacity = hasRoadSafetyActive || hasRoadQueryResults;
-    
-    if (shouldReduceOpacity) {
-      // Road safety layer or road query results are active - reduce background hazard opacity to 40%
-      if (activeLayerId && layerOpacities[activeLayerId] !== 0.4) {
-        console.log(`🔄 Road overlay active (safety: ${hasRoadSafetyActive}, query: ${hasRoadQueryResults}) - reducing ${activeLayerId} opacity to 40%`);
-        setLayerOpacities(prev => ({
-          ...prev,
-          [activeLayerId]: 0.4
-        }));
-      }
-    } else {
-      // Road overlays are off - restore background hazard opacity to default 70%
-      if (activeLayerId && layerOpacities[activeLayerId] !== 0.7) {
-        console.log(`🔄 Road overlays inactive - restoring ${activeLayerId} opacity to 70%`);
-        setLayerOpacities(prev => ({
-          ...prev,
-          [activeLayerId]: 0.7
-        }));
-      }
-    }
-  }, [rsMainActiveLayer, rsXHazardActiveLayer, activeRoadSafetySubLayers, queryResults, activeLayerId]); // Removed layerOpacities from dependencies to allow manual control
 
   // Buildings layer is now user-controlled via Base Layers panel
   // No auto-activation - user can toggle it manually at any zoom level
@@ -573,68 +373,6 @@ function AppContent({
 
   const handleSectorChange = (sector: Sector) => {
     console.log(`🔄 [APP] Sector changing from ${activeSector} to ${sector}`);
-    
-    // Reset Road Safety selections when switching AWAY from Road Safety sector
-    if (activeSector === 'roadsafety' && sector !== 'roadsafety') {
-      console.log('🧹 [APP] Leaving Road Safety sector - resetting all Road Safety selections');
-      
-      // Reset all road safety layer selections
-      setActiveRoadSafetySubLayers([]);
-      
-      // Reset all star rating filters
-      setRoadSafetyStarRatings({
-        irap_vehicle: null,
-        irap_motorcycle: null,
-        irap_bicycle: null,
-        irap_pedestrian: null
-      });
-      
-      // Reset road network iRAP type
-      setActiveRoadNetworkIRAPType(null);
-      
-      // Reset road name filter
-      setSelectedRoadName('all');
-      
-      // Reset road bounds
-      setRoadBounds(null);
-      
-      // Clear selected road network result
-      setSelectedRoadNetworkResult(null);
-      
-      // Restore road_network_base layer if it was removed
-      if (!activeBaseLayers.includes('road_network_base')) {
-        setActiveBaseLayers([...activeBaseLayers, 'road_network_base']);
-        console.log('✅ [APP] Restored road_network_base layer');
-      }
-      
-      console.log('✅ [APP] Road Safety selections cleared');
-    }
-    
-    // Activate Vehicle Occupant Safety layer when switching TO Road Safety sector
-    if (sector === 'roadsafety' && activeSector !== 'roadsafety') {
-      console.log('🚗 [APP] Entering Road Safety sector - activating Vehicle Occupant Safety layer by default');
-      
-      // Clear other infrastructure layers (but not road safety)
-      const roadSafetyLayers = activeInfraLayers.filter(layer => layer === 'road_safety');
-      setActiveInfraLayers(roadSafetyLayers);
-      
-      // Clear infrastructure sub-layers
-      setActiveEducationSubLayers([]);
-      setActiveHealthcareSubLayers([]);
-      setActivePublicAmenitiesSubLayers([]);
-      setActiveTransportSubLayers([]);
-      
-      // Activate Vehicle Occupant Safety layer by default
-      setActiveRoadSafetySubLayers(['irap_vehicle']);
-      setActiveRoadNetworkIRAPType('irap_vehicle');
-      
-      // Remove road_network_base layer when road safety layers are active
-      setActiveBaseLayers(activeBaseLayers.filter(id => id !== 'road_network_base'));
-      
-      console.log('✅ [APP] Vehicle Occupant Safety layer activated by default');
-      console.log('✅ [APP] Non-road infrastructure layers cleared');
-    }
-    
     setActiveSector(sector);
     setShowAlerts(false);
     setDrawerOpen(true); // Open drawer when changing sector
@@ -663,15 +401,14 @@ function AppContent({
   };
 
   // Handler to activate a specific hazard layer (used by network query)
-  const handleActivateHazardLayer = (hazardType: 'heat' | 'air' | 'flood' | 'multiHazard') => {
+  const handleActivateHazardLayer = (hazardType: 'heat' | 'air' | 'flood') => {
     console.log('🎯 [APP] Activating hazard layer for query:', hazardType);
     
     // Map hazard type to sector and layer
     const hazardMapping = {
       heat: { sector: 'heat' as Sector, layer: 'heat_hhi' },
       air: { sector: 'air' as Sector, layer: 'air_aqi' },
-      flood: { sector: 'flood' as Sector, layer: 'flood_fhi' },
-      multiHazard: { sector: 'multihazard' as Sector, layer: 'multihazard_assessment' }
+      flood: { sector: 'flood' as Sector, layer: 'flood_fhi' }
     };
     
     const mapping = hazardMapping[hazardType];
@@ -691,7 +428,9 @@ function AppContent({
       heat: 'heat_hhi',
       air: 'air_aqi',
       flood: 'flood_fhi',
-      multihazard: 'multihazard_assessment'
+      base_layers: '',
+      climate_hazard: '',
+      env_vulnerability: ''
     });
     setScenario('baseline_2025');
     onBasemapChange('light');
@@ -926,70 +665,7 @@ function AppContent({
     }
   };
 
-  // Handler to zoom to and highlight road segment
-  const handleZoomToRoadSegment = (features: any[], category: string, gridcode: string, color: string) => {
-    console.log('🎯 [APP] Zooming to road segment:', { category, gridcode, color, featureCount: features.length });
-    
-    if (features.length > 0) {
-      // Use a special flag to trigger road segment zoom and highlight in MapCanvas
-      setSelectedLocation({ 
-        roadFeatures: features,
-        roadCategory: category,
-        roadGridcode: gridcode,
-        roadColor: color,
-        name: `${category} - Gridcode ${gridcode}`,
-        zoomToRoadSegment: true
-      } as any);
-    }
-  };
-
-  // Handler to zoom to filtered star-rated roads (REBUILT FROM SCRATCH - CLEAN VERSION)
-  const handleZoomToStarRating = async (layerType: string, starRating: string) => {
-    if (!mapInstance) {
-      console.warn('[ZOOM] Map instance not available');
-      return;
-    }
-
-    console.log(`[ZOOM] Request: ${layerType} - ${starRating}`);
-    console.log(`[ZOOM] Current filters - Ward: ${selectedWardId}, Road: ${selectedRoadName}`);
-    
-    try {
-      // Fetch bounds from API
-      console.log('[ZOOM] Fetching bounds from API...');
-      const bounds = await fetchRoadSafetyBounds(layerType, starRating, selectedWardId, selectedRoadName);
-
-      // Validate API response
-      if (!bounds) {
-        console.warn('[ZOOM] API returned no bounds - no features match the filters');
-        return;
-      }
-
-      const [minLng, minLat, maxLng, maxLat] = bounds;
-      console.log(`[ZOOM] API returned bounds:`, { minLng, minLat, maxLng, maxLat });
-      console.log(`[ZOOM] Bounds size - Width: ${(maxLng - minLng).toFixed(4)}°, Height: ${(maxLat - minLat).toFixed(4)}°`);
-      
-      // Validate bounds are sensible
-      if (minLng >= maxLng || minLat >= maxLat) {
-        console.error('[ZOOM] Invalid bounds - minLng >= maxLng or minLat >= maxLat');
-        return;
-      }
-
-      // Apply smooth zoom animation with minimal padding
-      console.log('[ZOOM] Applying fitBounds animation...');
-      mapInstance.fitBounds(
-        [[minLng, minLat], [maxLng, maxLat]], 
-        {
-          padding: 50,
-          duration: 1500,
-          maxZoom: 15
-        }
-      );
-      
-      console.log(`[ZOOM] SUCCESS - Zoomed to ${layerType} ${starRating}`);
-    } catch (error) {
-      console.error('[ZOOM] Error:', error);
-    }
-  };
+  // ...existing code...
 
   // Handler to reset map to home position
   const handleResetMapView = () => {
@@ -1253,111 +929,7 @@ function AppContent({
     }, 100);
   };
 
-  // Handler to zoom to specific road name + star rating segment (NEW)
-  const handleZoomToRoadStarSegment = async (roadName: string, starRating: string, vehicleType: string) => {
-    if (!mapInstance) {
-      console.warn('[ROAD-STAR-ZOOM] Map instance not available');
-      return;
-    }
-
-    console.log(`[ROAD-STAR-ZOOM] Request: ${roadName} - ${starRating} - ${vehicleType}`);
-    console.log(`[ROAD-STAR-ZOOM] Current ward filter: ${selectedWardId}`);
-
-    // Convert vehicleType to layerType
-    const layerTypeMap: Record<string, string> = {
-      'vehicle': 'irap_vehicle',
-      'motorcycle': 'irap_motorcycle',
-      'pedestrian': 'irap_pedestrian',
-      'bicyclist': 'irap_bicycle',
-    };
-
-    const layerType = layerTypeMap[vehicleType];
-    if (!layerType) {
-      console.error('[ROAD-STAR-ZOOM] Invalid vehicle type:', vehicleType);
-      return;
-    }
-
-    try {
-      // Store the selection state
-      setSelectedRoadStarSegment({ roadName, starRating, vehicleType });
-
-      // Fetch bounds from API with road name filter
-      console.log('[ROAD-STAR-ZOOM] Fetching bounds from API...');
-      const bounds = await fetchRoadSafetyBounds(layerType, starRating, selectedWardId, roadName);
-
-      // Validate API response
-      if (!bounds) {
-        console.warn('[ROAD-STAR-ZOOM] API returned no bounds - no features match the filters');
-        return;
-      }
-
-      const [minLng, minLat, maxLng, maxLat] = bounds;
-      console.log(`[ROAD-STAR-ZOOM] API returned bounds:`, { minLng, minLat, maxLng, maxLat });
-
-      // Validate bounds are sensible
-      if (minLng >= maxLng || minLat >= maxLat) {
-        console.error('[ROAD-STAR-ZOOM] Invalid bounds');
-        return;
-      }
-
-      // Apply smooth zoom animation
-      console.log('[ROAD-STAR-ZOOM] Applying fitBounds animation...');
-      mapInstance.fitBounds(
-        [[minLng, minLat], [maxLng, maxLat]],
-        {
-          padding: 80,
-          duration: 1500,
-          maxZoom: 16
-        }
-      );
-
-      // Activate the appropriate road safety layer if not already active
-      if (!activeRoadSafetySubLayers.includes(layerType)) {
-        console.log('[ROAD-STAR-ZOOM] Activating layer:', layerType);
-        setActiveRoadSafetySubLayers([layerType]);
-        setActiveRoadNetworkIRAPType(layerType);
-      }
-
-      // Set the road name filter to show ONLY this specific road
-      console.log('[ROAD-STAR-ZOOM] Setting road name filter to:', roadName);
-      setSelectedRoadName(roadName);
-
-      // Set the star rating filter to show ONLY this specific star rating
-      console.log('[ROAD-STAR-ZOOM] Setting star rating filter:', starRating);
-      setRoadSafetyStarRatings(prev => ({
-        ...prev,
-        [layerType]: starRating
-      }));
-
-      console.log(`[ROAD-STAR-ZOOM] SUCCESS - Zoomed to ${roadName} ${starRating}`);
-    } catch (error) {
-      console.error('[ROAD-STAR-ZOOM] Error:', error);
-    }
-  };
-
-  // Handler to reset all bar chart filters (road name + star rating)
-  const handleResetBarChartFilters = () => {
-    console.log('[RESET-FILTERS] Resetting all bar chart filters');
-    
-    // Clear the selected road star segment
-    setSelectedRoadStarSegment(null);
-    
-    // Reset road name filter to 'all'
-    setSelectedRoadName('all');
-    
-    // Reset all star rating filters to null
-    setRoadSafetyStarRatings({
-      irap_vehicle: null,
-      irap_motorcycle: null,
-      irap_bicycle: null,
-      irap_pedestrian: null
-    });
-    
-    // Reset map view to default
-    handleResetMapView();
-    
-    console.log('[RESET-FILTERS] All filters cleared');
-  };
+  // ...existing code...
 
   return (
     <div className="h-screen flex flex-col bg-[#F8FAFC]">
@@ -1383,11 +955,6 @@ function AppContent({
         showTutorialPulse={showTutorialPulse}
       />
 
-      {/* Module Navigation Tabs - Full Width */}
-      <ModuleNavigationTabs
-        activeModule={activeModule}
-        onModuleChange={setActiveModule}
-      />
 
       <div className="flex-1 flex overflow-hidden">
         <div data-tutorial="left-panel" className="flex">
@@ -1447,49 +1014,9 @@ function AppContent({
             setActiveBuildingAreaCategories={setActiveBuildingAreaCategories}
             selectedLguName={selectedLguName}
             selectedWardName={selectedWardName}
-            isModuleActive={activeModule !== null}
+            isModuleActive={false}
           />
           
-          {/* Module Panel - appears when module is selected */}
-          <ModulePanel 
-            activeModule={activeModule} 
-            onClose={() => { setActiveModule(null); setShowFstpBuildings(false); setActiveFleetClasses([]); }}
-            activeSewerCategories={activeSewerCategories}
-            onSewerCategoriesChange={(zones) => {
-              setActiveSewerCategories(zones);
-            }}
-            activeGridSewerCategories={activeGridSewerCategories}
-            onGridSewerCategoriesChange={() => {}}
-            sewerViewMode="buildings"
-            onSewerViewModeChange={() => {}}
-            onScenarioResult={(geojson, networkGids, bufBldgIds, bufGeomJson, excBldgIds) => {
-              setScenarioGridGeoJSON(geojson);
-              setScenarioNetworkGids(networkGids ?? null);
-              setBufferBldgIds(bufBldgIds ?? []);
-              setBufferGeoJSON(bufGeomJson ?? null);
-              setExcludedBldgIds(excBldgIds ?? []);
-            }}
-            onStatsChange={setScenarioStats}
-            selectedLguName={selectedLguName}
-            selectedWardName={selectedWardName}
-            isBuildingsLoading={isBuildingsLoading}
-            onScenarioRunningChange={setIsScenarioRunning}
-            onUserRun={() => {
-              if (selectedWardName && selectedWardName !== 'all' && selectedWardName !== 'All Barangays') {
-                handleZoomToBarangay(selectedWardId, selectedWardName);
-              } else if (selectedLguName && selectedLguName !== 'all' && selectedLguName !== 'All LGUs') {
-                handleZoomToLgu(selectedLguName);
-              } else {
-                handleResetMapView();
-              }
-            }}
-            activeFstpLayers={activeFstpLayers}
-            onFstpLayersChange={handleFstpLayersChange}
-            showFstpBuildings={showFstpBuildings}
-            onShowFstpBuildingsChange={setShowFstpBuildings}
-            activeFleetClasses={activeFleetClasses}
-            onFleetClassesChange={handleFleetClassesChange}
-          />
         </div>
 
         {/* Map Area */}
@@ -1560,8 +1087,7 @@ function AppContent({
           scenarioZones={scenarioStats?.zones ?? null}
           onBuildingsLoadingChange={setIsBuildingsLoading}
           isScenarioRunning={isScenarioRunning}
-          activeModule={activeModule}
-          scenarioStats={activeModule === 'module1_suitability' ? scenarioStats : null}
+          scenarioStats={null}
           activeFstpLayers={activeFstpLayers}
           showFstpBuildings={showFstpBuildings}
           activeFleetClasses={activeFleetClasses}
@@ -1595,10 +1121,10 @@ function AppContent({
             activeSewerCategories={activeSewerCategories}
             sewerViewMode="buildings"
             hasBufferLayer={!!bufferGeoJSON}
-            activeFleetClasses={activeModule === 'module3_collection' ? activeFleetClasses : []}
+            activeFleetClasses={[]}
             fleetOpacity={fleetOpacity}
             onFleetOpacityChange={setFleetOpacity}
-            activeFstpBands={activeModule === 'module3_collection' ? activeFstpLayers.filter(f => f.enabled).flatMap(f => f.activeBands) : []}
+            activeFstpBands={[]}
             fstpOpacity={fstpOpacity}
             onFstpOpacityChange={setFstpOpacity}
           />
@@ -1649,7 +1175,6 @@ function AppContent({
           onResetBarChartFilters={handleResetBarChartFilters}
           selectedDonutCategory={selectedDonutCategory}
           onDonutCategorySelect={setSelectedDonutCategory}
-          activeModule={activeModule}
           selectedLguName={selectedLguName}
           totalResidentialBuildings={totalResidentialBuildings}
           totalAreaKm2={totalAreaKm2}
@@ -1658,7 +1183,7 @@ function AppContent({
           activeBuildingHeightCategories={activeBuildingHeightCategories}
           activeBuildingAreaCategories={activeBuildingAreaCategories}
           isEconomicVulnerabilityActive={isEconomicVulnerabilityActive}
-          scenarioStats={activeModule === 'module1_suitability' ? scenarioStats : null}
+          scenarioStats={null}
           isScenarioRunning={isScenarioRunning}
           onZoneClick={handleZoneClick}
           activeFstpLayers={activeFstpLayers}

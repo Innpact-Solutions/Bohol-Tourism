@@ -7,11 +7,6 @@ import groundwaterBuildingsRouter from "./routes/groundwaterBuildings";
 import heatStressBuildingsRouter from "./routes/heatStressBuildings";
 import infiltrationBuildingsRouter from "./routes/infiltrationBuildings";
 import adminRebuildRouter from "./routes/adminRebuild";
-import scenarioBuildingsRouter from "./routes/scenarioBuildings";
-import scenarioResultsRouter from "./routes/scenarioResults";
-import scenarioGridRouter from "./routes/scenarioGrid";
-import fstpBuildingStatsRouter from "./routes/fstpBuildingStats";
-import fleetStatsRouter from "./routes/fleetStats";
 
 const app = express();
 const PORT = process.env.PORT ?? 8080;
@@ -49,11 +44,6 @@ app.use("/api/groundwater-buildings", groundwaterBuildingsRouter);
 app.use("/api/heat-stress-buildings", heatStressBuildingsRouter);
 app.use("/api/infiltration-buildings", infiltrationBuildingsRouter);
 app.use("/api/admin", adminRebuildRouter);
-app.use("/api/scenario-buildings", scenarioBuildingsRouter);
-app.use("/api/scenario-results", scenarioResultsRouter);
-app.use("/api/scenario-grid", scenarioGridRouter);
-app.use("/api/fstp-building-stats", fstpBuildingStatsRouter);
-app.use("/api/fleet-stats", fleetStatsRouter);
 
 // 404 fallback
 app.use((_req, res) => {

@@ -6,7 +6,7 @@ import { fetchEducationCounts } from '../utils/educationData';
 import { fetchHealthcareCounts } from '../utils/healthcareData';
 import { fetchPublicAmenitiesCounts } from '../utils/publicAmenitiesData';
 import { fetchTransportCounts } from '../utils/transportData';
-import { fetchRoadSafetyLengths } from '../utils/roadSafetyData';
+
 import { 
   getTotalHealthcareCount,
   getTotalPublicAmenitiesCount,
