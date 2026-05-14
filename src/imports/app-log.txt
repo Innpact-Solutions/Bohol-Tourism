@@ -1,0 +1,845 @@
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 📡 [Road Network] Response status: 200
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ ✅ [Road Network] Data received successfully
+ ✅ [Road Network] Analysis loaded successfully
+    Analysis ID: 30
+    Total Length: 2030.66 km
+    Gridcode Levels: 4
+ ✅ Mapped gridcode 1 to color #91CF60 and label "Low"
+ ✅ Mapped gridcode 2 to color #FFFFBF and label "Moderate"
+ ✅ Mapped gridcode 3 to color #FC8D59 and label "High"
+ ✅ Mapped gridcode 4 to color #D73027 and label "Extreme"
+ 💾 [Road Network] Cached data for HHI_2025|all
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✗ NO
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(103)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ⏳ NOT YET (loading asynchronously...)
+   ℹ️ Ward labels will appear once Barangay_Boundary_Point WFS request completes
+ ✅ Layer ordering re-enforced after 500ms using strict priority system
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ ✅ [Building Hazard API] Data received: Object
+ ✅ Ward_Point source added
+ ✅ Ward labels added using Ward_Point layer (centroids)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 📋 ===== UNIQUE EDUCATION CATEGORIES FOUND =====
+ Total features: 778
+ Unique categories: 4
+ 
+Category breakdown:
+   - "Anganwadi": 352 institutions
+   - "College": 70 institutions
+   - "School": 350 institutions
+   - "University": 6 institutions
+ =================================================
+ 📊 ===== EDUCATION COUNTS BREAKDOWN =====
+ Total institutions fetched: 778
+ \nCounts by lowercase category (used in UI):
+   "university": 6 (from GeoServer: University)
+   "anganwadi": 352 (from GeoServer: Anganwadi)
+   "college": 70 (from GeoServer: College)
+   "school": 350 (from GeoServer: School)
+ ==========================================
+ ✅ Fetched 688 public amenities from GeoServer
+ 📋 ===== UNIQUE PUBLIC AMENITIES CATEGORIES FOUND =====
+ Total features: 688
+ Unique categories: 12
+ 
+Category breakdown:
+   - "Community Centre": 32 amenities
+   - "Culture Centre": 21 amenities
+   - "Fire Station": 6 amenities
+   - "Government Buildings": 141 amenities
+   - "Haat/ Market": 35 amenities
+   - "Park": 121 amenities
+   - "Petrol Pump": 26 amenities
+   - "Playground/Stadium": 130 amenities
+   - "Police Outpost": 22 amenities
+   - "Religious": 110 amenities
+   - "Telephone Exchange": 2 amenities
+   - "Vending Zones": 42 amenities
+ =================================================
+ 📊 ===== PUBLIC AMENITIES COUNTS BREAKDOWN =====
+ Total amenities fetched: 688
+ 
+Counts by lowercase category (used in UI):
+   "vending zones": 42 (from GeoServer: Vending Zones)
+   "community centre": 32 (from GeoServer: Community Centre)
+   "culture centre": 21 (from GeoServer: Culture Centre)
+   "fire station": 6 (from GeoServer: Fire Station)
+   "government buildings": 141 (from GeoServer: Government Buildings)
+   "park": 121 (from GeoServer: Park)
+   "haat/ market": 35 (from GeoServer: Haat/ Market)
+   "petrol pump": 26 (from GeoServer: Petrol Pump)
+   "playground/stadium": 130 (from GeoServer: Playground/Stadium)
+   "police outpost": 22 (from GeoServer: Police Outpost)
+   "religious": 110 (from GeoServer: Religious)
+   "telephone exchange": 2 (from GeoServer: Telephone Exchange)
+ Total count: 688
+ =========================================
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal_Boundary_Point GeoJSON loaded: 3 features
+ ✅ Municipal labels added using Municipal_Boundary_Point layer (centroids)
+ 🔄 Updating existing ward point source with filtered data (37 features)
+ ✅ Ward_Point source updated with new data
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal Boundary GeoJSON loaded: 3 features
+ ✅ Municipal Boundary converted to LineString (outer boundary only)
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✓ YES
+   Current position: 103 of 105
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+    Priority 940 (WARD_LABELS): ward-labels
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(105)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ✓ YES
+   Final position: 104 of 105 (should be near top)
+   Visibility: undefined
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🔍 Fetching area with CQL filter: (gridcode IN (4,5,6) OR GRIDCODE IN (4,5,6) OR Gridcode IN (4,5,6))
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal_Boundary_Point GeoJSON loaded: 3 features
+ ✅ Municipal labels added using Municipal_Boundary_Point layer (centroids)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(0)
+ 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+ 🏠 [RightPanelContainer] activeModule: null
+ 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+ 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ ✅ [Building Hazard API] Data received: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ ℹ️ Skipping buildings legend - Building Use layer not active
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5567 📋 Final activeLegends: Array(0)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] activeModule: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59548 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59683 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59845 🔍 [RightPanel] Layer check: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81618 🏢 Tutorial building popup prop received: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81673 🔑 [APP] activeLayerId derived from sector: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81675 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5532 ℹ️ Skipping buildings legend - Building Use layer not active
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5558 🎯 Attempting to add hazard legend: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5565 ℹ️ Skipping heat_hhi legend (hidden by user request)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5567 📋 Final activeLegends: Array(0)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] activeModule: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59548 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59683 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59845 🔍 [RightPanel] Layer check: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81618 🏢 Tutorial building popup prop received: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81673 🔑 [APP] activeLayerId derived from sector: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81675 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81618 🏢 Tutorial building popup prop received: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81673 🔑 [APP] activeLayerId derived from sector: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81675 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5532 ℹ️ Skipping buildings legend - Building Use layer not active
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5558 🎯 Attempting to add hazard legend: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5565 ℹ️ Skipping heat_hhi legend (hidden by user request)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5567 📋 Final activeLegends: Array(0)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] activeModule: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59548 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59683 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59845 🔍 [RightPanel] Layer check: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2497 ✅ Fetched 688 public amenities from GeoServer
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2509 📋 ===== UNIQUE PUBLIC AMENITIES CATEGORIES FOUND =====
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2509 Total features: 688
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2509 Unique categories: 12
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2509 
+Category breakdown:
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Community Centre": 32 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Culture Centre": 21 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Fire Station": 6 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Government Buildings": 141 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Haat/ Market": 35 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Park": 121 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Petrol Pump": 26 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Playground/Stadium": 130 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Police Outpost": 22 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Religious": 110 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Telephone Exchange": 2 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2511   - "Vending Zones": 42 amenities
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2512 =================================================
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2527 📊 ===== PUBLIC AMENITIES COUNTS BREAKDOWN =====
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2527 Total amenities fetched: 688
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2527 
+Counts by lowercase category (used in UI):
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "vending zones": 42 (from GeoServer: Vending Zones)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "community centre": 32 (from GeoServer: Community Centre)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "culture centre": 21 (from GeoServer: Culture Centre)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "fire station": 6 (from GeoServer: Fire Station)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "government buildings": 141 (from GeoServer: Government Buildings)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "park": 121 (from GeoServer: Park)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "haat/ market": 35 (from GeoServer: Haat/ Market)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "petrol pump": 26 (from GeoServer: Petrol Pump)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "playground/stadium": 130 (from GeoServer: Playground/Stadium)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "police outpost": 22 (from GeoServer: Police Outpost)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "religious": 110 (from GeoServer: Religious)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2530   "telephone exchange": 2 (from GeoServer: Telephone Exchange)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2531 Total count: 688
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:2531 =========================================
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81702 ✅ [APP] Infrastructure counts preloaded successfully
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81618 🏢 Tutorial building popup prop received: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81673 🔑 [APP] activeLayerId derived from sector: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81675 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5532 ℹ️ Skipping buildings legend - Building Use layer not active
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5558 🎯 Attempting to add hazard legend: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5565 ℹ️ Skipping heat_hhi legend (hidden by user request)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5567 📋 Final activeLegends: Array(0)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] activeModule: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59548 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59683 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59845 🔍 [RightPanel] Layer check: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81618 🏢 Tutorial building popup prop received: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81673 🔑 [APP] activeLayerId derived from sector: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81675 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5532 ℹ️ Skipping buildings legend - Building Use layer not active
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5558 🎯 Attempting to add hazard legend: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5565 ℹ️ Skipping heat_hhi legend (hidden by user request)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5567 📋 Final activeLegends: Array(0)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] activeModule: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59548 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59683 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59845 🔍 [RightPanel] Layer check: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:32834 🔒 ANIMATING MAP TO BARANGAY EXTENT (Tagbilaran City, Dauis, Panglao)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:32843 📍 Map animating to Barangay_Boundary extent - SMOOTH ZOOM
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81395 🔍 Fetching area with CQL filter: (gridcode IN (3,4) OR GRIDCODE IN (3,4) OR Gridcode IN (3,4))
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81488 ✅ [HAZARD DATA CONTEXT] All sector data loaded: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81618 🏢 Tutorial building popup prop received: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81673 🔑 [APP] activeLayerId derived from sector: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81675 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5532 ℹ️ Skipping buildings legend - Building Use layer not active
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5558 🎯 Attempting to add hazard legend: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5565 ℹ️ Skipping heat_hhi legend (hidden by user request)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:5567 📋 Final activeLegends: Array(0)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:77159 🏠 [RightPanelContainer] activeModule: null
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59548 🏠 [RightPanel] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59683 🏠 [MainKPIs] Received totalResidentialBuildings: 55078
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:59845 🔍 [RightPanel] Layer check: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33151 🔄 Loading tiles for: heat_hhi
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:32520 ⏱️ Safety timeout - hiding initial loading indicator (buildings may not be in active layers)
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:32525 📊 Loading States: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:32844 ✅ Initial map animation complete - layers will continue loading
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33671 ✅ Buildings tiles fully loaded and rendered (map idle) - hiding loading indicator
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:33671 🎨 Buildings initial load complete - will trigger initialLoadComplete
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:32525 📊 Loading States: Object
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81464 ✅ Buildings data preloaded successfully
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81464    Total features: 68,621
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81464    Load time: 7.05s
+9ab69fb9996bebc41c13ea1827edab66f8b1fdd3.js:81464    Memory size: ~45.50 MB

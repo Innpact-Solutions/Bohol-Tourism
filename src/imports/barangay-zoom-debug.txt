@@ -1,0 +1,68 @@
+⚠️ No public amenities found
+85ede4b7555c36fbbf501bccba33dee837c309ac.js:81319 🔄 [BARANGAY-ZOOM] Triggering map repaint to load tiles for new viewport
+85ede4b7555c36fbbf501bccba33dee837c309ac.js:80742 🔍 Fetching area with CQL filter: (gridcode IN (4,5,6) OR GRIDCODE IN (4,5,6) OR Gridcode IN (4,5,6))
+85ede4b7555c36fbbf501bccba33dee837c309ac.js:36195 🔍 DEBUG: Buildings visible after filter: 0
+85ede4b7555c36fbbf501bccba33dee837c309ac.js:36195 🔍 DEBUG: Barangay filter active for: "Cogon"
+85ede4b7555c36fbbf501bccba33dee837c309ac.js:36195 🔍 DEBUG: Looking for buildings where BrgyName matches: "Cogon" (or case-insensitive)
+installHook.js:1 ⚠️ DEBUG: No buildings visible despite filter being active!
+overrideMethod @ installHook.js:1
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36203
+setTimeout
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36192
+sp @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qa @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+BM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Is @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+installHook.js:1    This could mean:
+overrideMethod @ installHook.js:1
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36203
+setTimeout
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36192
+sp @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qa @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+BM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Is @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+installHook.js:1    1. Tiles haven't loaded for this area yet (zoom to barangay)
+overrideMethod @ installHook.js:1
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36203
+setTimeout
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36192
+sp @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qa @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+BM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Is @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+installHook.js:1    2. BrgyName/MunName values don't match exactly
+overrideMethod @ installHook.js:1
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36203
+setTimeout
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36192
+sp @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qa @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+BM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Is @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+installHook.js:1    3. No buildings exist in this administrative area
+overrideMethod @ installHook.js:1
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36203
+setTimeout
+(anonymous) @ 85ede4b7555c36fbbf501bccba33dee837c309ac.js:36192
+sp @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qa @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+BM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Is @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+85ede4b7555c36fbbf501bccba33dee837c309ac.js:36212 🔍 DEBUG: Found 0 buildings in loaded tiles with BrgyName matching "Cogon"
+885ede4b7555c36fbbf501bccba33dee837c309ac.js:32736 🔄 Loading tiles for: heat_hhi

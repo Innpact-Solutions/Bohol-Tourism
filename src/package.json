@@ -1,0 +1,12 @@
+{
+  "name": "giz-climate-dashboard",
+  "version": "1.0.0",
+  "description": "Multi-Hazard Climate Screening & Mobility Exposure Dashboard for GIZ",
+  "dependencies": {
+    "maplibre-gl": "5.15.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

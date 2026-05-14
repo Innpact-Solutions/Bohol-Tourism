@@ -1,0 +1,834 @@
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(101)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ⏳ NOT YET (loading asynchronously...)
+   ℹ️ Ward labels will appear once Barangay_Boundary_Point WFS request completes
+ ✅ Strict layer order enforced - Basemap labels are topmost
+ ✅ Ward click events added
+ 📊 Processing ward boundaries - Features count: 37
+ 🔍 First feature properties: Object
+ 🏛️ Unique municipality names in fetched barangay data: Array(3)
+ 🎯 Expected to see only: "all"
+ ✅ Ward boundaries data stored in ref
+ 🔄 Updating existing ward boundary source with filtered data (37 features)
+ ✅ Ward Boundary source updated with new data
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✗ NO
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(101)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ⏳ NOT YET (loading asynchronously...)
+   ℹ️ Ward labels will appear once Barangay_Boundary_Point WFS request completes
+ ✅ Strict layer order enforced - Basemap labels are topmost
+ ✅ Ward click events added
+ 🔍 FINAL VERIFICATION CHECK:
+   buildings source exists: true
+   buildings layer exists: true
+   buildings-fill layer exists: true
+   buildings-3d layer exists: true
+   buildings-highlight layer exists: true
+   buildings visibility property: none
+   buildings-fill visibility property: none
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal Boundary GeoJSON loaded: 3 features
+ ✅ Municipal Boundary converted to LineString (outer boundary only)
+ ✅ Municipal Boundary source added (vector LineString only - no fill)
+ 🏷️  Found first label layer: waterway_label
+ ✅ Municipal Boundary line layer added with white border for satellite visibility
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✗ NO
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(103)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ⏳ NOT YET (loading asynchronously...)
+   ℹ️ Ward labels will appear once Barangay_Boundary_Point WFS request completes
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🎨 Ward highlight cleared (polling)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal Boundary GeoJSON loaded: 3 features
+ ✅ Municipal Boundary converted to LineString (outer boundary only)
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✗ NO
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(103)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ⏳ NOT YET (loading asynchronously...)
+   ℹ️ Ward labels will appear once Barangay_Boundary_Point WFS request completes
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Ward_Point source added
+ ✅ Ward labels added using Ward_Point layer (centroids)
+ 🔄 Map resized after drawer animation
+ ✅ Municipal_Boundary_Point GeoJSON loaded: 3 features
+ ✅ Municipal labels added using Municipal_Boundary_Point layer (centroids)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Updating existing ward point source with filtered data (37 features)
+ ✅ Ward_Point source updated with new data
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal_Boundary_Point GeoJSON loaded: 3 features
+ ✅ Municipal labels added using Municipal_Boundary_Point layer (centroids)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✓ YES
+   Current position: 103 of 105
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+    Priority 940 (WARD_LABELS): ward-labels
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(105)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ✓ YES
+   Final position: 104 of 105 (should be near top)
+   Visibility: undefined
+ ✅ Layer ordering re-enforced after 500ms using strict priority system
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81311 🔍 Fetching area with CQL filter: (gridcode IN (3,4) OR GRIDCODE IN (3,4) OR Gridcode IN (3,4))
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81404 ✅ [HAZARD DATA CONTEXT] All sector data loaded: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:81534 🏢 Tutorial building popup prop received: null
+e130e68811e6852576583c51e8e18c76f2799b13.js:81585 🔑 [APP] activeLayerId derived from sector: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:81587 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5553 🎯 Attempting to add hazard legend: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+e130e68811e6852576583c51e8e18c76f2799b13.js:5562 📋 Final activeLegends: Array(1)
+e130e68811e6852576583c51e8e18c76f2799b13.js:59765 🔍 [RightPanel] Layer check: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:32824 🔒 ANIMATING MAP TO BARANGAY EXTENT (Tagbilaran City, Dauis, Panglao)
+e130e68811e6852576583c51e8e18c76f2799b13.js:32833 📍 Map animating to Barangay_Boundary extent - SMOOTH ZOOM
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:33141 🔄 Loading tiles for: heat_hhi
+e130e68811e6852576583c51e8e18c76f2799b13.js:32510 ⏱️ Safety timeout - hiding initial loading indicator (buildings may not be in active layers)
+e130e68811e6852576583c51e8e18c76f2799b13.js:32515 📊 Loading States: Object
+e130e68811e6852576583c51e8e18c76f2799b13.js:32834 ✅ Initial map animation complete - layers will continue loading
+e130e68811e6852576583c51e8e18c76f2799b13.js:33661 ✅ Buildings tiles fully loaded and rendered (map idle) - hiding loading indicator
+e130e68811e6852576583c51e8e18c76f2799b13.js:33661 🎨 Buildings initial load complete - will trigger initialLoadComplete
+e130e68811e6852576583c51e8e18c76f2799b13.js:81380 ✅ Buildings data preloaded successfully
+e130e68811e6852576583c51e8e18c76f2799b13.js:81380    Total features: 68,621
+e130e68811e6852576583c51e8e18c76f2799b13.js:81380    Load time: 7.42s
+e130e68811e6852576583c51e8e18c76f2799b13.js:81380    Memory size: ~45.50 MB
+e130e68811e6852576583c51e8e18c76f2799b13.js:32515 📊 Loading States: Object

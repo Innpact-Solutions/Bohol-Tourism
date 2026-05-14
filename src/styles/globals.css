@@ -1,0 +1,940 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Custom design system tokens for Bhubaneswar Climate Dashboard */
+  --text-2xl: 22px;
+  --text-xl: 18px;
+  --text-lg: 16px;
+  --text-base: 14px;
+  --text-xs: 12px;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Prevent scroll and overflow issues in embedded/published views */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+}
+
+/* Ensure the root app container takes full height */
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Custom Scrollbar Styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Enhanced scrollbar for Query Panel - always visible */
+.query-panel-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.query-panel-scroll::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 4px;
+}
+
+.query-panel-scroll::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.query-panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Firefox scrollbar for Query Panel */
+.query-panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 #F1F5F9;
+}
+
+/* Smooth scrolling for all containers */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states */
+*:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.5);
+  outline-offset: 2px;
+}
+
+/* Opacity Slider Custom Styling */
+.opacity-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2563EB;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.opacity-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+}
+
+.opacity-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.opacity-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+}
+
+/* Year Slider Custom Styling */
+.slider-thumb::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2563EB;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid white;
+}
+
+.slider-thumb::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+}
+
+.slider-thumb::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+.slider-thumb::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.slider-thumb::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+}
+
+.slider-thumb::-moz-range-thumb:active {
+  transform: scale(1.1);
+}
+
+/* Scrolling text animation for KPI tiles */
+@keyframes scroll-text {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-text {
+  animation: scroll-text 10s linear 3s infinite;
+}
+
+/* MapLibre GL custom styles */
+.maplibregl-popup-content {
+  padding: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  max-width: 320px !important;
+}
+
+/* Panorama pin hover label – no arrow, no background box, transparent wrapper */
+.panorama-label-popup .maplibregl-popup-content {
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.panorama-label-popup .maplibregl-popup-tip {
+  display: none !important;
+}
+
+/* Ensure popups stay within viewport and don't cause overflow */
+.maplibregl-popup {
+  max-width: 320px !important;
+  will-change: transform;
+  pointer-events: auto !important;
+  position: absolute !important;
+  transform-origin: center center !important;
+}
+
+/* Critical fix for embedded/published views - prevent popup from extending page */
+.maplibregl-popup-anchor-bottom {
+  flex-direction: column-reverse !important;
+}
+
+.maplibregl-popup-anchor-top {
+  flex-direction: column !important;
+}
+
+/* Constrain popup tip/pointer size */
+.maplibregl-popup-tip {
+  border-width: 8px !important;
+}
+
+/* Modern education popup styling */
+.education-popup .maplibregl-popup-content {
+  padding: 0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(139, 92, 246, 0.1) !important;
+  max-width: 280px !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  animation: popupFadeIn 0.3s ease-out;
+}
+
+.education-popup .maplibregl-popup-tip {
+  border-width: 6px !important;
+}
+
+/* Road safety popup styling - modern blue theme */
+.road-safety-popup {
+  position: absolute !important;
+  transform-origin: center bottom !important;
+}
+
+.road-safety-popup .maplibregl-popup-content {
+  padding: 0 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(37, 99, 235, 0.15) !important;
+  max-width: 240px !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  animation: popupFadeIn 0.18s ease-out;
+  overflow: hidden !important;
+  background: white !important;
+}
+
+.road-safety-popup .maplibregl-popup-tip {
+  border-width: 5px !important;
+}
+
+/* Close button for road safety popup - matches ward popup style */
+.road-safety-popup .maplibregl-popup-close-button {
+  font-size: 16px !important;
+  color: #64748B !important;
+  padding: 0 !important;
+  right: 6px !important;
+  top: 6px !important;
+  z-index: 10 !important;
+  background: transparent !important;
+  border-radius: 4px !important;
+  width: 18px !important;
+  height: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  opacity: 0.6 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.road-safety-popup .maplibregl-popup-close-button:hover {
+  background: rgba(100, 116, 139, 0.1) !important;
+  opacity: 1 !important;
+}
+
+/* Cluster hover popup - minimal and clean */
+.cluster-hover-popup .maplibregl-popup-content {
+  padding: 0 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2) !important;
+  border: 1px solid rgba(139, 92, 246, 0.15) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.cluster-hover-popup .maplibregl-popup-tip {
+  border-width: 5px !important;
+}
+
+/* Popup fade-in animation */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Cluster pulse animation for education points */
+@keyframes clusterPulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.1);
+  }
+}
+
+/* Smooth transitions for map interactions */
+.maplibregl-map {
+  overflow: visible !important;
+}
+
+/* Optimize map canvas rendering during panel animations */
+.maplibregl-canvas {
+  will-change: auto !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.maplibregl-canvas-container {
+  overflow: hidden !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Prevent popup from extending beyond map container */
+.maplibregl-popup-anchor-top,
+.maplibregl-popup-anchor-top-left,
+.maplibregl-popup-anchor-top-right {
+  margin-bottom: 0 !important;
+}
+
+.maplibregl-popup-anchor-bottom,
+.maplibregl-popup-anchor-bottom-left,
+.maplibregl-popup-anchor-bottom-right {
+  margin-top: 0 !important;
+}
+
+.maplibregl-popup-anchor-left {
+  margin-right: 0 !important;
+}
+
+.maplibregl-popup-anchor-right {
+  margin-left: 0 !important;
+}
+
+/* Compact ward popup close button */
+.ward-popup .maplibregl-popup-close-button {
+  font-size: 16px !important;
+  color: #64748B !important;
+  padding: 0 !important;
+  right: 6px !important;
+  top: 6px !important;
+  z-index: 10 !important;
+  background: transparent !important;
+  border-radius: 4px !important;
+  width: 18px !important;
+  height: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  opacity: 0.6 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.ward-popup .maplibregl-popup-close-button:hover {
+  background: rgba(100, 116, 139, 0.1) !important;
+  opacity: 1 !important;
+}
+
+/* Infrastructure popup close button (default style) */
+.infrastructure-popup .maplibregl-popup-close-button {
+  font-size: 20px !important;
+  color: white !important;
+  padding: 4px 8px !important;
+  right: 4px !important;
+  top: 4px !important;
+  z-index: 10 !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 4px !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.infrastructure-popup .maplibregl-popup-close-button:hover {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.infrastructure-marker:hover {
+  transform: scale(1.2);
+  z-index: 1000;
+}
+
+/* MapLibre GL Controls */
+.maplibregl-ctrl-group {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.maplibregl-ctrl-group button {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+.maplibregl-ctrl-compass {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+/* Scale control styling */
+.maplibregl-ctrl-scale {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid #E5E7EB !important;
+  border-top: 2px solid #2563EB !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  color: #0F172A !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1000 !important;
+  position: relative !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Map attribution/credits styling - no background box */
+.maplibregl-ctrl-attrib {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 500px !important;
+  flex-direction: row-reverse !important;
+  position: relative !important;
+  min-height: 24px !important;
+  height: 24px !important;
+}
+
+.maplibregl-ctrl-attrib-inner {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 500 !important;
+  color: #64748B !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.5 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  padding: 3px 2px 3px 10px !important;
+  border-radius: 3px !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+  flex: 0 1 auto !important;
+  order: 2 !important;
+  margin-right: 0 !important;
+  position: absolute !important;
+  right: 19px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  height: 18px !important;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: #2563EB !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease !important;
+  display: inline !important;
+}
+
+.maplibregl-ctrl-attrib a:hover {
+  color: #1D4ED8 !important;
+  text-decoration: underline !important;
+}
+
+/* Style the compact "i" toggle button - smaller, no background box */
+.maplibregl-ctrl-attrib-button {
+  background: rgba(37, 99, 235, 0.15) !important;
+  backdrop-filter: blur(8px) !important;
+  border-radius: 50% !important;
+  color: #2563EB !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  font-family: 'Georgia', serif !important;
+  font-style: italic !important;
+  padding: 0 !important;
+  border: 1.5px solid #2563EB !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  line-height: 1 !important;
+  z-index: 1001 !important;
+  flex-shrink: 0 !important;
+  order: 1 !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+}
+
+/* Add the "i" character content */
+.maplibregl-ctrl-attrib-button::before {
+  content: 'i' !important;
+  display: block !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  font-family: 'Georgia', serif !important;
+  color: #2563EB !important;
+  line-height: 1 !important;
+}
+
+.maplibregl-ctrl-attrib-button:hover {
+  background: rgba(37, 99, 235, 0.25) !important;
+  border-color: #1D4ED8 !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3) !important;
+}
+
+.maplibregl-ctrl-attrib-button:hover::before {
+  color: #1D4ED8 !important;
+}
+
+.maplibregl-ctrl-attrib-button:focus {
+  outline: 2px solid rgba(37, 99, 235, 0.3) !important;
+  outline-offset: 2px !important;
+}
+
+/* White text and icon for satellite basemap */
+[data-basemap="satellite"] .maplibregl-ctrl-attrib-inner {
+  color: #FFFFFF !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-basemap="satellite"] .maplibregl-ctrl-attrib a {
+  color: #FFFFFF !important;
+}
+
+[data-basemap="satellite"] .maplibregl-ctrl-attrib a:hover {
+  color: #E0E7FF !important;
+  text-decoration: underline !important;
+}
+
+[data-basemap="satellite"] .maplibregl-ctrl-attrib-button {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-basemap="satellite"] .maplibregl-ctrl-attrib-button::before {
+  color: #FFFFFF !important;
+}
+
+[data-basemap="satellite"] .maplibregl-ctrl-attrib-button:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-color: #E0E7FF !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-basemap="satellite"] .maplibregl-ctrl-attrib-button:hover::before {
+  color: #E0E7FF !important;
+}
+
+/* Ensure all map controls are visible */
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
+  z-index: 1000 !important;
+  position: absolute !important;
+  pointer-events: auto !important;
+  bottom: 0 !important;
+  margin-bottom: 8px !important;  /* Decreased to 8px for tighter spacing */
+}
+
+.maplibregl-ctrl-bottom-left {
+  left: 0 !important;
+  margin-left: 16px !important;
+}
+
+/* Comparison view scale control - position to right of legend panel */
+[data-comparison-map="left"] .maplibregl-ctrl-bottom-left {
+  position: fixed !important;
+  left: 248px !important;
+  bottom: 8px !important;
+  margin-left: 0 !important;
+  z-index: 50 !important;
+}
+
+.maplibregl-ctrl-bottom-right {
+  right: 0 !important;
+  margin-right: 16px !important;
+}
+
+.maplibregl-ctrl {
+  margin: 4px !important;
+  clear: both !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure the map container doesn't clip controls */
+.maplibregl-map {
+  overflow: visible !important;
+}
+
+.maplibregl-canvas-container {
+  overflow: hidden !important;
+}
+
+/* Location Label V2 - Compact Tinted Glassmorphic (v2.1 - Cache Refresh) */
+.location-label-v2 .maplibregl-popup-content {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.label-box {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  padding: 6px 8px 6px 12px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(226, 232, 240, 0.5) !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1) !important;
+}
+
+.label-name {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: #0F172A !important;
+  letter-spacing: 0.01em !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.label-close {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 16px !important;
+  height: 16px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 3px !important;
+  color: #64748B !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.label-close:hover {
+  background: rgba(241, 245, 249, 0.8) !important;
+  color: #0F172A !important;
+}
+
+.label-close:active {
+  background: rgba(226, 232, 240, 0.9) !important;
+  transform: scale(0.95) !important;
+}
+
+.label-close svg {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.location-label-v2 .maplibregl-popup-tip {
+  border-top-color: rgba(255, 255, 255, 0.92) !important;
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08)) !important;
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}

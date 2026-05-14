@@ -1,0 +1,97 @@
+🎯🎯🎯 [APP] handleLayerChange called with layerId: storm_surge
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:81176 🎯 [APP] Current activeSector: heat
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:81176 🎯 [APP] Current activeLayerPerSector: {heat: 'storm_surge', air: 'air_aqi', flood: 'flood_fhi', multihazard: 'multihazard_assessment', roadsafety: ''}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:81179 🎯 [APP] Updated activeLayerPerSector[heat] to: storm_surge
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:81066 🏢 Tutorial building popup prop received: null
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:81117 🔑 [APP] activeLayerId derived from sector: {activeSector: 'heat', activeLayerId: 'storm_surge', activeLayerPerSector: {…}}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:32044 🔧 [getLayerNameForScenario] Called with: {layerId: 'storm_surge', scenario: 'baseline_2025'}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:32044 🔧 [getLayerNameForScenario] Checking layerScenarioMap for: storm_surge
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:32044 🔧 [getLayerNameForScenario] layerScenarioMap has this layer? true
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:32044 🔧 [getLayerNameForScenario] Layer found in layerScenarioMap: {baseline_2025: 'WorldBank_Bohol:StormSurge', ssp1_2040: 'WorldBank_Bohol:StormSurge', ssp2_2040: 'WorldBank_Bohol:StormSurge', ssp5_2040: 'WorldBank_Bohol:StormSurge'}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:32044 🔧 [getLayerNameForScenario] Scenario mapping exists? true
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:32046 ✅ [getLayerNameForScenario] Returning from layerScenarioMap: WorldBank_Bohol:StormSurge
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:81119 🔑 [APP] Active Hazard Key: StormSurge (from WorldBank_Bohol:StormSurge)
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3309 🔎 getUILayerLegend called with: {layerId: 'storm_surge', scenario: 'baseline_2025'}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3311 🗺️ Mapped to GeoServer layer: null
+installHook.js:1 ⚠️ Unknown layer ID: storm_surge
+overrideMethod @ installHook.js:1
+Fx @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3312
+Nt @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3647
+(anonymous) @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:4279
+(anonymous) @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:4303
+Iie @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:4242
+nS @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+hv @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+R1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+w1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+DM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qd @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5347 🎯 Attempting to add hazard legend: {activeSector: 'heat', activeLayerId: 'storm_surge', activeSubLayers: Array(1)}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5139 🔍 Getting hazard legend for: {layerId: 'storm_surge', scenario: 'baseline_2025'}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3309 🔎 getUILayerLegend called with: {layerId: 'storm_surge', scenario: 'baseline_2025'}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3311 🗺️ Mapped to GeoServer layer: null
+installHook.js:1 ⚠️ Unknown layer ID: storm_surge
+overrideMethod @ installHook.js:1
+Fx @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3312
+W @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5140
+$ie @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5348
+nS @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+hv @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+R1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+w1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+DM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qd @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5141 📊 CSV entries received: []
+installHook.js:1 ⚠️ No CSV legend found for layer: storm_surge, scenario: baseline_2025
+overrideMethod @ installHook.js:1
+W @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5142
+$ie @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5348
+nS @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+hv @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+R1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+w1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+DM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qd @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+installHook.js:1 ❌ Hazard legend is null, not adding to activeLegends
+overrideMethod @ installHook.js:1
+$ie @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5352
+nS @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+hv @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+R1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+w1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+DM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qd @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+NE @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+Ri @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+(anonymous) @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8Understand this warning
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:5356 📋 Final activeLegends: []
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3309 🔎 getUILayerLegend called with: {layerId: 'storm_surge', scenario: 'baseline_2025'}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3311 🗺️ Mapped to GeoServer layer: null
+installHook.js:1 ⚠️ Unknown layer ID: storm_surge
+overrideMethod @ installHook.js:1
+Fx @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3312
+Nt @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3647
+(anonymous) @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:4279
+(anonymous) @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:4303
+Iie @ c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:4242
+nS @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:6
+hv @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+R1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+w1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+DM @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+qd @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+b1 @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:8
+fy @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:1
+sy @ sites-runtime.8b70425d68a4452fce0c06e84ff8b403fb8604776241f07610414337ec6491c4.js:1Understand this warning
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3309 🔎 getUILayerLegend called with: {layerId: 'storm_surge', scenario: 'baseline_2025'}
+c09ba479c001d8a672ee6e7df2e0b8fa8680d3b8.js:3311 🗺️ Mapped to GeoServer layer: null
+installHook.js:1 ⚠️ Unknown layer ID: storm_surge

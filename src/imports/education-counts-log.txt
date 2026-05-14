@@ -1,0 +1,1795 @@
+ 📊 Final layer order: Array(103)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ⏳ NOT YET (loading asynchronously...)
+   ℹ️ Ward labels will appear once Barangay_Boundary_Point WFS request completes
+ ✅ Strict layer order enforced - Basemap labels are topmost
+ ✅ Ward click events added
+ 📋 ===== UNIQUE EDUCATION CATEGORIES FOUND =====
+ Total features: 778
+ Unique categories: 4
+ 
+Category breakdown:
+   - "Anganwadi": 352 institutions
+   - "College": 70 institutions
+   - "School": 350 institutions
+   - "University": 6 institutions
+ =================================================
+ 📊 ===== EDUCATION COUNTS BREAKDOWN =====
+ Total institutions fetched: 778
+ \nCounts by lowercase category (used in UI):
+   "university": 6 (from GeoServer: University)
+   "anganwadi": 352 (from GeoServer: Anganwadi)
+   "college": 70 (from GeoServer: College)
+   "school": 350 (from GeoServer: School)
+ ==========================================
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🎨 Ward highlight cleared (polling)
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Map resized after drawer animation
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ [Building Hazard API] Data received: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal_Boundary_Point GeoJSON loaded: 3 features
+ ✅ Municipal labels added using Municipal_Boundary_Point layer (centroids)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Ward_Point source added
+ ✅ Ward labels added using Ward_Point layer (centroids)
+ ✅ Municipal Boundary GeoJSON loaded: 3 features
+ ✅ Municipal Boundary converted to LineString (outer boundary only)
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✓ YES
+   Current position: 104 of 105
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+    Priority 940 (WARD_LABELS): ward-labels
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(105)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ✓ YES
+   Final position: 104 of 105 (should be near top)
+   Visibility: undefined
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+ 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+   Layer exists: ✓ YES
+   Current position: 104 of 105
+    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+    🏷️ Basemap symbol layer detected: place_town → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+    🏷️ Basemap symbol layer detected: place_state → Priority 900
+    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+ 📊 Target layer order (bottom to top):
+    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner
+    Priority 100 (BASEMAP_DETAIL): building, building-top
+    Priority 200 (HAZARD_LAYERS): heat_hhi
+    Priority 320 (BUILDINGS_FILL): buildings-fill
+    Priority 330 (BUILDINGS_2D): buildings
+    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+    Priority 615 (BUILDINGS_3D): buildings-3d
+    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+    Priority 940 (WARD_LABELS): ward-labels
+ ✅ STRICT LAYER ORDER ENFORCED - Complete!
+ 📊 Final layer order: Array(105)
+ 🏷️ WARD LABELS TRACKER - After layer order enforcement
+   Layer exists: ✓ YES
+   Final position: 104 of 105 (should be near top)
+   Visibility: undefined
+ ✅ Layer ordering re-enforced after 500ms using strict priority system
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ ✅ Fetched 688 public amenities from GeoServer
+ 📋 ===== UNIQUE PUBLIC AMENITIES CATEGORIES FOUND =====
+ Total features: 688
+ Unique categories: 12
+ 
+Category breakdown:
+   - "Community Centre": 32 amenities
+   - "Culture Centre": 21 amenities
+   - "Fire Station": 6 amenities
+   - "Government Buildings": 141 amenities
+   - "Haat/ Market": 35 amenities
+   - "Park": 121 amenities
+   - "Petrol Pump": 26 amenities
+   - "Playground/Stadium": 130 amenities
+   - "Police Outpost": 22 amenities
+   - "Religious": 110 amenities
+   - "Telephone Exchange": 2 amenities
+   - "Vending Zones": 42 amenities
+ =================================================
+ 📊 ===== PUBLIC AMENITIES COUNTS BREAKDOWN =====
+ Total amenities fetched: 688
+ 
+Counts by lowercase category (used in UI):
+   "vending zones": 42 (from GeoServer: Vending Zones)
+   "community centre": 32 (from GeoServer: Community Centre)
+   "culture centre": 21 (from GeoServer: Culture Centre)
+   "fire station": 6 (from GeoServer: Fire Station)
+   "government buildings": 141 (from GeoServer: Government Buildings)
+   "park": 121 (from GeoServer: Park)
+   "haat/ market": 35 (from GeoServer: Haat/ Market)
+   "petrol pump": 26 (from GeoServer: Petrol Pump)
+   "playground/stadium": 130 (from GeoServer: Playground/Stadium)
+   "police outpost": 22 (from GeoServer: Police Outpost)
+   "religious": 110 (from GeoServer: Religious)
+   "telephone exchange": 2 (from GeoServer: Telephone Exchange)
+ Total count: 688
+ =========================================
+ ✅ [APP] Infrastructure counts preloaded successfully
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ [Building Hazard API] Data received: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Updating existing ward point source with filtered data (37 features)
+ ✅ Ward_Point source updated with new data
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ ✅ Municipal_Boundary_Point GeoJSON loaded: 3 features
+ ✅ Municipal labels added using Municipal_Boundary_Point layer (centroids)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🔄 Loading tiles for: heat_hhi
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+ 📋 Final activeLegends: Array(1)
+ 🔍 [RightPanel] Layer check: Object
+ 🏢 Tutorial building popup prop received: null
+ 🔑 [APP] activeLayerId derived from sector: Object
+ 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+ 🎯 Attempting to add hazard legend: Object
+ ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:32824 🔒 ANIMATING MAP TO BARANGAY EXTENT (Tagbilaran City, Dauis, Panglao)
+cb6cd10b71b7818143a588c46380508a59f86405.js:32833 📍 Map animating to Barangay_Boundary extent - SMOOTH ZOOM
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:81382 🔍 Fetching area with CQL filter: (gridcode IN (3,4) OR GRIDCODE IN (3,4) OR Gridcode IN (3,4))
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:81475 ✅ [HAZARD DATA CONTEXT] All sector data loaded: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key: HHI_2025 (from YOUR_WORKSPACE:HHI_2025)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:5560 ℹ️ Skipping heat_hhi legend (hidden by user request)
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: Array(1)
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:32834 ✅ Initial map animation complete - layers will continue loading
+cb6cd10b71b7818143a588c46380508a59f86405.js:32510 ⏱️ Safety timeout - hiding initial loading indicator (buildings may not be in active layers)
+cb6cd10b71b7818143a588c46380508a59f86405.js:32515 📊 Loading States: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:33661 ✅ Buildings tiles fully loaded and rendered (map idle) - hiding loading indicator
+cb6cd10b71b7818143a588c46380508a59f86405.js:33661 🎨 Buildings initial load complete - will trigger initialLoadComplete
+cb6cd10b71b7818143a588c46380508a59f86405.js:32515 📊 Loading States: Object
+cb6cd10b71b7818143a588c46380508a59f86405.js:32935 🔒 Closing all popups - clicked outside
+cb6cd10b71b7818143a588c46380508a59f86405.js:32943 📍 Clearing location search
+cb6cd10b71b7818143a588c46380508a59f86405.js:81451 ✅ Buildings data preloaded successfully
+cb6cd10b71b7818143a588c46380508a59f86405.js:81451    Total features: 68,621
+cb6cd10b71b7818143a588c46380508a59f86405.js:81451    Load time: 7.98s
+cb6cd10b71b7818143a588c46380508a59f86405.js:81451    Memory size: ~45.50 MB
+cb6cd10b71b7818143a588c46380508a59f86405.js:81715 🎯🎯🎯 [APP] handleLayerChange called with layerId: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:81715 🎯 [APP] Current activeSector: heat
+cb6cd10b71b7818143a588c46380508a59f86405.js:81715 🎯 [APP] Current activeLayerPerSector: {heat: 'heat_hhi', air: 'air_aqi', flood: 'flood_fhi', multihazard: 'multihazard_assessment', roadsafety: ''}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81720 🎯 [APP] Updated activeLayerPerSector[heat] to: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: {activeSector: 'heat', activeLayerId: 'soil_classification', activeLayerPerSector: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key:  (from )
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'soil_classification', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: SoilClassification
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: {activeSector: 'heat', activeLayerId: 'soil_classification', activeSubLayers: Array(1)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5335 🔍 Getting hazard legend for: {layerId: 'soil_classification', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'soil_classification', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: SoilClassification
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:5337 📊 CSV entries received: (4) [{…}, {…}, {…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:5344 ✅ Hazard legend created: {name: 'Soil Classification - Soil Type', type: 'polygon', classes: Array(4)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5555 ✅ Adding hazard legend to activeLegends
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: (2) [{…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'soil_classification', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'soil_classification', layerName: 'Soil Classification'}
+ 🔥🔥🔥 [LAYER LOAD] useEffect triggered with: {activeLayerId: 'soil_classification', activeSector: 'heat', scenario: 'baseline_2025', mapExists: true, mapReady: true}
+ 🗺️ 🗺️ 🗺️  [LAYER LOAD] Managing GeoServer layers. Sector: heat Layer ID: soil_classification Scenario: baseline_2025
+ 🗑️  [LAYER LOAD] Removing existing hazard layers...
+ 🗑️  [LAYER LOAD] Removing layer: heat_hhi
+ 🗑️  [LAYER LOAD] Removing source: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33145 ✅ Tiles loaded for: heat_hhi
+cb6cd10b71b7818143a588c46380508a59f86405.js:33035 🎯 [LAYER LOAD] Processing layer ID: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33038 🔍 [LAYER LOAD] Layer type check: {isCWISLayer: false, isEnvironmentalLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33055 🌲 [ENVIRONMENTAL LAYER] Processing Environmental layer: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33061 ✅ [ENVIRONMENTAL LAYER] Environmental config found: {id: 'soil_classification', name: 'Soil Classification', geoserverLayer: 'SoilClassification', workspace: 'WorldBank_Bohol', opacity: 0.7, …}
+cb6cd10b71b7818143a588c46380508a59f86405.js:32420 ✅ Generated WMS URL for Environmental layer "soil_classification": https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/wms?service=WMS&version=1.1.0&request=GetMap&layers=WorldBank_Bohol:SoilClassification&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&styles=&format=image/png&transparent=true
+cb6cd10b71b7818143a588c46380508a59f86405.js:33067 ✅ [ENVIRONMENTAL LAYER] Generated WMS URL: https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/wms?service=WMS&version=1.1.0&request=GetMap&layers=WorldBank_Bohol:SoilClassification&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&styles=&format=image/png&transparent=true
+cb6cd10b71b7818143a588c46380508a59f86405.js:33092 ➕ [LAYER LOAD] Adding raster source to map: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33100 ✅✅✅ [LAYER LOAD] Source added successfully: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33105 🎯 [LAYER LOAD] Determining layer position...
+cb6cd10b71b7818143a588c46380508a59f86405.js:33105 🎯 [LAYER LOAD] Checking for positioning layers: {hasWaterbody: false, hasRoadNetwork: false, hasWardBoundaries: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33111 🎯 [LAYER LOAD] Positioning hazard layer BEFORE ward boundaries
+cb6cd10b71b7818143a588c46380508a59f86405.js:33113 ➕ [LAYER LOAD] Adding raster layer to map: {layerId: 'soil_classification', opacity: 0.7, beforeLayerId: 'ward-boundaries-fill'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33126 ✅✅✅ [LAYER LOAD] Hazard layer added successfully: soil_classification with opacity: 0.7 positioned before: ward-boundaries-fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:36982 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:36986   Current position: 103 of 105
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_town → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_state → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36994 📊 Target layer order (bottom to top):
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner, soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 100 (BASEMAP_DETAIL): building, building-top
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 320 (BUILDINGS_FILL): buildings-fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 330 (BUILDINGS_2D): buildings
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 615 (BUILDINGS_3D): buildings-3d
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 940 (WARD_LABELS): ward-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37012 ✅ STRICT LAYER ORDER ENFORCED - Complete!
+cb6cd10b71b7818143a588c46380508a59f86405.js:37014 📊 Final layer order: (105) ['background', 'landcover', 'park_national_park', 'park_nature_reserve', 'landuse_residential', 'landuse', 'waterway', 'boundary_county', 'boundary_state', 'water', 'water_shadow', 'aeroway-runway', 'aeroway-taxiway', 'rail', 'rail_dash', 'boundary_country_outline', 'boundary_country_inner', 'soil_classification', 'building', 'building-top', 'buildings-fill', 'buildings', 'tunnel_service_case', 'tunnel_minor_case', 'tunnel_sec_case', 'tunnel_pri_case', 'tunnel_trunk_case', 'tunnel_mot_case', 'tunnel_path', 'tunnel_service_fill', 'tunnel_minor_fill', 'tunnel_sec_fill', 'tunnel_pri_fill', 'tunnel_trunk_fill', 'tunnel_mot_fill', 'tunnel_rail', 'tunnel_rail_dash', 'road_service_case', 'road_minor_case', 'road_pri_case_ramp', 'road_trunk_case_ramp', 'road_mot_case_ramp', 'road_sec_case_noramp', 'road_pri_case_noramp', 'road_trunk_case_noramp', 'road_mot_case_noramp', 'road_path', 'road_service_fill', 'road_minor_fill', 'road_pri_fill_ramp', 'road_trunk_fill_ramp', 'road_mot_fill_ramp', 'road_sec_fill_noramp', 'road_pri_fill_noramp', 'road_trunk_fill_noramp', 'road_mot_fill_noramp', 'bridge_service_case', 'bridge_minor_case', 'bridge_sec_case', 'bridge_pri_case', 'bridge_trunk_case', 'bridge_mot_case', 'bridge_path', 'bridge_service_fill', 'bridge_minor_fill', 'bridge_sec_fill', 'bridge_pri_fill', 'bridge_trunk_fill', 'bridge_mot_fill', 'buildings-highlight', 'buildings-3d', 'ward-boundaries-fill', 'ward-boundaries', 'ward-boundaries-highlight', 'municipal-boundary-border', 'municipal-boundary', 'waterway_label', 'watername_ocean', 'watername_sea', 'watername_lake', 'watername_lake_line', 'place_hamlet', 'place_suburbs', 'place_villages', 'place_town', 'place_country_2', 'place_country_1', 'place_state', 'place_continent', 'place_city_r6', 'place_city_r5', 'place_city_dot_r7', 'place_city_dot_r4', 'place_city_dot_r2', 'place_city_dot_z7', 'place_capital_dot_z7', 'poi_stadium', 'poi_park', 'roadname_minor', 'roadname_sec', …]
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016 🏷️ WARD LABELS TRACKER - After layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Final position: 104 of 105 (should be near top)
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Visibility: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:33130 ✅ Layer ordering enforced immediately using strict priority system
+cb6cd10b71b7818143a588c46380508a59f86405.js:33180 🎚️  Updated opacity for soil_classification: 70%
+cb6cd10b71b7818143a588c46380508a59f86405.js:34052 🗑️  Education popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:34054 🗑️  Healthcare popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:34056 🗑️  Public amenities popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:34058 🗑️  Transport popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:35876 📥 [MapCanvas] Road query segments effect triggered
+cb6cd10b71b7818143a588c46380508a59f86405.js:35876 📊 [MapCanvas] queryResults summary: {count: 0, sample: null}
+cb6cd10b71b7818143a588c46380508a59f86405.js:35885 [MapCanvas] hasRoadSegments: null queryResults.length: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:58805 🌍 [LayerAreaBreakdown] Component mounted/updated: {layerId: 'soil_classification', layerName: 'Soil Classification', selectedWardId: 'all', selectedLguName: 'all'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58809 🔍 [LayerAreaBreakdown] Layer config lookup: {layerId: 'soil_classification', configFound: true, availableLayerIds: Array(10)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58817 ✅ [LayerAreaBreakdown] Config found: {geoserverLayerName: 'SoilClassification', fieldName: 'Type', colorCount: 5}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58834 🔍 [LayerAreaBreakdown] No filters applied (fetching all data)
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] ========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] FETCHING FROM GEOSERVER
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] Full URL: https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=WorldBank_Bohol%3ASoilClassification&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] Layer: WorldBank_Bohol:SoilClassification
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] Expected field: Type
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] ========================================
+installHook.js:1 [buildingHazardConfig] Layer not found: soil_classification
+overrideMethod @ installHook.js:1
+B_e @ cb6cd10b71b7818143a588c46380508a59f86405.js:57765
+a @ cb6cd10b71b7818143a588c46380508a59f86405.js:57831
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:57865
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+cb6cd10b71b7818143a588c46380508a59f86405.js:55880 📊 AreaDistributionChart: Fetching data for {activeSector: 'heat', activeLayerId: 'soil_classification', scenario: 'baseline_2025', year: undefined}
+installHook.js:1 ⚠️ No layer name found for: soil_classification baseline_2025 undefined
+overrideMethod @ installHook.js:1
+sK @ cb6cd10b71b7818143a588c46380508a59f86405.js:55683
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:55880
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ⚠️ No hazard table mapping for layer: soil_classification scenario: baseline_2025
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:56498
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:56513
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 [buildingHazardConfig] Layer not found: soil_classification
+overrideMethod @ installHook.js:1
+B_e @ cb6cd10b71b7818143a588c46380508a59f86405.js:57765
+a @ cb6cd10b71b7818143a588c46380508a59f86405.js:57831
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:57865
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+cb6cd10b71b7818143a588c46380508a59f86405.js:2236 🏫 fetchEducationData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2258 🏫 Fetching education data: https://geoserver.azure.innpact.ai/geoserver/GIZ_BBSR/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=GIZ_BBSR%3AEducation&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:2369 🏥 fetchHealthcareData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2391 🏥 Fetching healthcare data: https://geoserver.azure.innpact.ai/geoserver/GIZ_BBSR/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=GIZ_BBSR%3AHealth&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:2519 🏛️ Fetching public amenities counts from GeoServer...
+cb6cd10b71b7818143a588c46380508a59f86405.js:2464 🏛️ fetchPublicAmenitiesData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2486 🏛️  Fetching public amenities data: https://geoserver.azure.innpact.ai/geoserver/GIZ_BBSR/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=GIZ_BBSR%3APublic+Amenities&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:2627 🚌 Fetching transport counts from GeoServer...
+cb6cd10b71b7818143a588c46380508a59f86405.js:2572 🚌 fetchTransportData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2594 🚌 Fetching transport facilities from GeoServer without filters...
+cb6cd10b71b7818143a588c46380508a59f86405.js:81661 🔄 Layer changed, resetting donut category filter
+cb6cd10b71b7818143a588c46380508a59f86405.js:81704 🔄 Road overlays inactive - restoring soil_classification opacity to 70%
+cb6cd10b71b7818143a588c46380508a59f86405.js:55882 ✅ AreaDistributionChart: Received data: []
+cb6cd10b71b7818143a588c46380508a59f86405.js:55889 📊 Sorted data by gridcode: []
+cb6cd10b71b7818143a588c46380508a59f86405.js:55889 📊 Data with percentage: []
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: {activeSector: 'heat', activeLayerId: 'soil_classification', activeLayerPerSector: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key:  (from )
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'soil_classification', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: SoilClassification
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: {activeSector: 'heat', activeLayerId: 'soil_classification', activeSubLayers: Array(1)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5335 🔍 Getting hazard legend for: {layerId: 'soil_classification', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'soil_classification', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: SoilClassification
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:5337 📊 CSV entries received: (4) [{…}, {…}, {…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:5344 ✅ Hazard legend created: {name: 'Soil Classification - Soil Type', type: 'polygon', classes: Array(4)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5555 ✅ Adding hazard legend to activeLegends
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: (2) [{…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'soil_classification', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'soil_classification', layerName: 'Soil Classification'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33180 🎚️  Updated opacity for soil_classification: 70%
+installHook.js:1 ⚠️ Road Safety (iRAP) layer not available for Bohol. Layer disabled.
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:35780
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+fy @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:1
+sy @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:1
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 📋 ===== UNIQUE HEALTHCARE CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 Total features: 60
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 Unique categories: 3
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2415   - "Health Centre": 19 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2415   - "Hospital": 32 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2415   - "Nursing Home": 9 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2416 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2605 ✅ Fetched 241 transport facilities from GeoServer
+cb6cd10b71b7818143a588c46380508a59f86405.js:2605 🔍 Sample transport feature properties: {OBJECTID: 1, Name: 'Patia Railway Station', Category: 'Railway Station', SubCategor: null, Ward: 3, …}
+cb6cd10b71b7818143a588c46380508a59f86405.js:2605 🔑 Available property keys: (44) ['OBJECTID', 'Name', 'Category', 'SubCategor', 'Ward', 'Zone', 'Sector', 'Air_AQI', 'Air_CO', 'Air_NO2', 'Air_O3', 'Air_PM10', 'Air_PM25', 'Air_SO2', 'Flood_Hazard', 'AST_2025', 'AST_2040_SSP1', 'AST_2040_SSP2', 'AST_2040_SSP5', 'HHI_2025', 'HHI_2040_SSP1', 'HHI_2040_SSP2', 'HHI_2040_SSP5', 'LST_2025', 'LST_2040_SSP1', 'LST_2040_SSP2', 'LST_2040_SSP5', 'RH_2025', 'RH_2040_SSP1', 'RH_2040_SSP2', 'RH_2040_SSP5', 'UHI_2025', 'UHI_2040_SSP1', 'UHI_2040_SSP2', 'UHI_2040_SSP5', 'WBGT_2025', 'WBGT_2040_SSP1', 'WBGT_2040_SSP2', 'WBGT_2040_SSP5', 'WBT_2025', 'WBT_2040_SSP1', 'WBT_2040_SSP2', 'WBT_2040_SSP5', 'Multi_Hazard_BBSR']
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 📋 ===== UNIQUE TRANSPORT CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 Total features: 241
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 Unique categories: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Airport": 1 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Bus Stop": 218 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Bus Terminal": 3 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "EV Charging": 15 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Railway Station": 4 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2620 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2635 📊 ===== TRANSPORT COUNTS BREAKDOWN =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2635 Total facilities fetched: 241
+cb6cd10b71b7818143a588c46380508a59f86405.js:2635 \nCounts by lowercase category (used in UI):
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "railway station": 4 (from GeoServer: Railway Station)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "airport": 1 (from GeoServer: Airport)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "bus stop": 218 (from GeoServer: Bus Stop)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "bus terminal": 3 (from GeoServer: Bus Terminal)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "ev charging": 15 (from GeoServer: EV Charging)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2638 Total count: 241
+cb6cd10b71b7818143a588c46380508a59f86405.js:2638 =========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] Response received:
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - Status: 200
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - Status Text: OK
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - OK: true
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - Headers: {contentType: 'application/json;charset=utf-8', contentLength: null, cors: null}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58853 📊 [LayerAreaBreakdown] ========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:58853 📊 [LayerAreaBreakdown] DATA RECEIVED FROM GEOSERVER
+cb6cd10b71b7818143a588c46380508a59f86405.js:58853 📊 [LayerAreaBreakdown] Total features: 75
+cb6cd10b71b7818143a588c46380508a59f86405.js:58853 📊 [LayerAreaBreakdown] Data type: FeatureCollection
+cb6cd10b71b7818143a588c46380508a59f86405.js:58853 📊 [LayerAreaBreakdown] CRS: {type: 'name', properties: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] First feature structure:
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - Type: Feature
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - Geometry type: MultiPolygon
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - Properties: {OBJECTID: 8, DESC: 'Bolinao Clay', MunName: 'Panglao', BrgyName: 'Danao', BrgyID: 15, …}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - Available property keys: (10) ['OBJECTID', 'DESC', 'MunName', 'BrgyName', 'BrgyID', 'color_code', 'Type', 'Shape_Length', 'Shape_Area', 'gridcode']
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] Field validation:
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - Looking for field: Type
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - Field exists? true
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - Field value: Bolinao Clay
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - "Type" field exists? true
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - "Type" value: Bolinao Clay
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - "Shape_Area" exists? true
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - "Shape_Area" value: 326122.08800929016
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - "color_code" exists? true
+cb6cd10b71b7818143a588c46380508a59f86405.js:58855 📊 [LayerAreaBreakdown] - "color_code" value: #C68642
+cb6cd10b71b7818143a588c46380508a59f86405.js:58857 📊 [LayerAreaBreakdown] ========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:58863 🔄 [LayerAreaBreakdown] Processing features...
+cb6cd10b71b7818143a588c46380508a59f86405.js:58865 🔄 [LayerAreaBreakdown] Feature 0: {type: 'Bolinao Clay', area: 326122.08800929016, color: '#C68642', rawShapeArea: 326122.08800929016, allProperties: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58871 🆕 [LayerAreaBreakdown] New category found: "Bolinao Clay" with color #C68642
+cb6cd10b71b7818143a588c46380508a59f86405.js:58865 🔄 [LayerAreaBreakdown] Feature 1: {type: 'Bolinao Clay', area: 211.7201377119902, color: '#C68642', rawShapeArea: 211.7201377119902, allProperties: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58865 🔄 [LayerAreaBreakdown] Feature 2: {type: 'Faroan Clay', area: 212.0122608057408, color: '#8D5524', rawShapeArea: 212.0122608057408, allProperties: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58871 🆕 [LayerAreaBreakdown] New category found: "Faroan Clay" with color #8D5524
+cb6cd10b71b7818143a588c46380508a59f86405.js:58871 🆕 [LayerAreaBreakdown] New category found: "Beach Sand" with color #F4D35E
+cb6cd10b71b7818143a588c46380508a59f86405.js:58871 🆕 [LayerAreaBreakdown] New category found: "Hydrosol" with color #5DA9E9
+cb6cd10b71b7818143a588c46380508a59f86405.js:58872 🔄 [LayerAreaBreakdown] Processing complete:
+cb6cd10b71b7818143a588c46380508a59f86405.js:58872 🔄 [LayerAreaBreakdown] - Processed features: 75
+cb6cd10b71b7818143a588c46380508a59f86405.js:58872 🔄 [LayerAreaBreakdown] - Skipped features: 0
+cb6cd10b71b7818143a588c46380508a59f86405.js:58872 🔄 [LayerAreaBreakdown] - Unique categories found: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:58874 📏 [LayerAreaBreakdown] Total area calculated: 121758388.25650021 sq meters
+cb6cd10b71b7818143a588c46380508a59f86405.js:58881 ✅ [LayerAreaBreakdown] ========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:58881 ✅ [LayerAreaBreakdown] FINAL PROCESSED DATA
+cb6cd10b71b7818143a588c46380508a59f86405.js:58881 ✅ [LayerAreaBreakdown] Categories: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:58881 ✅ [LayerAreaBreakdown] Total area: 121758388.25650021 sq meters
+cb6cd10b71b7818143a588c46380508a59f86405.js:58881 ✅ [LayerAreaBreakdown] Breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:58882 ✅ [LayerAreaBreakdown]   1. Bolinao Clay: 63.3% (77042804 sq m) - Color: #C68642
+cb6cd10b71b7818143a588c46380508a59f86405.js:58882 ✅ [LayerAreaBreakdown]   2. Faroan Clay: 31.6% (38455436 sq m) - Color: #8D5524
+cb6cd10b71b7818143a588c46380508a59f86405.js:58882 ✅ [LayerAreaBreakdown]   3. Beach Sand: 4.8% (5884635 sq m) - Color: #F4D35E
+cb6cd10b71b7818143a588c46380508a59f86405.js:58882 ✅ [LayerAreaBreakdown]   4. Hydrosol: 0.3% (375513 sq m) - Color: #5DA9E9
+cb6cd10b71b7818143a588c46380508a59f86405.js:58883 ✅ [LayerAreaBreakdown] ========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 📋 ===== UNIQUE EDUCATION CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 Total features: 778
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 Unique categories: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "Anganwadi": 352 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "College": 70 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "School": 350 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "University": 6 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2283 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2497 ✅ Fetched 688 public amenities from GeoServer
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 📋 ===== UNIQUE PUBLIC AMENITIES CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 Total features: 688
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 Unique categories: 12
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Community Centre": 32 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Culture Centre": 21 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Fire Station": 6 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Government Buildings": 141 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Haat/ Market": 35 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Park": 121 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Petrol Pump": 26 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Playground/Stadium": 130 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Police Outpost": 22 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Religious": 110 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Telephone Exchange": 2 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Vending Zones": 42 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2512 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2527 📊 ===== PUBLIC AMENITIES COUNTS BREAKDOWN =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2527 Total amenities fetched: 688
+cb6cd10b71b7818143a588c46380508a59f86405.js:2527 
+Counts by lowercase category (used in UI):
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "vending zones": 42 (from GeoServer: Vending Zones)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "community centre": 32 (from GeoServer: Community Centre)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "culture centre": 21 (from GeoServer: Culture Centre)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "fire station": 6 (from GeoServer: Fire Station)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "government buildings": 141 (from GeoServer: Government Buildings)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "park": 121 (from GeoServer: Park)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "haat/ market": 35 (from GeoServer: Haat/ Market)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "petrol pump": 26 (from GeoServer: Petrol Pump)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "playground/stadium": 130 (from GeoServer: Playground/Stadium)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "police outpost": 22 (from GeoServer: Police Outpost)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "religious": 110 (from GeoServer: Religious)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "telephone exchange": 2 (from GeoServer: Telephone Exchange)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2531 Total count: 688
+cb6cd10b71b7818143a588c46380508a59f86405.js:2531 =========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'soil_classification', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'soil_classification', layerName: 'Soil Classification'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:36982 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:36986   Current position: 104 of 105
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_town → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_state → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36994 📊 Target layer order (bottom to top):
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner, soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 100 (BASEMAP_DETAIL): building, building-top
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 320 (BUILDINGS_FILL): buildings-fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 330 (BUILDINGS_2D): buildings
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 615 (BUILDINGS_3D): buildings-3d
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 940 (WARD_LABELS): ward-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37012 ✅ STRICT LAYER ORDER ENFORCED - Complete!
+cb6cd10b71b7818143a588c46380508a59f86405.js:37014 📊 Final layer order: (105) ['background', 'landcover', 'park_national_park', 'park_nature_reserve', 'landuse_residential', 'landuse', 'waterway', 'boundary_county', 'boundary_state', 'water', 'water_shadow', 'aeroway-runway', 'aeroway-taxiway', 'rail', 'rail_dash', 'boundary_country_outline', 'boundary_country_inner', 'soil_classification', 'building', 'building-top', 'buildings-fill', 'buildings', 'tunnel_service_case', 'tunnel_minor_case', 'tunnel_sec_case', 'tunnel_pri_case', 'tunnel_trunk_case', 'tunnel_mot_case', 'tunnel_path', 'tunnel_service_fill', 'tunnel_minor_fill', 'tunnel_sec_fill', 'tunnel_pri_fill', 'tunnel_trunk_fill', 'tunnel_mot_fill', 'tunnel_rail', 'tunnel_rail_dash', 'road_service_case', 'road_minor_case', 'road_pri_case_ramp', 'road_trunk_case_ramp', 'road_mot_case_ramp', 'road_sec_case_noramp', 'road_pri_case_noramp', 'road_trunk_case_noramp', 'road_mot_case_noramp', 'road_path', 'road_service_fill', 'road_minor_fill', 'road_pri_fill_ramp', 'road_trunk_fill_ramp', 'road_mot_fill_ramp', 'road_sec_fill_noramp', 'road_pri_fill_noramp', 'road_trunk_fill_noramp', 'road_mot_fill_noramp', 'bridge_service_case', 'bridge_minor_case', 'bridge_sec_case', 'bridge_pri_case', 'bridge_trunk_case', 'bridge_mot_case', 'bridge_path', 'bridge_service_fill', 'bridge_minor_fill', 'bridge_sec_fill', 'bridge_pri_fill', 'bridge_trunk_fill', 'bridge_mot_fill', 'buildings-highlight', 'buildings-3d', 'ward-boundaries-fill', 'ward-boundaries', 'ward-boundaries-highlight', 'municipal-boundary-border', 'municipal-boundary', 'waterway_label', 'watername_ocean', 'watername_sea', 'watername_lake', 'watername_lake_line', 'place_hamlet', 'place_suburbs', 'place_villages', 'place_town', 'place_country_2', 'place_country_1', 'place_state', 'place_continent', 'place_city_r6', 'place_city_r5', 'place_city_dot_r7', 'place_city_dot_r4', 'place_city_dot_r2', 'place_city_dot_z7', 'place_capital_dot_z7', 'poi_stadium', 'poi_park', 'roadname_minor', 'roadname_sec', …]
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016 🏷️ WARD LABELS TRACKER - After layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Final position: 104 of 105 (should be near top)
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Visibility: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:33136 ✅ Layer ordering re-enforced after 500ms using strict priority system
+cb6cd10b71b7818143a588c46380508a59f86405.js:33145 ✅ Tiles loaded for: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33164 🔍 Layer check: {layerExists: true, sourceExists: true, layerId: 'soil_classification', opacity: 0.7, visibility: undefined}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81715 🎯🎯🎯 [APP] handleLayerChange called with layerId: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:81715 🎯 [APP] Current activeSector: heat
+cb6cd10b71b7818143a588c46380508a59f86405.js:81715 🎯 [APP] Current activeLayerPerSector: {heat: 'soil_classification', air: 'air_aqi', flood: 'flood_fhi', multihazard: 'multihazard_assessment', roadsafety: ''}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81720 🎯 [APP] Updated activeLayerPerSector[heat] to: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeLayerPerSector: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key:  (from )
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeSubLayers: Array(1)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5335 🔍 Getting hazard legend for: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5337 📊 CSV entries received: (5) [{…}, {…}, {…}, {…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:5344 ✅ Hazard legend created: {name: 'Groundwater Depth - Depth (m)', type: 'polygon', classes: Array(5)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5555 ✅ Adding hazard legend to activeLegends
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: (2) [{…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'groundwater_depth', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'groundwater_depth', layerName: 'Groundwater Depth'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:32986 🔥🔥🔥 [LAYER LOAD] useEffect triggered with: {activeLayerId: 'groundwater_depth', activeSector: 'heat', scenario: 'baseline_2025', mapExists: true, mapReady: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:32997 🗺️ 🗺️ 🗺️  [LAYER LOAD] Managing GeoServer layers. Sector: heat Layer ID: groundwater_depth Scenario: baseline_2025
+cb6cd10b71b7818143a588c46380508a59f86405.js:33028 🗑️  [LAYER LOAD] Removing existing hazard layers...
+cb6cd10b71b7818143a588c46380508a59f86405.js:33029 🗑️  [LAYER LOAD] Removing layer: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33029 🗑️  [LAYER LOAD] Removing source: soil_classification
+cb6cd10b71b7818143a588c46380508a59f86405.js:33035 🎯 [LAYER LOAD] Processing layer ID: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33038 🔍 [LAYER LOAD] Layer type check: {isCWISLayer: false, isEnvironmentalLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33055 🌲 [ENVIRONMENTAL LAYER] Processing Environmental layer: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33061 ✅ [ENVIRONMENTAL LAYER] Environmental config found: {id: 'groundwater_depth', name: 'Groundwater Depth', geoserverLayer: 'GroundWater', workspace: 'WorldBank_Bohol', opacity: 0.7, …}
+cb6cd10b71b7818143a588c46380508a59f86405.js:32420 ✅ Generated WMS URL for Environmental layer "groundwater_depth": https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/wms?service=WMS&version=1.1.0&request=GetMap&layers=WorldBank_Bohol:GroundWater&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&styles=&format=image/png&transparent=true
+cb6cd10b71b7818143a588c46380508a59f86405.js:33067 ✅ [ENVIRONMENTAL LAYER] Generated WMS URL: https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/wms?service=WMS&version=1.1.0&request=GetMap&layers=WorldBank_Bohol:GroundWater&bbox={bbox-epsg-3857}&width=256&height=256&srs=EPSG:3857&styles=&format=image/png&transparent=true
+cb6cd10b71b7818143a588c46380508a59f86405.js:33092 ➕ [LAYER LOAD] Adding raster source to map: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33100 ✅✅✅ [LAYER LOAD] Source added successfully: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33105 🎯 [LAYER LOAD] Determining layer position...
+cb6cd10b71b7818143a588c46380508a59f86405.js:33105 🎯 [LAYER LOAD] Checking for positioning layers: {hasWaterbody: false, hasRoadNetwork: false, hasWardBoundaries: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33111 🎯 [LAYER LOAD] Positioning hazard layer BEFORE ward boundaries
+cb6cd10b71b7818143a588c46380508a59f86405.js:33113 ➕ [LAYER LOAD] Adding raster layer to map: {layerId: 'groundwater_depth', opacity: 0.7, beforeLayerId: 'ward-boundaries-fill'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33126 ✅✅✅ [LAYER LOAD] Hazard layer added successfully: groundwater_depth with opacity: 0.7 positioned before: ward-boundaries-fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:36982 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:36986   Current position: 104 of 105
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_town → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_state → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36994 📊 Target layer order (bottom to top):
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner, groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 100 (BASEMAP_DETAIL): building, building-top
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 320 (BUILDINGS_FILL): buildings-fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 330 (BUILDINGS_2D): buildings
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 615 (BUILDINGS_3D): buildings-3d
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 940 (WARD_LABELS): ward-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37012 ✅ STRICT LAYER ORDER ENFORCED - Complete!
+cb6cd10b71b7818143a588c46380508a59f86405.js:37014 📊 Final layer order: (105) ['background', 'landcover', 'park_national_park', 'park_nature_reserve', 'landuse_residential', 'landuse', 'waterway', 'boundary_county', 'boundary_state', 'water', 'water_shadow', 'aeroway-runway', 'aeroway-taxiway', 'rail', 'rail_dash', 'boundary_country_outline', 'boundary_country_inner', 'groundwater_depth', 'building', 'building-top', 'buildings-fill', 'buildings', 'tunnel_service_case', 'tunnel_minor_case', 'tunnel_sec_case', 'tunnel_pri_case', 'tunnel_trunk_case', 'tunnel_mot_case', 'tunnel_path', 'tunnel_service_fill', 'tunnel_minor_fill', 'tunnel_sec_fill', 'tunnel_pri_fill', 'tunnel_trunk_fill', 'tunnel_mot_fill', 'tunnel_rail', 'tunnel_rail_dash', 'road_service_case', 'road_minor_case', 'road_pri_case_ramp', 'road_trunk_case_ramp', 'road_mot_case_ramp', 'road_sec_case_noramp', 'road_pri_case_noramp', 'road_trunk_case_noramp', 'road_mot_case_noramp', 'road_path', 'road_service_fill', 'road_minor_fill', 'road_pri_fill_ramp', 'road_trunk_fill_ramp', 'road_mot_fill_ramp', 'road_sec_fill_noramp', 'road_pri_fill_noramp', 'road_trunk_fill_noramp', 'road_mot_fill_noramp', 'bridge_service_case', 'bridge_minor_case', 'bridge_sec_case', 'bridge_pri_case', 'bridge_trunk_case', 'bridge_mot_case', 'bridge_path', 'bridge_service_fill', 'bridge_minor_fill', 'bridge_sec_fill', 'bridge_pri_fill', 'bridge_trunk_fill', 'bridge_mot_fill', 'buildings-highlight', 'buildings-3d', 'ward-boundaries-fill', 'ward-boundaries', 'ward-boundaries-highlight', 'municipal-boundary-border', 'municipal-boundary', 'waterway_label', 'watername_ocean', 'watername_sea', 'watername_lake', 'watername_lake_line', 'place_hamlet', 'place_suburbs', 'place_villages', 'place_town', 'place_country_2', 'place_country_1', 'place_state', 'place_continent', 'place_city_r6', 'place_city_r5', 'place_city_dot_r7', 'place_city_dot_r4', 'place_city_dot_r2', 'place_city_dot_z7', 'place_capital_dot_z7', 'poi_stadium', 'poi_park', 'roadname_minor', 'roadname_sec', …]
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016 🏷️ WARD LABELS TRACKER - After layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Final position: 104 of 105 (should be near top)
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Visibility: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:33130 ✅ Layer ordering enforced immediately using strict priority system
+cb6cd10b71b7818143a588c46380508a59f86405.js:33180 🎚️  Updated opacity for groundwater_depth: 70%
+cb6cd10b71b7818143a588c46380508a59f86405.js:34052 🗑️  Education popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:34054 🗑️  Healthcare popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:34056 🗑️  Public amenities popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:34058 🗑️  Transport popup closed due to layer change
+cb6cd10b71b7818143a588c46380508a59f86405.js:35876 📥 [MapCanvas] Road query segments effect triggered
+cb6cd10b71b7818143a588c46380508a59f86405.js:35876 📊 [MapCanvas] queryResults summary: {count: 0, sample: null}
+cb6cd10b71b7818143a588c46380508a59f86405.js:35885 [MapCanvas] hasRoadSegments: null queryResults.length: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:58805 🌍 [LayerAreaBreakdown] Component mounted/updated: {layerId: 'groundwater_depth', layerName: 'Groundwater Depth', selectedWardId: 'all', selectedLguName: 'all'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58809 🔍 [LayerAreaBreakdown] Layer config lookup: {layerId: 'groundwater_depth', configFound: true, availableLayerIds: Array(10)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58817 ✅ [LayerAreaBreakdown] Config found: {geoserverLayerName: 'GroundwaterDepth', fieldName: 'Depth', colorCount: 6}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58834 🔍 [LayerAreaBreakdown] No filters applied (fetching all data)
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] ========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] FETCHING FROM GEOSERVER
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] Full URL: https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=WorldBank_Bohol%3AGroundwaterDepth&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] Layer: WorldBank_Bohol:GroundwaterDepth
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] Expected field: Depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:58836 🌍 [LayerAreaBreakdown] ========================================
+installHook.js:1 [buildingHazardConfig] Layer not found: groundwater_depth
+overrideMethod @ installHook.js:1
+B_e @ cb6cd10b71b7818143a588c46380508a59f86405.js:57765
+a @ cb6cd10b71b7818143a588c46380508a59f86405.js:57831
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:57865
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+cb6cd10b71b7818143a588c46380508a59f86405.js:55880 📊 AreaDistributionChart: Fetching data for {activeSector: 'heat', activeLayerId: 'groundwater_depth', scenario: 'baseline_2025', year: undefined}
+installHook.js:1 ⚠️ No layer name found for: groundwater_depth baseline_2025 undefined
+overrideMethod @ installHook.js:1
+sK @ cb6cd10b71b7818143a588c46380508a59f86405.js:55683
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:55880
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ⚠️ No hazard table mapping for layer: groundwater_depth scenario: baseline_2025
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:56498
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:56513
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 [buildingHazardConfig] Layer not found: groundwater_depth
+overrideMethod @ installHook.js:1
+B_e @ cb6cd10b71b7818143a588c46380508a59f86405.js:57765
+a @ cb6cd10b71b7818143a588c46380508a59f86405.js:57831
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:57865
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+cb6cd10b71b7818143a588c46380508a59f86405.js:2236 🏫 fetchEducationData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2258 🏫 Fetching education data: https://geoserver.azure.innpact.ai/geoserver/GIZ_BBSR/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=GIZ_BBSR%3AEducation&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:2369 🏥 fetchHealthcareData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2391 🏥 Fetching healthcare data: https://geoserver.azure.innpact.ai/geoserver/GIZ_BBSR/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=GIZ_BBSR%3AHealth&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:2519 🏛️ Fetching public amenities counts from GeoServer...
+cb6cd10b71b7818143a588c46380508a59f86405.js:2464 🏛️ fetchPublicAmenitiesData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2486 🏛️  Fetching public amenities data: https://geoserver.azure.innpact.ai/geoserver/GIZ_BBSR/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=GIZ_BBSR%3APublic+Amenities&outputFormat=application%2Fjson&srsName=EPSG%3A4326
+cb6cd10b71b7818143a588c46380508a59f86405.js:2627 🚌 Fetching transport counts from GeoServer...
+cb6cd10b71b7818143a588c46380508a59f86405.js:2572 🚌 fetchTransportData called with selectedBarangayName: all , selectedLguName: undefined , categories: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:2594 🚌 Fetching transport facilities from GeoServer without filters...
+cb6cd10b71b7818143a588c46380508a59f86405.js:81661 🔄 Layer changed, resetting donut category filter
+cb6cd10b71b7818143a588c46380508a59f86405.js:81704 🔄 Road overlays inactive - restoring groundwater_depth opacity to 70%
+cb6cd10b71b7818143a588c46380508a59f86405.js:55882 ✅ AreaDistributionChart: Received data: []
+cb6cd10b71b7818143a588c46380508a59f86405.js:55889 📊 Sorted data by gridcode: []
+cb6cd10b71b7818143a588c46380508a59f86405.js:55889 📊 Data with percentage: []
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeLayerPerSector: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key:  (from )
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeSubLayers: Array(1)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5335 🔍 Getting hazard legend for: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5337 📊 CSV entries received: (5) [{…}, {…}, {…}, {…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:5344 ✅ Hazard legend created: {name: 'Groundwater Depth - Depth (m)', type: 'polygon', classes: Array(5)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5555 ✅ Adding hazard legend to activeLegends
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: (2) [{…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'groundwater_depth', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'groundwater_depth', layerName: 'Groundwater Depth'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:33141 🔄 Loading tiles for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:32515 📊 Loading States: {isLoadingLayers: false, isBuildingsLoading: false, isLayerLoading: true, initialLoadComplete: true, buildingsInitialLoadDone: true, …}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33180 🎚️  Updated opacity for groundwater_depth: 70%
+installHook.js:1 ⚠️ Road Safety (iRAP) layer not available for Bohol. Layer disabled.
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:35780
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+fy @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:1
+sy @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:1
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeLayerPerSector: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key:  (from )
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeSubLayers: Array(1)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5335 🔍 Getting hazard legend for: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5337 📊 CSV entries received: (5) [{…}, {…}, {…}, {…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:5344 ✅ Hazard legend created: {name: 'Groundwater Depth - Depth (m)', type: 'polygon', classes: Array(5)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5555 ✅ Adding hazard legend to activeLegends
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: (2) [{…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'groundwater_depth', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'groundwater_depth', layerName: 'Groundwater Depth'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:58837  GET https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=WorldBank_Bohol%3AGroundwaterDepth&outputFormat=application%2Fjson&srsName=EPSG%3A4326 400 (Bad Request)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58837
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] Response received:
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - Status: 400
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - Status Text: Bad Request
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - OK: false
+cb6cd10b71b7818143a588c46380508a59f86405.js:58844 📡 [LayerAreaBreakdown] - Headers: {contentType: 'application/xml', contentLength: null, cors: null}
+installHook.js:1 ❌ [LayerAreaBreakdown] ========================================
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58850
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] SERVER ERROR RESPONSE
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58850
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] Status: 400 Bad Request
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58850
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] Error body: <?xml version="1.0" encoding="UTF-8"?><ows:ExceptionReport xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0.0" xsi:schemaLocation="http://www.opengis.net/ows/1.1 https://geoserver.azure.innpact.ai/geoserver/schemas/ows/1.1.0/owsAll.xsd">
+  <ows:Exception exceptionCode="InvalidParameterValue" locator="typeName">
+    <ows:ExceptionText>Feature type WorldBank_Bohol:GroundwaterDepth unknown</ows:ExceptionText>
+  </ows:Exception>
+</ows:ExceptionReport>
+
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58850
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] ========================================
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58850
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] ========================================
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58885
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] ERROR OCCURRED
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58885
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] Error type: Error
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58885
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] Error message: GeoServer request failed: 400 Bad Request
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58885
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] Error stack: Error: GeoServer request failed: 400 Bad Request
+    at https://bohol-cwis.innpact.ai/_components/v2/cb6cd10b71b7818143a588c46380508a59f86405.js:58850:374
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58885
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] Full error object: Error: GeoServer request failed: 400 Bad Request
+    at cb6cd10b71b7818143a588c46380508a59f86405.js:58850:374
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58885
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+installHook.js:1 ❌ [LayerAreaBreakdown] ========================================
+overrideMethod @ installHook.js:1
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58885
+await in (anonymous)
+(anonymous) @ cb6cd10b71b7818143a588c46380508a59f86405.js:58887
+sp @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Xa @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+VM @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Is @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+LE @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+Ri @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:6
+(anonymous) @ sites-runtime.1afb0a522668ff1a28c8e0fe784e9a26e36999ec0a3ae71adcad525f5adeb112.js:8
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 📋 ===== UNIQUE HEALTHCARE CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 Total features: 60
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 Unique categories: 3
+cb6cd10b71b7818143a588c46380508a59f86405.js:2413 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2415   - "Health Centre": 19 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2415   - "Hospital": 32 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2415   - "Nursing Home": 9 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2416 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2605 ✅ Fetched 241 transport facilities from GeoServer
+cb6cd10b71b7818143a588c46380508a59f86405.js:2605 🔍 Sample transport feature properties: {OBJECTID: 1, Name: 'Patia Railway Station', Category: 'Railway Station', SubCategor: null, Ward: 3, …}
+cb6cd10b71b7818143a588c46380508a59f86405.js:2605 🔑 Available property keys: (44) ['OBJECTID', 'Name', 'Category', 'SubCategor', 'Ward', 'Zone', 'Sector', 'Air_AQI', 'Air_CO', 'Air_NO2', 'Air_O3', 'Air_PM10', 'Air_PM25', 'Air_SO2', 'Flood_Hazard', 'AST_2025', 'AST_2040_SSP1', 'AST_2040_SSP2', 'AST_2040_SSP5', 'HHI_2025', 'HHI_2040_SSP1', 'HHI_2040_SSP2', 'HHI_2040_SSP5', 'LST_2025', 'LST_2040_SSP1', 'LST_2040_SSP2', 'LST_2040_SSP5', 'RH_2025', 'RH_2040_SSP1', 'RH_2040_SSP2', 'RH_2040_SSP5', 'UHI_2025', 'UHI_2040_SSP1', 'UHI_2040_SSP2', 'UHI_2040_SSP5', 'WBGT_2025', 'WBGT_2040_SSP1', 'WBGT_2040_SSP2', 'WBGT_2040_SSP5', 'WBT_2025', 'WBT_2040_SSP1', 'WBT_2040_SSP2', 'WBT_2040_SSP5', 'Multi_Hazard_BBSR']
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 📋 ===== UNIQUE TRANSPORT CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 Total features: 241
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 Unique categories: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:2617 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Airport": 1 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Bus Stop": 218 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Bus Terminal": 3 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "EV Charging": 15 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2619   - "Railway Station": 4 facilities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2620 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2635 📊 ===== TRANSPORT COUNTS BREAKDOWN =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2635 Total facilities fetched: 241
+cb6cd10b71b7818143a588c46380508a59f86405.js:2635 \nCounts by lowercase category (used in UI):
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "railway station": 4 (from GeoServer: Railway Station)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "airport": 1 (from GeoServer: Airport)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "bus stop": 218 (from GeoServer: Bus Stop)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "bus terminal": 3 (from GeoServer: Bus Terminal)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2637   "ev charging": 15 (from GeoServer: EV Charging)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2638 Total count: 241
+cb6cd10b71b7818143a588c46380508a59f86405.js:2638 =========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2497 ✅ Fetched 688 public amenities from GeoServer
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 📋 ===== UNIQUE PUBLIC AMENITIES CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 Total features: 688
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 Unique categories: 12
+cb6cd10b71b7818143a588c46380508a59f86405.js:2509 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Community Centre": 32 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Culture Centre": 21 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Fire Station": 6 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Government Buildings": 141 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Haat/ Market": 35 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Park": 121 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Petrol Pump": 26 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Playground/Stadium": 130 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Police Outpost": 22 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Religious": 110 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Telephone Exchange": 2 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2511   - "Vending Zones": 42 amenities
+cb6cd10b71b7818143a588c46380508a59f86405.js:2512 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2527 📊 ===== PUBLIC AMENITIES COUNTS BREAKDOWN =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2527 Total amenities fetched: 688
+cb6cd10b71b7818143a588c46380508a59f86405.js:2527 
+Counts by lowercase category (used in UI):
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "vending zones": 42 (from GeoServer: Vending Zones)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "community centre": 32 (from GeoServer: Community Centre)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "culture centre": 21 (from GeoServer: Culture Centre)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "fire station": 6 (from GeoServer: Fire Station)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "government buildings": 141 (from GeoServer: Government Buildings)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "park": 121 (from GeoServer: Park)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "haat/ market": 35 (from GeoServer: Haat/ Market)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "petrol pump": 26 (from GeoServer: Petrol Pump)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "playground/stadium": 130 (from GeoServer: Playground/Stadium)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "police outpost": 22 (from GeoServer: Police Outpost)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "religious": 110 (from GeoServer: Religious)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2530   "telephone exchange": 2 (from GeoServer: Telephone Exchange)
+cb6cd10b71b7818143a588c46380508a59f86405.js:2531 Total count: 688
+cb6cd10b71b7818143a588c46380508a59f86405.js:2531 =========================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 📋 ===== UNIQUE EDUCATION CATEGORIES FOUND =====
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 Total features: 778
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 Unique categories: 4
+cb6cd10b71b7818143a588c46380508a59f86405.js:2280 
+Category breakdown:
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "Anganwadi": 352 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "College": 70 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "School": 350 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2282   - "University": 6 institutions
+cb6cd10b71b7818143a588c46380508a59f86405.js:2283 =================================================
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'groundwater_depth', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'groundwater_depth', layerName: 'Groundwater Depth'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:36982 🔒 ENFORCING STRICT LAYER ORDER - Starting...
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984 🏷️ WARD LABELS TRACKER - Before layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:36984   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:36986   Current position: 104 of 105
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: waterway_label → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_ocean → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_sea → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: watername_lake_line → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_hamlet → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_suburbs → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_villages → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_town → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_country_1 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_state → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_continent → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r6 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_r5 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r4 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_r2 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_city_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: place_capital_dot_z7 → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_stadium → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: poi_park → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_minor → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_sec → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_pri → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: roadname_major → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: housenumber → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36937    🏷️ Basemap symbol layer detected: municipal-labels → Priority 900
+cb6cd10b71b7818143a588c46380508a59f86405.js:36994 📊 Target layer order (bottom to top):
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 0 (BASEMAP_BASE): background, landcover, park_national_park, park_nature_reserve, landuse_residential, landuse, waterway, boundary_county, boundary_state, water, water_shadow, aeroway-runway, aeroway-taxiway, rail, rail_dash, boundary_country_outline, boundary_country_inner, groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 100 (BASEMAP_DETAIL): building, building-top
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 320 (BUILDINGS_FILL): buildings-fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 330 (BUILDINGS_2D): buildings
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 610 (ROAD_NETWORK): tunnel_service_case, tunnel_minor_case, tunnel_sec_case, tunnel_pri_case, tunnel_trunk_case, tunnel_mot_case, tunnel_path, tunnel_service_fill, tunnel_minor_fill, tunnel_sec_fill, tunnel_pri_fill, tunnel_trunk_fill, tunnel_mot_fill, tunnel_rail, tunnel_rail_dash, road_service_case, road_minor_case, road_pri_case_ramp, road_trunk_case_ramp, road_mot_case_ramp, road_sec_case_noramp, road_pri_case_noramp, road_trunk_case_noramp, road_mot_case_noramp, road_path, road_service_fill, road_minor_fill, road_pri_fill_ramp, road_trunk_fill_ramp, road_mot_fill_ramp, road_sec_fill_noramp, road_pri_fill_noramp, road_trunk_fill_noramp, road_mot_fill_noramp, bridge_service_case, bridge_minor_case, bridge_sec_case, bridge_pri_case, bridge_trunk_case, bridge_mot_case, bridge_path, bridge_service_fill, bridge_minor_fill, bridge_sec_fill, bridge_pri_fill, bridge_trunk_fill, bridge_mot_fill
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 614 (BUILDINGS_HIGHLIGHT): buildings-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 615 (BUILDINGS_3D): buildings-3d
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 620 (WARD_FILL): ward-boundaries-fill, ward-boundaries
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 640 (WARD_HIGHLIGHT): ward-boundaries-highlight
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 660 (MUNICIPAL_BOUNDARY): municipal-boundary-border, municipal-boundary
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 900 (BASEMAP_LABELS): waterway_label, watername_ocean, watername_sea, watername_lake, watername_lake_line, place_hamlet, place_suburbs, place_villages, place_town, place_country_2, place_country_1, place_state, place_continent, place_city_r6, place_city_r5, place_city_dot_r7, place_city_dot_r4, place_city_dot_r2, place_city_dot_z7, place_capital_dot_z7, poi_stadium, poi_park, roadname_minor, roadname_sec, roadname_pri, roadname_major, housenumber, municipal-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37000    Priority 940 (WARD_LABELS): ward-labels
+cb6cd10b71b7818143a588c46380508a59f86405.js:37012 ✅ STRICT LAYER ORDER ENFORCED - Complete!
+cb6cd10b71b7818143a588c46380508a59f86405.js:37014 📊 Final layer order: (105) ['background', 'landcover', 'park_national_park', 'park_nature_reserve', 'landuse_residential', 'landuse', 'waterway', 'boundary_county', 'boundary_state', 'water', 'water_shadow', 'aeroway-runway', 'aeroway-taxiway', 'rail', 'rail_dash', 'boundary_country_outline', 'boundary_country_inner', 'groundwater_depth', 'building', 'building-top', 'buildings-fill', 'buildings', 'tunnel_service_case', 'tunnel_minor_case', 'tunnel_sec_case', 'tunnel_pri_case', 'tunnel_trunk_case', 'tunnel_mot_case', 'tunnel_path', 'tunnel_service_fill', 'tunnel_minor_fill', 'tunnel_sec_fill', 'tunnel_pri_fill', 'tunnel_trunk_fill', 'tunnel_mot_fill', 'tunnel_rail', 'tunnel_rail_dash', 'road_service_case', 'road_minor_case', 'road_pri_case_ramp', 'road_trunk_case_ramp', 'road_mot_case_ramp', 'road_sec_case_noramp', 'road_pri_case_noramp', 'road_trunk_case_noramp', 'road_mot_case_noramp', 'road_path', 'road_service_fill', 'road_minor_fill', 'road_pri_fill_ramp', 'road_trunk_fill_ramp', 'road_mot_fill_ramp', 'road_sec_fill_noramp', 'road_pri_fill_noramp', 'road_trunk_fill_noramp', 'road_mot_fill_noramp', 'bridge_service_case', 'bridge_minor_case', 'bridge_sec_case', 'bridge_pri_case', 'bridge_trunk_case', 'bridge_mot_case', 'bridge_path', 'bridge_service_fill', 'bridge_minor_fill', 'bridge_sec_fill', 'bridge_pri_fill', 'bridge_trunk_fill', 'bridge_mot_fill', 'buildings-highlight', 'buildings-3d', 'ward-boundaries-fill', 'ward-boundaries', 'ward-boundaries-highlight', 'municipal-boundary-border', 'municipal-boundary', 'waterway_label', 'watername_ocean', 'watername_sea', 'watername_lake', 'watername_lake_line', 'place_hamlet', 'place_suburbs', 'place_villages', 'place_town', 'place_country_2', 'place_country_1', 'place_state', 'place_continent', 'place_city_r6', 'place_city_r5', 'place_city_dot_r7', 'place_city_dot_r4', 'place_city_dot_r2', 'place_city_dot_z7', 'place_capital_dot_z7', 'poi_stadium', 'poi_park', 'roadname_minor', 'roadname_sec', …]
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016 🏷️ WARD LABELS TRACKER - After layer order enforcement
+cb6cd10b71b7818143a588c46380508a59f86405.js:37016   Layer exists: ✓ YES
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Final position: 104 of 105 (should be near top)
+cb6cd10b71b7818143a588c46380508a59f86405.js:37018   Visibility: undefined
+cb6cd10b71b7818143a588c46380508a59f86405.js:33136 ✅ Layer ordering re-enforced after 500ms using strict priority system
+cb6cd10b71b7818143a588c46380508a59f86405.js:33145 ✅ Tiles loaded for: groundwater_depth
+cb6cd10b71b7818143a588c46380508a59f86405.js:32515 📊 Loading States: {isLoadingLayers: false, isBuildingsLoading: false, isLayerLoading: false, initialLoadComplete: true, buildingsInitialLoadDone: true, …}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81605 🏢 Tutorial building popup prop received: null
+cb6cd10b71b7818143a588c46380508a59f86405.js:81656 🔑 [APP] activeLayerId derived from sector: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeLayerPerSector: {…}}
+cb6cd10b71b7818143a588c46380508a59f86405.js:81658 🔑 [APP] Active Hazard Key:  (from )
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5553 🎯 Attempting to add hazard legend: {activeSector: 'heat', activeLayerId: 'groundwater_depth', activeSubLayers: Array(1)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5335 🔍 Getting hazard legend for: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3308 🔎 getUILayerLegend called with: {layerId: 'groundwater_depth', scenario: 'baseline_2025'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:3310 🗺️ Mapped to GeoServer layer: GroundWater
+cb6cd10b71b7818143a588c46380508a59f86405.js:3313 📋 Legend entries found: 5
+cb6cd10b71b7818143a588c46380508a59f86405.js:5337 📊 CSV entries received: (5) [{…}, {…}, {…}, {…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:5344 ✅ Hazard legend created: {name: 'Groundwater Depth - Depth (m)', type: 'polygon', classes: Array(5)}
+cb6cd10b71b7818143a588c46380508a59f86405.js:5555 ✅ Adding hazard legend to activeLegends
+cb6cd10b71b7818143a588c46380508a59f86405.js:5562 📋 Final activeLegends: (2) [{…}, {…}]
+cb6cd10b71b7818143a588c46380508a59f86405.js:59834 🔍 [RightPanel] Layer check: {activeLayerId: 'groundwater_depth', isClimateOrEnvLayer: true}
+cb6cd10b71b7818143a588c46380508a59f86405.js:59847 ✅ [RightPanel] Rendering LayerAreaBreakdown: {activeLayerId: 'groundwater_depth', layerName: 'Groundwater Depth'}
+cb6cd10b71b7818143a588c46380508a59f86405.js:33164 🔍 Layer check: {layerExists: true, sourceExists: true, layerId: 'groundwater_depth', opacity: 0.7, visibility: undefined}
