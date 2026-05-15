@@ -298,7 +298,7 @@ function CustomTooltip({ active, payload }: any) {
     const data = payload[0].payload;
     
     return (
-      <div className="bg-gray-900 rounded px-2 py-1.5 shadow-lg border border-gray-700">
+      <div className="bg-white rounded px-2 py-1.5 shadow-lg border border-[#E2E8F0]">
         <div className="flex items-center gap-1.5 mb-0.5">
           <div 
             className="w-2 h-2 rounded-sm flex-shrink-0" 

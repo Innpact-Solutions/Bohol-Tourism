@@ -121,7 +121,7 @@ export function InfrastructureRiskPanel({
                     }`}>
                       {layer.name}
                     </div>
-                    <div className="text-[9px] text-[#94A3B8]">
+                    <div className="text-[9px] text-[#64748B]">
                       {layer.count}
                     </div>
                   </div>

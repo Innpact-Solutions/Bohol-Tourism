@@ -46,6 +46,7 @@ interface FloatingLegendPanelProps {
   activeFstpBands?: string[]; // Module 3 FSTP drive-time active bands
   fstpOpacity?: number; // 0–1, FSTP service area layer opacity
   onFstpOpacityChange?: (opacity: number) => void;
+  children?: React.ReactNode; // Extra legend blocks rendered above the standard legends (e.g., Tourism)
 }
 
 export function FloatingLegendPanel({
@@ -81,6 +82,7 @@ export function FloatingLegendPanel({
   activeFstpBands = [],
   fstpOpacity = 0.75,
   onFstpOpacityChange,
+  children,
 }: FloatingLegendPanelProps) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMinimized, setIsMinimized] = useState(minimized);
@@ -658,8 +660,8 @@ export function FloatingLegendPanel({
 
   console.log('📋 Final activeLegends:', activeLegends);
 
-  // Don't render if no active layers
-  if (activeLegends.length === 0) {
+  // Don't render if no active layers (unless extra children are provided)
+  if (activeLegends.length === 0 && !children) {
     return null;
   }
 
@@ -712,6 +714,7 @@ export function FloatingLegendPanel({
         {/* Content - Always Expanded */}
         <div className="max-h-[320px] overflow-y-auto">
           <div className="p-2 space-y-2">
+            {children}
             {activeLegends.map(({ id, legend }) => {
                 const isPolygon = legend.type === 'polygon';
                 const LayerIcon = getLayerIcon(activeLayerId, id);
@@ -773,7 +776,7 @@ export function FloatingLegendPanel({
                                         onMouseEnter={(e) => handleLegendTooltipShow(e, cls.value!)}
                                         onMouseLeave={handleLegendTooltipHide}
                                       >
-                                        <Info className="w-3 h-3 text-[#94A3B8] hover:text-[#64748B]" />
+                                        <Info className="w-3 h-3 text-[#64748B] hover:text-[#64748B]" />
                                       </div>
                                     </>
                                   ) : (

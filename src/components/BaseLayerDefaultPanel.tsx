@@ -93,8 +93,8 @@ const HAZARD_LAYER_NAMES: Record<string, string> = {
 const C = {
   navy: "#1B3A4B", teal: "#0D9488", tealLight: "#14B8A6", orange: "#F59E0B",
   blue: "#3B82F6", green: "#10B981", purple: "#8B5CF6", red: "#EF4444",
-  dark: "#0F172A", darkCard: "#1E293B", darkBg: "#0B1120", accent: "#FCD34D",
-  gray: "#64748B", grayLight: "#94A3B8", grayBorder: "#334155", cardBg: "#162032",
+  dark: "#0F172A", darkCard: "#F1F5F9", darkBg: "#ffffff", accent: "#FCD34D",
+  gray: "#64748B", grayLight: "#94A3B8", grayBorder: "#E2E8F0", cardBg: "#F8FAFC",
   yellow: "#F59E0B", pink: "#EC4899", cyan: "#06B6D4", indigo: "#6366F1",
 };
 
@@ -137,7 +137,7 @@ function HoverableBarSegment({ color, width, label, value }: { color: string; wi
         onMouseLeave={() => setShowTooltip(false)}
       />
       {showTooltip && (
-        <div className="fixed z-[9999] bg-[#1E293B] text-white px-2 py-1.5 rounded shadow-lg pointer-events-none transform -translate-x-1/2 -translate-y-full"
+        <div className="fixed z-[9999] bg-[#F1F5F9] text-white px-2 py-1.5 rounded shadow-lg pointer-events-none transform -translate-x-1/2 -translate-y-full"
           style={{ left: tooltipPos.x, top: tooltipPos.y }}>
           <div style={{ fontSize: 9, fontWeight: 500 }}>{label}</div>
           <div style={{ fontSize: 10, fontWeight: 700 }}>{value}</div>

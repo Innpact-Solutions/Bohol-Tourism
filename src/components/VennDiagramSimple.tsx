@@ -177,10 +177,10 @@ export function ContainmentRiskInteractionDiagram() {
   };
 
   return (
-    <div className="bg-[#162032] border border-[#1E3A5F] rounded-md p-3 shadow-sm">
+    <div className="bg-[#F8FAFC] border border-[#1E3A5F] rounded-md p-3 shadow-sm">
       {/* Building Category Toggle Buttons */}
       <div className="mb-3">
-        <label className="block text-[11px] font-bold text-[#94A3B8] mb-1.5">
+        <label className="block text-[11px] font-bold text-[#64748B] mb-1.5">
           Building Category
         </label>
         <div className="space-y-1">
@@ -195,7 +195,7 @@ export function ContainmentRiskInteractionDiagram() {
                 className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                   isActive
                     ? 'bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] text-white shadow-sm shadow-[#8B5CF6]/20'
-                    : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                    : 'hover:bg-[#F1F5F9] text-[#475569]'
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -583,7 +583,7 @@ export function ContainmentRiskInteractionDiagram() {
       {/* Tooltip */}
       {tooltipContent && (
         <div
-          className="fixed z-[9999] px-3 py-2 bg-[#1E293B] border border-[#3B82F6]/50 rounded-lg shadow-2xl pointer-events-none"
+          className="fixed z-[9999] px-3 py-2 bg-[#F1F5F9] border border-[#3B82F6]/50 rounded-lg shadow-2xl pointer-events-none"
           style={{
             left: `${tooltipContent.x + 12}px`,
             top: `${tooltipContent.y - 8}px`,

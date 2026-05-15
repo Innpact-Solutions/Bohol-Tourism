@@ -1807,8 +1807,9 @@ export function MapCanvas({
         'public-amenities-unclustered-point',
         'transport-clusters',
         'transport-unclustered-point',
-        'ward-boundaries-fill',
-        'ward-boundaries-line',
+        // Barangay (ward) fill/line intentionally excluded — barangay selection
+        // and popup are disabled in the Tourism dashboard to avoid conflicting
+        // with tourism point popups.
         'irap_vehicle-click',
         'irap_motorcycle-click',
         'irap_bicycle-click',
@@ -3567,9 +3568,16 @@ export function MapCanvas({
                 let initialFilter: any;
                 
                 if (activeBuildingCategories.length === 0 && activeBuildingSubcategories.length === 0) {
-                  // No categories or subcategories selected - hide all buildings
-                  initialFilter = ['==', ['get', 'use_type'], 'NONE_SELECTED'];
-                  console.log('🚫 Initial filter: No building categories/subcategories selected - hiding all buildings');
+                  // No categories/subcategories selected. If the Buildings base layer is
+                  // active, show ALL buildings (uniform grey via paint effect); otherwise
+                  // hide everything.
+                  if (activeBaseLayers.includes('buildings')) {
+                    initialFilter = null;
+                    console.log('✅ Initial filter: Buildings base layer active w/o categories - showing all buildings');
+                  } else {
+                    initialFilter = ['==', ['get', 'use_type'], 'NONE_SELECTED'];
+                    console.log('🚫 Initial filter: No building categories/subcategories selected - hiding all buildings');
+                  }
                 } else if (activeBuildingSubcategories.length > 0) {
                   // Subcategories are selected - ONLY show those use_sub values (exclusive filtering)
                   initialFilter = ['in', ['get', 'use_sub'], ['literal', activeBuildingSubcategories]];
@@ -9151,9 +9159,15 @@ export function MapCanvas({
       console.log(`🚰 Sewer mode: showNetwork=${showNetwork}, showOnsite=${showOnsite}, showNonNetwork=${showNonNetwork}, gidCount=${gids.length}`);
       } // end else (gids available)
     } else if (activeBuildingCategories.length === 0 && activeBuildingSubcategories.length === 0) {
-      // No categories or subcategories selected - hide all buildings
-      categoryFilter = ['==', ['get', 'use_type'], 'NONE_SELECTED'];
-      console.log('🚫 No building categories/subcategories selected - hiding all buildings');
+      // No categories/subcategories selected. If the Buildings base layer is active,
+      // show ALL buildings (uniform grey via paint effect); otherwise hide everything.
+      if (activeBaseLayers.includes('buildings')) {
+        categoryFilter = null;
+        console.log('✅ Buildings base layer active w/o categories - showing all buildings');
+      } else {
+        categoryFilter = ['==', ['get', 'use_type'], 'NONE_SELECTED'];
+        console.log('🚫 No building categories/subcategories selected - hiding all buildings');
+      }
     } else if (activeBuildingSubcategories.length > 0) {
       // Subcategories are selected - ONLY show those use_sub values (exclusive filtering)
       categoryFilter = ['in', ['get', 'use_sub'], ['literal', activeBuildingSubcategories]];
@@ -9409,7 +9423,7 @@ export function MapCanvas({
       filterLoadingCleared = true; // prevent delayed setTimeout from firing after cleanup
     };
     
-  }, [activeBuildingCategories, activeBuildingSubcategories, activeSewerCategories, scenarioNetworkGids, bufferBldgIds, excludedBldgIds, mapReady, buildingsInitialLoadDone, is3DMode, selectedWardName, selectedLguName]);
+  }, [activeBaseLayers, activeBuildingCategories, activeBuildingSubcategories, activeSewerCategories, scenarioNetworkGids, bufferBldgIds, excludedBldgIds, mapReady, buildingsInitialLoadDone, is3DMode, selectedWardName, selectedLguName]);
 
   // Update building layer colors when toggling sewer feasibility mode (Module 1)
   useEffect(() => {
@@ -9560,6 +9574,37 @@ export function MapCanvas({
       map.setPaintProperty('buildings', 'line-color', outlineColor);
     }
   }, [activeSewerCategories, scenarioNetworkGids, bufferBldgIds, excludedBldgIds, mapReady]);
+
+  // Buildings base layer ─ paint uniform grey when the base "Buildings" toggle is
+  // active without any specific building category/subcategory selection.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady) return;
+    const baseOnly =
+      activeBaseLayers.includes('buildings') &&
+      activeBuildingCategories.length === 0 &&
+      activeBuildingSubcategories.length === 0 &&
+      activeSewerCategories.length === 0;
+    if (!baseOnly) return;
+
+    const grey = '#B8BCC2';        // light slate grey fill
+    const greyEdge = '#7C8089';    // slightly darker grey outline
+    const extrusionGrey: any = [
+      'case',
+      ['boolean', ['feature-state', 'hover'], false],
+      '#2563EB',
+      grey,
+    ];
+    if (map.getLayer('buildings-fill')) {
+      map.setPaintProperty('buildings-fill', 'fill-color', grey);
+    }
+    if (map.getLayer('buildings-3d')) {
+      map.setPaintProperty('buildings-3d', 'fill-extrusion-color', extrusionGrey);
+    }
+    if (map.getLayer('buildings')) {
+      map.setPaintProperty('buildings', 'line-color', greyEdge);
+    }
+  }, [activeBaseLayers, activeBuildingCategories, activeBuildingSubcategories, activeSewerCategories, mapReady, styleLoadCounter]);
 
   // Sync buffer layer visibility when sewerCategories toggle changes (buildings mode)
   useEffect(() => {
@@ -11141,6 +11186,10 @@ function getFirstBasemapDetailLayerId(map: maplibregl.Map): string | undefined {
 const LAYER_ORDER_PRIORITY = {
   // ═══ TIER 9: BASEMAP LABELS (TOP - Always Visible) ═══
   BASEMAP_LABELS: 900,
+
+  // ═══ TIER 8.5: TOURISM POINTS (Just below basemap labels, on top of everything else) ═══
+  TOURISM_POINTS: 850,
+  TOURISM_CLUSTERS: 220, // Cluster polygons: above hazard layers, below buildings
   
   // ═══ TIER 9.5: ADMINISTRATIVE LABELS (Absolute Top - Always Visible) ═══
   MUNICIPAL_LABELS: 950, // Municipal labels on top (higher administrative level)
@@ -11233,6 +11282,12 @@ function getLayerPriority(layerId: string, layerType?: string): number {
   if (layerId === 'labels' || layerId === 'satellite-labels') {
     return LAYER_ORDER_PRIORITY.BASEMAP_LABELS;
   }
+
+  // TIER 8.5: Tourism layers — point layers ride high (just below labels), cluster polygons sit lower
+  if (id.startsWith('tourism-')) {
+    if (id.startsWith('tourism-cluster-')) return LAYER_ORDER_PRIORITY.TOURISM_CLUSTERS;
+    return LAYER_ORDER_PRIORITY.TOURISM_POINTS;
+  }
   
   // 🔒 LOCKED: Custom layer detection - DO NOT MODIFY
   // Check if this is our custom data layer - exclude these from being basemap labels
@@ -11272,7 +11327,8 @@ function getLayerPriority(layerId: string, layerType?: string): number {
     id.startsWith('grid-sewer-') ||
     id.startsWith('scenario-grid') && id !== 'scenario-grid-labels' ||
     id === '3d-hillshade' ||
-    id.startsWith('panorama-pins')
+    id.startsWith('panorama-pins') ||
+    id.startsWith('tourism-')
   );
   
   // 🔒 LOCKED: Basemap symbol layer detection - DO NOT MODIFY
@@ -11782,7 +11838,8 @@ function moveBasemapLabelsToTop(map: maplibregl.Map) {
       id.startsWith('buildings') ||
       id.startsWith('road_network') ||
       id.startsWith('geoserver-') ||
-      id.startsWith('wms-')
+      id.startsWith('wms-') ||
+      id.startsWith('tourism-')
     );
     
     // If it's our custom layer, skip it
@@ -13097,7 +13154,9 @@ function addWardBoundaryLayer(
         
         // Add click event for ward popups - using custom React popup instead of MapLibre popup
         // IMPORTANT: Listen to FILL layer for better click detection (larger clickable area)
-        map.on('click', wardFillLayerId, (e) => {
+        // TOURISM DASHBOARD: Barangay click/popup disabled to prevent conflict with tourism point popups.
+        // eslint-disable-next-line no-constant-condition
+        if (false) map.on('click', wardFillLayerId, (e) => {
           // CRITICAL: If buildings layer is visible, completely block ward clicks
           // Buildings layer should always be clickable without ward interference
           const buildingsLayer = map.getLayer('buildings');
@@ -13124,6 +13183,10 @@ function addWardBoundaryLayer(
           if (map.getLayer('healthcare-clusters')) infrastructureLayers.push('healthcare-clusters');
           if (map.getLayer('healthcare-clusters-pulse')) infrastructureLayers.push('healthcare-clusters-pulse');
           if (map.getLayer('healthcare-unclustered-point')) infrastructureLayers.push('healthcare-unclustered-point');
+          // Tourism layers — clicking a tourism point should open the tourism popup, not the barangay popup
+          ['tourism-sites-anchor', 'tourism-sites-secondary', 'tourism-sites-supportive', 'tourism-assets-premium', 'tourism-assets-quality'].forEach((id) => {
+            if (map.getLayer(id)) infrastructureLayers.push(id);
+          });
           
           if (infrastructureLayers.length > 0) {
             const clusterFeatures = map.queryRenderedFeatures(e.point, {
@@ -13225,7 +13288,9 @@ function addWardBoundaryLayer(
         });
         
         // Change cursor on hover (use fill layer for larger hover area)
-        map.on('mouseenter', wardFillLayerId, () => {
+        // TOURISM DASHBOARD: Disabled — barangay is not selectable so do not show pointer.
+        // eslint-disable-next-line no-constant-condition
+        if (false) map.on('mouseenter', wardFillLayerId, () => {
           // Don't show pointer cursor if buildings layer is visible
           const buildingsLayer = map.getLayer('buildings');
           if (buildingsLayer && map.getLayoutProperty('buildings', 'visibility') === 'visible') {

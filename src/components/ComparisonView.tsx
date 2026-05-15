@@ -3486,7 +3486,7 @@ function LayerSelector({ side, sector, layer, scenario, onSectorChange, onLayerC
                 <SectorIcon className="w-3 h-3 flex-shrink-0" style={{ color: currentSector?.color }} />
                 <span className="text-[11px] text-[#0F172A] font-medium truncate">{currentSector?.name}</span>
               </div>
-              <ChevronDown className={`w-3 h-3 text-[#94A3B8] flex-shrink-0 transition-transform ${sectorOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3 h-3 text-[#64748B] flex-shrink-0 transition-transform ${sectorOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {sectorOpen && (
@@ -3529,7 +3529,7 @@ function LayerSelector({ side, sector, layer, scenario, onSectorChange, onLayerC
               className="w-full flex items-center justify-between px-2.5 py-1.5 bg-[#F8FAFC] border border-[#E5E7EB] rounded-md hover:border-[#2563EB] hover:bg-white transition-all text-left group"
             >
               <span className="text-[11px] text-[#0F172A] font-medium truncate flex-1 min-w-0">{currentLayer?.name}</span>
-              <ChevronDown className={`w-3 h-3 text-[#94A3B8] flex-shrink-0 transition-transform ${layerOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3 h-3 text-[#64748B] flex-shrink-0 transition-transform ${layerOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {layerOpen && (

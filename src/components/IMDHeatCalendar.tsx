@@ -269,7 +269,7 @@ export function IMDHeatCalendar({ year }: IMDHeatCalendarProps) {
       {/* Tooltip */}
       {hoveredDay && (
         <div
-          className="fixed z-[9999] bg-[#1E293B] text-white rounded-lg shadow-lg p-3 pointer-events-none"
+          className="fixed z-[9999] bg-[#F1F5F9] text-white rounded-lg shadow-lg p-3 pointer-events-none"
           style={{
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y}px`,

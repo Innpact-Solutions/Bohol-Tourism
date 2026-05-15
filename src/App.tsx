@@ -15,13 +15,19 @@ import { Toaster } from './components/ui/sonner';
 import { fetchUniqueHealthcareCategories } from './utils/healthcareData';
 import { getLayerNameForScenario } from './config/geoserverLayers';
 import { HazardDataProvider, useHazardData } from './contexts/HazardDataContext';
+import { TourismProvider } from './tourism/TourismContext';
+import { TourismUIProvider, useTourismUI } from './tourism/tourismStore';
+import { TourismLayers } from './tourism/TourismLayers';
+import { useTourismPopups } from './tourism/usePopupBinding';
+import { TourismLegend } from './tourism/TourismLegend';
+import { TourismListPanel } from './tourism/TourismListPanel';
 import { loadLegendDefinitions } from './utils/legendLoader';
 import { fetchEducationCounts } from './utils/educationData';
 import { fetchHealthcareCounts } from './utils/healthcareData';
 import { fetchPublicAmenitiesCounts } from './utils/publicAmenitiesData';
 import { fetchTransportCounts } from './utils/transportData';
 
-export type Sector = 'heat' | 'air' | 'flood' | 'base_layers' | 'climate_hazard' | 'env_vulnerability';
+export type Sector = 'heat' | 'air' | 'flood' | 'base_layers' | 'climate_hazard' | 'env_vulnerability' | 'multihazard' | 'roadsafety' | 'tourism';
 export type Scenario = 'baseline_2025' | 'ssp1_2040' | 'ssp2_2040' | 'ssp5_2040' | '2015' | '2016' | '2017' | '2018' | '2019' | '2020' | '2021' | '2022' | '2023' | '2024';
 export type Basemap = 'light' | 'dark' | 'satellite';
 
@@ -97,6 +103,7 @@ function AppContent({
   // ALL HOOKS MUST BE CALLED BEFORE ANY CONDITIONAL RETURNS
   // Check if hazard data is still loading (but don't block UI)
   const { isLoading: hazardDataLoading, isInitialLoad, refreshData } = useHazardData();
+  const tourismUI = useTourismUI();
   
   console.log('🏢 Tutorial building popup prop received:', tutorialBuildingPopup);
 
@@ -178,6 +185,9 @@ function AppContent({
   // Store map instance reference for external zoom control
   const [mapInstance, setMapInstance] = useState<maplibregl.Map | null>(null);
 
+  // Tourism popups - wire MapLibre clicks to React-rendered popups
+  useTourismPopups(mapInstance, true);
+
   // Control legend panel minimization state
   const [legendMinimized, setLegendMinimized] = useState(false);
 
@@ -234,7 +244,7 @@ function AppContent({
   // Missing state stubs (kept for prop compatibility)
   const [showQueryPanel, setShowQueryPanel] = useState(false);
   const [activeSubLayers, setActiveSubLayers] = useState<string[]>([]);
-  const [activeBuildingCategories, setActiveBuildingCategories] = useState<string[]>(['residential', 'commercial', 'education', 'government', 'health', 'religious', 'industrial', 'transport']);
+  const [activeBuildingCategories, setActiveBuildingCategories] = useState<string[]>([]);
   const [activeBuildingSubcategories, setActiveBuildingSubcategories] = useState<string[]>([]);
   const [previousBuildingCategories, setPreviousBuildingCategories] = useState<string[]>([]);
   const [isEconomicVulnerabilityActive, setIsEconomicVulnerabilityActive] = useState(false);
@@ -960,6 +970,7 @@ function AppContent({
         <div data-tutorial="left-panel" className="flex">
           <LeftDrawer
             activeSector={activeSector}
+            onSectorChange={handleSectorChange}
             activeLayerId={activeLayerId}
             onLayerChange={handleLayerChange}
             onScenarioChange={setScenario}
@@ -1127,8 +1138,34 @@ function AppContent({
             activeFstpBands={[]}
             fstpOpacity={fstpOpacity}
             onFstpOpacityChange={setFstpOpacity}
-          />
+          >
+            <TourismLegend />
+          </FloatingLegendPanel>
+        <TourismLayers
+          map={mapInstance}
+          visible={true}
+          showAnchor={tourismUI.showAnchor}
+          showSecondary={tourismUI.showSecondary}
+          showSupportive={tourismUI.showSupportive}
+          showPremium={tourismUI.showPremium}
+          showQuality={tourismUI.showQuality}
+          showClusterPrimary={tourismUI.showClusterPrimary}
+          showClusterEmerging={tourismUI.showClusterEmerging}
+          showClusterSatellite={tourismUI.showClusterSatellite}
+          anchorCategories={Array.from(tourismUI.enabledSiteCategoriesByTier.Anchor)}
+          secondaryCategories={Array.from(tourismUI.enabledSiteCategoriesByTier.Secondary)}
+          supportiveCategories={Array.from(tourismUI.enabledSiteCategoriesByTier.Supportive)}
+          selectedLgu={selectedLguName}
+          selectedBrgy={selectedWardName}
+        />
+
         </MapCanvas>
+
+        {/* Floating Tourism Directory list panel (Sites · Hospitality · Clusters) */}
+        <TourismListPanel
+          selectedLgu={selectedLguName}
+          selectedBrgy={selectedWardName}
+        />
         </div>
 
         <RightPanelContainer
@@ -1432,8 +1469,11 @@ export default function App() {
     );
   }
 
+  
   return (
     <HazardDataProvider initialScenario="baseline_2025" selectedWardId="all">
+      <TourismProvider>
+        <TourismUIProvider>
       <AppContent 
         onCompareModeChange={setCompareMode}
         basemap={basemap}
@@ -1513,6 +1553,8 @@ export default function App() {
       
       {/* Toast notifications */}
       <Toaster position="top-right" richColors />
+        </TourismUIProvider>
+      </TourismProvider>
     </HazardDataProvider>
   );
 }
