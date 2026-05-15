@@ -216,9 +216,9 @@ export function TourismLayers({
           data: sites as any,
         } as any);
       }
-      // Per-category clustered sources — one per site category. Each holds
-      // only that category's features, so MapLibre clustering can only group
-      // points of the same type together.
+      // Per-category sources — one per site category. Clustering is disabled
+      // so every individual point renders at every zoom; the per-tier
+      // (Anchor/Secondary/Supportive) layers above already drive the visuals.
       for (const { cat, srcId } of SITE_CATS) {
         if (map.getSource(srcId)) continue;
         const fc = {
@@ -230,9 +230,6 @@ export function TourismLayers({
         map.addSource(srcId, {
           type: 'geojson',
           data: fc as any,
-          cluster: true,
-          clusterMaxZoom: 12,
-          clusterRadius: 45,
         } as any);
       }
       if (!map.getSource(SRC.assets)) {
