@@ -131,6 +131,11 @@ export function RightPanelContainer({
   console.log('📐 [RightPanelContainer] Received totalAreaKm2:', totalAreaKm2.toFixed(2), 'km²');
   console.log('👥 [RightPanelContainer] Received totalPopulation2024:', totalPopulation2024.toLocaleString());
   
+  // Tourism sector: skip the default right panel — tourism uses an overlay detail panel mounted at App level
+  if (activeSector === 'tourism') {
+    return null;
+  }
+
   return (
     <div 
       data-tutorial="right-panel"

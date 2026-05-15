@@ -2,6 +2,7 @@ import { X, ChevronDown, ChevronRight, Check, Leaf, TrendingUp, Flame, School, B
 import React, { useState, useEffect } from 'react';
 import type { Sector, Scenario } from '../App';
 import { InfrastructureRiskPanel } from './InfrastructureRiskPanel';
+import { TourismPanel } from '../tourism/TourismPanel';
 import { fetchEducationCounts } from '../utils/educationData';
 import { fetchHealthcareCounts } from '../utils/healthcareData';
 import { fetchPublicAmenitiesCounts } from '../utils/publicAmenitiesData';
@@ -1168,6 +1169,15 @@ export function LeftDrawer({
   const handleTooltipHide = () => {
     setTooltipData(null);
   };
+
+  // Tourism sector: render the dedicated tourism panel and bypass other UI
+  if (activeSector === 'tourism') {
+    return (
+      <div className="w-[400px] h-full bg-stone-100 border-r border-stone-300 flex flex-col flex-shrink-0">
+        <TourismPanel />
+      </div>
+    );
+  }
 
   return (
     <>

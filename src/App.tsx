@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
 import { Header } from './components/Header';
 import { LeftDrawer } from './components/LeftDrawer';
+import { LeftRail } from './components/LeftRail';
 import { FloatingLegendPanel } from './components/FloatingLegendPanel';
 import { MapCanvas } from './components/MapCanvas';
 import { RightPanelContainer } from './components/RightPanelContainer';
@@ -16,7 +17,10 @@ import { fetchUniqueHealthcareCategories } from './utils/healthcareData';
 import { getLayerNameForScenario } from './config/geoserverLayers';
 import { HazardDataProvider, useHazardData } from './contexts/HazardDataContext';
 import { TourismProvider } from './tourism/TourismContext';
+import { TourismUIProvider } from './tourism/tourismStore';
 import { TourismLayers } from './tourism/TourismLayers';
+import { useTourismPopups } from './tourism/usePopupBinding';
+import { TourismDetailPanel } from './tourism/TourismDetailPanel';
 import { loadLegendDefinitions } from './utils/legendLoader';
 import { fetchEducationCounts } from './utils/educationData';
 import { fetchHealthcareCounts } from './utils/healthcareData';
@@ -179,6 +183,9 @@ function AppContent({
 
   // Store map instance reference for external zoom control
   const [mapInstance, setMapInstance] = useState<maplibregl.Map | null>(null);
+
+  // Tourism popups - wire MapLibre clicks to React-rendered popups
+  useTourismPopups(mapInstance, activeSector === 'tourism');
 
   // Control legend panel minimization state
   const [legendMinimized, setLegendMinimized] = useState(false);
@@ -959,6 +966,13 @@ function AppContent({
 
 
       <div className="flex-1 flex overflow-hidden">
+        <LeftRail
+          activeSector={activeSector}
+          onSectorChange={handleSectorChange}
+          onInfoOpen={() => setInfoModalOpen(true)}
+          onTutorialOpen={onTutorialRestart}
+          showTutorialPulse={showTutorialPulse}
+        />
         <div data-tutorial="left-panel" className="flex">
           <LeftDrawer
             activeSector={activeSector}
@@ -1134,6 +1148,7 @@ function AppContent({
           map={mapInstance}
           visible={activeSector === 'tourism'}
         />
+        {activeSector === 'tourism' && <TourismDetailPanel />}
 
         </MapCanvas>
         </div>
@@ -1439,9 +1454,11 @@ export default function App() {
     );
   }
 
+  
   return (
     <HazardDataProvider initialScenario="baseline_2025" selectedWardId="all">
       <TourismProvider>
+        <TourismUIProvider>
       <AppContent 
         onCompareModeChange={setCompareMode}
         basemap={basemap}
@@ -1521,6 +1538,7 @@ export default function App() {
       
       {/* Toast notifications */}
       <Toaster position="top-right" richColors />
+        </TourismUIProvider>
       </TourismProvider>
     </HazardDataProvider>
   );
