@@ -311,9 +311,9 @@ const TIER_BG: Record<string, string> = {
 // `getCWISLayerConfig`. Mirror the mapping here so the analytics pie can
 // resolve them to their full WFS layer names and display titles.
 const CWIS_HAZARD_LAYERS: Record<string, { name: string; layer: string }> = {
-  storm_surge:        { name: 'Storm Surge',        layer: 'WorldBank_Bohol:StormSurge' },
-  flood_hazard:       { name: 'Flood Hazard',       layer: 'WorldBank_Bohol:Flood_Hazard' },
-  urban_waterlogging: { name: 'Urban Waterlogging', layer: 'WorldBank_Bohol:Urban_Waterlogging' },
+  storm_surge:        { name: 'Storm Surge',     layer: 'WorldBank_Bohol:StormSurge' },
+  flood_hazard:       { name: 'Urban Flooding',  layer: 'WorldBank_Bohol:Flood' },
+  urban_waterlogging: { name: 'Urban Flooding',  layer: 'WorldBank_Bohol:Flood' },
 };
 
 // ---------------------------------------------------------------------------
@@ -726,7 +726,6 @@ function HazardRow({
   }
 
   const pct = summary.headline_pct ?? 0;
-  const dominant = summary.dominant_class ?? '—';
   const breakdown = summary.breakdown ?? [];
 
   return (
@@ -734,18 +733,10 @@ function HazardRow({
       className="rounded-md bg-white border border-[#E2E8F0] px-2.5 py-2"
       style={{ borderLeft: `3px solid ${accent}` }}
     >
-      {/* Header row — label, dominant chip, headline % */}
+      {/* Header row — label, headline % */}
       <div className="flex items-center justify-between gap-2 mb-1.5">
         <div className="flex items-center gap-1.5 min-w-0">
           <span className="text-[12px] font-semibold text-[#0F172A] truncate">{label}</span>
-          {dominant !== '—' && (
-            <span
-              className="text-[9.5px] tracking-wide font-semibold px-1.5 py-[1px] rounded"
-              style={{ background: accent + '1A', color: accent }}
-            >
-              {dominant}
-            </span>
-          )}
         </div>
         <div className="text-right leading-none flex-shrink-0">
           <div className="text-[13.5px] font-semibold tabular-nums" style={{ color: accent }}>

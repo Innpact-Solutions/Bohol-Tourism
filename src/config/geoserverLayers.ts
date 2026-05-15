@@ -187,6 +187,22 @@ const layerScenarioMap: Record<string, Record<string, string>> = {
     ssp5_2040: 'WorldBank_Bohol:Flood_Hazard',
   },
 
+  // Urban Flooding (Climate & Hazard layer enabled from LeftDrawer)
+  flood_hazard: {
+    baseline_2025: 'WorldBank_Bohol:Flood',
+    ssp1_2040:     'WorldBank_Bohol:Flood',
+    ssp2_2040:     'WorldBank_Bohol:Flood',
+    ssp5_2040:     'WorldBank_Bohol:Flood',
+  },
+
+  // Storm Surge Inundation
+  storm_surge: {
+    baseline_2025: 'WorldBank_Bohol:StormSurge',
+    ssp1_2040:     'WorldBank_Bohol:StormSurge',
+    ssp2_2040:     'WorldBank_Bohol:StormSurge',
+    ssp5_2040:     'WorldBank_Bohol:StormSurge',
+  },
+
   // Multi-Hazard Assessment
   multihazard_assessment: {
     baseline_2025: 'YOUR_WORKSPACE:Multi_Hazard',
@@ -379,6 +395,24 @@ export const geoserverLayers: Record<string, GeoServerLayer> = {
     id: 'flood_fhi',
     name: 'Urban Flooding',
     geoserverLayer: 'WorldBank_Bohol:Flood_Hazard',
+    sector: 'flood',
+    opacity: 0.7,
+  },
+
+  // Urban Flooding (LeftDrawer toggle id = flood_hazard) — backed by `Flood` layer
+  flood_hazard: {
+    id: 'flood_hazard',
+    name: 'Urban Flooding',
+    geoserverLayer: 'WorldBank_Bohol:Flood',
+    sector: 'flood',
+    opacity: 0.7,
+  },
+
+  // Storm Surge Inundation
+  storm_surge: {
+    id: 'storm_surge',
+    name: 'Storm Surge Inundation',
+    geoserverLayer: 'WorldBank_Bohol:StormSurge',
     sector: 'flood',
     opacity: 0.7,
   },
