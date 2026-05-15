@@ -14,11 +14,13 @@ import {
   clusterHoverHaloPaint,
   clusterHoverOutlinePaint,
   clusterHoverFillPaint,
+  anchorSitePaint,
+  secondarySitePaint,
+  supportiveSitePaint,
   premiumAssetPaint,
   qualityAssetPaint,
   CATEGORY_COLORS,
 } from './styles';
-import { registerTourismIcons, tourismIconImageExpr } from './tourismIcons';
 
 // Per-category clustering: each site category gets its OWN clustered source
 // so points of different categories never cluster together. The main
@@ -202,11 +204,6 @@ export function TourismLayers({
     if (!map || !clusters || !sites || !assets) return;
 
     const mount = () => {
-      // Make sure tourism category icons are registered before the
-      // per-tier symbol layers reference them (fire-and-forget; the icons
-      // load asynchronously and the symbol layers update on next render).
-      registerTourismIcons(map);
-
       // Sources
       if (!map.getSource(SRC.clusters)) map.addSource(SRC.clusters, { type: 'geojson', data: clusters as any });
       if (!map.getSource(SRC.sites)) {
@@ -313,47 +310,30 @@ export function TourismLayers({
       }
 
       // Site sub-layers — Anchor on top, then Secondary, then Supportive
-      // Tier sizes — Anchor largest, Supportive smallest. Applied via
-      // `icon-size` on the per-tier symbol layers below.
-      const TIER_ICON_SIZE: Record<'Anchor' | 'Secondary' | 'Supportive', any> = {
-        Anchor:     ['interpolate', ['linear'], ['zoom'], 9, 0.55, 13, 0.75, 16, 0.95],
-        Secondary:  ['interpolate', ['linear'], ['zoom'], 9, 0.40, 13, 0.55, 16, 0.72],
-        Supportive: ['interpolate', ['linear'], ['zoom'], 9, 0.28, 13, 0.40, 16, 0.55],
-      };
-      const siteSymbolLayout = (size: any) => ({
-        'icon-image':              tourismIconImageExpr,
-        'icon-size':               size,
-        'icon-allow-overlap':      true,
-        'icon-ignore-placement':   true,
-        'icon-anchor':             'center' as const,
-        'icon-pitch-alignment':    'map' as const,
-        'icon-rotation-alignment': 'viewport' as const,
-      });
-
       if (!map.getLayer(LYR.supportive)) {
         map.addLayer({
           id: LYR.supportive,
-          type: 'symbol',
+          type: 'circle',
           source: SRC.sites,
-          layout: siteSymbolLayout(TIER_ICON_SIZE.Supportive) as any,
+          paint: supportiveSitePaint as any,
           filter: perfTierFilter('Supportive', catsSupportive, selectedLgu, selectedBrgy),
         });
       }
       if (!map.getLayer(LYR.secondary)) {
         map.addLayer({
           id: LYR.secondary,
-          type: 'symbol',
+          type: 'circle',
           source: SRC.sites,
-          layout: siteSymbolLayout(TIER_ICON_SIZE.Secondary) as any,
+          paint: secondarySitePaint as any,
           filter: perfTierFilter('Secondary', catsSecondary, selectedLgu, selectedBrgy),
         });
       }
       if (!map.getLayer(LYR.anchor)) {
         map.addLayer({
           id: LYR.anchor,
-          type: 'symbol',
+          type: 'circle',
           source: SRC.sites,
-          layout: siteSymbolLayout(TIER_ICON_SIZE.Anchor) as any,
+          paint: anchorSitePaint as any,
           filter: perfTierFilter('Anchor', catsAnchor, selectedLgu, selectedBrgy),
         });
       }

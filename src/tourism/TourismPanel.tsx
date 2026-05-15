@@ -90,25 +90,16 @@ export function TourismPanel({
   });
   const [sectionExpanded, setSectionExpanded] = useState(true);
 
-  // When the group-level eye toggle fires, we don't want each individual tier
-  // sub-list to auto-expand. This ref is set briefly so the sync effect below
-  // skips one pass and instead collapses every tier list.
+  // When the group-level eye toggle fires, collapse every tier's category
+  // list so the third hierarchy never auto-expands. Beyond that, the type
+  // list only expands when the user explicitly clicks a tier header.
   const suppressTierAutoExpand = useRef(false);
 
-  // When a tier is toggled, mirror its state in the expanded-list view:
-  // turning ON auto-expands the type list; turning OFF auto-collapses it.
   useEffect(() => {
     if (suppressTierAutoExpand.current) {
       suppressTierAutoExpand.current = false;
       setOpenTier({ anchor: false, secondary: false, supportive: false });
-      return;
     }
-    setOpenTier(prev => ({
-      ...prev,
-      anchor:     ui.showAnchor,
-      secondary:  ui.showSecondary,
-      supportive: ui.showSupportive,
-    }));
   }, [ui.showAnchor, ui.showSecondary, ui.showSupportive]);
 
   // ── Helpers ────────────────────────────────────────────────────────────────
