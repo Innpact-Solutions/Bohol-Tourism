@@ -11,7 +11,9 @@
     "type-check": "tsc --noEmit",
     "setup:registry": "ts-node src/scripts/setup_overlay_registry.ts",
     "rebuild:groundwater": "ts-node src/scripts/create_buildings_groundwater.ts",
-    "rebuild:heat-stress": "ts-node src/scripts/create_buildings_heat_stress.ts"
+    "rebuild:heat-stress": "ts-node src/scripts/create_buildings_heat_stress.ts",
+    "load:clusters": "ts-node src/scripts/load_tourism_clusters.ts",
+    "rebuild:cluster-hazards": "ts-node src/scripts/build_cluster_hazard_overlays.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

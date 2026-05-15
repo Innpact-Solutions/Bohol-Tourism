@@ -8,6 +8,8 @@ import { MapPin, X, Star } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { useTourismData } from './TourismContext';
 import { useTourismUI } from './tourismStore';
+import { useClusterHazards } from './useClusterHazards';
+import type { HazardSummary } from './useClusterHazards';
 import { CATEGORY_COLORS, TIER_COLORS } from './styles';
 import { TOURISM_INTERVENTIONS } from '../config/tourismConfig';
 
@@ -242,6 +244,9 @@ function ClusterDetailSection() {
           </DetailSection>
         )}
 
+        {/* Hazard exposure */}
+        <ClusterHazardExposure clusterId={p.cluster_id} tierColor={tierColor} />
+
         {/* Interventions */}
         <DetailSection title="Recommended Interventions">
           <ul className="space-y-1">
@@ -294,6 +299,123 @@ function DestList({ items, max }: { items: any[]; max: number }) {
           …and {items.length - max} more
         </div>
       )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Cluster hazard exposure (Heat Stress / Flood / Sinkhole)
+// ---------------------------------------------------------------------------
+
+const HAZARD_META: Array<{ key: 'heat_stress' | 'flood' | 'sinkhole'; label: string; accent: string }> = [
+  { key: 'heat_stress', label: 'Heat Stress', accent: '#D97706' },
+  { key: 'flood',       label: 'Flood Risk',  accent: '#0EA5E9' },
+  { key: 'sinkhole',    label: 'Sinkhole',    accent: '#7C3AED' },
+];
+
+function ClusterHazardExposure({ clusterId, tierColor }: { clusterId: number; tierColor: string }) {
+  const { data, loading, error } = useClusterHazards(clusterId);
+
+  return (
+    <DetailSection
+      title="Hazard Exposure"
+      helper={data ? `${data.land_area_km2.toFixed(2)} km² land` : undefined}
+    >
+      {loading && (
+        <div className="text-[11px] text-[#94A3B8]">Computing exposure…</div>
+      )}
+      {error && (
+        <div className="text-[11px] text-rose-600">
+          Could not load hazard data ({error}).
+        </div>
+      )}
+      {data && (
+        <div className="space-y-1.5">
+          {HAZARD_META.map((h) => (
+            <HazardRow
+              key={h.key}
+              label={h.label}
+              accent={h.accent}
+              summary={data.hazards[h.key]}
+              fallbackColor={tierColor}
+            />
+          ))}
+        </div>
+      )}
+    </DetailSection>
+  );
+}
+
+function HazardRow({
+  label,
+  accent,
+  summary,
+  fallbackColor,
+}: {
+  label: string;
+  accent: string;
+  summary: HazardSummary;
+  fallbackColor: string;
+}) {
+  if (!summary?.available) {
+    return (
+      <div
+        className="rounded-md bg-white border border-[#E2E8F0] px-2.5 py-1.5"
+        style={{ borderLeft: `3px solid ${accent}` }}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-[12px] font-semibold text-[#0F172A]">{label}</span>
+          <span className="text-[10px] text-[#94A3B8]">No data</span>
+        </div>
+      </div>
+    );
+  }
+
+  const pct = summary.headline_pct ?? 0;
+  const dominant = summary.dominant_class ?? '—';
+  // Stacked-segment bar over the 100% land area.
+  const breakdown = summary.breakdown ?? [];
+
+  return (
+    <div
+      className="rounded-md bg-white border border-[#E2E8F0] px-2.5 py-1.5"
+      style={{ borderLeft: `3px solid ${accent}` }}
+    >
+      <div className="flex items-center justify-between mb-1">
+        <span className="text-[12px] font-semibold text-[#0F172A]">{label}</span>
+        <span className="flex items-baseline gap-1.5">
+          <span className="text-[12.5px] font-semibold tabular-nums" style={{ color: accent }}>
+            {pct.toFixed(1)}%
+          </span>
+          <span className="text-[10px] text-[#94A3B8]">high+extreme</span>
+        </span>
+      </div>
+      <div className="h-1.5 bg-[#F1F5F9] rounded-full overflow-hidden flex">
+        {breakdown.map((b, i) => (
+          <div
+            key={i}
+            className="h-full"
+            style={{
+              width: `${Math.max(0, Math.min(100, b.pct))}%`,
+              background: b.color || fallbackColor,
+            }}
+            title={`${b.class}: ${b.pct.toFixed(1)}%`}
+          />
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-x-2 gap-y-0.5 mt-1 text-[10px] text-[#64748B]">
+        {breakdown.map((b, i) => (
+          <span key={i} className="flex items-center gap-1">
+            <span
+              className="inline-block w-1.5 h-1.5 rounded-full"
+              style={{ background: b.color || fallbackColor }}
+            />
+            <span>{b.class}</span>
+            <span className="tabular-nums text-[#94A3B8]">{b.pct.toFixed(1)}%</span>
+          </span>
+        ))}
+        <span className="ml-auto text-[#94A3B8]">Dominant: {dominant}</span>
+      </div>
     </div>
   );
 }
