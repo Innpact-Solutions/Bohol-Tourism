@@ -3,7 +3,7 @@
 // Bottom of the scroll area fades to transparent so the underlying map remains
 // visible — giving a glassy, modern feel.
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   X, Search, Star, MapPin, Hotel, Crown, Sparkles,
   ChevronDown, Award,
@@ -51,6 +51,17 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
   const [collapsed, setCollapsed] = useState(false);
   const [tab, setTab] = useState<TabId>('sites');
   const [search, setSearch] = useState('');
+
+  // Auto-switch the active tab whenever the user interacts with a different
+  // section in the left side panel (e.g. clicking Hospitality there focuses
+  // the Hotels tab here).
+  useEffect(() => {
+    if (ui.activeSection && ui.activeSection !== tab) {
+      setTab(ui.activeSection);
+      if (collapsed) setCollapsed(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ui.activeSection]);
   const [lb, setLb] = useState<{ open: boolean; photos: string[]; idx: number; caption: string }>({
     open: false, photos: [], idx: 0, caption: '',
   });
@@ -159,10 +170,11 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
 
   return (
     <div
+      data-tourism-directory
       className="absolute top-2 left-2 z-30 flex flex-col overflow-hidden"
       style={{
-        width: collapsed ? 'auto' : 340,
-        maxWidth: collapsed ? 240 : 340,
+        width: collapsed ? 'auto' : 280,
+        maxWidth: collapsed ? 220 : 280,
         height: collapsed ? 'auto' : '50vh',
         maxHeight: '50vh',
         fontFamily: 'DM Sans, Segoe UI, sans-serif',
@@ -218,7 +230,7 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
             return (
               <button
                 key={t}
-                onClick={() => setTab(t)}
+                onClick={() => { setTab(t); ui.setActiveSection(t); }}
                 className="flex-1 flex items-center justify-center gap-1 px-1.5 py-1 rounded text-[10.5px] font-semibold transition-all"
                 style={
                   active

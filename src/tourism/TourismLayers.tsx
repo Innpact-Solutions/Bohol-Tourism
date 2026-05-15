@@ -194,8 +194,7 @@ export function TourismLayers({
   onAssetClick,
 }: Props) {
   const { clusters, sites, assets } = useTourismData();
-
-  // Resolve per-tier category arrays, falling back to the legacy global one.
+  const dataReady = !!(clusters && sites && assets);
   const catsAnchor     = anchorCategories     ?? enabledSiteCategories;
   const catsSecondary  = secondaryCategories  ?? enabledSiteCategories;
   const catsSupportive = supportiveCategories ?? enabledSiteCategories;
@@ -482,6 +481,37 @@ export function TourismLayers({
       } catch (err) {
         console.warn('Tourism layer reorder failed:', err);
       }
+
+      // Apply the current visibility props now that layers exist. The
+      // separate visibility useEffect below also runs, but mount() can be
+      // deferred via map.once('load', …) so initial state must be applied
+      // here to prevent layers from flashing on with their default 'visible'.
+      const initVis = (id: string, on: boolean) => {
+        if (!map.getLayer(id)) return;
+        map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
+      };
+      initVis(LYR.clusterPrimaryFill,      visible && showClusterPrimary);
+      initVis(LYR.clusterPrimaryPulse,     visible && showClusterPrimary);
+      initVis(LYR.clusterPrimaryOutline,   visible && showClusterPrimary);
+      initVis(LYR.clusterEmergingFill,     visible && showClusterEmerging);
+      initVis(LYR.clusterEmergingPulse,    visible && showClusterEmerging);
+      initVis(LYR.clusterEmergingOutline,  visible && showClusterEmerging);
+      initVis(LYR.clusterSatelliteFill,    visible && showClusterSatellite);
+      initVis(LYR.clusterSatellitePulse,   visible && showClusterSatellite);
+      initVis(LYR.clusterSatelliteOutline, visible && showClusterSatellite);
+      initVis(LYR.anchor,     visible && showAnchor);
+      initVis(LYR.secondary,  visible && showSecondary);
+      initVis(LYR.supportive, visible && showSupportive);
+      const anySiteOn = !!(showAnchor || showSecondary || showSupportive);
+      SITE_CATS.forEach(({ bubbleId, countId }) => {
+        initVis(bubbleId, visible && anySiteOn);
+        initVis(countId,  visible && anySiteOn);
+      });
+      initVis(LYR.premium, visible && showPremium);
+      initVis(LYR.quality, visible && showQuality);
+      const anyAssetOn = !!(showPremium || showQuality);
+      initVis(LYR.assetsCluster,      visible && anyAssetOn);
+      initVis(LYR.assetsClusterCount, visible && anyAssetOn);
     };
 
     if (map.isStyleLoaded()) mount();
@@ -650,7 +680,7 @@ export function TourismLayers({
     setVis(LYR.assetsCluster,      visible && anyAssetOn);
     setVis(LYR.assetsClusterCount, visible && anyAssetOn);
   }, [
-    map, visible,
+    map, visible, dataReady,
     showAnchor, showSecondary, showSupportive,
     showPremium, showQuality,
     showClusterPrimary, showClusterEmerging, showClusterSatellite,

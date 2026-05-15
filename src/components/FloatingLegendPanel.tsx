@@ -668,7 +668,7 @@ export function FloatingLegendPanel({
   // Minimized state - just a small button
   if (isMinimized) {
     return (
-      <div className="absolute bottom-12 right-4 z-30">
+      <div data-floating-legend className="absolute bottom-12 right-4 z-30">
         <button
           onClick={() => {
             setIsMinimized(false);
@@ -686,7 +686,7 @@ export function FloatingLegendPanel({
 
   return (
     <>
-    <div className="absolute bottom-12 right-4 z-30 w-56">
+    <div data-floating-legend className="absolute bottom-12 right-4 z-30 w-56">
       {/* Glassmorphism container */}
       <div className="bg-white/95 backdrop-blur-md border border-[#E5E7EB] rounded-lg shadow-2xl overflow-hidden">
         {/* Header */}

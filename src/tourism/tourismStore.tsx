@@ -19,6 +19,9 @@ interface TourismUIState {
   highlightedSiteUid: string | null;
   // View
   activeTab: 'clusters' | 'attractions';
+  // Tracks which Tourism Directory list (Sites / Hospitality / Clusters) should
+  // be focused based on the user's latest interaction in the left side panel.
+  activeSection: 'sites' | 'hospitality' | 'clusters';
 
   // Tourism Sites — by performance tier
   showAnchor: boolean;
@@ -51,6 +54,7 @@ interface TourismUIState {
   setSelectedClusterId: (id: number | null) => void;
   setHighlightedSiteUid: (uid: string | null) => void;
   setActiveTab: (t: 'clusters' | 'attractions') => void;
+  setActiveSection: (s: 'sites' | 'hospitality' | 'clusters') => void;
   setShowAnchor: (v: boolean) => void;
   setShowSecondary: (v: boolean) => void;
   setShowSupportive: (v: boolean) => void;
@@ -82,6 +86,7 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
   const [selectedClusterId, setSelectedClusterId] = useState<number | null>(null);
   const [highlightedSiteUid, setHighlightedSiteUid] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'clusters' | 'attractions'>('clusters');
+  const [activeSection, setActiveSection] = useState<'sites' | 'hospitality' | 'clusters'>('sites');
 
   // Sub-layer visibility (defaults: site tiers on; hospitality + cluster layers off)
   const [showAnchor, setShowAnchorRaw] = useState(true);
@@ -185,6 +190,7 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
     lgu, tier, categories, search,
     selectedClusterId, highlightedSiteUid,
     activeTab,
+    activeSection,
     showAnchor, showSecondary, showSupportive,
     showPremium, showQuality,
     showClusterPrimary, showClusterEmerging, showClusterSatellite,
@@ -193,6 +199,7 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
     setLgu, setTier, toggleCategory, setSearch,
     setSelectedClusterId, setHighlightedSiteUid,
     setActiveTab,
+    setActiveSection,
     setShowAnchor, setShowSecondary, setShowSupportive,
     setShowPremium, setShowQuality,
     setShowClusterPrimary, setShowClusterEmerging, setShowClusterSatellite,

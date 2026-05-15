@@ -794,6 +794,7 @@ export function MapCanvas({
   const [styleLoadCounter, setStyleLoadCounter] = useState(0); // Track basemap style reloads
   const [is3DMode, setIs3DMode] = useState(false); // Track 3D mode state
   const is3DModeRef = useRef(false); // Always-current mirror of is3DMode for use in async / layer-creation callbacks
+  const buildingsWasOnBefore3DRef = useRef<boolean>(false); // Remember whether the user had the buildings base layer ON before entering 3D, so we can restore that state on exit.
   const buildingOpacityRef = useRef<number>(0.7); // Always-current building opacity for use in layer-creation callbacks
   const scenarioNetworkGidsRef = useRef<number[] | null>(null); // Always-current mirror of scenarioNetworkGids for buildings load callback
   const bufferBldgIdsRef = useRef<number[]>([]); // Always-current mirror of bufferBldgIds for buildings load callback
@@ -8162,6 +8163,8 @@ export function MapCanvas({
       // MANDATORY: Force enable buildings when entering 3D mode
       // Use functional update to avoid dependency on activeBaseLayers
       if (externalToggle3D && onActiveBaseLayersChange) {
+        // Remember pre-3D buildings state so we can restore on exit.
+        buildingsWasOnBefore3DRef.current = activeBaseLayers.includes('buildings');
         onActiveBaseLayersChange((prevLayers: string[]) => {
           if (!prevLayers.includes('buildings')) {
             console.log('🎓 MANDATORY: Auto-enabling buildings for external 3D toggle');
@@ -8197,12 +8200,28 @@ export function MapCanvas({
           duration: 1000
         });
         
-        // Force 2D buildings visibility
-        if (map.getLayer('buildings-fill')) {
-          map.setLayoutProperty('buildings-fill', 'visibility', 'visible');
-        }
-        if (map.getLayer('buildings-3d')) {
-          map.setLayoutProperty('buildings-3d', 'visibility', 'none');
+        const buildingsWasOnBefore3D = buildingsWasOnBefore3DRef.current;
+
+        if (buildingsWasOnBefore3D) {
+          // Force 2D buildings visibility
+          if (map.getLayer('buildings-fill')) {
+            map.setLayoutProperty('buildings-fill', 'visibility', 'visible');
+          }
+          if (map.getLayer('buildings-3d')) {
+            map.setLayoutProperty('buildings-3d', 'visibility', 'none');
+          }
+        } else {
+          // Buildings was auto-enabled for 3D; hide it and remove from active layers.
+          ['buildings', 'buildings-fill', 'buildings-3d', 'buildings-highlight'].forEach((id) => {
+            if (map.getLayer(id)) {
+              map.setLayoutProperty(id, 'visibility', 'none');
+            }
+          });
+          if (onActiveBaseLayersChange) {
+            onActiveBaseLayersChange((prevLayers: string[]) =>
+              prevLayers.filter((l) => l !== 'buildings')
+            );
+          }
         }
         
         // 🔒 FORCE IMMEDIATE 2D RENDERING - Trigger map repaint
@@ -8349,6 +8368,10 @@ export function MapCanvas({
           duration: 1000
         });
         
+        // Remember whether buildings was already on so we can restore that
+        // state when the user exits 3D.
+        buildingsWasOnBefore3DRef.current = activeBaseLayers.includes('buildings');
+
         // MANDATORY: Force enable buildings layer when entering 3D mode
         // Use functional update to avoid dependency issues
         if (onActiveBaseLayersChange) {
@@ -8384,14 +8407,33 @@ export function MapCanvas({
           duration: 1000
         });
         
-        // Switch back to 2D buildings
-        if (map.getLayer('buildings-fill')) {
-          map.setLayoutProperty('buildings-fill', 'visibility', 'visible');
-          console.log('🏢 FORCED: buildings-fill to VISIBLE for 2D mode');
-        }
-        if (map.getLayer('buildings-3d')) {
-          map.setLayoutProperty('buildings-3d', 'visibility', 'none');
-          console.log('🏢 FORCED: buildings-3d to NONE for 2D mode');
+        const buildingsWasOnBefore3D = buildingsWasOnBefore3DRef.current;
+
+        if (buildingsWasOnBefore3D) {
+          // User had buildings on before 3D — switch back to 2D buildings.
+          if (map.getLayer('buildings-fill')) {
+            map.setLayoutProperty('buildings-fill', 'visibility', 'visible');
+            console.log('🏢 FORCED: buildings-fill to VISIBLE for 2D mode');
+          }
+          if (map.getLayer('buildings-3d')) {
+            map.setLayoutProperty('buildings-3d', 'visibility', 'none');
+            console.log('🏢 FORCED: buildings-3d to NONE for 2D mode');
+          }
+        } else {
+          // Buildings was auto-enabled only because 3D required it. Hide all
+          // building layers and remove 'buildings' from active base layers
+          // so the panel toggle reflects the actual state.
+          ['buildings', 'buildings-fill', 'buildings-3d', 'buildings-highlight'].forEach((id) => {
+            if (map.getLayer(id)) {
+              map.setLayoutProperty(id, 'visibility', 'none');
+            }
+          });
+          if (onActiveBaseLayersChange) {
+            onActiveBaseLayersChange((prevLayers: string[]) =>
+              prevLayers.filter((l) => l !== 'buildings')
+            );
+          }
+          console.log('🏢 Buildings auto-disabled on 3D exit (was not on before 3D)');
         }
         
         // 🔒 FORCE IMMEDIATE 2D RENDERING - Trigger map repaint to ensure 2D buildings render

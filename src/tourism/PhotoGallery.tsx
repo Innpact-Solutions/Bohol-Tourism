@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { Dialog, DialogContent, DialogClose } from '../components/ui/dialog';
-import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface PhotoCarouselProps {
   photos: string[];           // photo URLs
@@ -29,43 +29,44 @@ export function PhotoCarousel({ photos, altPrefix = 'Photo', className = '', hei
 
   return (
     <div
-      className={`relative w-full overflow-hidden border border-stone-300 bg-stone-100 ${className}`}
+      className={`relative w-full overflow-hidden border border-stone-300 bg-stone-900 ${className}`}
       style={{ height }}
     >
-      <div
-        className="w-full h-full bg-center bg-cover cursor-zoom-in transition-[background-image] duration-200"
-        style={{ backgroundImage: `url("${photos[idx]}")` }}
-        onClick={zoom}
-        role="img"
-        aria-label={`${altPrefix} ${idx + 1} of ${photos.length}`}
-      />
+      {/* Stacked images — crossfade between active and previous to avoid flicker. */}
+      {photos.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={`${altPrefix} ${i + 1} of ${photos.length}`}
+          draggable={false}
+          onClick={zoom}
+          className="absolute inset-0 w-full h-full object-cover cursor-zoom-in select-none"
+          style={{
+            opacity: i === idx ? 1 : 0,
+            transition: 'opacity 250ms ease',
+            zIndex: i === idx ? 1 : 0,
+          }}
+        />
+      ))}
       {photos.length > 1 && (
         <>
           <button
             onClick={prev}
-            className="absolute left-1.5 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-white/70 hover:bg-white/95 text-white transition-colors"
+            className="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/65 text-white backdrop-blur-sm transition-colors shadow z-10"
             aria-label="Previous photo"
-          ><ChevronLeft className="w-4 h-4"/></button>
+          ><ChevronLeft className="w-3 h-3" strokeWidth={2.5}/></button>
           <button
             onClick={next}
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-white/70 hover:bg-white/95 text-white transition-colors"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/65 text-white backdrop-blur-sm transition-colors shadow z-10"
             aria-label="Next photo"
-          ><ChevronRight className="w-4 h-4"/></button>
-          <div className="absolute top-1.5 right-2 px-1.5 py-0.5 text-[10px] font-mono text-white bg-white/70 tracking-wider">
-            {idx + 1} / {photos.length}
-          </div>
-          <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex gap-1">
+          ><ChevronRight className="w-3 h-3" strokeWidth={2.5}/></button>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
             {photos.map((_, i) => (
               <span key={i}
-                className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? 'bg-white' : 'bg-white/50'}`}/>
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? 'bg-white' : 'bg-white/45'}`}/>
             ))}
           </div>
         </>
-      )}
-      {onZoom && (
-        <div className="absolute bottom-1.5 right-2 px-1.5 py-0.5 text-[10px] text-white bg-white/70 flex items-center gap-1 pointer-events-none">
-          <ZoomIn className="w-3 h-3"/> click to zoom
-        </div>
       )}
     </div>
   );

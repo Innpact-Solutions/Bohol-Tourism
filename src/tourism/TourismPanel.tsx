@@ -165,7 +165,7 @@ export function TourismPanel({
       sublayers: [
         {
           id: 'anchor',
-          label: 'Anchor',
+          label: 'Anchor Sites',
           description: 'Top-performing destinations — high traffic, high reviews.',
           count: countSites('Anchor'),
           icon: Crown,
@@ -176,7 +176,7 @@ export function TourismPanel({
         },
         {
           id: 'secondary',
-          label: 'Secondary',
+          label: 'Secondary Sites',
           description: 'Mid-tier attractions worth visiting.',
           count: countSites('Secondary'),
           icon: Star,
@@ -187,7 +187,7 @@ export function TourismPanel({
         },
         {
           id: 'supportive',
-          label: 'Supportive',
+          label: 'Supportive Sites',
           description: 'Background context sites.',
           count: countSites('Supportive'),
           icon: CircleDot,
@@ -207,7 +207,7 @@ export function TourismPanel({
       sublayers: [
         {
           id: 'premium',
-          label: 'Premium',
+          label: 'Premium Stays & Dining',
           description: 'Top-tier hotels & restaurants by ratings and reviews.',
           count: countAssets('Premium'),
           icon: Crown,
@@ -218,7 +218,7 @@ export function TourismPanel({
         },
         {
           id: 'quality',
-          label: 'Quality',
+          label: 'Quality Stays & Dining',
           description: 'Mid-tier hotels & restaurants.',
           count: countAssets('Quality'),
           icon: Hotel,
@@ -238,7 +238,7 @@ export function TourismPanel({
       sublayers: [
         {
           id: 'cluster-primary',
-          label: 'Primary',
+          label: 'Primary Clusters',
           description: 'Established clusters.',
           count: countClusters('Primary'),
           icon: Circle,
@@ -249,7 +249,7 @@ export function TourismPanel({
         },
         {
           id: 'cluster-emerging',
-          label: 'Emerging',
+          label: 'Emerging Clusters',
           description: 'Growing clusters.',
           count: countClusters('Emerging'),
           icon: Circle,
@@ -260,7 +260,7 @@ export function TourismPanel({
         },
         {
           id: 'cluster-satellite',
-          label: 'Satellite',
+          label: 'Satellite Clusters',
           description: 'Outlying or linked clusters.',
           count: countClusters('Satellite'),
           icon: Circle,
@@ -321,7 +321,14 @@ export function TourismPanel({
               }));
 
               return (
-                <div key={group.id} className="border-t border-[#E2E8F0]">
+                <div
+                  key={group.id}
+                  className="border-t border-[#E2E8F0]"
+                  // Any click inside this group section marks it as the active
+                  // section so the Tourism Directory panel auto-switches its
+                  // tab to match.
+                  onClickCapture={() => ui.setActiveSection(group.id as any)}
+                >
                   <GroupHeader
                     Icon={group.icon}
                     label={group.label}
