@@ -2,7 +2,7 @@ import React from 'react';
 import worldBankLogo from 'figma:asset/28a68ce6f762781887d81ef25d37ca6723765991.png';
 import boholLogo from 'figma:asset/675d206072795155b568af95dfafe18a05d798b5.png';
 import { useState, useEffect, useRef } from 'react';
-import { Building2, MapPin, ChevronDown, Filter, GitCompare, Search, X } from 'lucide-react';
+import { Building2, MapPin, ChevronDown, Search, X } from 'lucide-react';
 
 
 interface HeaderProps {
@@ -255,7 +255,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
           <div className="w-px h-6 bg-[#E5E7EB]" />
           
           <div>
-            <h1 className="text-base font-semibold text-[#0F172A] leading-tight">Decision Support Dashboard for Citywide Inclusive Sanitation (CWIS)</h1>
+            <h1 className="text-base font-semibold text-[#0F172A] leading-tight">Tourism Potential & Development Insights Dashboard</h1>
             <p className="text-xs text-[#64748B] mt-0.5">Tagbilaran City • Dauis • Panglao <span className="text-[#64748B]">[{(import.meta as any).env?.VITE_APP_VERSION ?? 'v0.20'}]</span></p>
           </div>
         </div>
@@ -513,25 +513,6 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
             </button>
           )}
         </div>
-
-        {/* Query Tool Button */}
-        <button
-          className="h-8 px-3 flex items-center justify-center gap-1.5 rounded-lg bg-[#F1F5F9] hover:bg-[#CBD5E1] text-white transition-all duration-200 shadow-sm border border-[#E2E8F0] group"
-          title="Query Tool"
-        >
-          <Filter className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
-          <span className="text-xs font-medium text-[#E2E8F0]">Query Tool</span>
-        </button>
-
-        {/* Compare Button */}
-        <button
-          onClick={onCompareToggle}
-          className="h-8 px-3 flex items-center justify-center gap-1.5 rounded-lg bg-[#F1F5F9] hover:bg-[#CBD5E1] text-white transition-all duration-200 shadow-sm border border-[#E2E8F0] group"
-          title="Compare Layers"
-        >
-          <GitCompare className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
-          <span className="text-xs font-medium text-[#E2E8F0]">Compare</span>
-        </button>
 
         {/* Exit Comparison Button - Only in comparison mode */}
         {isComparisonMode && onExitComparison && (
