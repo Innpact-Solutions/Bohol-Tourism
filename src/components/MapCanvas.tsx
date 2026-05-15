@@ -10858,15 +10858,6 @@ export function MapCanvas({
           )}
           </div>
 
-          {/* Download Map */}
-          <button
-            onClick={handleDownloadMap}
-            className="w-8 h-8 bg-white/95 backdrop-blur-sm border border-[#E2E8F0] rounded-md shadow-sm hover:shadow-md hover:border-[#2563EB] transition-all duration-200 flex items-center justify-center group"
-            title="Download Map (A4 JPG)"
-          >
-            <Download className="w-4 h-4 text-slate-600 group-hover:text-[#2563EB] transition-colors" />
-          </button>
-
           {/* 360° Images toggle */}
           <button
             onClick={() => {
@@ -11076,7 +11067,7 @@ export function MapCanvas({
         <div 
           className="flex items-center overflow-hidden transition-all duration-200 ease-in-out"
           style={{
-            maxWidth: attributionOpen ? '500px' : '0px',
+            maxWidth: attributionOpen ? '760px' : '0px',
             opacity: attributionOpen ? 1 : 0,
             marginRight: attributionOpen ? '0px' : '0px'
           }}
@@ -11094,7 +11085,7 @@ export function MapCanvas({
               height: '18px',
               display: 'flex',
               alignItems: 'center',
-              marginRight: '3px'
+              marginRight: '4px'
             }}
           >
             &nbsp;<a href="https://tagbilaran.gov.ph/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: basemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>City Government of Tagbilaran</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://dauis.igov.ph/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: basemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>Municipality of Dauis</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://panglaolgu.gov.ph/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: basemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>Municipality of Panglao</a>&nbsp;&nbsp;|&nbsp;&nbsp;Developed by&nbsp;<a href="https://innpactsolutions.com/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: basemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>Innpact Solutions</a>
@@ -11748,6 +11739,7 @@ function isDataLayer(layerId: string): boolean {
     'fstp-band-',                // fstp-band-fill-*, fstp-band-outline-* (Module 3 priority bands)
     'fstp-building-coverage',    // fstp-building-coverage-circles (legacy, kept for safety)
     'fstp-bldg-band-',           // fstp-bldg-band-* (2D fill) and fstp-bldg-band-3d-* (3D extrusion)
+    'tourism-',                  // tourism clusters, sites, assets, hover layers
   ];
   
   return ourLayerPatterns.some(pattern => id.startsWith(pattern));

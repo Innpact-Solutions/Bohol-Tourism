@@ -94,9 +94,9 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
   const [showSupportive, setShowSupportiveRaw] = useState(false);
   const [showPremium, setShowPremium] = useState(false);
   const [showQuality, setShowQuality] = useState(false);
-  const [showClusterPrimary, setShowClusterPrimary] = useState(false);
-  const [showClusterEmerging, setShowClusterEmerging] = useState(false);
-  const [showClusterSatellite, setShowClusterSatellite] = useState(false);
+  const [showClusterPrimary, setShowClusterPrimary] = useState(true);
+  const [showClusterEmerging, setShowClusterEmerging] = useState(true);
+  const [showClusterSatellite, setShowClusterSatellite] = useState(true);
 
   // Site point visibility by category — per-tier. Default: all categories
   // enabled for every tier.

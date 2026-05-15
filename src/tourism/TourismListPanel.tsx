@@ -521,7 +521,12 @@ function ClustersList({ items, ui }: { items: any[]; ui: any }) {
         return (
           <button
             key={p.cluster_id}
-            onClick={() => ui.setSelectedClusterId(p.cluster_id)}
+            onClick={() => {
+              ui.setSelectedClusterId(p.cluster_id);
+              window.dispatchEvent(
+                new CustomEvent('tourism:fly-to-cluster', { detail: { cluster_id: p.cluster_id } })
+              );
+            }}
             className={`relative w-full text-left flex gap-2 items-center px-1.5 py-1.5 rounded-md transition-colors ${
               selected ? 'bg-[#FEFCE8]' : 'hover:bg-white/70'
             }`}

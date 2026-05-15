@@ -3249,7 +3249,7 @@ export function ComparisonView(props: ComparisonViewProps) {
           <div 
             className="flex items-center overflow-hidden transition-all duration-200 ease-in-out"
             style={{
-              maxWidth: attributionOpen ? '500px' : '0px',
+              maxWidth: attributionOpen ? '760px' : '0px',
               opacity: attributionOpen ? 1 : 0,
               marginRight: attributionOpen ? '0px' : '0px'
             }}
@@ -3267,7 +3267,7 @@ export function ComparisonView(props: ComparisonViewProps) {
                 height: '18px',
                 display: 'flex',
                 alignItems: 'center',
-                marginRight: '3px'
+                marginRight: '4px'
               }}
             >
               &nbsp;<a href="https://tagbilaran.gov.ph/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: currentBasemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>City Government of Tagbilaran</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://dauis.igov.ph/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: currentBasemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>Municipality of Dauis</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://panglaolgu.gov.ph/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: currentBasemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>Municipality of Panglao</a>&nbsp;&nbsp;|&nbsp;&nbsp;Developed by&nbsp;<a href="https://innpactsolutions.com/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: currentBasemap === 'satellite' ? '#FFFFFF' : '#2563EB', fontWeight: 600, textDecoration: 'none' }}>Innpact Solutions</a>

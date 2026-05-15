@@ -134,7 +134,7 @@ export function RightPanelContainer({
     >
       {/* Panel Content */}
       <div className="flex-1 overflow-y-auto flex flex-col bg-white text-slate-800">
-        <TourismAnalyticsPanel />
+        <TourismAnalyticsPanel selectedLguName={selectedLguName} activeLayerId={activeLayerId} activeHazardLayerId={activeHazardLayerId} />
       </div>
     </div>
   );

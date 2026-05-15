@@ -224,12 +224,34 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
     };
     window.addEventListener('tourism:fly-to-site', onFly as any);
 
-    // Listen for fly-to-cluster events
+    // Listen for fly-to-cluster events from the Tourism Directory.
+    // Zooms to level 12 centered on the cluster and opens its popup,
+    // mirroring the site fly-to-site behaviour.
     const onFlyCluster = (e: any) => {
       const clusterId = e.detail?.cluster_id;
-      const bounds = e.detail?.bounds;
-      if (!bounds) return;
-      map.fitBounds(bounds, { padding: 80, duration: 800 });
+      if (clusterId == null || !clusters) return;
+      const feat = clusters.features.find(
+        (f: any) => f.properties?.cluster_id === clusterId
+      );
+      if (!feat) return;
+
+      // Compute the polygon's bbox centroid (works for Polygon and MultiPolygon).
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      const visit = (coords: any) => {
+        if (typeof coords?.[0] === 'number') {
+          const [x, y] = coords as [number, number];
+          if (x < minX) minX = x; if (x > maxX) maxX = x;
+          if (y < minY) minY = y; if (y > maxY) maxY = y;
+          return;
+        }
+        if (Array.isArray(coords)) coords.forEach(visit);
+      };
+      visit((feat.geometry as any).coordinates);
+      if (!isFinite(minX) || !isFinite(minY)) return;
+      const center: [number, number] = [(minX + maxX) / 2, (minY + maxY) / 2];
+
+      map.flyTo({ center, zoom: 12, duration: 800 });
+      setTimeout(() => showClusterPopup(feat.properties, center), 850);
     };
     window.addEventListener('tourism:fly-to-cluster', onFlyCluster as any);
 

@@ -42,12 +42,36 @@ export interface ClusterHazardsResponse {
 const cache = new Map<number, ClusterHazardsResponse>();
 const inflight = new Map<number, Promise<ClusterHazardsResponse>>();
 
+// Retry transient gateway errors (502/503/504) which typically indicate the
+// Azure App Service backend is cold-starting. Total wait ≈ 0.8s + 2s + 4s.
+const RETRY_DELAYS_MS = [800, 2000, 4000];
+const TRANSIENT_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
+
+async function fetchWithRetry(url: string): Promise<Response> {
+  let lastErr: unknown;
+  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
+    try {
+      const r = await fetch(url);
+      if (r.ok) return r;
+      if (!TRANSIENT_STATUSES.has(r.status) || attempt === RETRY_DELAYS_MS.length) {
+        return r;
+      }
+      lastErr = new Error(`HTTP ${r.status}`);
+    } catch (e) {
+      lastErr = e;
+      if (attempt === RETRY_DELAYS_MS.length) throw e;
+    }
+    await new Promise((res) => setTimeout(res, RETRY_DELAYS_MS[attempt]));
+  }
+  throw lastErr ?? new Error('fetch failed');
+}
+
 async function fetchHazards(clusterId: number): Promise<ClusterHazardsResponse> {
   if (cache.has(clusterId)) return cache.get(clusterId)!;
   if (inflight.has(clusterId)) return inflight.get(clusterId)!;
 
   const url = `${API_BASE}/api/cluster-hazards/${clusterId}`;
-  const p = fetch(url)
+  const p = fetchWithRetry(url)
     .then(async (r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const json = (await r.json()) as ClusterHazardsResponse;
@@ -67,6 +91,7 @@ export function useClusterHazards(clusterId: number | null) {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [reloadTick, setReloadTick] = useState(0);
 
   useEffect(() => {
     if (clusterId == null) {
@@ -76,7 +101,7 @@ export function useClusterHazards(clusterId: number | null) {
       return;
     }
     const cached = cache.get(clusterId);
-    if (cached) {
+    if (cached && reloadTick === 0) {
       setData(cached);
       setError(null);
       setLoading(false);
@@ -99,7 +124,12 @@ export function useClusterHazards(clusterId: number | null) {
     return () => {
       cancelled = true;
     };
-  }, [clusterId]);
+  }, [clusterId, reloadTick]);
 
-  return { data, loading, error };
+  const refetch = () => {
+    if (clusterId != null) cache.delete(clusterId);
+    setReloadTick((t) => t + 1);
+  };
+
+  return { data, loading, error, refetch };
 }

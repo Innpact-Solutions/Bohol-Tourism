@@ -370,21 +370,20 @@ export function BaseLayerDefaultPanel({
   return (
     <div style={{ fontFamily: "'DM Sans','Segoe UI',sans-serif", background: C.darkBg, color: "#fff", height: "100%", overflowY: "auto" }}>
 
-      {/* ── HEADER ── */}
-      <div style={{ background: `linear-gradient(135deg, ${C.navy} 0%, ${C.dark} 100%)`, padding: "16px 16px 14px", borderBottom: `1px solid ${C.grayBorder}`, flexShrink: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-          <div style={{ width: 28, height: 28, borderRadius: "50%", background: `${C.red}22`, border: `2px solid ${C.red}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>📍</div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 9, color: C.tealLight, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>Analysis Panel</div>
-            <div style={{ fontSize: 14, fontWeight: 700 }}>{panelTitle}</div>
+      {/* ── HEADER ── compact modern */}
+      <div style={{ background: `linear-gradient(135deg, ${C.navy} 0%, ${C.dark} 100%)`, padding: "10px 14px", borderBottom: `1px solid ${C.grayBorder}`, flexShrink: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ width: 24, height: 24, borderRadius: 6, background: `${C.red}22`, border: `1.5px solid ${C.red}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, flexShrink: 0 }}>📍</div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#fff', lineHeight: 1.2, letterSpacing: '-0.01em' }}>{panelTitle}</div>
+            <div style={{ color: C.grayLight, fontSize: 10.5, marginTop: 2, lineHeight: 1.2 }}>
+              {selectedLguName && selectedLguName !== 'all' ? selectedLguName : 'Tagbilaran · Dauis · Panglao'}
+            </div>
           </div>
           {buildingStats.isLoading && (
-            <div style={{ width: 8, height: 8, borderRadius: '50%', background: C.tealLight, flexShrink: 0, animation: 'pulse 1.2s ease-in-out infinite', opacity: 0.8 }}
+            <div style={{ width: 7, height: 7, borderRadius: '50%', background: C.tealLight, flexShrink: 0, animation: 'pulse 1.2s ease-in-out infinite', opacity: 0.8 }}
               title="Fetching live building stats…" />
           )}
-        </div>
-        <div style={{ color: C.grayLight, fontSize: 11 }}>
-          {selectedLguName && selectedLguName !== 'all' ? selectedLguName : 'Tagbilaran · Dauis · Panglao'}
         </div>
       </div>
 
