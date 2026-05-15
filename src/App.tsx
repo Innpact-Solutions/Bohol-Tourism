@@ -15,13 +15,15 @@ import { Toaster } from './components/ui/sonner';
 import { fetchUniqueHealthcareCategories } from './utils/healthcareData';
 import { getLayerNameForScenario } from './config/geoserverLayers';
 import { HazardDataProvider, useHazardData } from './contexts/HazardDataContext';
+import { TourismProvider } from './tourism/TourismContext';
+import { TourismLayers } from './tourism/TourismLayers';
 import { loadLegendDefinitions } from './utils/legendLoader';
 import { fetchEducationCounts } from './utils/educationData';
 import { fetchHealthcareCounts } from './utils/healthcareData';
 import { fetchPublicAmenitiesCounts } from './utils/publicAmenitiesData';
 import { fetchTransportCounts } from './utils/transportData';
 
-export type Sector = 'heat' | 'air' | 'flood' | 'base_layers' | 'climate_hazard' | 'env_vulnerability';
+export type Sector = 'heat' | 'air' | 'flood' | 'base_layers' | 'climate_hazard' | 'env_vulnerability' | 'multihazard' | 'roadsafety' | 'tourism';
 export type Scenario = 'baseline_2025' | 'ssp1_2040' | 'ssp2_2040' | 'ssp5_2040' | '2015' | '2016' | '2017' | '2018' | '2019' | '2020' | '2021' | '2022' | '2023' | '2024';
 export type Basemap = 'light' | 'dark' | 'satellite';
 
@@ -1128,6 +1130,11 @@ function AppContent({
             fstpOpacity={fstpOpacity}
             onFstpOpacityChange={setFstpOpacity}
           />
+        <TourismLayers
+          map={mapInstance}
+          visible={activeSector === 'tourism'}
+        />
+
         </MapCanvas>
         </div>
 
@@ -1434,6 +1441,7 @@ export default function App() {
 
   return (
     <HazardDataProvider initialScenario="baseline_2025" selectedWardId="all">
+      <TourismProvider>
       <AppContent 
         onCompareModeChange={setCompareMode}
         basemap={basemap}
@@ -1513,6 +1521,7 @@ export default function App() {
       
       {/* Toast notifications */}
       <Toaster position="top-right" richColors />
+      </TourismProvider>
     </HazardDataProvider>
   );
 }

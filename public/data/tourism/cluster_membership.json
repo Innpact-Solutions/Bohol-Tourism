@@ -1,0 +1,1949 @@
+[
+  {
+    "cluster_id": 1,
+    "name": "Alona Beach",
+    "tier": "Primary",
+    "lgu": "Panglao",
+    "area_km2": 3.976,
+    "anchors": [
+      {
+        "name": "Alona Beach",
+        "cat": "Beach",
+        "score": 15.56,
+        "lgu": "Panglao"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Sundown Alona Beach",
+        "cat": "Beach",
+        "score": 4.2,
+        "lgu": "Panglao"
+      }
+    ],
+    "supportive": [
+      {
+        "name": "Sta. Cruz Katibo Chapel",
+        "cat": "Faith",
+        "score": 5.41,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Fire Show",
+        "cat": "Nature / Viewpoint",
+        "score": 5.66,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Kalipayan Beach",
+        "cat": "Beach",
+        "score": 7.3,
+        "lgu": "Panglao"
+      }
+    ],
+    "premium": [
+      {
+        "name": "Vanilla Sky Resort",
+        "cat": "Hotel / Resort",
+        "score": 10.49,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "BE Grand Resort Bohol",
+        "cat": "Hotel / Resort",
+        "score": 13.75,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "PALMS COVE RESORT ALONA PANGLAO BOHOL",
+        "cat": "Hotel / Resort",
+        "score": 10.21,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Oasis Resort",
+        "cat": "Hotel / Resort",
+        "score": 13.28,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Lost Horizon Beach Dive Resort",
+        "cat": "Hotel / Resort",
+        "score": 10.16,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona Vida Beach Resort",
+        "cat": "Hotel / Resort",
+        "score": 12.68,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "MGH Alona Resort",
+        "cat": "Hotel / Resort",
+        "score": 10.14,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "BARWOO",
+        "cat": "Restaurant / Bar",
+        "score": 14.64,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Vanilla Sky Restaurant",
+        "cat": "Restaurant / Bar",
+        "score": 12.38,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bougainvillea Spanish Restaurant and Wine Bar",
+        "cat": "Restaurant / Bar",
+        "score": 12.97,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Isis Bungalows and Thai Restaurant",
+        "cat": "Hotel / Resort",
+        "score": 10.63,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Sisters bake&coffee",
+        "cat": "Cafe / Bakery",
+        "score": 10.12,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Coffee For Ya",
+        "cat": "Cafe / Bakery",
+        "score": 11.54,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Amihan Resort Panglao",
+        "cat": "Hotel / Resort",
+        "score": 11.72,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "KISSA Japanese Cafe & Ramen Bar",
+        "cat": "Cafe / Bakery",
+        "score": 11.79,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Comoda Restaurant",
+        "cat": "Cafe / Bakery",
+        "score": 11.42,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bo's Coffee (Panglao)",
+        "cat": "Cafe / Bakery",
+        "score": 10.29,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "The Glebe Coffee",
+        "cat": "Cafe / Bakery",
+        "score": 11.51,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "dokdo Cafe(독도 카페)",
+        "cat": "Cafe / Bakery",
+        "score": 14.43,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Wild Gelato & Crepe House",
+        "cat": "Cafe / Bakery",
+        "score": 10.42,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "멜로우 요거트 아이스크림",
+        "cat": "Cafe / Bakery",
+        "score": 11.32,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bready To Go 24/7 OPEN",
+        "cat": "Cafe / Bakery",
+        "score": 11.62,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Pisces Bar&restaurant(Karaoke)",
+        "cat": "Restaurant / Bar",
+        "score": 11.85,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Rumor Draft Bar and Restaurant",
+        "cat": "Restaurant / Bar",
+        "score": 10.55,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bamboo Place",
+        "cat": "Restaurant / Bar",
+        "score": 12.74,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Gavroche Bistro",
+        "cat": "Cafe / Bakery",
+        "score": 11.81,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Paddy’s Irish Beer Pub and Restaurant",
+        "cat": "Restaurant / Bar",
+        "score": 16.38,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "GOLDEN PALM RESORT",
+        "cat": "Hotel / Resort",
+        "score": 10.98,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bluewater Panglao Beach Resort",
+        "cat": "Hotel / Resort",
+        "score": 15.69,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Tropical Divers",
+        "cat": "Other",
+        "score": 10.56,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Philippine Fun Divers, Inc.",
+        "cat": "Other",
+        "score": 12.19,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "바론다이브 Baron Dive",
+        "cat": "Other",
+        "score": 10.7,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bohol Divers Club Dive Center",
+        "cat": "Other",
+        "score": 14.03,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bohol Flamingo Nail, Foot spa, Waxing",
+        "cat": "Other",
+        "score": 14.92,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Panglao Regents Park Resort",
+        "cat": "Hotel / Resort",
+        "score": 11.77,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Amorita Resort",
+        "cat": "Hotel / Resort",
+        "score": 14.51,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona Royal Palm Resort & 800°Black Stone Restaurant",
+        "cat": "Hotel / Resort",
+        "score": 10.51,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "TipTop Hotel, Resto and Delishop",
+        "cat": "Hotel / Resort",
+        "score": 12.02,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona Swiss Resort",
+        "cat": "Hotel / Resort",
+        "score": 10.65,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Captain's Lodge Panglao",
+        "cat": "Restaurant / Bar",
+        "score": 10.26,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Andrea's Kawayan Eatery",
+        "cat": "Restaurant / Bar",
+        "score": 10.78,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Labing Maayo Resto",
+        "cat": "Cafe / Bakery",
+        "score": 11.18,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "TROVE Treasures and Brews",
+        "cat": "Cafe / Bakery",
+        "score": 12.18,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Coffee L8ter",
+        "cat": "Cafe / Bakery",
+        "score": 12.8,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "OVERGROWN Café & Bar",
+        "cat": "Cafe / Bakery",
+        "score": 15.03,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Lekker Garden",
+        "cat": "Cafe / Bakery",
+        "score": 13.47,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Thai paradise spa and salon",
+        "cat": "Other",
+        "score": 12.17,
+        "lgu": "Panglao"
+      }
+    ],
+    "quality": [
+      {
+        "name": "Harmony Hotel",
+        "cat": "Hotel / Resort",
+        "score": 9.37,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Dive Thru Resorts",
+        "cat": "Hotel / Resort",
+        "score": 9.5,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona42 Resort",
+        "cat": "Hotel / Resort",
+        "score": 9.74,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Mingche",
+        "cat": "Hotel / Resort",
+        "score": 9.12,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona Hidden Dream Resort",
+        "cat": "Hotel / Resort",
+        "score": 9.02,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Trudis Place Resort & Restaurant",
+        "cat": "Hotel / Resort",
+        "score": 9.96,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "MAYFAIR RESORT",
+        "cat": "Hotel / Resort",
+        "score": 9.14,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Cherry's @ Home Too Inland Resort",
+        "cat": "Hotel / Resort",
+        "score": 8.98,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Naty & Henry",
+        "cat": "Restaurant / Bar",
+        "score": 8.71,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "One 4 Da Road",
+        "cat": "Hotel / Resort",
+        "score": 8.88,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "THE SNOW Dessert Cafe - Panglao",
+        "cat": "Cafe / Bakery",
+        "score": 8.12,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Blooming Angel Bakery Cafe in Bohol(블루밍 엔젤 베이커리카페, 보홀)",
+        "cat": "Cafe / Bakery",
+        "score": 9.22,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Ocean Xtreme Dive Center and Watersports - Alona beach",
+        "cat": "Cafe / Bakery",
+        "score": 7.97,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Sun‘s Cafe and Bar",
+        "cat": "Cafe / Bakery",
+        "score": 7.9,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Monkey Mango Shake",
+        "cat": "Cafe / Bakery",
+        "score": 9.67,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "SULZIP 닭발",
+        "cat": "Restaurant / Bar",
+        "score": 9.19,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Cobadonga English Pub Alona",
+        "cat": "Restaurant / Bar",
+        "score": 8.86,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "pangpang pocha 팡팡포차",
+        "cat": "Restaurant / Bar",
+        "score": 8.19,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Udo's Bar & Chinese Restaurant",
+        "cat": "Restaurant / Bar",
+        "score": 9.42,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Rocky's Bistro and Lounge",
+        "cat": "Restaurant / Bar",
+        "score": 7.8,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Destino",
+        "cat": "Restaurant / Bar",
+        "score": 9.24,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona Grove Tourist Inn",
+        "cat": "Hotel / Resort",
+        "score": 8.05,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "One's Hair Salon (K- Beauty)",
+        "cat": "Other",
+        "score": 9.16,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Moon Beauty Lounge",
+        "cat": "Other",
+        "score": 8.75,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Veaditte(비아디떼)",
+        "cat": "Other",
+        "score": 8.6,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "보홀더네일 Boholnail(TheNail)",
+        "cat": "Other",
+        "score": 8.16,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona Northland Resort",
+        "cat": "Hotel / Resort",
+        "score": 9.38,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Lennon's Place Backpacker Hostel",
+        "cat": "Hotel / Resort",
+        "score": 7.74,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Hayahay@Genesis",
+        "cat": "Hotel / Resort",
+        "score": 8.13,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Heartland Hotel Serviced Rooms & Apartments",
+        "cat": "Hotel / Resort",
+        "score": 8.35,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Conrada's Place Hotel and Resort",
+        "cat": "Hotel / Resort",
+        "score": 7.83,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "AFE Coffee & Brunch",
+        "cat": "Cafe / Bakery",
+        "score": 9.4,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Urban Spice",
+        "cat": "Restaurant / Bar",
+        "score": 9.32,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Alona Vida Beach Hill Resort",
+        "cat": "Hotel / Resort",
+        "score": 9.58,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "OLIVE purebody&nail",
+        "cat": "Other",
+        "score": 9.62,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Nuat Thai Massage Tawala, Panglao",
+        "cat": "Other",
+        "score": 9.55,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Cassa Manni's Garden",
+        "cat": "Hotel / Resort",
+        "score": 9.08,
+        "lgu": "Panglao"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Danao",
+        "mun": "Panglao",
+        "pct": 35.7,
+        "area_km2": 1.417,
+        "pop_2024": 7085
+      },
+      {
+        "brgy": "Tawala",
+        "mun": "Panglao",
+        "pct": 16.9,
+        "area_km2": 0.67,
+        "pop_2024": 5433
+      }
+    ],
+    "potential_score": 104.9,
+    "priority_rank": 1,
+    "area_total_km2": 3.976,
+    "area_land_km2": 2.088,
+    "area_water_km2": 1.888,
+    "pct_water": 47.5
+  },
+  {
+    "cluster_id": 2,
+    "name": "St. Joseph the Worker Cathedral Shrine & 4 more",
+    "tier": "Primary",
+    "lgu": "Tagbilaran City",
+    "area_km2": 6.11,
+    "anchors": [
+      {
+        "name": "St. Joseph the Worker Cathedral Shrine",
+        "cat": "Heritage",
+        "score": 12.91,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Plaza Jose P. Rizal",
+        "cat": "Urban Park",
+        "score": 12.37,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Carlos P. Garcia Heritage Museum",
+        "cat": "Heritage",
+        "score": 6.0,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "National Museum of the Philippines - Bohol",
+        "cat": "Heritage",
+        "score": 11.87,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "JCI Bohol Sandugo Heritage Center",
+        "cat": "Heritage",
+        "score": 0,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "I Love Bohol Sign",
+        "cat": "Other Attraction",
+        "score": 0,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Our Lady of Lourdes Parish Church",
+        "cat": "Faith",
+        "score": 8.27,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Kilometer Zero (Bohol)",
+        "cat": "Heritage",
+        "score": 1.51,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "IFI CATHEDRAL TAMBLOT ST. TAGBILARAN CITY, BOHOL",
+        "cat": "Faith",
+        "score": 0,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Mana Urban Forest",
+        "cat": "Nature / Viewpoint",
+        "score": 0,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Carlos P. Garcia Monument",
+        "cat": "Heritage",
+        "score": 0,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "President Carlos P. Garcia Park",
+        "cat": "Urban Park",
+        "score": 9.65,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "supportive": [
+      {
+        "name": "塔比拉兰码头 （薄荷岛）",
+        "cat": "Nature / Viewpoint",
+        "score": 7.95,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "San Antonio de Padua Parish Church",
+        "cat": "Faith",
+        "score": 5.16,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Birhen sa Barangay Parish",
+        "cat": "Faith",
+        "score": 7.14,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Tagbilaran City Assembly Of God Church",
+        "cat": "Faith",
+        "score": 5.01,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "City Hall Parking Lot",
+        "cat": "Heritage",
+        "score": 5.37,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "premium": [
+      {
+        "name": "Just Sizzlin' Resto",
+        "cat": "Cafe / Bakery",
+        "score": 12.96,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Tamper Coffee & Brunch",
+        "cat": "Cafe / Bakery",
+        "score": 11.88,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Payag Restaurant - Main Branch",
+        "cat": "Restaurant / Bar",
+        "score": 10.1,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Garden Café",
+        "cat": "Restaurant / Bar",
+        "score": 11.31,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Metrocentre Hotel",
+        "cat": "Hotel / Resort",
+        "score": 10.71,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Pizza Hut Bohol",
+        "cat": "Restaurant / Bar",
+        "score": 10.53,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "McDonald's",
+        "cat": "Restaurant / Bar",
+        "score": 11.66,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Gerry's Grill - BQ Mall Bohol",
+        "cat": "Restaurant / Bar",
+        "score": 14.97,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "JJ's SEAFOOD VILLAGE",
+        "cat": "Hotel / Resort",
+        "score": 11.31,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Al Fresco Bay Cafe' & Restobar",
+        "cat": "Restaurant / Bar",
+        "score": 12.67,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "The Buzzz Café - Galleria Luisa",
+        "cat": "Cafe / Bakery",
+        "score": 10.86,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Passiflora Cafe",
+        "cat": "Cafe / Bakery",
+        "score": 10.53,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Lite Port Center",
+        "cat": "Cafe / Bakery",
+        "score": 11.16,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "VHUB BOHOL",
+        "cat": "Restaurant / Bar",
+        "score": 12.12,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Nailax Aesthetics Salon and Spa",
+        "cat": "Other",
+        "score": 11.01,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Gomez Guest House",
+        "cat": "Hotel / Resort",
+        "score": 10.07,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Bohol Ecotel",
+        "cat": "Hotel / Resort",
+        "score": 10.3,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "REYNA'S the Haven and Gardens",
+        "cat": "Hotel / Resort",
+        "score": 10.16,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Chicken Ati - Atihan",
+        "cat": "Restaurant / Bar",
+        "score": 10.39,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Belian Hotel",
+        "cat": "Hotel / Resort",
+        "score": 10.43,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Bohol Tropics Resort",
+        "cat": "Hotel / Resort",
+        "score": 12.8,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Jollibee CP Garcia Drive Thru",
+        "cat": "Restaurant / Bar",
+        "score": 12.06,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Gerarda's Place CPG",
+        "cat": "Restaurant / Bar",
+        "score": 11.57,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Yokoy's Cafe",
+        "cat": "Cafe / Bakery",
+        "score": 10.5,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Crave Cafe Bohol",
+        "cat": "Cafe / Bakery",
+        "score": 12.49,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Cake on Crate Branch 2 (Wisdom)",
+        "cat": "Cafe / Bakery",
+        "score": 11.65,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "BOHOL MOTORBIKE RENTAL AAANOVIM",
+        "cat": "Other",
+        "score": 14.4,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Galleria Luisa Mall",
+        "cat": "Other",
+        "score": 11.25,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Jollibee",
+        "cat": "Restaurant / Bar",
+        "score": 10.56,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "BQ Mall",
+        "cat": "Other",
+        "score": 13.91,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Tagbilaran City Square",
+        "cat": "Other",
+        "score": 10.83,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "quality": [
+      {
+        "name": "Saya's Restaurant",
+        "cat": "Restaurant / Bar",
+        "score": 8.84,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Acacia De Bubu",
+        "cat": "Restaurant / Bar",
+        "score": 9.21,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Pasonangka",
+        "cat": "Restaurant / Bar",
+        "score": 7.51,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Jojie's Bakeshop",
+        "cat": "Cafe / Bakery",
+        "score": 7.92,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Chriscent Ville Pension House",
+        "cat": "Hotel / Resort",
+        "score": 7.7,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Sun Avenue Pension",
+        "cat": "Hotel / Resort",
+        "score": 7.67,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Soledad Suites",
+        "cat": "Hotel / Resort",
+        "score": 7.8,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Wregent Plaza Hotel",
+        "cat": "Hotel / Resort",
+        "score": 7.66,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Mang Inasal Remolador St.",
+        "cat": "Restaurant / Bar",
+        "score": 9.3,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Hazel Bulalohan",
+        "cat": "Restaurant / Bar",
+        "score": 7.8,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Tuko Café",
+        "cat": "Cafe / Bakery",
+        "score": 8.9,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "The Hamlet",
+        "cat": "Cafe / Bakery",
+        "score": 8.07,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Sweet Home Cafe",
+        "cat": "Cafe / Bakery",
+        "score": 9.35,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Richer Tea",
+        "cat": "Cafe / Bakery",
+        "score": 8.16,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "The Buzzz Cafè, Lite Port Center",
+        "cat": "Cafe / Bakery",
+        "score": 9.57,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Caffeine",
+        "cat": "Cafe / Bakery",
+        "score": 8.55,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Martin's Music & Resto-bar",
+        "cat": "Restaurant / Bar",
+        "score": 8.65,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "TK Vapers' Hub - Vape Shop & Bar",
+        "cat": "Restaurant / Bar",
+        "score": 9.39,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Sweet Home Boutique Hotel",
+        "cat": "Hotel / Resort",
+        "score": 8.48,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "GV Hotel Tagbilaran",
+        "cat": "Hotel / Resort",
+        "score": 7.71,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Oasis Balili Heritage Lodge",
+        "cat": "Hotel / Resort",
+        "score": 9.69,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "UNITOP",
+        "cat": "Restaurant / Bar",
+        "score": 7.84,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "CHOP Salon & Barbershop - Tagbilaran, Bohol",
+        "cat": "Other",
+        "score": 9.45,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Darunday Manor",
+        "cat": "Hotel / Resort",
+        "score": 7.6,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Calvito's Sugbahan",
+        "cat": "Restaurant / Bar",
+        "score": 9.78,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "29th M. Street Cafe",
+        "cat": "Cafe / Bakery",
+        "score": 8.17,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Arabelle Suites",
+        "cat": "Hotel / Resort",
+        "score": 8.92,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Constrell Pension House",
+        "cat": "Hotel / Resort",
+        "score": 7.78,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Vest Grand Suites",
+        "cat": "Hotel / Resort",
+        "score": 8.48,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Abis",
+        "cat": "Restaurant / Bar",
+        "score": 9.67,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Cocoberry Cafe-Tagbilaran",
+        "cat": "Cafe / Bakery",
+        "score": 9.12,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Aliria Bed and Breakfast",
+        "cat": "Hotel / Resort",
+        "score": 8.73,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Nisa Traveller's Hotel",
+        "cat": "Hotel / Resort",
+        "score": 9.43,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Mang Inasal Tagbilaran Bohol",
+        "cat": "Restaurant / Bar",
+        "score": 8.2,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Cogon",
+        "mun": "Tagbilaran City",
+        "pct": 35.5,
+        "area_km2": 2.168,
+        "pop_2024": 15171
+      },
+      {
+        "brgy": "Poblacion II",
+        "mun": "Tagbilaran City",
+        "pct": 11.6,
+        "area_km2": 0.707,
+        "pop_2024": 4483
+      },
+      {
+        "brgy": "Poblacion III",
+        "mun": "Tagbilaran City",
+        "pct": 9.8,
+        "area_km2": 0.599,
+        "pop_2024": 4904
+      },
+      {
+        "brgy": "Booy",
+        "mun": "Tagbilaran City",
+        "pct": 8.1,
+        "area_km2": 0.497,
+        "pop_2024": 9471
+      },
+      {
+        "brgy": "Dao",
+        "mun": "Tagbilaran City",
+        "pct": 7.1,
+        "area_km2": 0.436,
+        "pop_2024": 10799
+      },
+      {
+        "brgy": "Dampas",
+        "mun": "Tagbilaran City",
+        "pct": 5.3,
+        "area_km2": 0.323,
+        "pop_2024": 9902
+      },
+      {
+        "brgy": "Poblacion I",
+        "mun": "Tagbilaran City",
+        "pct": 3.4,
+        "area_km2": 0.209,
+        "pop_2024": 3566
+      }
+    ],
+    "potential_score": 97.0,
+    "priority_rank": 2,
+    "area_total_km2": 6.11,
+    "area_land_km2": 4.942,
+    "area_water_km2": 1.169,
+    "pct_water": 19.1
+  },
+  {
+    "cluster_id": 3,
+    "name": "Best Sunset Hermit Beach & nearby",
+    "tier": "Emerging",
+    "lgu": "Panglao",
+    "area_km2": 5.967,
+    "anchors": [],
+    "secondary": [
+      {
+        "name": "doljo beach enterance",
+        "cat": "Beach",
+        "score": 2.18,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Hermit Beach",
+        "cat": "Beach",
+        "score": 8.03,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Best Sunset Hermit Beach",
+        "cat": "Beach",
+        "score": 9.05,
+        "lgu": "Panglao"
+      }
+    ],
+    "supportive": [
+      {
+        "name": "Talisay Beach",
+        "cat": "Beach",
+        "score": 5.37,
+        "lgu": "Panglao"
+      }
+    ],
+    "premium": [
+      {
+        "name": "The Bellevue Resort",
+        "cat": "Hotel / Resort",
+        "score": 16.1,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "OceanplayerDive(오션플레이어보홀다이브센터)",
+        "cat": "Other",
+        "score": 11.64,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "North Zen Villas",
+        "cat": "Hotel / Resort",
+        "score": 13.71,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Marea Al Fresco Dining",
+        "cat": "Restaurant / Bar",
+        "score": 12.97,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Lamian Modern Filipino Cuisine",
+        "cat": "Restaurant / Bar",
+        "score": 11.67,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "La Vara Restaurant",
+        "cat": "Restaurant / Bar",
+        "score": 13.27,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "The Buzzz Cafe by Bohol Bee Farm",
+        "cat": "Restaurant / Bar",
+        "score": 11.49,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Flujo",
+        "cat": "Cafe / Bakery",
+        "score": 12.29,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Island Sea One Resort",
+        "cat": "Hotel / Resort",
+        "score": 11.63,
+        "lgu": "Panglao"
+      }
+    ],
+    "quality": [
+      {
+        "name": "Muro - Ami",
+        "cat": "Hotel / Resort",
+        "score": 8.03,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "The Ananyana Beach Resort by SMS Hospitality",
+        "cat": "Hotel / Resort",
+        "score": 8.32,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Muro ami restaurant",
+        "cat": "Restaurant / Bar",
+        "score": 8.1,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Ocean Blue Lounge",
+        "cat": "Restaurant / Bar",
+        "score": 8.12,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Onami",
+        "cat": "Restaurant / Bar",
+        "score": 7.7,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Imperial Dragon",
+        "cat": "Restaurant / Bar",
+        "score": 8.54,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Begonia Resort",
+        "cat": "Hotel / Resort",
+        "score": 8.62,
+        "lgu": "Panglao"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Doljo",
+        "mun": "Panglao",
+        "pct": 18.5,
+        "area_km2": 1.105,
+        "pop_2024": 4148
+      }
+    ],
+    "potential_score": 31.4,
+    "priority_rank": 1,
+    "area_total_km2": 5.967,
+    "area_land_km2": 1.105,
+    "area_water_km2": 4.863,
+    "pct_water": 81.5
+  },
+  {
+    "cluster_id": 4,
+    "name": "Napaling Reef",
+    "tier": "Emerging",
+    "lgu": "Panglao",
+    "area_km2": 8.732,
+    "anchors": [
+      {
+        "name": "Napaling Reef",
+        "cat": "Marine",
+        "score": 13.73,
+        "lgu": "Panglao"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Bil-isan Public Beach",
+        "cat": "Beach",
+        "score": 4.46,
+        "lgu": "Panglao"
+      }
+    ],
+    "supportive": [
+      {
+        "name": "SEA AIRDIVE BOHOL",
+        "cat": "Nature / Viewpoint",
+        "score": 5.21,
+        "lgu": "Panglao"
+      }
+    ],
+    "premium": [
+      {
+        "name": "彩虹餐廳 Rainbow Restaurant & Kiki Bar",
+        "cat": "Restaurant / Bar",
+        "score": 11.36,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Mario Dive Resort",
+        "cat": "Hotel / Resort",
+        "score": 11.18,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Freedive Academy Panglao",
+        "cat": "Other",
+        "score": 11.87,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Madeline Paradise Resort",
+        "cat": "Hotel / Resort",
+        "score": 10.39,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Panglao Sea Resort",
+        "cat": "Hotel / Resort",
+        "score": 10.65,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Freediving in Panglao, Bohol | Blue Freedom",
+        "cat": "Other",
+        "score": 11.72,
+        "lgu": "Panglao"
+      }
+    ],
+    "quality": [
+      {
+        "name": "Momo Beach House",
+        "cat": "Hotel / Resort",
+        "score": 8.24,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Peaceland",
+        "cat": "Hotel / Resort",
+        "score": 9.41,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Elvira's Homestay",
+        "cat": "Hotel / Resort",
+        "score": 7.66,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Veraneante Resort, Panglao Island",
+        "cat": "Hotel / Resort",
+        "score": 9.2,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "THISTLE INN Panglao",
+        "cat": "Hotel / Resort",
+        "score": 9.7,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Momovillage Guesthouse",
+        "cat": "Hotel / Resort",
+        "score": 7.82,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Panglao Kalikasan Dive Resort",
+        "cat": "Hotel / Resort",
+        "score": 9.65,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Almira Diving Resort",
+        "cat": "Hotel / Resort",
+        "score": 7.68,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Dynamic Bohol Resort",
+        "cat": "Hotel / Resort",
+        "score": 9.84,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Montara Diving",
+        "cat": "Other",
+        "score": 8.31,
+        "lgu": "Panglao"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Tangnan",
+        "mun": "Panglao",
+        "pct": 26.9,
+        "area_km2": 2.346,
+        "pop_2024": 4815
+      },
+      {
+        "brgy": "Bil-isan",
+        "mun": "Panglao",
+        "pct": 15.3,
+        "area_km2": 1.337,
+        "pop_2024": 3376
+      },
+      {
+        "brgy": "Looc",
+        "mun": "Panglao",
+        "pct": 9.3,
+        "area_km2": 0.808,
+        "pop_2024": 3367
+      }
+    ],
+    "potential_score": 30.7,
+    "priority_rank": 2,
+    "area_total_km2": 8.732,
+    "area_land_km2": 4.497,
+    "area_water_km2": 4.234,
+    "pct_water": 48.5
+  },
+  {
+    "cluster_id": 5,
+    "name": "Hinagdanan Cave",
+    "tier": "Emerging",
+    "lgu": "Dauis",
+    "area_km2": 7.009,
+    "anchors": [
+      {
+        "name": "Hinagdanan Cave",
+        "cat": "Nature / Viewpoint",
+        "score": 15.1,
+        "lgu": "Dauis"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Augustinian Monastery of the Resurrection",
+        "cat": "Faith",
+        "score": 5.78,
+        "lgu": "Dauis"
+      }
+    ],
+    "supportive": [
+      {
+        "name": "Dap-Dap Sanctuary",
+        "cat": "Urban Park",
+        "score": 5.16,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Sibukaw Public Beach",
+        "cat": "Beach",
+        "score": 6.0,
+        "lgu": "Dauis"
+      }
+    ],
+    "premium": [
+      {
+        "name": "Mithi Resort and Spa",
+        "cat": "Hotel / Resort",
+        "score": 12.18,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Natura Vista",
+        "cat": "Hotel / Resort",
+        "score": 10.66,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "꽃분식2호점 FLOWER SNACK",
+        "cat": "Restaurant / Bar",
+        "score": 10.03,
+        "lgu": "Dauis"
+      }
+    ],
+    "quality": [
+      {
+        "name": "Skipper Joes Resort",
+        "cat": "Restaurant / Bar",
+        "score": 7.85,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Grounded Coffee Brewery",
+        "cat": "Cafe / Bakery",
+        "score": 9.72,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Blue Moon Inn",
+        "cat": "Hotel / Resort",
+        "score": 7.66,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "J&R CARMOTO RENTAL & TOUR BOHOL",
+        "cat": "Other",
+        "score": 7.63,
+        "lgu": "Dauis"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Tabalong",
+        "mun": "Dauis",
+        "pct": 35.9,
+        "area_km2": 2.516,
+        "pop_2024": 5788
+      },
+      {
+        "brgy": "Bingag",
+        "mun": "Dauis",
+        "pct": 33.5,
+        "area_km2": 2.345,
+        "pop_2024": 5659
+      },
+      {
+        "brgy": "Songculan",
+        "mun": "Dauis",
+        "pct": 12.4,
+        "area_km2": 0.873,
+        "pop_2024": 6112
+      },
+      {
+        "brgy": "Tinago",
+        "mun": "Dauis",
+        "pct": 1.5,
+        "area_km2": 0.107,
+        "pop_2024": 3360
+      }
+    ],
+    "potential_score": 25.2,
+    "priority_rank": 3,
+    "area_total_km2": 7.009,
+    "area_land_km2": 5.84,
+    "area_water_km2": 1.169,
+    "pct_water": 16.7
+  },
+  {
+    "cluster_id": 6,
+    "name": "Church of Our Lady of the Assumption (Dauis Church)",
+    "tier": "Emerging",
+    "lgu": "Dauis",
+    "area_km2": 6.58,
+    "anchors": [
+      {
+        "name": "Church of Our Lady of the Assumption (Dauis Church)",
+        "cat": "Faith",
+        "score": 12.47,
+        "lgu": "Dauis"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Dauis Watchtower",
+        "cat": "Heritage",
+        "score": 6.41,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Dauis Bridge",
+        "cat": "Heritage",
+        "score": 7.93,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Dauis bridge",
+        "cat": "Heritage",
+        "score": 1.2,
+        "lgu": "Dauis"
+      }
+    ],
+    "supportive": [
+      {
+        "name": "Bible Baptist Church",
+        "cat": "Faith",
+        "score": 5.29,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "The Church of Jesus Christ of Latter-day Saints",
+        "cat": "Faith",
+        "score": 5.4,
+        "lgu": "Dauis"
+      }
+    ],
+    "premium": [
+      {
+        "name": "Elstar Diner Seafoods and Grill",
+        "cat": "Restaurant / Bar",
+        "score": 10.06,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Gamers",
+        "cat": "Restaurant / Bar",
+        "score": 11.87,
+        "lgu": "Dauis"
+      }
+    ],
+    "quality": [
+      {
+        "name": "AA's Barbecue and Grill",
+        "cat": "Restaurant / Bar",
+        "score": 9.38,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Food Hunters - Authentic Italian Restaurant",
+        "cat": "Cafe / Bakery",
+        "score": 9.67,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Causeway Foodhub",
+        "cat": "Restaurant / Bar",
+        "score": 7.85,
+        "lgu": "Dauis"
+      },
+      {
+        "name": "Bohol Cat Cafe",
+        "cat": "Cafe / Bakery",
+        "score": 8.72,
+        "lgu": "Dauis"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Totolan",
+        "mun": "Dauis",
+        "pct": 17.0,
+        "area_km2": 1.116,
+        "pop_2024": 8292
+      },
+      {
+        "brgy": "Poblacion",
+        "mun": "Dauis",
+        "pct": 16.4,
+        "area_km2": 1.082,
+        "pop_2024": 2485
+      },
+      {
+        "brgy": "Mayacabac",
+        "mun": "Dauis",
+        "pct": 7.4,
+        "area_km2": 0.486,
+        "pop_2024": 4732
+      }
+    ],
+    "potential_score": 25.1,
+    "priority_rank": 4,
+    "area_total_km2": 6.58,
+    "area_land_km2": 4.006,
+    "area_water_km2": 2.574,
+    "pct_water": 39.1
+  },
+  {
+    "cluster_id": 7,
+    "name": "Panglao Watchtower & nearby",
+    "tier": "Emerging",
+    "lgu": "Panglao",
+    "area_km2": 4.182,
+    "anchors": [],
+    "secondary": [
+      {
+        "name": "Panglao Watchtower",
+        "cat": "Heritage",
+        "score": 11.43,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "St. Augustine Parish Church",
+        "cat": "Faith",
+        "score": 10.94,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Nova Shell Museum",
+        "cat": "Heritage",
+        "score": 10.29,
+        "lgu": "Panglao"
+      }
+    ],
+    "supportive": [],
+    "premium": [
+      {
+        "name": "ubeco",
+        "cat": "Cafe / Bakery",
+        "score": 16.07,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "suan restaurant 수안",
+        "cat": "Cafe / Bakery",
+        "score": 15.23,
+        "lgu": "Panglao"
+      }
+    ],
+    "quality": [
+      {
+        "name": "Biaño's Pizza Panglao",
+        "cat": "Restaurant / Bar",
+        "score": 7.6,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "D'Best Cafe Shop",
+        "cat": "Restaurant / Bar",
+        "score": 9.43,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bet's Variety Store",
+        "cat": "Restaurant / Bar",
+        "score": 8.43,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Baoz",
+        "cat": "Restaurant / Bar",
+        "score": 9.32,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Cozy & Co.",
+        "cat": "Cafe / Bakery",
+        "score": 8.33,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "BeauTEA LaBOBAtory Cafe Panglao",
+        "cat": "Cafe / Bakery",
+        "score": 7.87,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Bark Panglao",
+        "cat": "Cafe / Bakery",
+        "score": 7.99,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "bassa nova villa",
+        "cat": "Hotel / Resort",
+        "score": 9.8,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Rhoan's Beauty Lounge",
+        "cat": "Other",
+        "score": 8.46,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Coco Cabana Apartelle",
+        "cat": "Hotel / Resort",
+        "score": 8.13,
+        "lgu": "Panglao"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Poblacion",
+        "mun": "Panglao",
+        "pct": 52.1,
+        "area_km2": 2.181,
+        "pop_2024": 6014
+      },
+      {
+        "brgy": "Looc",
+        "mun": "Panglao",
+        "pct": 9.5,
+        "area_km2": 0.397,
+        "pop_2024": 3367
+      },
+      {
+        "brgy": "Danao",
+        "mun": "Panglao",
+        "pct": 3.0,
+        "area_km2": 0.127,
+        "pop_2024": 7085
+      },
+      {
+        "brgy": "Doljo",
+        "mun": "Panglao",
+        "pct": 2.9,
+        "area_km2": 0.12,
+        "pop_2024": 4148
+      }
+    ],
+    "potential_score": 24.4,
+    "priority_rank": 5,
+    "area_total_km2": 4.182,
+    "area_land_km2": 2.825,
+    "area_water_km2": 1.357,
+    "pct_water": 32.5
+  },
+  {
+    "cluster_id": 8,
+    "name": "Blood Compact Shrine",
+    "tier": "Satellite",
+    "lgu": "Tagbilaran City",
+    "area_km2": 1.539,
+    "anchors": [
+      {
+        "name": "Blood Compact Shrine",
+        "cat": "Heritage",
+        "score": 13.2,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "secondary": [],
+    "supportive": [
+      {
+        "name": "Tagbilaran City Friendship Park",
+        "cat": "Urban Park",
+        "score": 6.52,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "premium": [
+      {
+        "name": "Ocean Suites",
+        "cat": "Hotel / Resort",
+        "score": 10.99,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "SMOQUE bistro",
+        "cat": "Restaurant / Bar",
+        "score": 11.41,
+        "lgu": "Tagbilaran City"
+      },
+      {
+        "name": "Chido Cafe",
+        "cat": "Cafe / Bakery",
+        "score": 11.79,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "quality": [
+      {
+        "name": "Overgrown Café & Bar Tagbilaran",
+        "cat": "Cafe / Bakery",
+        "score": 9.74,
+        "lgu": "Tagbilaran City"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Bool",
+        "mun": "Tagbilaran City",
+        "pct": 52.0,
+        "area_km2": 0.801,
+        "pop_2024": 7411
+      }
+    ],
+    "potential_score": 20.1,
+    "area_total_km2": 1.539,
+    "area_land_km2": 0.801,
+    "area_water_km2": 0.738,
+    "pct_water": 48.0
+  },
+  {
+    "cluster_id": 9,
+    "name": "Balicasag Marine Sanctuary",
+    "tier": "Satellite",
+    "lgu": "Panglao",
+    "area_km2": 3.141,
+    "anchors": [
+      {
+        "name": "Balicasag Marine Sanctuary",
+        "cat": "Marine",
+        "score": 12.86,
+        "lgu": "Panglao"
+      }
+    ],
+    "secondary": [],
+    "supportive": [
+      {
+        "name": "Balicasag Island Panglao Bohol",
+        "cat": "Nature / Viewpoint",
+        "score": 8.44,
+        "lgu": "Panglao"
+      },
+      {
+        "name": "Balicasag Island Turtles Point",
+        "cat": "Urban Park",
+        "score": 11.19,
+        "lgu": "Panglao"
+      }
+    ],
+    "premium": [],
+    "quality": [
+      {
+        "name": "Balicasag Island Dive Resort",
+        "cat": "Hotel / Resort",
+        "score": 9.64,
+        "lgu": "Panglao"
+      }
+    ],
+    "barangays": [
+      {
+        "brgy": "Bingag (offshore islet, ≈12 km from coast)",
+        "mun": "Panglao",
+        "pct": 100.0,
+        "area_km2": 3.141,
+        "pop_2024": null
+      }
+    ],
+    "potential_score": 15.3,
+    "area_total_km2": 3.141,
+    "area_land_km2": 0.362,
+    "area_water_km2": 2.778,
+    "pct_water": 88.5
+  }
+]

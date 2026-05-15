@@ -1,4 +1,4 @@
-import { Thermometer, Wind, Droplets, Info, Layers, HelpCircle, Shield } from 'lucide-react';
+import { Thermometer, Wind, Droplets, Info, Layers, HelpCircle, Shield, Palmtree } from 'lucide-react';
 import type { Sector } from '../App';
 
 interface LeftRailProps {
@@ -10,6 +10,7 @@ interface LeftRailProps {
 }
 
 const sectors = [
+  { id: 'tourism' as Sector, label: 'Tourism', icon: Palmtree },
   { id: 'heat' as Sector, label: 'Heat Stress', icon: Thermometer },
   { id: 'air' as Sector, label: 'Air Pollution', icon: Wind },
   { id: 'flood' as Sector, label: 'Flood', icon: Droplets },
