@@ -256,7 +256,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
           
           <div>
             <h1 className="text-base font-semibold text-[#0F172A] leading-tight">Tourism Potential & Development Insights Dashboard</h1>
-            <p className="text-xs text-[#64748B] mt-0.5">Tagbilaran City • Dauis • Panglao <span className="text-[#64748B]">[{(import.meta as any).env?.VITE_APP_VERSION ?? 'v0.20'}]</span></p>
+            <p className="text-xs text-[#64748B] mt-0.5">Tagbilaran City • Dauis • Panglao</p>
           </div>
         </div>
       </div>
