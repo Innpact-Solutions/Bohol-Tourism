@@ -110,7 +110,7 @@ export function ClimateScenarioComparison({ data, sector, scenario, wardId }: Pr
                 if (active && payload && payload.length) {
                   const data = payload[0].payload;
                   return (
-                    <div className="bg-gray-900 rounded-lg px-3 py-2 shadow-xl border border-gray-700" style={{ zIndex: 1000 }}>
+                    <div className="bg-white rounded-lg px-3 py-2 shadow-xl border border-[#E2E8F0]" style={{ zIndex: 1000 }}>
                       <div className="text-[10px] font-semibold text-white mb-1">{data.name}</div>
                       <div className="text-[11px] text-white font-bold">{data.area.toFixed(2)} km²</div>
                       <div className="text-[9px] text-gray-300 mt-0.5">{data.percentage.toFixed(2)}% of total area</div>

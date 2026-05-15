@@ -43,15 +43,15 @@ export function PhotoCarousel({ photos, altPrefix = 'Photo', className = '', hei
         <>
           <button
             onClick={prev}
-            className="absolute left-1.5 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-slate-900/70 hover:bg-slate-900/95 text-white transition-colors"
+            className="absolute left-1.5 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-white/70 hover:bg-white/95 text-white transition-colors"
             aria-label="Previous photo"
           ><ChevronLeft className="w-4 h-4"/></button>
           <button
             onClick={next}
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-slate-900/70 hover:bg-slate-900/95 text-white transition-colors"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-white/70 hover:bg-white/95 text-white transition-colors"
             aria-label="Next photo"
           ><ChevronRight className="w-4 h-4"/></button>
-          <div className="absolute top-1.5 right-2 px-1.5 py-0.5 text-[10px] font-mono text-white bg-slate-900/70 tracking-wider">
+          <div className="absolute top-1.5 right-2 px-1.5 py-0.5 text-[10px] font-mono text-white bg-white/70 tracking-wider">
             {idx + 1} / {photos.length}
           </div>
           <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex gap-1">
@@ -63,7 +63,7 @@ export function PhotoCarousel({ photos, altPrefix = 'Photo', className = '', hei
         </>
       )}
       {onZoom && (
-        <div className="absolute bottom-1.5 right-2 px-1.5 py-0.5 text-[10px] text-white bg-slate-900/70 flex items-center gap-1 pointer-events-none">
+        <div className="absolute bottom-1.5 right-2 px-1.5 py-0.5 text-[10px] text-white bg-white/70 flex items-center gap-1 pointer-events-none">
           <ZoomIn className="w-3 h-3"/> click to zoom
         </div>
       )}
@@ -101,7 +101,7 @@ export function PhotoLightbox({ open, onOpenChange, photos, startIndex = 0, capt
   if (photos.length === 0) return null;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="!max-w-[95vw] !p-0 !bg-slate-900/95 !border-0 !rounded-none">
+      <DialogContent className="!max-w-[95vw] !p-0 !bg-white/95 !border-0 !rounded-none">
         <div className="relative w-full h-[90vh] flex items-center justify-center">
           {caption && (
             <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-black/60 text-white text-base font-serif font-medium max-w-[80vw] text-center">

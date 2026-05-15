@@ -256,7 +256,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
           
           <div>
             <h1 className="text-base font-semibold text-[#0F172A] leading-tight">Decision Support Dashboard for Citywide Inclusive Sanitation (CWIS)</h1>
-            <p className="text-xs text-[#64748B] mt-0.5">Tagbilaran City • Dauis • Panglao <span className="text-[#94A3B8]">[{(import.meta as any).env?.VITE_APP_VERSION ?? 'v0.20'}]</span></p>
+            <p className="text-xs text-[#64748B] mt-0.5">Tagbilaran City • Dauis • Panglao <span className="text-[#64748B]">[{(import.meta as any).env?.VITE_APP_VERSION ?? 'v0.20'}]</span></p>
           </div>
         </div>
       </div>
@@ -287,7 +287,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
                     : (isLguLoading ? 'Loading...' : 'Select LGU')}
                 </span>
                 {selectedLguData && selectedLguData.id !== 'all' && (
-                  <span className="text-[10px] text-[#94A3B8]">
+                  <span className="text-[10px] text-[#64748B]">
                     ({selectedLguData.barangayCount} barangays)
                   </span>
                 )}
@@ -357,7 +357,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
                     ))
                   ) : (
                     <div className="px-3 py-6 text-center">
-                      <p className="text-xs text-[#94A3B8]">No LGUs found</p>
+                      <p className="text-xs text-[#64748B]">No LGUs found</p>
                     </div>
                   )}
                 </div>
@@ -406,7 +406,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
                     : (isLoading ? 'Loading...' : 'Select Barangay')}
                 </span>
                 {selectedWardData && selectedWardData.wardNumber !== 0 && (
-                  <span className="text-[10px] text-[#94A3B8]">
+                  <span className="text-[10px] text-[#64748B]">
                     ({formatPopulation(selectedWardData.population)})
                   </span>
                 )}
@@ -478,7 +478,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
                               </div>
                               <div className="flex items-center gap-2">
                                 <span className="text-[10px] text-[#6B7280]">{ward.zone}</span>
-                                <span className="text-[10px] text-[#94A3B8]">•</span>
+                                <span className="text-[10px] text-[#64748B]">•</span>
                                 <span className="text-[10px] text-[#6B7280]">Pop: {formatPopulation(ward.population)}</span>
                               </div>
                             </div>
@@ -491,7 +491,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
                     })
                   ) : (
                     <div className="px-3 py-6 text-center">
-                      <p className="text-xs text-[#94A3B8]">No barangays found</p>
+                      <p className="text-xs text-[#64748B]">No barangays found</p>
                     </div>
                   )}
                 </div>
@@ -516,20 +516,20 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
 
         {/* Query Tool Button */}
         <button
-          className="h-8 px-3 flex items-center justify-center gap-1.5 rounded-lg bg-[#1E293B] hover:bg-[#334155] text-white transition-all duration-200 shadow-sm border border-[#334155] group"
+          className="h-8 px-3 flex items-center justify-center gap-1.5 rounded-lg bg-[#F1F5F9] hover:bg-[#CBD5E1] text-white transition-all duration-200 shadow-sm border border-[#E2E8F0] group"
           title="Query Tool"
         >
-          <Filter className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
+          <Filter className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
           <span className="text-xs font-medium text-[#E2E8F0]">Query Tool</span>
         </button>
 
         {/* Compare Button */}
         <button
           onClick={onCompareToggle}
-          className="h-8 px-3 flex items-center justify-center gap-1.5 rounded-lg bg-[#1E293B] hover:bg-[#334155] text-white transition-all duration-200 shadow-sm border border-[#334155] group"
+          className="h-8 px-3 flex items-center justify-center gap-1.5 rounded-lg bg-[#F1F5F9] hover:bg-[#CBD5E1] text-white transition-all duration-200 shadow-sm border border-[#E2E8F0] group"
           title="Compare Layers"
         >
-          <GitCompare className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
+          <GitCompare className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
           <span className="text-xs font-medium text-[#E2E8F0]">Compare</span>
         </button>
 

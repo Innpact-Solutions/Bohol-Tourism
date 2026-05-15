@@ -185,7 +185,7 @@ export function DetailedBreakdownDataDriven({
       {/* Tooltip */}
       {hoveredSegment && (
         <div 
-          className="fixed z-[100000] bg-[#1E293B] text-white px-2.5 py-1.5 rounded shadow-lg pointer-events-none"
+          className="fixed z-[100000] bg-[#F1F5F9] text-white px-2.5 py-1.5 rounded shadow-lg pointer-events-none"
           style={{ 
             left: `${tooltipPos.x}px`, 
             top: `${tooltipPos.y - 40}px`,

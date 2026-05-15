@@ -32,12 +32,12 @@ interface Props {
 // Dark-theme tokens (match BaseLayerDefaultPanel / LayerAreaBreakdown /
 // HeatStressBuildingChart).
 const C = {
-  cardBg: '#1E293B',
-  panelBg: '#162032',
-  border: '#334155',
-  textPrimary: '#fff',
-  textSecondary: '#E2E8F0',
-  textMuted: '#94A3B8',
+  cardBg: '#ffffff',
+  panelBg: '#F8FAFC',
+  border: '#E2E8F0',
+  textPrimary: '#0F172A',
+  textSecondary: '#475569',
+  textMuted: '#64748B',
   accent: '#0EA5E9',
   accentSoft: '#7DD3FC',
 };

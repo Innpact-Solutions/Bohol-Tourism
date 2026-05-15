@@ -595,7 +595,7 @@ function RoadSafetyIRAPView({
               </div>
               <div className="flex-1 text-left">
                 <div className="text-[10px] text-[#64748B] font-medium">Processing road network spatial analysis...</div>
-                <div className="text-[9px] text-[#94A3B8] mt-1">⏱️ Large dataset processing: This may take 2-5 minutes on first request</div>
+                <div className="text-[9px] text-[#64748B] mt-1">⏱️ Large dataset processing: This may take 2-5 minutes on first request</div>
                 <div className="text-[9px] text-[#2563EB] mt-2 flex items-center gap-1">
                   <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
@@ -1165,7 +1165,7 @@ function MainKPIs({ activeSector, scenario, activeLayerId, selectedWardId, selec
                   <div className="text-[10px] font-medium text-[#64748B]">(10.5%)</div>
                 </div>
               </div>
-              <p className="text-[9px] text-[#94A3B8] ml-8 mt-0.5">High groundwater contamination risk</p>
+              <p className="text-[9px] text-[#64748B] ml-8 mt-0.5">High groundwater contamination risk</p>
             </div>
 
             <div className="h-px bg-gradient-to-r from-transparent via-[#E2E8F0] to-transparent"></div>
@@ -1184,7 +1184,7 @@ function MainKPIs({ activeSector, scenario, activeLayerId, selectedWardId, selec
                   <div className="text-[10px] font-medium text-[#64748B]">(15.3%)</div>
                 </div>
               </div>
-              <p className="text-[9px] text-[#94A3B8] ml-8 mt-0.5">FSM desludging service constraints</p>
+              <p className="text-[9px] text-[#64748B] ml-8 mt-0.5">FSM desludging service constraints</p>
             </div>
 
             <div className="h-px bg-gradient-to-r from-transparent via-[#E2E8F0] to-transparent"></div>
@@ -1203,7 +1203,7 @@ function MainKPIs({ activeSector, scenario, activeLayerId, selectedWardId, selec
                   <div className="text-[10px] font-medium text-[#64748B]">(8.4%)</div>
                 </div>
               </div>
-              <p className="text-[9px] text-[#94A3B8] ml-8 mt-0.5">Septic tank overflow & infrastructure damage risk</p>
+              <p className="text-[9px] text-[#64748B] ml-8 mt-0.5">Septic tank overflow & infrastructure damage risk</p>
             </div>
 
             <div className="h-px bg-gradient-to-r from-transparent via-[#E2E8F0] to-transparent"></div>
@@ -1222,7 +1222,7 @@ function MainKPIs({ activeSector, scenario, activeLayerId, selectedWardId, selec
                   <div className="text-[10px] font-medium text-[#64748B]">(0.7%)</div>
                 </div>
               </div>
-              <p className="text-[9px] text-[#94A3B8] ml-8 mt-0.5">Poor drainage limits onsite sanitation viability</p>
+              <p className="text-[9px] text-[#64748B] ml-8 mt-0.5">Poor drainage limits onsite sanitation viability</p>
             </div>
           </div>
         </div>
@@ -1994,7 +1994,7 @@ function GeneralHazardOverview({ activeSector, activeLayerId, scenario, selected
       {!roadNetworkData.data && !roadNetworkData.loading && !roadNetworkData.error && (
         <div className="border border-[#E5E7EB] rounded-lg p-4 bg-white shadow-sm mb-3 text-center">
           <div className="text-[10px] text-[#64748B]">Multi-hazard road network analysis not available</div>
-          <div className="text-[9px] text-[#94A3B8] mt-1">Select a specific hazard layer to view road network data</div>
+          <div className="text-[9px] text-[#64748B] mt-1">Select a specific hazard layer to view road network data</div>
         </div>
       )}
       </div>
@@ -4308,7 +4308,7 @@ function KPITile({ title, value, subtitle, color, percentage, isDummy = false }:
         </div>
         
         {/* Line 3: Footer - Left Aligned (single line) */}
-        <div className="text-[9px] text-[#94A3B8] leading-tight overflow-hidden">
+        <div className="text-[9px] text-[#64748B] leading-tight overflow-hidden">
           <div 
             ref={subtitleRef}
             className={`whitespace-nowrap ${subtitleOverflows ? 'inline-block animate-scroll-text' : ''}`}
@@ -4399,7 +4399,7 @@ function KPITileWithChange({ title, value, subtitle, color, percentage, change, 
         </div>
         
         {/* Line 3: Footer - Left Aligned (single line) */}
-        <div className="text-[9px] text-[#94A3B8] leading-tight overflow-hidden">
+        <div className="text-[9px] text-[#64748B] leading-tight overflow-hidden">
           <div 
             ref={subtitleRef}
             className={`whitespace-nowrap ${subtitleOverflows ? 'inline-block animate-scroll-text' : ''}`}
@@ -4424,7 +4424,7 @@ function RoadSafetyTooltip({ active, payload }: any) {
     const percentage = data.totalLength > 0 ? ((data.value / data.totalLength) * 100).toFixed(1) : '0';
     
     return (
-      <div className="bg-gray-900 rounded px-2 py-1.5 shadow-lg border border-gray-700">
+      <div className="bg-white rounded px-2 py-1.5 shadow-lg border border-[#E2E8F0]">
         <div className="flex items-center gap-1.5 mb-0.5">
           <div 
             className="w-2 h-2 rounded-sm flex-shrink-0" 
@@ -4684,7 +4684,7 @@ function ImpactDistribution({ data, colors, activeSector, unit = '', title = 'Ha
       {/* Tooltip */}
       {hoveredSegment && (
         <div 
-          className="fixed z-[100000] bg-[#1E293B] text-white px-2.5 py-1.5 rounded shadow-lg pointer-events-none"
+          className="fixed z-[100000] bg-[#F1F5F9] text-white px-2.5 py-1.5 rounded shadow-lg pointer-events-none"
           style={{ 
             left: `${tooltipPos.x}px`, 
             top: `${tooltipPos.y - 40}px`,
@@ -4837,7 +4837,7 @@ function DetailedBreakdown({ title, categoryName, items, colors, activeSector }:
       {/* Tooltip */}
       {hoveredSegment && (
         <div 
-          className="fixed z-[100000] bg-[#1E293B] text-white px-2.5 py-1.5 rounded shadow-lg pointer-events-none"
+          className="fixed z-[100000] bg-[#F1F5F9] text-white px-2.5 py-1.5 rounded shadow-lg pointer-events-none"
           style={{ 
             left: `${tooltipPos.x}px`, 
             top: `${tooltipPos.y - 40}px`,

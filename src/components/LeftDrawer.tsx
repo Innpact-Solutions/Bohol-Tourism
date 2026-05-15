@@ -1,4 +1,4 @@
-import { X, ChevronDown, ChevronRight, Check, Leaf, TrendingUp, Flame, School, Building2, Route, MapPin, TreePine, Users, Thermometer, ThermometerSun, Wind, Droplets, Car, Radio, Sun, CloudRain, Waves, AlertTriangle, Activity, Zap, LucideIcon, Bike, User, GraduationCap, BookOpen, Baby, Cross, Home, Heart, Landmark, ShieldAlert, Mail, Phone, ShoppingBag, PlayCircle, Church, Store, Plane, Bus, Fuel, Train, Network, RotateCcw, Mountain, Layers, Warehouse, CircleDot, Building, UserCircle2, Hospital, Gauge, Info, Star, Trees, Eye, EyeOff, Camera } from 'lucide-react';
+import { X, ChevronDown, ChevronRight, Check, Leaf, TrendingUp, Flame, School, Building2, Route, TreePine, Thermometer, ThermometerSun, Wind, Droplets, Car, Radio, Sun, CloudRain, Waves, AlertTriangle, Activity, Zap, LucideIcon, Bike, User, GraduationCap, BookOpen, Baby, Cross, Home, Heart, Landmark, ShieldAlert, Mail, Phone, ShoppingBag, PlayCircle, Church, Store, Plane, Bus, Fuel, Train, Network, RotateCcw, Mountain, Layers, Warehouse, CircleDot, Building, UserCircle2, Hospital, Gauge, Info, Trees, Eye, EyeOff, Camera, MapPin, Star, Users } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import type { Sector, Scenario } from '../App';
 import { InfrastructureRiskPanel } from './InfrastructureRiskPanel';
@@ -17,6 +17,7 @@ import { getUILayerLegend, type LegendEntry } from '../utils/legendLoader';
 
 interface LeftDrawerProps {
   activeSector: Sector;
+  onSectorChange?: (sector: Sector) => void;
   activeLayerId: string;
   onLayerChange: (layerId: string) => void;
   onScenarioChange: (scenario: Scenario) => void;
@@ -265,7 +266,7 @@ const sectorData = {
             { label: '★★★★☆', color: '#A3E635', importance: 'Good' },
             { label: '★★★☆☆', color: '#FFEE58', importance: 'Fair' },
             { label: '★★☆☆☆', color: '#FFA726', importance: 'Poor' },
-            { label: '★���☆☆☆', color: '#EF5350', importance: 'Critical' },
+            { label: '★☆☆☆☆', color: '#EF5350', importance: 'Critical' },
           ]
         }
       },
@@ -301,11 +302,12 @@ const sectorData = {
   }
 };
 
-const LEGEND_STRIP_CLASS = "mt-1.5 px-2 py-1.5 bg-[#162032] border border-[#334155] rounded-md";
-const LEGEND_LABEL_CLASS = "text-[9px] text-[#94A3B8] font-medium flex-shrink-0";
+const LEGEND_STRIP_CLASS = "mt-1.5 px-2 py-1.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-md";
+const LEGEND_LABEL_CLASS = "text-[9px] text-[#64748B] font-medium flex-shrink-0";
 
 export function LeftDrawer({ 
   activeSector, 
+  onSectorChange,
   activeLayerId, 
   onLayerChange, 
   onScenarioChange,
@@ -441,6 +443,7 @@ export function LeftDrawer({
   });
   const [scenarioExpanded, setScenarioExpanded] = useState(false);
   const [dataLayersExpanded, setDataLayersExpanded] = useState(true);
+  const [climateHazardsExpanded, setClimateHazardsExpanded] = useState(true);
   const [baseLayersExpanded, setBaseLayersExpanded] = useState(false);
   const [buildingUseExpanded, setBuildingUseExpanded] = useState(true); // Building Layers section expanded by default
   const [buildingUseLayerExpanded, setBuildingUseLayerExpanded] = useState(true); // Building Use layer expanded by default (on)
@@ -816,43 +819,16 @@ export function LeftDrawer({
       }
     },
     { 
-      id: 'waterbody', 
-      name: 'Waterbody', 
-      icon: Waves, 
-      color: '#3B82F6'
-    },
-    { 
-      id: 'elevation', 
-      name: 'Elevation', 
-      icon: Mountain, 
-      color: '#78716C'
-    },
-    { 
-      id: 'watershed', 
-      name: 'Watershed and Drainage', 
-      icon: Droplets, 
-      color: '#2563EB',
-      legend: {
-        classes: [
-          { label: '1st Order', color: '#B3E5FC', width: 1.0 },
-          { label: '2nd Order', color: '#81D4FA', width: 1.5 },
-          { label: '3rd Order', color: '#4FC3F7', width: 2.0 },
-          { label: '4th Order', color: '#29B6F6', width: 2.5 },
-          { label: '5th Order', color: '#1565C0', width: 3.0 },
-        ]
-      }
-    },
-    { 
-      id: 'builtup_density', 
-      name: 'Built-up Density', 
-      icon: Trees, 
-      color: '#F59E0B'
-    },
-    { 
       id: 'ndvi', 
       name: 'Green Cover (NDVI)', 
       icon: Trees, 
       color: '#16A34A'
+    },
+    { 
+      id: 'buildings', 
+      name: 'Buildings', 
+      icon: Building, 
+      color: '#6B7280'
     },
   ];
 
@@ -1170,73 +1146,47 @@ export function LeftDrawer({
     setTooltipData(null);
   };
 
-  // Tourism sector: render the dedicated tourism panel and bypass other UI
-  if (activeSector === 'tourism') {
-    return (
-      <div className="w-[400px] h-full bg-stone-100 border-r border-stone-300 flex flex-col flex-shrink-0">
-        <TourismPanel />
-      </div>
-    );
-  }
+  // Tourism is now always rendered at the top of the unified left drawer.
 
   return (
     <>
-    {/* Collapsed Mini Panel */}
-    {collapsed ? (
-      <div 
-        className="w-12 bg-gradient-to-b from-[#1E293B] to-[#0F172A] border-r border-white/10 flex flex-col items-center py-3 gap-2"
-        style={{
-          transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          willChange: 'width',
-          transform: 'translateZ(0)'
-        }}
-      >
-        <button
-          onClick={onToggleCollapse}
-          className="p-2 hover:bg-white/10 rounded transition-colors duration-200"
-          title="Expand layer panel"
-        >
-          <ChevronRight className="w-5 h-5 text-white transition-transform duration-200 hover:scale-110" />
-        </button>
-        <div className="h-px w-8 bg-white/10" />
-        <Layers className="w-5 h-5 text-[#94A3B8]" />
-      </div>
-    ) : (
-    <div 
+    <div
       data-tutorial="left-drawer"
-      className="w-72 bg-[#0B1120] border-r border-[#334155] flex-shrink-0 shadow-lg" 
-      style={{ 
-        transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease-in-out',
-        willChange: 'width', 
-        transform: 'translateZ(0)' 
-      }}
+      className="w-72 bg-white border-r border-[#E2E8F0] flex-shrink-0 shadow-lg"
     >
       <div className="h-full flex flex-col">
-        {/* Collapse Button at Top */}
-        <div 
-          className="px-3 py-2 border-b border-[#334155] flex items-center justify-between bg-[#162032] animate-in fade-in duration-200"
-          style={{ animationDelay: '100ms' }}
-        >
-          <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-[#94A3B8]" />
-            <span className="text-xs font-semibold text-white">Layer Controls</span>
-          </div>
-          {onToggleCollapse && (
-            <button
-              onClick={onToggleCollapse}
-              className="p-1 hover:bg-[#1E293B] rounded transition-all duration-200"
-              title="Collapse panel"
-            >
-              <ChevronDown className="w-4 h-4 text-[#94A3B8] transform rotate-90 transition-transform duration-200 hover:scale-110" />
-            </button>
-          )}
-        </div>
-
         {/* Scrollable Content Area */}
           <div 
             className="flex-1 animate-in fade-in duration-300" 
             style={{ overflowY: 'auto', overflowX: 'visible', animationDelay: '150ms' }}
           >
+            {/* Tourism Section (always visible at top) */}
+            <div className="border-b border-[#E2E8F0]">
+              <TourismPanel embedded selectedLgu={selectedLguName} selectedBrgy={selectedWardName} />
+            </div>
+
+            {/* Climate & Hazards Title Card (collapsible) */}
+            <button
+              onClick={() => setClimateHazardsExpanded(!climateHazardsExpanded)}
+              className="w-full bg-[#F8FAFC] px-4 py-3 hover:bg-[#F1F5F9] transition-colors text-left flex items-center gap-3 border-b border-[#E2E8F0]"
+            >
+              <div className="w-7 h-7 rounded-md flex items-center justify-center bg-[#DBEAFE] border border-[#2563EB]/40 shrink-0">
+                <Layers className="w-4 h-4 text-[#1E40AF]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[13px] font-semibold text-[#0F172A] truncate">
+                  Climate &amp; Hazards
+                </div>
+              </div>
+              {climateHazardsExpanded ? (
+                <ChevronDown className="w-4 h-4 text-[#64748B]" />
+              ) : (
+                <ChevronRight className="w-4 h-4 text-[#64748B]" />
+              )}
+            </button>
+
+            {climateHazardsExpanded && (
+            <>
             {/* Infrastructure Risk - Special Content */}
             {activeSector === 'infra' && (
               <InfrastructureRiskPanel 
@@ -1250,24 +1200,24 @@ export function LeftDrawer({
             {activeSector !== 'infra' && (
               <>
               {/* Base Layers Section */}
-              <div className="border-b border-[#334155]" data-tutorial="base-layers-section">
+              <div className="border-b border-[#E2E8F0]" data-tutorial="base-layers-section">
                 {/* Base Layers Header - Collapsible */}
                 <button
                   onClick={() => setBaseLayersExpanded(!baseLayersExpanded)}
-                  className="w-full bg-[#162032] px-4 py-2.5 hover:bg-[#1E293B] transition-all duration-200 text-left cursor-pointer group"
+                  className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 text-left cursor-pointer group"
                 >
                   <div className="flex items-start justify-between text-left">
                     <div className="flex items-start gap-2 flex-1">
                       <div className="w-1 h-3.5 bg-gradient-to-b from-[#64748B] to-[#475569] rounded-full mt-0.5 flex-shrink-0" />
                       <div className="flex-1 text-left">
-                        <h3 className="text-xs font-semibold text-white text-left">Base Layers</h3>
+                        <h3 className="text-xs font-semibold text-[#0F172A] text-left">Base Layers</h3>
                       </div>
                     </div>
                     <div className="ml-2 flex-shrink-0">
                       {baseLayersExpanded ? (
-                        <ChevronDown className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                        <ChevronDown className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                       ) : (
-                        <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                        <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                       )}
                     </div>
                   </div>
@@ -1275,7 +1225,7 @@ export function LeftDrawer({
 
                 {/* Base Layers List */}
                 {baseLayersExpanded && (
-                  <div className="px-3 py-3 bg-[#0B1120]" data-tutorial="base-layers-content">
+                  <div className="px-3 py-3 bg-white" data-tutorial="base-layers-content">
                     <div className="space-y-1">
                       {baseLayers.map((layer) => {
                         const isActive = activeBaseLayers.includes(layer.id);
@@ -1336,19 +1286,19 @@ export function LeftDrawer({
                               }}
                               className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                                 isActive
-                                  ? 'bg-gradient-to-r from-[#64748B] to-[#475569] text-white shadow-sm'
-                                  : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                                  ? 'bg-[#F1F5F9] border border-[#475569]/40 text-[#0F172A] shadow-sm'
+                                  : 'hover:bg-[#F1F5F9] text-[#475569]'
                               }`}
                             >
                               <div className="flex items-center gap-2">
                                 <LayerIcon 
                                   className={`w-3.5 h-3.5 flex-shrink-0 ${
-                                    isActive ? 'text-white' : 'text-[#94A3B8]'
+                                    isActive ? 'text-[#0E7490]' : 'text-[#64748B]'
                                   }`} 
                                 />
                                 <div className="flex-1 min-w-0">
                                   <div className={`text-[11px] font-medium leading-tight ${
-                                    isActive ? 'text-white' : 'text-[#CBD5E1]'
+                                    isActive ? 'text-[#0E7490]' : 'text-[#475569]'
                                   }`}>
                                     {layer.name}
                                   </div>
@@ -1366,15 +1316,16 @@ export function LeftDrawer({
                 )}
               </div>
 
-              {/* Building Layers Section */}
-              <div className={`border-b border-[#334155] relative${isModuleActive ? ' pointer-events-none select-none' : ''}`}>
+              {/* Building Layers Section - REMOVED PER USER REQUEST */}
+              {false && (
+              <div className={`border-b border-[#E2E8F0] relative${isModuleActive ? ' pointer-events-none select-none' : ''}`}>
                 {isModuleActive && (
-                  <div className="absolute inset-0 z-10 bg-[#0B1120]/70 flex items-center justify-center rounded">
-                    <span className="text-[9px] font-semibold text-[#64748B] tracking-wider uppercase px-2 py-1 bg-[#0B1120]/80 rounded">Inactive — Module 1 active</span>
+                  <div className="absolute inset-0 z-10 bg-white/70 flex items-center justify-center rounded">
+                    <span className="text-[9px] font-semibold text-[#64748B] tracking-wider uppercase px-2 py-1 bg-white/80 rounded">Inactive — Module 1 active</span>
                   </div>
                 )}
                 {/* Building Layers Header - Collapsible */}
-                <div className="w-full bg-[#162032] px-4 py-2.5 hover:bg-[#1E293B] transition-all duration-200 group">
+                <div className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 group">
                   <div className="flex items-start justify-between text-left">
                     <button
                       onClick={() => setBuildingUseExpanded(!buildingUseExpanded)}
@@ -1383,7 +1334,7 @@ export function LeftDrawer({
                       <div className="w-1 h-3.5 bg-gradient-to-b from-[#0891B2] to-[#0E7490] rounded-full mt-0.5 flex-shrink-0" />
                       <div className="flex-1 text-left">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-xs font-semibold text-white text-left">Building Layers</h3>
+                          <h3 className="text-xs font-semibold text-[#0F172A] text-left">Building Layers</h3>
                           {/* Reset Button - Shows when any building categories are active */}
                           {(activeBuildingCategories.length > 0 || activeBuildingSubcategories.length > 0) && (
                             <span
@@ -1393,10 +1344,10 @@ export function LeftDrawer({
                                 setActiveBuildingSubcategories([]);
                                 setPreviousBuildingCategories([]);
                               }}
-                              className="p-0.5 rounded hover:bg-[#1E293B] transition-colors group/reset cursor-pointer inline-flex items-center flex-shrink-0"
+                              className="p-0.5 rounded hover:bg-[#F1F5F9] transition-colors group/reset cursor-pointer inline-flex items-center flex-shrink-0"
                               title="Reset all building categories"
                             >
-                              <RotateCcw className="w-3 h-3 text-[#94A3B8] group-hover/reset:text-white group-hover/reset:rotate-180 transition-all duration-300" />
+                              <RotateCcw className="w-3 h-3 text-[#64748B] group-hover/reset:text-[#0F172A] group-hover/reset:rotate-180 transition-all duration-300" />
                             </span>
                           )}
                         </div>
@@ -1407,9 +1358,9 @@ export function LeftDrawer({
                       className="ml-2 flex-shrink-0 cursor-pointer"
                     >
                       {buildingUseExpanded ? (
-                        <ChevronDown className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                        <ChevronDown className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                       ) : (
-                        <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                        <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                       )}
                     </button>
                   </div>
@@ -1417,282 +1368,8 @@ export function LeftDrawer({
 
                 {/* Building Layers Content */}
                 {buildingUseExpanded && (
-                  <div className="px-3 py-3 bg-[#0B1120]">
+                  <div className="px-3 py-3 bg-white">
                     <div className="space-y-1">
-                      {/* Building Use Layer */}
-                      <div>
-                        <button
-                          onClick={() => {
-                            // Toggle Building Use on/off and expand/collapse
-                            if (activeBuildingCategories.length > 0) {
-                              // Turn off Building Use and collapse
-                              setActiveBuildingCategories([]);
-                              setActiveBuildingSubcategories([]);
-                              setPreviousBuildingCategories([]);
-                              setBuildingUseLayerExpanded(false); // Collapse
-                            } else {
-                              // Turn on Building Use, expand, and turn off Economic Vulnerability
-                              const allCategoryIds = buildingUseCategories.map(cat => cat.id);
-                              setActiveBuildingCategories(allCategoryIds);
-                              setActiveBuildingSubcategories([]);
-                              setPreviousBuildingCategories([]);
-                              setIsEconomicVulnerabilityActive(false); // Turn off Economic Vulnerability
-                              setActiveBuildingHeightCategories([]); // Turn off Building Height
-                              setActiveBuildingAreaCategories([]); // Turn off Building Floor Area
-                              setBuildingUseLayerExpanded(true); // Expand
-                            }
-                          }}
-                          className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
-                            activeBuildingCategories.length > 0
-                              ? 'bg-gradient-to-r from-[#0891B2] to-[#0E7490] text-white shadow-sm shadow-[#0891B2]/20'
-                              : 'hover:bg-[#1E293B] text-[#CBD5E1]'
-                          }`}
-                        >
-                          <div className="flex items-start gap-2">
-                            <Building2 className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${
-                              activeBuildingCategories.length > 0 ? 'text-white' : 'text-[#0891B2]'
-                            }`} />
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between gap-2">
-                                <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
-                                  activeBuildingCategories.length > 0 ? 'text-white' : 'text-[#CBD5E1]'
-                                }`}>
-                                  Building Use
-                                </div>
-                                <div 
-                                  className="flex-shrink-0 p-1 -m-1 cursor-help"
-                                  onMouseEnter={(e) => handleTooltipShow(e, 'Displays buildings categorized by their primary use: Residential, Commercial, Tourism, Education, Healthcare, Government, and Religious & Cultural.')}
-                                  onMouseLeave={handleTooltipHide}
-                                >
-                                  <Info className={`w-3.5 h-3.5 ${
-                                    activeBuildingCategories.length > 0 ? 'text-white/70' : 'text-[#94A3B8]'
-                                  }`} />
-                                </div>
-                              </div>
-                              <div className={`text-[9px] leading-tight ${
-                                activeBuildingCategories.length > 0 ? 'text-white/75' : 'text-[#94A3B8]'
-                              }`}>
-                                Land use & occupancy types
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-
-                      {/* Building Use categories - expandable */}
-                      {buildingUseLayerExpanded && (
-                        <div className="mt-2 ml-4 space-y-1">
-                          {buildingUseCategories.map((category) => {
-                        const CategoryIcon = category.icon;
-                        const isActive = activeBuildingCategories.includes(category.id);
-                        const isExpanded = expandedBuildingCategories.includes(category.id);
-                        const hasSubcategories = category.subcategories && category.subcategories.length > 0;
-                        
-                        // Check if any subcategories are selected
-                        const activeSubCount = category.subcategories.filter(sub => 
-                          activeBuildingSubcategories.includes(sub)
-                        ).length;
-                        
-                        return (
-                          <div key={category.id}>
-                            {/* Category Header */}
-                            <div
-                              className={`w-full rounded-md transition-all duration-200 ${
-                                isActive
-                                  ? 'bg-[#1E293B] shadow-sm'
-                                  : 'hover:bg-[#1E293B] text-[#CBD5E1]'
-                              }`}
-                            >
-                              <div className="flex items-center gap-1">
-                                {/* Left side: Icon + Label (clickable for on/off) */}
-                                <button
-                                  onClick={() => {
-                                    // Toggle active state - multiple categories can be active (multi-select)
-                                    if (isActive) {
-                                      // Turn OFF this category
-                                      setActiveBuildingCategories(activeBuildingCategories.filter(id => id !== category.id));
-                                      // Also clear any subcategories from this category
-                                      const remainingSubcategories = activeBuildingSubcategories.filter(
-                                        sub => !category.subcategories.includes(sub)
-                                      );
-                                      setActiveBuildingSubcategories(remainingSubcategories);
-                                      // If no subcategories remain, clear previous state
-                                      if (remainingSubcategories.length === 0) {
-                                        setPreviousBuildingCategories([]);
-                                      }
-                                    } else {
-                                      // Turn ON this category (add to active list)
-                                      setActiveBuildingCategories([...activeBuildingCategories, category.id]);
-                                      // Clear specific subcategory selections for this category (show all)
-                                      const remainingSubcategories = activeBuildingSubcategories.filter(
-                                        sub => !category.subcategories.includes(sub)
-                                      );
-                                      setActiveBuildingSubcategories(remainingSubcategories);
-                                      // If no subcategories remain, clear previous state
-                                      if (remainingSubcategories.length === 0) {
-                                        setPreviousBuildingCategories([]);
-                                      }
-                                    }
-                                  }}
-                                  className="flex-1 flex items-center gap-2 px-2.5 py-2 text-left cursor-pointer rounded-l-md hover:opacity-80 transition-opacity"
-                                >
-                                  <CategoryIcon 
-                                    className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? 'text-[#0891B2]' : 'text-[#94A3B8]'}`}
-                                  />
-                                  <div className="flex items-center gap-1.5 flex-1 min-w-0">
-                                    <div className={`text-[11px] font-medium leading-tight ${
-                                      isActive ? 'text-white' : 'text-[#CBD5E1]'
-                                    }`}>
-                                      {category.name}
-                                    </div>
-                                    {/* Color indicator dot */}
-                                    <div 
-                                      className="w-2 h-2 rounded-full flex-shrink-0" 
-                                      style={{ backgroundColor: category.color, opacity: isActive ? 1 : 0.5 }}
-                                      title={`${category.name} color indicator`}
-                                    />
-                                    {activeSubCount > 0 && (
-                                      <span className="text-[9px] text-[#94A3B8] flex-shrink-0">
-                                        ({activeSubCount}/{category.subcategories.length})
-                                      </span>
-                                    )}
-                                  </div>
-                                </button>
-                                
-                                {/* Right side: Expand/Collapse Button - larger clickable area */}
-                                {hasSubcategories && (
-                                  <button
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      // Toggle expansion - only one category expanded at a time (accordion)
-                                      if (isExpanded) {
-                                        setExpandedBuildingCategories(expandedBuildingCategories.filter(id => id !== category.id));
-                                      } else {
-                                        setExpandedBuildingCategories([category.id]);
-                                      }
-                                    }}
-                                    className={`px-3 py-2 rounded-r-md transition-all duration-200 flex-shrink-0 ${
-                                      isExpanded 
-                                        ? 'bg-[#334155] hover:bg-[#475569]' 
-                                        : 'hover:bg-[#334155]'
-                                    }`}
-                                    title={isExpanded ? "Collapse subcategories" : "Expand subcategories"}
-                                  >
-                                    {isExpanded ? (
-                                      <ChevronDown className="w-3.5 h-3.5 text-[#94A3B8]" />
-                                    ) : (
-                                      <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8]" />
-                                    )}
-                                  </button>
-                                )}
-                                
-                                {/* Placeholder for alignment when no subcategories */}
-                                {!hasSubcategories && (
-                                  <div className="w-2 flex-shrink-0"></div>
-                                )}
-                              </div>
-                            </div>
-                            
-                            {/* Subcategories List */}
-                            {isExpanded && hasSubcategories && (
-                              <div className="ml-6 mt-1 space-y-0.5">
-                                {category.subcategories.map((subcategory) => {
-                                  // Check if this specific subcategory is selected
-                                  const isSpecificallySelected = activeBuildingSubcategories.includes(subcategory);
-                                  
-                                  // Check if any subcategories from this category are selected
-                                  const hasAnySubcategoriesSelected = category.subcategories.some(sub => 
-                                    activeBuildingSubcategories.includes(sub)
-                                  );
-                                  
-                                  // Subcategory is "active" if:
-                                  // 1. It's specifically selected, OR
-                                  // 2. Its parent category is active AND no specific subcategories from this category are selected
-                                  const isSubActive = isSpecificallySelected || (isActive && !hasAnySubcategoriesSelected);
-                                  
-                                  return (
-                                    <button
-                                      key={subcategory}
-                                      onClick={() => {
-                                        console.log('🔵 Subcategory clicked:', subcategory);
-                                        console.log('🔵 Current activeBuildingSubcategories:', activeBuildingSubcategories);
-                                        console.log('🔵 Is specifically selected:', isSpecificallySelected);
-                                        
-                                        if (isSpecificallySelected) {
-                                          // This subcategory is specifically selected - remove it
-                                          const newSubcategories = activeBuildingSubcategories.filter(sub => sub !== subcategory);
-                                          console.log('🔵 Removing specifically selected subcategory. New list:', newSubcategories);
-                                          setActiveBuildingSubcategories(newSubcategories);
-                                          
-                                          // If no subcategories remain, restore previous category state
-                                          if (newSubcategories.length === 0 && previousBuildingCategories.length > 0) {
-                                            console.log('🔵 No subcategories left, restoring previous categories:', previousBuildingCategories);
-                                            setActiveBuildingCategories(previousBuildingCategories);
-                                            setPreviousBuildingCategories([]);
-                                          }
-                                        } else {
-                                          // Subcategory is not specifically selected
-                                          // This means it's active because its parent category is active
-                                          // Now we're selecting it specifically
-                                          
-                                          // First subcategory being selected - save current category state
-                                          if (activeBuildingSubcategories.length === 0) {
-                                            console.log('🔵 First subcategory selection - saving previous categories:', activeBuildingCategories);
-                                            setPreviousBuildingCategories(activeBuildingCategories);
-                                          }
-                                          
-                                          // Add this subcategory
-                                          const newSubcategories = [...activeBuildingSubcategories, subcategory];
-                                          console.log('🔵 Adding subcategory. New list:', newSubcategories);
-                                          setActiveBuildingSubcategories(newSubcategories);
-                                          
-                                          // Get all parent categories of currently selected subcategories
-                                          const parentCategories = new Set<string>();
-                                          newSubcategories.forEach(sub => {
-                                            const parent = buildingUseCategories.find(cat => cat.subcategories.includes(sub));
-                                            if (parent) {
-                                              parentCategories.add(parent.id);
-                                            }
-                                          });
-                                          
-                                          // Set only the parent categories of selected subcategories as active
-                                          const parentCategoriesArray = Array.from(parentCategories);
-                                          console.log('🔵 Setting active categories to parent categories only:', parentCategoriesArray);
-                                          setActiveBuildingCategories(parentCategoriesArray);
-                                        }
-                                      }}
-                                      className={`w-full text-left px-2 py-1.5 rounded text-[10px] transition-all duration-200 ${
-                                        isSpecificallySelected
-                                          ? 'bg-[#1E293B] text-[#60A5FA] font-medium border border-[#3B82F6]'
-                                          : isSubActive
-                                          ? 'bg-[#162032] text-[#94A3B8]'
-                                          : 'text-[#94A3B8] hover:bg-[#1E293B]'
-                                      }`}
-                                    >
-                                      <div className="flex items-center gap-1.5">
-                                        <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-                                          isSpecificallySelected ? 'bg-[#3B82F6]' : isSubActive ? 'bg-[#94A3B8]' : 'bg-[#475569]'
-                                        }`} />
-                                        <span className="flex-1 min-w-0 truncate">{subcategory}</span>
-                                        {useSubCounts[subcategory] !== undefined && (
-                                          <span className={`flex-shrink-0 text-[9px] tabular-nums ${
-                                            isSpecificallySelected ? 'text-[#60A5FA]' : 'text-[#475569]'
-                                          }`}>
-                                            {useSubCounts[subcategory].toLocaleString()}
-                                          </span>
-                                        )}
-                                      </div>
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                            )}
-                          </div>
-                          );
-                          })}
-                        </div>
-                      )}
-
                       {/* Economic Vulnerability Layer */}
                       <div>
                         <button
@@ -1714,18 +1391,18 @@ export function LeftDrawer({
                           }}
                           className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                             isEconomicVulnerabilityActive /* EV button */
-                              ? 'bg-gradient-to-r from-[#0891B2] to-[#0E7490] text-white shadow-sm shadow-[#0891B2]/20'
-                              : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                              ? 'bg-[#ECFEFF] border border-[#0891B2]/40 text-[#0E7490] shadow-sm'
+                              : 'hover:bg-[#F1F5F9] text-[#475569]'
                           }`}
                         >
                           <div className="flex items-start gap-2">
                             <AlertTriangle className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${
-                              isEconomicVulnerabilityActive ? 'text-white' : 'text-[#0891B2]'
+                              isEconomicVulnerabilityActive ? 'text-[#0E7490]' : 'text-[#0891B2]'
                             }`} />
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between gap-2">
                                 <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
-                                  isEconomicVulnerabilityActive ? 'text-white' : 'text-[#CBD5E1]'
+                                  isEconomicVulnerabilityActive ? 'text-[#0E7490]' : 'text-[#475569]'
                                 }`}>
                                   Economic Vulnerability
                                 </div>
@@ -1735,12 +1412,12 @@ export function LeftDrawer({
                                   onMouseLeave={handleTooltipHide}
                                 >
                                   <Info className={`w-3.5 h-3.5 ${
-                                    isEconomicVulnerabilityActive ? 'text-white/70' : 'text-[#94A3B8]'
+                                    isEconomicVulnerabilityActive ? 'text-[#0E7490]/80' : 'text-[#64748B]'
                                   }`} />
                                 </div>
                               </div>
                               <div className={`text-[9px] leading-tight ${
-                                isEconomicVulnerabilityActive ? 'text-white/75' : 'text-[#94A3B8]'
+                                isEconomicVulnerabilityActive ? 'text-[#0E7490]/85' : 'text-[#64748B]'
                               }`}>
                                 Economically vulnerable buildings
                               </div>
@@ -1770,18 +1447,18 @@ export function LeftDrawer({
                           }}
                           className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                             activeBuildingHeightCategories.length > 0
-                              ? 'bg-gradient-to-r from-[#0891B2] to-[#0E7490] text-white shadow-sm shadow-[#0891B2]/20'
-                              : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                              ? 'bg-[#ECFEFF] border border-[#0891B2]/40 text-[#0E7490] shadow-sm'
+                              : 'hover:bg-[#F1F5F9] text-[#475569]'
                           }`}
                         >
                           <div className="flex items-start gap-2">
                             <Layers className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${
-                              activeBuildingHeightCategories.length > 0 ? 'text-white' : 'text-[#0891B2]'
+                              activeBuildingHeightCategories.length > 0 ? 'text-[#0E7490]' : 'text-[#0891B2]'
                             }`} />
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between gap-2">
                                 <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
-                                  activeBuildingHeightCategories.length > 0 ? 'text-white' : 'text-[#CBD5E1]'
+                                  activeBuildingHeightCategories.length > 0 ? 'text-[#0E7490]' : 'text-[#475569]'
                                 }`}>
                                   Building Height
                                 </div>
@@ -1795,8 +1472,8 @@ export function LeftDrawer({
                                       className="p-0.5 rounded hover:bg-white/10 transition-colors flex-shrink-0"
                                     >
                                       {buildingHeightLayerExpanded
-                                        ? <ChevronDown className="w-3 h-3 text-white/80" />
-                                        : <ChevronRight className="w-3 h-3 text-white/80" />
+                                        ? <ChevronDown className="w-3 h-3 text-[#0E7490]/80" />
+                                        : <ChevronRight className="w-3 h-3 text-[#0E7490]/80" />
                                       }
                                     </button>
                                   )}
@@ -1806,13 +1483,13 @@ export function LeftDrawer({
                                     onMouseLeave={handleTooltipHide}
                                   >
                                     <Info className={`w-3.5 h-3.5 ${
-                                      activeBuildingHeightCategories.length > 0 ? 'text-white/70' : 'text-[#94A3B8]'
+                                      activeBuildingHeightCategories.length > 0 ? 'text-[#0E7490]/80' : 'text-[#64748B]'
                                     }`} />
                                   </div>
                                 </div>
                               </div>
                               <div className={`text-[9px] leading-tight ${
-                                activeBuildingHeightCategories.length > 0 ? 'text-white/75' : 'text-[#94A3B8]'
+                                activeBuildingHeightCategories.length > 0 ? 'text-[#0E7490]/85' : 'text-[#64748B]'
                               }`}>
                                 {activeBuildingHeightCategories.length > 0
                                   ? 'Classify buildings by floor count'
@@ -1833,8 +1510,8 @@ export function LeftDrawer({
                                   onClick={() => handleHeightSublayerClick(cat.id)}
                                   className={`w-full text-left px-2.5 py-1.5 rounded-md transition-all duration-200 ${
                                     isActive
-                                      ? 'bg-[#1E293B] text-white'
-                                      : 'text-[#94A3B8] hover:bg-[#1E293B]'
+                                      ? 'bg-[#ECFEFF] border border-[#0891B2]/40 text-[#0E7490]'
+                                      : 'text-[#64748B] hover:bg-[#F1F5F9]'
                                   }`}
                                 >
                                   <div className="flex items-center gap-2">
@@ -1844,14 +1521,14 @@ export function LeftDrawer({
                                     />
                                     <div className="flex-1 min-w-0">
                                       <div className="flex items-center justify-between gap-1">
-                                        <span className={`text-[10px] font-medium leading-tight ${isActive ? 'text-white' : 'text-[#94A3B8]'}`}>
+                                        <span className={`text-[10px] font-medium leading-tight ${isActive ? 'text-[#0E7490]' : 'text-[#64748B]'}`}>
                                           {cat.name}
                                         </span>
-                                        <span className={`text-[9px] flex-shrink-0 ${isActive ? 'text-white/60' : 'text-[#64748B]'}`}>
+                                        <span className={`text-[9px] flex-shrink-0 ${isActive ? 'text-[#0E7490]/70' : 'text-[#64748B]'}`}>
                                           {cat.type}
                                         </span>
                                       </div>
-                                      <div className={`text-[9px] ${isActive ? 'text-white/50' : 'text-[#64748B]'}`}>
+                                      <div className={`text-[9px] ${isActive ? 'text-[#0E7490]/60' : 'text-[#64748B]'}`}>
                                         {cat.floors} floors
                                       </div>
                                     </div>
@@ -1885,18 +1562,18 @@ export function LeftDrawer({
                           }}
                           className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                             activeBuildingAreaCategories.length > 0
-                              ? 'bg-gradient-to-r from-[#0891B2] to-[#0E7490] text-white shadow-sm shadow-[#0891B2]/20'
-                              : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                              ? 'bg-[#ECFEFF] border border-[#0891B2]/40 text-[#0E7490] shadow-sm'
+                              : 'hover:bg-[#F1F5F9] text-[#475569]'
                           }`}
                         >
                           <div className="flex items-start gap-2">
                             <Warehouse className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${
-                              activeBuildingAreaCategories.length > 0 ? 'text-white' : 'text-[#0891B2]'
+                              activeBuildingAreaCategories.length > 0 ? 'text-[#0E7490]' : 'text-[#0891B2]'
                             }`} />
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between gap-2">
                                 <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
-                                  activeBuildingAreaCategories.length > 0 ? 'text-white' : 'text-[#CBD5E1]'
+                                  activeBuildingAreaCategories.length > 0 ? 'text-[#0E7490]' : 'text-[#475569]'
                                 }`}>
                                   Building Floor Area
                                 </div>
@@ -1910,8 +1587,8 @@ export function LeftDrawer({
                                       className="p-0.5 rounded hover:bg-white/10 transition-colors flex-shrink-0"
                                     >
                                       {buildingAreaLayerExpanded
-                                        ? <ChevronDown className="w-3 h-3 text-white/80" />
-                                        : <ChevronRight className="w-3 h-3 text-white/80" />
+                                        ? <ChevronDown className="w-3 h-3 text-[#0E7490]/80" />
+                                        : <ChevronRight className="w-3 h-3 text-[#0E7490]/80" />
                                       }
                                     </button>
                                   )}
@@ -1921,13 +1598,13 @@ export function LeftDrawer({
                                     onMouseLeave={handleTooltipHide}
                                   >
                                     <Info className={`w-3.5 h-3.5 ${
-                                      activeBuildingAreaCategories.length > 0 ? 'text-white/70' : 'text-[#94A3B8]'
+                                      activeBuildingAreaCategories.length > 0 ? 'text-[#0E7490]/80' : 'text-[#64748B]'
                                     }`} />
                                   </div>
                                 </div>
                               </div>
                               <div className={`text-[9px] leading-tight ${
-                                activeBuildingAreaCategories.length > 0 ? 'text-white/75' : 'text-[#94A3B8]'
+                                activeBuildingAreaCategories.length > 0 ? 'text-[#0E7490]/85' : 'text-[#64748B]'
                               }`}>
                                 {activeBuildingAreaCategories.length > 0
                                   ? 'Classify buildings by total floor area'
@@ -1948,8 +1625,8 @@ export function LeftDrawer({
                                   onClick={() => handleAreaSublayerClick(cat.id)}
                                   className={`w-full text-left px-2.5 py-1.5 rounded-md transition-all duration-200 ${
                                     isActive
-                                      ? 'bg-[#1E293B] text-white'
-                                      : 'text-[#94A3B8] hover:bg-[#1E293B]'
+                                      ? 'bg-[#ECFEFF] border border-[#0891B2]/40 text-[#0E7490]'
+                                      : 'text-[#64748B] hover:bg-[#F1F5F9]'
                                   }`}
                                 >
                                   <div className="flex items-center gap-2">
@@ -1959,14 +1636,14 @@ export function LeftDrawer({
                                     />
                                     <div className="flex-1 min-w-0">
                                       <div className="flex items-center justify-between gap-1">
-                                        <span className={`text-[10px] font-medium leading-tight ${isActive ? 'text-white' : 'text-[#94A3B8]'}`}>
+                                        <span className={`text-[10px] font-medium leading-tight ${isActive ? 'text-[#0E7490]' : 'text-[#64748B]'}`}>
                                           {cat.name}
                                         </span>
-                                        <span className={`text-[9px] flex-shrink-0 ${isActive ? 'text-white/60' : 'text-[#64748B]'}`}>
+                                        <span className={`text-[9px] flex-shrink-0 ${isActive ? 'text-[#0E7490]/70' : 'text-[#64748B]'}`}>
                                           {cat.range}
                                         </span>
                                       </div>
-                                      <div className={`text-[9px] ${isActive ? 'text-white/50' : 'text-[#64748B]'}`}>
+                                      <div className={`text-[9px] ${isActive ? 'text-[#0E7490]/60' : 'text-[#64748B]'}`}>
                                         {cat.desc}
                                       </div>
                                     </div>
@@ -1981,31 +1658,32 @@ export function LeftDrawer({
                   </div>
                 )}
               </div>
+              )}
 
               {/* Data Layers Section - For heat and flood sectors */}
               {(activeSector === 'heat' || activeSector === 'flood') && (
-              <div className="border-b border-[#334155]" data-tutorial="hazard-layers-section">
+              <div className="border-b border-[#E2E8F0]" data-tutorial="hazard-layers-section">
                 {/* Layer List Section Header - Collapsible */}
                 <button
                   onClick={() => setDataLayersExpanded(!dataLayersExpanded)}
-                  className="w-full bg-[#162032] px-4 py-2.5 hover:bg-[#1E293B] transition-all duration-200 text-left cursor-pointer group"
+                  className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 text-left cursor-pointer group"
                 >
                 <div className="flex items-start justify-between text-left">
                   <div className="flex items-start gap-2 flex-1">
                     <div className="w-1 h-3.5 bg-gradient-to-b from-[#2563EB] to-[#1E40AF] rounded-full mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
-                      <h3 className="text-xs font-semibold text-white text-left">
+                      <h3 className="text-xs font-semibold text-[#0F172A] text-left">
                         {(activeSector === 'heat' || activeSector === 'air' || activeSector === 'flood' || activeSector === 'multihazard') 
-                          ? 'Climate Hazard Layers' 
+                          ? 'Climate & Hazard Layers' 
                           : 'Data Layers'}
                       </h3>
                     </div>
                   </div>
                   <div className="ml-2 flex-shrink-0">
                     {dataLayersExpanded ? (
-                      <ChevronDown className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                      <ChevronDown className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                     ) : (
-                      <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                      <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                     )}
                   </div>
                 </div>
@@ -2013,7 +1691,7 @@ export function LeftDrawer({
 
               {/* Layer List */}
               {dataLayersExpanded && (
-                <div className="px-3 py-3 bg-[#0B1120]" data-tutorial="hazard-layers-content">
+                <div className="px-3 py-3 bg-white" data-tutorial="hazard-layers-content">
                   <div className="space-y-1">
                     {data.layers.map((layer) => {
                       const isActive = activeLayerId === layer.id;
@@ -2029,22 +1707,21 @@ export function LeftDrawer({
                             data-tutorial={layer.id === 'flood_waterlogging' ? 'flood-waterlogging-layer' : undefined}
                             className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                               isActive
-                                ? 'bg-gradient-to-r from-[#2563EB] to-[#1E40AF] text-white shadow-sm shadow-[#2563EB]/20'
+                                ? 'bg-[#EFF6FF] border border-[#2563EB]/40 text-[#1E40AF] shadow-sm'
                                 : isLayerLoading
-                                ? 'bg-[#162032] text-[#94A3B8] cursor-not-allowed opacity-60'
-                                : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                                ? 'bg-[#F8FAFC] text-[#64748B] cursor-not-allowed opacity-60'
+                                : 'hover:bg-[#F1F5F9] text-[#475569]'
                             }`}
                           >
                             <div className="flex items-start gap-2">
                               <LayerIcon className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${
-                                isActive ? 'text-white' : 'text-[#2563EB]'
+                                isActive ? 'text-[#1E40AF]' : 'text-[#2563EB]'
                               }`} />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between gap-2">
-                                  <div 
-                                    className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
-                                      isActive ? 'text-white' : 'text-[#CBD5E1]'
-                                    }`}
+                                  <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
+                                    isActive ? 'text-[#0E7490]' : 'text-[#475569]'
+                                  }`}
                                   >
                                     {layer.name}
                                   </div>
@@ -2055,13 +1732,13 @@ export function LeftDrawer({
                                       onMouseLeave={handleTooltipHide}
                                     >
                                       <Info className={`w-3.5 h-3.5 ${
-                                        isActive ? 'text-white/70' : 'text-[#94A3B8]'
+                                        isActive ? 'text-[#0E7490]/80' : 'text-[#64748B]'
                                       }`} />
                                     </div>
                                   )}
                                 </div>
                                 <div className={`text-[9px] leading-tight ${
-                                  isActive ? 'text-white/75' : 'text-[#94A3B8]'
+                                  isActive ? 'text-[#0E7490]/85' : 'text-[#64748B]'
                                 }`}>
                                   {layer.unit}
                                 </div>
@@ -2090,26 +1767,26 @@ export function LeftDrawer({
                           className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 group ${
                             (activeLayerId === 'flood_fhi' || activeLayerId === 'flood_hazard' || activeLayerId === 'storm_surge')
                               ? 'bg-gradient-to-r from-[#2563EB]/20 to-[#1E40AF]/20 border border-[#2563EB]/30'
-                              : 'hover:bg-[#1E293B]'
+                              : 'hover:bg-[#F1F5F9]'
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex items-start gap-2">
                               <Waves className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#2563EB]" />
                               <div>
-                                <div className="text-[11px] font-medium text-[#CBD5E1]">Flood Hazard</div>
-                                <div className="text-[9px] leading-tight text-[#94A3B8]">Hazard Index · Urban Flooding · Storm Surge</div>
+                                <div className="text-[11px] font-medium text-[#475569]">Flood Hazard</div>
+                                <div className="text-[9px] leading-tight text-[#64748B]">Hazard Index · Urban Flooding · Storm Surge</div>
                               </div>
                             </div>
                             {floodHazardExpanded
-                              ? <ChevronDown className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
-                              : <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
+                              ? <ChevronDown className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
+                              : <ChevronRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                             }
                           </div>
                         </button>
 
                         {floodHazardExpanded && (
-                          <div className="ml-3 mt-1 space-y-1 border-l border-[#334155] pl-2">
+                          <div className="ml-3 mt-1 space-y-1 border-l border-[#E2E8F0] pl-2">
                             {[
                               { id: 'flood_fhi', name: 'Flood Hazard Index', unit: 'Normalized Composite Hazard Score', tooltip: 'Identifies areas prone to frequent urban flooding and water stagnation.', icon: Droplets },
                               { id: 'flood_hazard', name: 'Urban Flooding', unit: '100-Year Rainfall Scenario', tooltip: 'Areas at risk of flooding during extreme weather events.', icon: CloudRain },
@@ -2124,26 +1801,34 @@ export function LeftDrawer({
                                     disabled={isLayerLoading}
                                     className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                                       isActive
-                                        ? 'bg-gradient-to-r from-[#2563EB] to-[#1E40AF] text-white shadow-sm shadow-[#2563EB]/20'
+                                        ? 'bg-[#EFF6FF] border border-[#2563EB]/40 text-[#1E40AF] shadow-sm'
                                         : isLayerLoading
-                                        ? 'bg-[#162032] text-[#94A3B8] cursor-not-allowed opacity-60'
-                                        : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                                        ? 'bg-[#F8FAFC] text-[#64748B] cursor-not-allowed opacity-60'
+                                        : 'hover:bg-[#F1F5F9] text-[#475569]'
                                     }`}
                                   >
                                     <div className="flex items-start gap-2">
-                                      <LayerIcon className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-[#2563EB]'}`} />
+                                      <LayerIcon className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${isActive ? 'text-[#1E40AF]' : 'text-[#2563EB]'}`} />
                                       <div className="flex-1 min-w-0">
                                         <div className="flex items-center justify-between gap-2">
-                                          <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${isActive ? 'text-white' : 'text-[#CBD5E1]'}`}>
+                                          <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${isActive ? 'text-[#0E7490]' : 'text-[#475569]'}`}>
                                             {layer.name}
                                           </div>
                                           {layer.tooltip && (
-                                            <div className="flex-shrink-0 p-1 -m-1 cursor-help" onMouseEnter={(e) => handleTooltipShow(e, layer.tooltip!)} onMouseLeave={handleTooltipHide}>
-                                              <Info className={`w-3.5 h-3.5 ${isActive ? 'text-white/70' : 'text-[#94A3B8]'}`} />
+                                            <div
+                                              className="flex-shrink-0 p-1 -m-1 cursor-help"
+                                              onMouseEnter={(e) => handleTooltipShow(e, layer.tooltip!)}
+                                              onMouseLeave={handleTooltipHide}
+                                            >
+                                              <Info className={`w-3.5 h-3.5 ${
+                                                isActive ? 'text-[#0E7490]/80' : 'text-[#64748B]'
+                                              }`} />
                                             </div>
                                           )}
                                         </div>
-                                        <div className={`text-[9px] leading-tight ${isActive ? 'text-white/75' : 'text-[#94A3B8]'}`}>{layer.unit}</div>
+                                        <div className={`text-[9px] leading-tight ${
+                                          isActive ? 'text-[#0E7490]/85' : 'text-[#64748B]'
+                                        }`}>{layer.unit}</div>
                                       </div>
                                     </div>
                                   </button>
@@ -2169,26 +1854,26 @@ export function LeftDrawer({
                           className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 group ${
                             (activeLayerId === 'flood_fhi' || activeLayerId === 'flood_hazard' || activeLayerId === 'storm_surge')
                               ? 'bg-gradient-to-r from-[#2563EB]/20 to-[#1E40AF]/20 border border-[#2563EB]/30'
-                              : 'hover:bg-[#1E293B]'
+                              : 'hover:bg-[#F1F5F9]'
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex items-start gap-2">
                               <Waves className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#2563EB]" />
                               <div>
-                                <div className="text-[11px] font-medium text-[#CBD5E1]">Flood Hazard</div>
-                                <div className="text-[9px] leading-tight text-[#94A3B8]">Hazard Index · Urban Flooding · Storm Surge</div>
+                                <div className="text-[11px] font-medium text-[#475569]">Flood Hazard</div>
+                                <div className="text-[9px] leading-tight text-[#64748B]">Hazard Index · Urban Flooding · Storm Surge</div>
                               </div>
                             </div>
                             {floodHazardExpanded
-                              ? <ChevronDown className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
-                              : <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
+                              ? <ChevronDown className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
+                              : <ChevronRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                             }
                           </div>
                         </button>
 
                         {floodHazardExpanded && (
-                          <div className="ml-3 mt-1 space-y-1 border-l border-[#334155] pl-2">
+                          <div className="ml-3 mt-1 space-y-1 border-l border-[#E2E8F0] pl-2">
                             {[
                               { id: 'flood_fhi', name: 'Flood Hazard Index', unit: 'Normalized Composite Hazard Score', tooltip: 'Identifies areas prone to frequent urban flooding and water stagnation.', icon: Droplets },
                               { id: 'flood_hazard', name: 'Urban Flooding', unit: '100-Year Rainfall Scenario', tooltip: 'Areas at risk of flooding during extreme weather events.', icon: CloudRain },
@@ -2203,26 +1888,34 @@ export function LeftDrawer({
                                     disabled={isLayerLoading}
                                     className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 ${
                                       isActive
-                                        ? 'bg-gradient-to-r from-[#2563EB] to-[#1E40AF] text-white shadow-sm shadow-[#2563EB]/20'
+                                        ? 'bg-[#EFF6FF] border border-[#2563EB]/40 text-[#1E40AF] shadow-sm'
                                         : isLayerLoading
-                                        ? 'bg-[#162032] text-[#94A3B8] cursor-not-allowed opacity-60'
-                                        : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                                        ? 'bg-[#F8FAFC] text-[#64748B] cursor-not-allowed opacity-60'
+                                        : 'hover:bg-[#F1F5F9] text-[#475569]'
                                     }`}
                                   >
                                     <div className="flex items-start gap-2">
-                                      <LayerIcon className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-[#2563EB]'}`} />
+                                      <LayerIcon className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${isActive ? 'text-[#1E40AF]' : 'text-[#2563EB]'}`} />
                                       <div className="flex-1 min-w-0">
                                         <div className="flex items-center justify-between gap-2">
-                                          <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${isActive ? 'text-white' : 'text-[#CBD5E1]'}`}>
+                                          <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${isActive ? 'text-[#0E7490]' : 'text-[#475569]'}`}>
                                             {layer.name}
                                           </div>
                                           {layer.tooltip && (
-                                            <div className="flex-shrink-0 p-1 -m-1 cursor-help" onMouseEnter={(e) => handleTooltipShow(e, layer.tooltip!)} onMouseLeave={handleTooltipHide}>
-                                              <Info className={`w-3.5 h-3.5 ${isActive ? 'text-white/70' : 'text-[#94A3B8]'}`} />
+                                            <div
+                                              className="flex-shrink-0 p-1 -m-1 cursor-help"
+                                              onMouseEnter={(e) => handleTooltipShow(e, layer.tooltip!)}
+                                              onMouseLeave={handleTooltipHide}
+                                            >
+                                              <Info className={`w-3.5 h-3.5 ${
+                                                isActive ? 'text-[#0E7490]/80' : 'text-[#64748B]'
+                                              }`} />
                                             </div>
                                           )}
                                         </div>
-                                        <div className={`text-[9px] leading-tight ${isActive ? 'text-white/75' : 'text-[#94A3B8]'}`}>{layer.unit}</div>
+                                        <div className={`text-[9px] leading-tight ${
+                                          isActive ? 'text-[#0E7490]/85' : 'text-[#64748B]'
+                                        }`}>{layer.unit}</div>
                                       </div>
                                     </div>
                                   </button>
@@ -2252,26 +1945,26 @@ export function LeftDrawer({
                           className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 group ${
                             ['heat_stress_index', 'land_surface_temperature', 'urban_heat_island', 'wet_bulb_temperature'].includes(activeLayerId)
                               ? 'bg-gradient-to-r from-[#F59E0B]/20 to-[#D97706]/20 border border-[#F59E0B]/30'
-                              : 'hover:bg-[#1E293B]'
+                              : 'hover:bg-[#F1F5F9]'
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex items-start gap-2">
                               <Flame className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#F59E0B]" />
                               <div>
-                                <div className="text-[11px] font-medium text-[#CBD5E1]">Heat Stress</div>
-                                <div className="text-[9px] leading-tight text-[#94A3B8]">HSI · LST · UHI · Wet-Bulb</div>
+                                <div className="text-[11px] font-medium text-[#475569]">Heat Stress</div>
+                                <div className="text-[9px] leading-tight text-[#64748B]">HSI · LST · UHI · Wet-Bulb</div>
                               </div>
                             </div>
                             {heatStressExpanded
-                              ? <ChevronDown className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
-                              : <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
+                              ? <ChevronDown className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
+                              : <ChevronRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                             }
                           </div>
                         </button>
 
                         {heatStressExpanded && (
-                          <div className="ml-3 mt-1 space-y-1 border-l border-[#334155] pl-2">
+                          <div className="ml-3 mt-1 space-y-1 border-l border-[#E2E8F0] pl-2">
                             {[
                               { id: 'heat_stress_index', name: 'Heat Stress Index', unit: 'Composite Heat Stress Score', tooltip: 'Composite index combining temperature, humidity and urban heat factors to assess heat stress risk.', icon: Flame },
                               { id: 'land_surface_temperature', name: 'Land Surface Temperature', unit: '°C (Degrees Celsius)', tooltip: 'Shows how hot urban surfaces become due to buildings, roads, and low greenery.', icon: Thermometer },
@@ -2290,24 +1983,32 @@ export function LeftDrawer({
                                       isActive
                                         ? 'bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white shadow-sm shadow-[#F59E0B]/20'
                                         : isLayerLoading
-                                        ? 'bg-[#162032] text-[#94A3B8] cursor-not-allowed opacity-60'
-                                        : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                                        ? 'bg-[#F8FAFC] text-[#64748B] cursor-not-allowed opacity-60'
+                                        : 'hover:bg-[#F1F5F9] text-[#475569]'
                                     }`}
                                   >
                                     <div className="flex items-start gap-2">
                                       <LayerIcon className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-[#F59E0B]'}`} />
                                       <div className="flex-1 min-w-0">
                                         <div className="flex items-center justify-between gap-2">
-                                          <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${isActive ? 'text-white' : 'text-[#CBD5E1]'}`}>
+                                          <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${isActive ? 'text-[#0E7490]' : 'text-[#475569]'}`}>
                                             {layer.name}
                                           </div>
                                           {layer.tooltip && (
-                                            <div className="flex-shrink-0 p-1 -m-1 cursor-help" onMouseEnter={(e) => handleTooltipShow(e, layer.tooltip!)} onMouseLeave={handleTooltipHide}>
-                                              <Info className={`w-3.5 h-3.5 ${isActive ? 'text-white/70' : 'text-[#94A3B8]'}`} />
+                                            <div
+                                              className="flex-shrink-0 p-1 -m-1 cursor-help"
+                                              onMouseEnter={(e) => handleTooltipShow(e, layer.tooltip!)}
+                                              onMouseLeave={handleTooltipHide}
+                                            >
+                                              <Info className={`w-3.5 h-3.5 ${
+                                                isActive ? 'text-[#0E7490]/80' : 'text-[#64748B]'
+                                              }`} />
                                             </div>
                                           )}
                                         </div>
-                                        <div className={`text-[9px] leading-tight ${isActive ? 'text-white/75' : 'text-[#94A3B8]'}`}>{layer.unit}</div>
+                                        <div className={`text-[9px] leading-tight ${
+                                          isActive ? 'text-[#0E7490]/85' : 'text-[#64748B]'
+                                        }`}>{layer.unit}</div>
                                       </div>
                                     </div>
                                   </button>
@@ -2316,6 +2017,32 @@ export function LeftDrawer({
                             })}
                           </div>
                         )}
+
+                        {/* ── Sink Hole layer (sibling of Heat Stress group) ── */}
+                        {(() => {
+                          const isActive = activeLayerId === 'sinkhole';
+                          return (
+                            <button
+                              onClick={() => !isLayerLoading && onLayerChange('sinkhole')}
+                              disabled={isLayerLoading}
+                              className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 mt-1 ${
+                                isActive
+                                  ? 'bg-gradient-to-r from-[#F59E0B] to-[#D97706] text-white shadow-sm shadow-[#F59E0B]/20'
+                                  : isLayerLoading
+                                  ? 'bg-[#F8FAFC] text-[#64748B] cursor-not-allowed opacity-60'
+                                  : 'hover:bg-[#F1F5F9] text-[#475569]'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2">
+                                <AlertTriangle className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-[#F59E0B]'}`} />
+                                <div>
+                                  <div className={`text-[11px] font-medium ${isActive ? 'text-white' : 'text-[#475569]'}`}>Sink Hole</div>
+                                  <div className={`text-[9px] leading-tight ${isActive ? 'text-white/85' : 'text-[#64748B]'}`}>Risk Level</div>
+                                </div>
+                              </div>
+                            </button>
+                          );
+                        })()}
                       </div>
                     )}
 
@@ -2325,28 +2052,28 @@ export function LeftDrawer({
               </div>
               )}
 
-              {/* Environmental Sensitivity Layers Section - Same pattern as Climate Hazard Layers */}
-              {(activeSector === 'heat') && (
-              <div className="border-b border-[#334155]">
+              {/* Environmental Sensitivity Layers Section - REMOVED PER USER REQUEST */}
+              {false && (activeSector === 'heat') && (
+              <div className="border-b border-[#E2E8F0]">
                 {/* Environmental Sensitivity Layers Section Header - Collapsible */}
                 <button
                   onClick={() => setEnvironmentalExpanded(!environmentalExpanded)}
-                  className="w-full bg-[#162032] px-4 py-2.5 hover:bg-[#1E293B] transition-all duration-200 text-left cursor-pointer group"
+                  className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 text-left cursor-pointer group"
                 >
                 <div className="flex items-start justify-between text-left">
                   <div className="flex items-start gap-2 flex-1">
                     <div className="w-1 h-3.5 bg-gradient-to-b from-[#10B981] to-[#059669] rounded-full mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
-                      <h3 className="text-xs font-semibold text-white text-left">
+                      <h3 className="text-xs font-semibold text-[#0F172A] text-left">
                         Environmental Vulnerability
                       </h3>
                     </div>
                   </div>
                   <div className="ml-2 flex-shrink-0">
                     {environmentalExpanded ? (
-                      <ChevronDown className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                      <ChevronDown className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                     ) : (
-                      <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-white transition-colors" />
+                      <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                     )}
                   </div>
                 </div>
@@ -2370,8 +2097,8 @@ export function LeftDrawer({
                             isActive
                               ? 'bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-sm shadow-[#10B981]/20'
                               : isLayerLoading
-                              ? 'bg-[#162032] text-[#94A3B8] cursor-not-allowed opacity-60'
-                              : 'hover:bg-[#1E293B] text-[#CBD5E1]'
+                              ? 'bg-[#F8FAFC] text-[#64748B] cursor-not-allowed opacity-60'
+                              : 'hover:bg-[#F1F5F9] text-[#475569]'
                           }`}
                         >
                           <div className="flex items-start gap-2">
@@ -2381,7 +2108,7 @@ export function LeftDrawer({
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between gap-2">
                                 <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
-                                  isActive ? 'text-white' : 'text-[#CBD5E1]'
+                                  isActive ? 'text-[#0E7490]' : 'text-[#475569]'
                                 }`}>
                                   {layer.name}
                                 </div>
@@ -2392,13 +2119,13 @@ export function LeftDrawer({
                                     onMouseLeave={handleTooltipHide}
                                   >
                                     <Info className={`w-3.5 h-3.5 ${
-                                      isActive ? 'text-white/70' : 'text-[#94A3B8]'
+                                      isActive ? 'text-[#0E7490]/80' : 'text-[#64748B]'
                                     }`} />
                                   </div>
                                 )}
                               </div>
                               <div className={`text-[9px] leading-tight ${
-                                isActive ? 'text-white/75' : 'text-[#94A3B8]'
+                                isActive ? 'text-[#0E7490]/85' : 'text-[#64748B]'
                               }`}>
                                 {layer.unit}
                               </div>
@@ -2422,26 +2149,26 @@ export function LeftDrawer({
                       className={`w-full text-left px-2.5 py-2 rounded-md transition-all duration-200 group ${
                         ['groundwater_infiltration_vulnerability', 'soil_classification', 'geology', 'sinkhole'].includes(activeLayerId)
                           ? 'bg-gradient-to-r from-[#10B981]/20 to-[#059669]/20 border border-[#10B981]/30'
-                          : 'hover:bg-[#1E293B]'
+                          : 'hover:bg-[#F1F5F9]'
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-start gap-2">
                           <Layers className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#10B981]" />
                           <div>
-                            <div className="text-[11px] font-medium text-[#CBD5E1]">Ground Water Infiltration</div>
-                            <div className="text-[9px] leading-tight text-[#94A3B8]">Risk · Soil · Geology · Sinkhole</div>
+                            <div className="text-[11px] font-medium text-[#475569]">Ground Water Infiltration</div>
+                            <div className="text-[9px] leading-tight text-[#64748B]">Risk · Soil · Geology · Sinkhole</div>
                           </div>
                         </div>
                         {gwInfiltrationExpanded
-                          ? <ChevronDown className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
-                          : <ChevronRight className="w-3.5 h-3.5 text-[#94A3B8] group-hover:text-white transition-colors" />
+                          ? <ChevronDown className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
+                          : <ChevronRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                         }
                       </div>
                     </button>
 
                     {gwInfiltrationExpanded && (
-                      <div className="ml-3 mt-1 space-y-1 border-l border-[#334155] pl-2">
+                      <div className="ml-3 mt-1 space-y-1 border-l border-[#E2E8F0] pl-2">
                         {[
                           { id: 'groundwater_infiltration_vulnerability', name: 'Ground Water Infiltration Risk', unit: 'Vulnerability', tooltip: 'Groundwater infiltration vulnerability affecting sanitation and groundwater contamination risk.' },
                           ...environmentalLayers.filter(l => ['soil_classification', 'geology', 'sinkhole'].includes(l.id))
@@ -2457,9 +2184,9 @@ export function LeftDrawer({
                                     isActive
                                       ? 'bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-sm shadow-[#10B981]/20'
                                       : isLayerLoading
-                                      ? 'bg-[#162032] text-[#94A3B8] cursor-not-allowed opacity-60'
-                                      : 'hover:bg-[#1E293B] text-[#CBD5E1]'
-                                  }`}
+                                      ? 'bg-[#F8FAFC] text-[#64748B] cursor-not-allowed opacity-60'
+                                      : 'hover:bg-[#F1F5F9] text-[#475569]'
+                                    }`}
                                 >
                                   <div className="flex items-start gap-2">
                                     <LayerIcon className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${
@@ -2468,7 +2195,7 @@ export function LeftDrawer({
                                     <div className="flex-1 min-w-0">
                                       <div className="flex items-center justify-between gap-2">
                                         <div className={`text-[11px] font-medium mb-0.5 leading-tight flex-1 ${
-                                          isActive ? 'text-white' : 'text-[#CBD5E1]'
+                                          isActive ? 'text-[#0E7490]' : 'text-[#475569]'
                                         }`}>
                                           {layer.name}
                                         </div>
@@ -2477,15 +2204,16 @@ export function LeftDrawer({
                                             className="flex-shrink-0 p-1 -m-1 cursor-help"
                                             onMouseEnter={(e) => handleTooltipShow(e, layer.tooltip!)}
                                             onMouseLeave={handleTooltipHide}
+                                            onClick={(e) => e.stopPropagation()}
                                           >
                                             <Info className={`w-3.5 h-3.5 ${
-                                              isActive ? 'text-white/70' : 'text-[#94A3B8]'
+                                              isActive ? 'text-[#0E7490]/80' : 'text-[#64748B]'
                                             }`} />
                                           </div>
                                         )}
                                       </div>
                                       <div className={`text-[9px] leading-tight ${
-                                        isActive ? 'text-white/75' : 'text-[#94A3B8]'
+                                        isActive ? 'text-[#0E7490]/85' : 'text-[#64748B]'
                                       }`}>
                                         {layer.unit}
                                       </div>
@@ -2572,7 +2300,9 @@ export function LeftDrawer({
                                     : 'hover:bg-[#F8FAFC] text-[#1F2937]'
                                 }`}
                                 style={{
-                                  borderLeft: `3px solid ${isInfraActive ? infraLayer.color : 'transparent'}`
+                                  borderLeft: `3px solid ${isInfraActive ? infraLayer.color : 'transparent'}`,
+                                  minHeight: '44px',
+                                  maxHeight: '44px'
                                 }}
                               >
                                 <div className="flex items-start gap-2">
@@ -2603,7 +2333,7 @@ export function LeftDrawer({
                                         <span className="text-[9px] text-[#64748B] font-medium flex-1">
                                           {cls.label}
                                         </span>
-                                        <span className="text-[8px] text-[#94A3B8]">
+                                        <span className="text-[8px] text-[#64748B]">
                                           {cls.km}
                                         </span>
                                       </div>
@@ -3094,7 +2824,7 @@ export function LeftDrawer({
                                             onClick={(e) => e.stopPropagation()}
                                           >
                                             <Info className={`w-3 h-3 ${
-                                              isStarActive ? 'text-[#14B8A6]' : 'text-[#94A3B8]'
+                                              isStarActive ? 'text-[#14B8A6]' : 'text-[#64748B]'
                                             }`} />
                                           </div>
                                         </div>
@@ -3121,11 +2851,12 @@ export function LeftDrawer({
             {/* End Road Safety Section - HIDDEN */}
             </>
           )}
+          </>
+          )}
           </div>
           {/* End Scrollable Content Area */}
         </div>
     </div>
-    )}
 
     {/* Fixed Tooltip Portal */}
     {tooltipData && (

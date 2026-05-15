@@ -203,7 +203,7 @@ export function ImpactDistributionDataDriven({
             transform: 'translate(-50%, -100%)',
           }}
         >
-          <div className="bg-gray-900 rounded-md px-2.5 py-1.5 shadow-lg border border-gray-700">
+          <div className="bg-white rounded-md px-2.5 py-1.5 shadow-lg border border-[#E2E8F0]">
             <div className="flex items-center gap-1.5 mb-0.5">
               <div
                 className="w-2 h-2 rounded-sm flex-shrink-0"

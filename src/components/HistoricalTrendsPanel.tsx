@@ -3294,7 +3294,7 @@ export function HistoricalTrendsPanel({ onClose, sector, selectedWardId, onWardS
                 <div className="h-48 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-xs font-medium text-[#64748B]">No historical data available</div>
-                    <div className="text-[9px] text-[#94A3B8] mt-1">Select a different layer or ward</div>
+                    <div className="text-[9px] text-[#64748B] mt-1">Select a different layer or ward</div>
                   </div>
                 </div>
               )}
@@ -3476,7 +3476,7 @@ export function HistoricalTrendsPanel({ onClose, sector, selectedWardId, onWardS
                             {imdHeatData?.total_heatwave_days ?? 0}
                           </div>
                         </div>
-                        <div className="text-[9px] text-[#94A3B8] leading-tight overflow-hidden">
+                        <div className="text-[9px] text-[#64748B] leading-tight overflow-hidden">
                           <div className="whitespace-nowrap">Total days classified</div>
                         </div>
                       </div>
@@ -3505,7 +3505,7 @@ export function HistoricalTrendsPanel({ onClose, sector, selectedWardId, onWardS
                             {imdHeatData?.severe_heatwave_days ?? 0}
                           </div>
                         </div>
-                        <div className="text-[9px] text-[#94A3B8] leading-tight overflow-hidden">
+                        <div className="text-[9px] text-[#64748B] leading-tight overflow-hidden">
                           <div className="whitespace-nowrap">Extreme severity events</div>
                         </div>
                       </div>
@@ -3537,7 +3537,7 @@ export function HistoricalTrendsPanel({ onClose, sector, selectedWardId, onWardS
                             }
                           </div>
                         </div>
-                        <div className="text-[9px] text-[#94A3B8] leading-tight overflow-hidden">
+                        <div className="text-[9px] text-[#64748B] leading-tight overflow-hidden">
                           <div className="whitespace-nowrap">
                             {imdHeatData?.longest_spell_start && imdHeatData?.longest_spell_end
                               ? `${imdHeatData.longest_spell_start} – ${imdHeatData.longest_spell_end}`
@@ -3571,7 +3571,7 @@ export function HistoricalTrendsPanel({ onClose, sector, selectedWardId, onWardS
                             {imdHeatData?.total_warm_nights ?? 0}
                           </div>
                         </div>
-                        <div className="text-[9px] text-[#94A3B8] leading-tight overflow-hidden">
+                        <div className="text-[9px] text-[#64748B] leading-tight overflow-hidden">
                           <div className="whitespace-nowrap">Nighttime heat events</div>
                         </div>
                       </div>
@@ -3588,7 +3588,7 @@ export function HistoricalTrendsPanel({ onClose, sector, selectedWardId, onWardS
       {/* IMD KPI Tooltips */}
       {imdTooltip && (
         <div
-          className="fixed z-[9999] bg-[#1E293B] text-white rounded-lg shadow-2xl p-3 pointer-events-none max-w-[280px]"
+          className="fixed z-[9999] bg-[#F1F5F9] text-white rounded-lg shadow-2xl p-3 pointer-events-none max-w-[280px]"
           style={{
             left: `${imdTooltip.x + 12}px`,
             top: `${imdTooltip.y + 12}px`,

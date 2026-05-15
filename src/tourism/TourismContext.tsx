@@ -41,7 +41,14 @@ export function TourismProvider({ children }: { children: ReactNode }) {
           fetch(TOURISM_PATHS.photoIndex).then(r => r.ok ? r.json() : Promise.reject(r.status)),
         ]);
         if (cancelled) return;
-        setData({ clusters, sites, assets, membership, photoIndex });
+        // Restrict tourism sites to the 66 ranked attractions (Anchor / Secondary / Supportive).
+        // Lower-rated entries (Minor, Unrated, Excluded) are dropped here so they
+        // don't appear in cluster bubbles, lists, or counts anywhere downstream.
+        const RANKED_TIERS = new Set(['Anchor', 'Secondary', 'Supportive']);
+        const filteredSites = sites && Array.isArray(sites.features)
+          ? { ...sites, features: sites.features.filter((f: any) => RANKED_TIERS.has(f?.properties?.perf_tier)) }
+          : sites;
+        setData({ clusters, sites: filteredSites, assets, membership, photoIndex });
         setLoading(false);
       } catch (err) {
         if (cancelled) return;

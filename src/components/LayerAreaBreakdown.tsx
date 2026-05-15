@@ -864,7 +864,7 @@ export function LayerAreaBreakdown({ layerId, layerName, selectedWardId = 'all',
 
   // Dark theme constants (matching BaseLayerDefaultPanel)
   const D = {
-    cardBg: '#162032', grayBorder: '#334155', gray: '#64748B',
+    cardBg: '#162032', grayBorder: '#E2E8F0', gray: '#64748B',
     grayLight: '#94A3B8', dark: '#0F172A',
     tt: { background: '#1E293B', border: 'none', borderRadius: 8, color: '#fff', fontSize: 11 },
   };

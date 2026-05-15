@@ -1,5 +1,6 @@
 // Tourism module — Filters block in the sidebar.
 // LGU buttons, Category multi-select chips, Tier buttons, Search box, clear-all bar.
+// Light theme · unified DM Sans typography.
 
 import React from 'react';
 import { Search, X } from 'lucide-react';
@@ -23,14 +24,24 @@ const TIER_OPTIONS: { label: string; value: 'All' | 'Primary' | 'Emerging' | 'Sa
 
 const CATEGORIES = [
   'Beach', 'Marine', 'Nature / Viewpoint', 'Heritage',
-  'Faith', 'Urban Park', 'Other Attraction',
+  'Faith', 'Urban Park',
 ];
+
+const SectionLabel = ({ children, hint }: { children: React.ReactNode; hint?: string }) => (
+  <div className="flex items-center justify-between mb-2">
+    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#475569]">
+      {children}
+    </span>
+    {hint && (
+      <span className="text-[9.5px] text-[#94A3B8]">{hint}</span>
+    )}
+  </div>
+);
 
 export function TourismFilters() {
   const ui = useTourismUI();
   const { sites } = useTourismData();
 
-  // Count per category, scoped to current LGU
   const categoryCounts: Record<string, number> = {};
   sites?.features.forEach((f) => {
     const p: any = f.properties;
@@ -44,31 +55,36 @@ export function TourismFilters() {
   }: { active: boolean; onClick: () => void; color?: string; children: React.ReactNode }) => (
     <button
       onClick={onClick}
-      className={`px-2.5 py-1.5 text-[11.5px] border transition-colors inline-flex items-center gap-1.5 ${
+      className={`px-2.5 py-1 text-[11px] rounded-md border transition-colors inline-flex items-center gap-1.5 ${
         active
-          ? 'border-slate-900 text-stone-50'
-          : 'border-stone-300 bg-white hover:bg-stone-100 text-stone-700'
+          ? 'border-[#0891B2]/40 bg-[#ECFEFF] text-[#0E7490]'
+          : 'border-[#E2E8F0] bg-white hover:bg-[#F8FAFC] text-[#475569]'
       }`}
-      style={active && color ? { background: color, borderColor: color } : active ? { background: '#1F2738' } : {}}
+      style={active && color
+        ? { background: `${color}1A`, borderColor: `${color}66`, color: color }
+        : undefined}
     >
       {children}
     </button>
   );
 
   return (
-    <div className="flex flex-col gap-3.5 px-4 py-3 border-b border-stone-300">
+    <div
+      className="flex flex-col gap-3 px-4 py-3 border-b border-[#E2E8F0] bg-white"
+      style={{ fontFamily: 'DM Sans, Segoe UI, sans-serif' }}
+    >
       {/* Search */}
-      <div className="relative flex items-center bg-white border border-stone-300 focus-within:border-amber-700 focus-within:ring-2 focus-within:ring-amber-700/20 transition-all">
-        <Search className="w-3.5 h-3.5 ml-3 text-stone-500 shrink-0" />
+      <div className="relative flex items-center bg-white border border-[#E2E8F0] rounded-md focus-within:border-[#0891B2] focus-within:ring-2 focus-within:ring-[#0891B2]/20 transition-all">
+        <Search className="w-3.5 h-3.5 ml-3 text-[#94A3B8] shrink-0" />
         <input
           type="text"
           value={ui.search}
           onChange={(e) => ui.setSearch(e.target.value)}
           placeholder="Search attractions by name…"
-          className="flex-1 bg-transparent px-3 py-2 text-[13px] outline-none placeholder:text-stone-500 placeholder:italic"
+          className="flex-1 bg-transparent px-3 py-2 text-[12px] text-[#0F172A] outline-none placeholder:text-[#94A3B8]"
         />
         {ui.search && (
-          <button onClick={() => ui.setSearch('')} className="px-3 text-stone-500 hover:text-slate-900">
+          <button onClick={() => ui.setSearch('')} className="px-3 text-[#94A3B8] hover:text-[#0F172A]">
             <X className="w-3.5 h-3.5" />
           </button>
         )}
@@ -76,9 +92,7 @@ export function TourismFilters() {
 
       {/* LGU */}
       <div>
-        <div className="font-serif text-[10.5px] font-semibold uppercase tracking-[0.26em] text-stone-700 mb-2">
-          LGU
-        </div>
+        <SectionLabel>LGU</SectionLabel>
         <div className="flex flex-wrap gap-1.5">
           {LGU_OPTIONS.map((o) => (
             <Chip key={o.value} active={ui.lgu === o.value} onClick={() => ui.setLgu(o.value)}>
@@ -90,12 +104,7 @@ export function TourismFilters() {
 
       {/* Category multi-select */}
       <div>
-        <div className="flex items-center justify-between mb-2">
-          <span className="font-serif text-[10.5px] font-semibold uppercase tracking-[0.26em] text-stone-700">
-            Category
-          </span>
-          <span className="font-mono text-[9.5px] text-stone-500">multi-select</span>
-        </div>
+        <SectionLabel hint="multi-select">Category</SectionLabel>
         <div className="flex flex-wrap gap-1.5">
           {CATEGORIES.map((cat) => {
             const active = ui.categories.has(cat);
@@ -104,7 +113,7 @@ export function TourismFilters() {
               <Chip key={cat} active={active} color={color} onClick={() => ui.toggleCategory(cat)}>
                 {!active && <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: color }} />}
                 <span>{cat}</span>
-                <span className="opacity-60 text-[10px] font-mono">{categoryCounts[cat] || 0}</span>
+                <span className="opacity-60 text-[10px] tabular-nums">{categoryCounts[cat] || 0}</span>
               </Chip>
             );
           })}
@@ -113,9 +122,7 @@ export function TourismFilters() {
 
       {/* Tier */}
       <div>
-        <div className="font-serif text-[10.5px] font-semibold uppercase tracking-[0.26em] text-stone-700 mb-2">
-          Cluster Tier
-        </div>
+        <SectionLabel>Cluster Tier</SectionLabel>
         <div className="flex flex-wrap gap-1.5">
           {TIER_OPTIONS.map((o) => (
             <Chip key={o.value} active={ui.tier === o.value} onClick={() => ui.setTier(o.value)}>
@@ -127,27 +134,27 @@ export function TourismFilters() {
 
       {/* Active filter bar */}
       {ui.hasActiveFilters() && (
-        <div className="flex items-center gap-2 px-3 py-2 -mx-4 bg-slate-900 text-stone-50">
-          <span className="font-serif text-[10px] font-medium uppercase tracking-[0.22em] text-stone-50/55">
+        <div className="flex items-center gap-2 px-3 py-2 -mx-4 bg-[#F1F5F9] border-y border-[#E2E8F0]">
+          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#475569]">
             Filtered
           </span>
           <div className="flex-1 flex flex-wrap gap-1.5">
             {ui.lgu !== 'All' && (
-              <span className="px-2 py-0.5 bg-stone-50/15 text-[11px]">{ui.lgu}</span>
+              <span className="px-2 py-0.5 rounded bg-white border border-[#E2E8F0] text-[11px] text-[#0F172A]">{ui.lgu}</span>
             )}
             {Array.from(ui.categories).map((c) => (
-              <span key={c} className="px-2 py-0.5 bg-stone-50/15 text-[11px]">{c}</span>
+              <span key={c} className="px-2 py-0.5 rounded bg-white border border-[#E2E8F0] text-[11px] text-[#0F172A]">{c}</span>
             ))}
             {ui.tier !== 'All' && (
-              <span className="px-2 py-0.5 bg-stone-50/15 text-[11px]">{ui.tier} clusters</span>
+              <span className="px-2 py-0.5 rounded bg-white border border-[#E2E8F0] text-[11px] text-[#0F172A]">{ui.tier} clusters</span>
             )}
             {ui.search && (
-              <span className="px-2 py-0.5 bg-stone-50/15 text-[11px]">"{ui.search}"</span>
+              <span className="px-2 py-0.5 rounded bg-white border border-[#E2E8F0] text-[11px] text-[#0F172A]">"{ui.search}"</span>
             )}
           </div>
           <button
             onClick={ui.clearAllFilters}
-            className="px-2.5 py-1 border border-stone-50/30 hover:bg-stone-50/15 text-[10.5px] uppercase tracking-wider transition-colors"
+            className="px-2.5 py-1 rounded border border-[#E2E8F0] hover:bg-white text-[10px] uppercase tracking-wider text-[#475569] transition-colors"
           >
             Clear
           </button>

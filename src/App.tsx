@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
 import { Header } from './components/Header';
 import { LeftDrawer } from './components/LeftDrawer';
-import { LeftRail } from './components/LeftRail';
 import { FloatingLegendPanel } from './components/FloatingLegendPanel';
 import { MapCanvas } from './components/MapCanvas';
 import { RightPanelContainer } from './components/RightPanelContainer';
@@ -17,10 +16,11 @@ import { fetchUniqueHealthcareCategories } from './utils/healthcareData';
 import { getLayerNameForScenario } from './config/geoserverLayers';
 import { HazardDataProvider, useHazardData } from './contexts/HazardDataContext';
 import { TourismProvider } from './tourism/TourismContext';
-import { TourismUIProvider } from './tourism/tourismStore';
+import { TourismUIProvider, useTourismUI } from './tourism/tourismStore';
 import { TourismLayers } from './tourism/TourismLayers';
 import { useTourismPopups } from './tourism/usePopupBinding';
-import { TourismDetailPanel } from './tourism/TourismDetailPanel';
+import { TourismLegend } from './tourism/TourismLegend';
+import { TourismListPanel } from './tourism/TourismListPanel';
 import { loadLegendDefinitions } from './utils/legendLoader';
 import { fetchEducationCounts } from './utils/educationData';
 import { fetchHealthcareCounts } from './utils/healthcareData';
@@ -103,6 +103,7 @@ function AppContent({
   // ALL HOOKS MUST BE CALLED BEFORE ANY CONDITIONAL RETURNS
   // Check if hazard data is still loading (but don't block UI)
   const { isLoading: hazardDataLoading, isInitialLoad, refreshData } = useHazardData();
+  const tourismUI = useTourismUI();
   
   console.log('🏢 Tutorial building popup prop received:', tutorialBuildingPopup);
 
@@ -185,7 +186,7 @@ function AppContent({
   const [mapInstance, setMapInstance] = useState<maplibregl.Map | null>(null);
 
   // Tourism popups - wire MapLibre clicks to React-rendered popups
-  useTourismPopups(mapInstance, activeSector === 'tourism');
+  useTourismPopups(mapInstance, true);
 
   // Control legend panel minimization state
   const [legendMinimized, setLegendMinimized] = useState(false);
@@ -243,7 +244,7 @@ function AppContent({
   // Missing state stubs (kept for prop compatibility)
   const [showQueryPanel, setShowQueryPanel] = useState(false);
   const [activeSubLayers, setActiveSubLayers] = useState<string[]>([]);
-  const [activeBuildingCategories, setActiveBuildingCategories] = useState<string[]>(['residential', 'commercial', 'education', 'government', 'health', 'religious', 'industrial', 'transport']);
+  const [activeBuildingCategories, setActiveBuildingCategories] = useState<string[]>([]);
   const [activeBuildingSubcategories, setActiveBuildingSubcategories] = useState<string[]>([]);
   const [previousBuildingCategories, setPreviousBuildingCategories] = useState<string[]>([]);
   const [isEconomicVulnerabilityActive, setIsEconomicVulnerabilityActive] = useState(false);
@@ -966,16 +967,10 @@ function AppContent({
 
 
       <div className="flex-1 flex overflow-hidden">
-        <LeftRail
-          activeSector={activeSector}
-          onSectorChange={handleSectorChange}
-          onInfoOpen={() => setInfoModalOpen(true)}
-          onTutorialOpen={onTutorialRestart}
-          showTutorialPulse={showTutorialPulse}
-        />
         <div data-tutorial="left-panel" className="flex">
           <LeftDrawer
             activeSector={activeSector}
+            onSectorChange={handleSectorChange}
             activeLayerId={activeLayerId}
             onLayerChange={handleLayerChange}
             onScenarioChange={setScenario}
@@ -1143,14 +1138,34 @@ function AppContent({
             activeFstpBands={[]}
             fstpOpacity={fstpOpacity}
             onFstpOpacityChange={setFstpOpacity}
-          />
+          >
+            <TourismLegend />
+          </FloatingLegendPanel>
         <TourismLayers
           map={mapInstance}
-          visible={activeSector === 'tourism'}
+          visible={true}
+          showAnchor={tourismUI.showAnchor}
+          showSecondary={tourismUI.showSecondary}
+          showSupportive={tourismUI.showSupportive}
+          showPremium={tourismUI.showPremium}
+          showQuality={tourismUI.showQuality}
+          showClusterPrimary={tourismUI.showClusterPrimary}
+          showClusterEmerging={tourismUI.showClusterEmerging}
+          showClusterSatellite={tourismUI.showClusterSatellite}
+          anchorCategories={Array.from(tourismUI.enabledSiteCategoriesByTier.Anchor)}
+          secondaryCategories={Array.from(tourismUI.enabledSiteCategoriesByTier.Secondary)}
+          supportiveCategories={Array.from(tourismUI.enabledSiteCategoriesByTier.Supportive)}
+          selectedLgu={selectedLguName}
+          selectedBrgy={selectedWardName}
         />
-        {activeSector === 'tourism' && <TourismDetailPanel />}
 
         </MapCanvas>
+
+        {/* Floating Tourism Directory list panel (Sites · Hospitality · Clusters) */}
+        <TourismListPanel
+          selectedLgu={selectedLguName}
+          selectedBrgy={selectedWardName}
+        />
         </div>
 
         <RightPanelContainer

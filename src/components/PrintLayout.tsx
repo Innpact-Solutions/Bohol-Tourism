@@ -1293,7 +1293,7 @@ export function PrintLayout({ onClose, mapState }: PrintLayoutProps) {
       }}
     >
       {/* Header - Hide on print */}
-      <div className="bg-gray-900 text-white px-4 py-2 flex items-center justify-between print:hidden border-b border-gray-800">
+      <div className="bg-white text-white px-4 py-2 flex items-center justify-between print:hidden border-b border-[#E2E8F0]">
         <h2 className="text-sm font-semibold">Print Layout</h2>
         <div className="flex items-center gap-2">
           <button
@@ -1306,7 +1306,7 @@ export function PrintLayout({ onClose, mapState }: PrintLayoutProps) {
           </button>
           <button
             onClick={onClose}
-            className="p-1.5 hover:bg-gray-800 rounded-md transition-colors"
+            className="p-1.5 hover:bg-[#F1F5F9] rounded-md transition-colors"
           >
             <X className="size-4" />
           </button>
@@ -1345,7 +1345,7 @@ export function PrintLayout({ onClose, mapState }: PrintLayoutProps) {
           {/* Map Container */}
           <div 
             ref={mapContainerRef}
-            className="relative bg-gray-200 border border-gray-800"
+            className="relative bg-gray-200 border border-[#E2E8F0]"
             style={{ height: 'calc(100% - 60px)' }}
           >
             {/* North Arrow - Top Right */}

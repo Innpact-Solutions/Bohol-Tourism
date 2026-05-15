@@ -209,7 +209,7 @@ export function LocationSearch({ onLocationSelect }: LocationSearchProps) {
         <div className="absolute top-full left-0 mt-1 w-72 bg-white border border-[#E5E7EB] rounded-lg shadow-xl z-50 overflow-hidden max-h-96">
           {locationSearchLoading ? (
             <div className="px-4 py-6 text-center">
-              <p className="text-xs text-[#94A3B8]">Searching...</p>
+              <p className="text-xs text-[#64748B]">Searching...</p>
             </div>
           ) : locationSearchQuery.trim() === '' ? (
             // Show search history first, then prominent locations when search is empty
@@ -295,7 +295,7 @@ export function LocationSearch({ onLocationSelect }: LocationSearchProps) {
           ) : (
             // No results found
             <div className="px-4 py-6 text-center">
-              <p className="text-xs text-[#94A3B8]">No results found</p>
+              <p className="text-xs text-[#64748B]">No results found</p>
             </div>
           )}
         </div>

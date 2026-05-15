@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import { BarChart3, Search } from 'lucide-react';
-import { RightPanel } from './RightPanel';
-import { QueryPanel } from './QueryPanel';
-import { BaseLayerDefaultPanel } from './BaseLayerDefaultPanel';
+import { TourismAnalyticsPanel } from '../tourism/TourismAnalyticsPanel';
 import type { Sector, Scenario } from '../App';
 
 interface RightPanelContainerProps {
@@ -130,68 +126,15 @@ export function RightPanelContainer({
   console.log('🏠 [RightPanelContainer] Received totalResidentialBuildings:', totalResidentialBuildings);
   console.log('📐 [RightPanelContainer] Received totalAreaKm2:', totalAreaKm2.toFixed(2), 'km²');
   console.log('👥 [RightPanelContainer] Received totalPopulation2024:', totalPopulation2024.toLocaleString());
-  
-  // Tourism sector: skip the default right panel — tourism uses an overlay detail panel mounted at App level
-  if (activeSector === 'tourism') {
-    return null;
-  }
 
   return (
     <div 
       data-tutorial="right-panel"
-      className="w-[330px] bg-[#0B1120] border-l border-[#334155] flex flex-col flex-shrink-0 shadow-lg"
+      className="w-[330px] bg-white border-l border-[#E2E8F0] flex flex-col flex-shrink-0 shadow-lg"
     >
       {/* Panel Content */}
-      <div className="flex-1 overflow-hidden flex flex-col">
-        {/* Priority 1: Show Module Analytics if a module is active */}
-        {!showQueryPanel ? (
-          <BaseLayerDefaultPanel
-            totalPopulation2024={totalPopulation2024}
-            totalAreaKm2={totalAreaKm2}
-            totalResidentialBuildings={totalResidentialBuildings}
-            activeLayerId={activeLayerId}
-            selectedWardId={selectedWardId}
-            selectedLguName={selectedLguName}
-            selectedWardName={selectedWardName}
-            selectedDonutCategory={selectedDonutCategory}
-            onDonutCategorySelect={onDonutCategorySelect}
-            activeBuildingCategories={activeBuildingCategories}
-            activeBuildingHeightCategories={activeBuildingHeightCategories}
-            activeBuildingAreaCategories={activeBuildingAreaCategories}
-            isEconomicVulnerabilityActive={isEconomicVulnerabilityActive}
-          />
-        ) : (
-          <QueryPanel
-            isOpen={true}
-            onClose={onCloseQuery}
-            activeSector={activeSector}
-            selectedWard={selectedWard || undefined}
-            scenario={scenario}
-            activeHazardKey={activeHazardKey}
-            onQueryResults={onQueryResults}
-            onEnableInfraLayers={onEnableInfraLayers}
-            onQueryExecuted={onQueryExecuted}
-            onApplyFilters={onApplyFilters}
-            onZoomToPoint={onZoomToPoint}
-            onCloseResults={onCloseResults}
-            onRoadNetworkSelect={onRoadNetworkSelect}
-            onActivateHazardLayer={onActivateHazardLayer}
-            onZoomToWards={onZoomToWards}
-            onZoomToRoadSegment={onZoomToRoadSegment}
-            educationCounts={educationCounts}
-            healthcareCounts={healthcareCounts}
-            publicAmenitiesCounts={publicAmenitiesCounts}
-            transportCounts={transportCounts}
-            roadNetworkStats={roadNetworkStats}
-            roadSafetyStats={roadSafetyStats}
-            selectedRoadStarSegment={selectedRoadStarSegment}
-            onRoadStarSegmentSelect={onRoadStarSegmentSelect}
-            onZoomToRoadStarSegment={onZoomToRoadStarSegment}
-            onResetBarChartFilters={onResetBarChartFilters}
-            selectedDonutCategory={selectedDonutCategory}
-            onDonutCategorySelect={onDonutCategorySelect}
-          />
-        )}
+      <div className="flex-1 overflow-y-auto flex flex-col bg-white text-slate-800">
+        <TourismAnalyticsPanel />
       </div>
     </div>
   );

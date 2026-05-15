@@ -11,8 +11,12 @@ import { PhotoLightbox } from './PhotoGallery';
 import type { SiteFeature } from './types';
 
 const TIER_BADGE_BG: Record<string, string> = {
-  Anchor: '#1F2738',
-  Secondary: '#4A4137',
+  Anchor: '#FCD34D',
+  Secondary: '#FDE68A',
+};
+const TIER_BADGE_FG: Record<string, string> = {
+  Anchor: '#78350F',
+  Secondary: '#92400E',
 };
 
 export function AttractionsList() {
@@ -46,13 +50,13 @@ export function AttractionsList() {
   });
 
   if (filtered.length === 0) {
-    return <div className="p-6 text-center italic text-stone-500 text-[12px]">
+    return <div className="p-6 text-center italic text-[#94A3B8] text-[12px]">
       No attractions match the current filters.
     </div>;
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" style={{ fontFamily: 'DM Sans, Segoe UI, sans-serif' }}>
       {filtered.map((f) => {
         const p = f.properties as any;
         const photos = getPhotosFor(p.uid);
@@ -72,13 +76,11 @@ export function AttractionsList() {
         return (
           <div
             key={p.uid}
-            className={`relative flex flex-col px-5 py-3 border-b border-stone-300 cursor-pointer transition-colors ${
-              highlighted ? 'bg-amber-50' : 'bg-white hover:bg-stone-100'
+            className={`relative flex flex-col px-4 py-3 border-b border-[#E2E8F0] cursor-pointer transition-colors ${
+              highlighted ? 'bg-[#FEF3C7]' : 'bg-white hover:bg-[#F8FAFC]'
             }`}
             onClick={() => {
               ui.setHighlightedSiteUid(p.uid);
-              // Flying / opening popup will be handled by a separate effect in TourismLayers
-              // For now, just highlight in list. We'll wire the fly-to in a small companion hook.
               window.dispatchEvent(new CustomEvent('tourism:fly-to-site', { detail: { uid: p.uid } }));
             }}
           >
@@ -86,45 +88,48 @@ export function AttractionsList() {
             <div className="flex gap-3">
               {hero ? (
                 <div
-                  className="w-16 h-16 shrink-0 bg-center bg-cover border border-stone-300 cursor-zoom-in"
+                  className="w-16 h-16 shrink-0 bg-center bg-cover rounded-md border border-[#E2E8F0] cursor-zoom-in"
                   style={{ backgroundImage: `url("${hero}")` }}
                   onClick={(e) => { e.stopPropagation(); openLightbox(0); }}
                 />
               ) : (
-                <div className="w-16 h-16 shrink-0 bg-stone-100 border border-stone-300 flex items-center justify-center text-stone-400 text-lg">
+                <div className="w-16 h-16 shrink-0 bg-[#F1F5F9] rounded-md border border-[#E2E8F0] flex items-center justify-center text-[#94A3B8] text-lg">
                   ○
                 </div>
               )}
               <div className="flex-1 min-w-0">
                 <div className="flex items-start gap-2">
-                  <div className="font-serif text-[13px] font-medium leading-tight flex-1 line-clamp-2">
+                  <div className="text-[13px] font-semibold leading-tight flex-1 line-clamp-2 text-[#0F172A]">
                     {p.name || '—'}
                   </div>
                   {showTierBadge && (
                     <span
-                      className="px-1.5 py-px text-[8.5px] uppercase tracking-widest font-semibold shrink-0 mt-0.5 text-stone-50"
-                      style={{ background: TIER_BADGE_BG[tier] || '#E3DAC8', color: TIER_BADGE_BG[tier] ? '#F6F1E8' : '#4A4137' }}
+                      className="px-1.5 py-0.5 text-[9px] uppercase tracking-widest font-bold shrink-0 mt-0.5 rounded-sm"
+                      style={{
+                        background: TIER_BADGE_BG[tier] || '#E2E8F0',
+                        color: TIER_BADGE_FG[tier] || '#475569',
+                      }}
                     >
                       {tier}
                     </span>
                   )}
                 </div>
-                <div className="mt-1 text-[12.5px] font-medium flex items-center gap-1.5">
+                <div className="mt-1 text-[12px] font-medium flex items-center gap-1.5">
                   {rating ? (
                     <>
-                      <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                      <span className="text-slate-900">{rating}</span>
+                      <Star className="w-3.5 h-3.5 fill-[#D97706] text-[#D97706]" />
+                      <span className="text-[#0F172A] tabular-nums">{rating}</span>
                       {nRatings && (
-                        <span className="text-stone-500 font-normal text-[11.5px]">
+                        <span className="text-[#64748B] font-normal text-[11px] tabular-nums">
                           {nRatings.toLocaleString()} reviews
                         </span>
                       )}
                     </>
                   ) : (
-                    <span className="text-stone-500 italic text-[11.5px] font-normal">No rating</span>
+                    <span className="text-[#94A3B8] italic text-[11px] font-normal">No rating</span>
                   )}
                 </div>
-                <div className="mt-0.5 font-mono text-[10.5px] text-stone-500">
+                <div className="mt-0.5 text-[11px] text-[#64748B] truncate">
                   {p.site_cat} · {p.lgu}{p.brgy ? ` / ${p.brgy}` : ''}
                 </div>
               </div>
@@ -134,7 +139,7 @@ export function AttractionsList() {
                 {photos.slice(1, 5).map((url, i) => (
                   <div
                     key={i}
-                    className="w-9 h-9 bg-center bg-cover border border-stone-300 cursor-zoom-in hover:scale-110 transition-transform"
+                    className="w-9 h-9 bg-center bg-cover rounded border border-[#E2E8F0] cursor-zoom-in hover:scale-105 transition-transform"
                     style={{ backgroundImage: `url("${url}")` }}
                     onClick={(e) => { e.stopPropagation(); openLightbox(i + 1); }}
                     title={`Photo ${i + 2}`}
@@ -142,7 +147,7 @@ export function AttractionsList() {
                 ))}
                 {photos.length > 5 && (
                   <div
-                    className="w-9 h-9 bg-stone-100 border border-stone-300 flex items-center justify-center text-[11px] text-stone-500 font-mono cursor-zoom-in"
+                    className="w-9 h-9 bg-[#F1F5F9] rounded border border-[#E2E8F0] flex items-center justify-center text-[11px] text-[#64748B] tabular-nums cursor-zoom-in"
                     onClick={(e) => { e.stopPropagation(); openLightbox(5); }}
                   >
                     +{photos.length - 5}

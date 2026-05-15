@@ -64,7 +64,9 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
     };
 
     const layers = [
-      TOURISM_LAYER_IDS.sites,
+      TOURISM_LAYER_IDS.anchor,
+      TOURISM_LAYER_IDS.secondary,
+      TOURISM_LAYER_IDS.supportive,
       TOURISM_LAYER_IDS.premium,
       TOURISM_LAYER_IDS.quality,
     ];
