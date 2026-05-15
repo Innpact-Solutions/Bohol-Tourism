@@ -203,7 +203,7 @@ export function TourismPanel({
       label: 'Hospitality and F&B',
       subtitle: 'Hotels & restaurants',
       icon: Hotel,
-      accent: '#C47A1F',
+      accent: '#6D28D9',
       sublayers: [
         {
           id: 'premium',
@@ -211,7 +211,7 @@ export function TourismPanel({
           description: 'Top-tier hotels & restaurants by ratings and reviews.',
           count: countAssets('Premium'),
           icon: Crown,
-          iconColor: '#C47A1F',
+          iconColor: '#6D28D9',
           iconStyle: 'solid',
           active: ui.showPremium,
           toggle: () => ui.setShowPremium(!ui.showPremium),
@@ -222,8 +222,8 @@ export function TourismPanel({
           description: 'Mid-tier hotels & restaurants.',
           count: countAssets('Quality'),
           icon: Hotel,
-          iconColor: '#C47A1F',
-          iconStyle: 'outline',
+          iconColor: '#A78BFA',
+          iconStyle: 'solid',
           active: ui.showQuality,
           toggle: () => ui.setShowQuality(!ui.showQuality),
         },

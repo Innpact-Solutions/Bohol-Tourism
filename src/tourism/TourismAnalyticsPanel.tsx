@@ -529,7 +529,7 @@ export function TourismAnalyticsPanel() {
           label="Hospitality"
           value={stats.totalAssets.toLocaleString()}
           caption="Premium + Quality"
-          accent="#C47A1F"
+          accent="#6D28D9"
         />
         <StatCard
           label="Top Score"
@@ -656,13 +656,13 @@ export function TourismAnalyticsPanel() {
             label="Premium"
             count={stats.assetCounts.Premium || 0}
             total={stats.totalAssets}
-            color="#C47A1F"
+            color="#6D28D9"
           />
           <CategoryRow
             label="Quality"
             count={stats.assetCounts.Quality || 0}
             total={stats.totalAssets}
-            color="#E5A55A"
+            color="#A78BFA"
           />
         </div>
       </div>

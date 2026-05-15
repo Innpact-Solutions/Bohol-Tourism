@@ -91,14 +91,14 @@ export function TourismLegend() {
   ];
 
   const hospitalityRows: Row[] = [
-    { label: 'Premium (hotels & restaurants)', color: '#C47A1F', style: 'solid',   size: 9, active: ui.showPremium },
-    { label: 'Quality (hotels & restaurants)', color: '#C47A1F', style: 'outline', size: 8, active: ui.showQuality },
+    { label: 'Premium (hotels & restaurants)', color: '#6D28D9', style: 'solid', size: 9, active: ui.showPremium },
+    { label: 'Quality (hotels & restaurants)', color: '#A78BFA', style: 'solid', size: 8, active: ui.showQuality },
   ];
 
   const clustersRows: Row[] = [
-    { label: 'Primary cluster (bold solid)',     color: TIER_COLORS.Primary.stroke,   style: 'solid',  size: 10, active: ui.showClusterPrimary },
-    { label: 'Emerging cluster (dash-dot)',      color: TIER_COLORS.Emerging.stroke,  style: 'dashed', size: 10, active: ui.showClusterEmerging },
-    { label: 'Satellite cluster (fine dotted)',  color: TIER_COLORS.Satellite.stroke, style: 'dashed', size: 10, active: ui.showClusterSatellite },
+    { label: 'Primary cluster',   color: TIER_COLORS.Primary.stroke,   style: 'solid', size: 12, active: ui.showClusterPrimary },
+    { label: 'Emerging cluster',  color: TIER_COLORS.Emerging.stroke,  style: 'solid', size: 12, active: ui.showClusterEmerging },
+    { label: 'Satellite cluster', color: TIER_COLORS.Satellite.stroke, style: 'solid', size: 12, active: ui.showClusterSatellite },
   ];
 
   const activeCategories = Object.entries(CATEGORY_COLORS)
@@ -147,8 +147,8 @@ export function TourismLegend() {
 
       <LegendSection
         title="Hospitality"
-        Icon={(props) => <Hotel {...props} style={{ color: '#C47A1F' }} />}
-        accent="#9A5A1A"
+        Icon={(props) => <Hotel {...props} style={{ color: '#6D28D9' }} />}
+        accent="#5B21B6"
         rows={hospitalityRows}
       />
 

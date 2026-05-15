@@ -7,16 +7,71 @@ import { createRoot, Root } from 'react-dom/client';
 import maplibregl from 'maplibre-gl';
 import { useTourismData } from './TourismContext';
 import { TourismPopupContent } from './TourismPopup';
+import { TourismClusterPopupContent } from './TourismClusterPopup';
 import { TOURISM_LAYER_IDS } from './TourismLayers';
 
 export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
-  const { sites, assets, getPhotosFor } = useTourismData();
+  const { sites, assets, clusters, getPhotosFor, getMembershipFor } = useTourismData();
 
   useEffect(() => {
     if (!map || !active || !sites || !assets) return;
 
     let currentPopup: maplibregl.Popup | null = null;
     let currentRoot: Root | null = null;
+
+    // After a popup mounts, measure it against obstructing UI panels (header,
+    // footer, directory, legend, etc.) and pan the map so the popup sits
+    // fully inside the visible, unobstructed area. Shared by site/asset and
+    // cluster popups.
+    const panPopupIntoView = () => {
+      if (!currentPopup) return;
+      const popupEl = currentPopup.getElement() as HTMLElement | null;
+      const mapEl = map.getContainer();
+      if (!popupEl || !mapEl) return;
+      const pr = popupEl.getBoundingClientRect();
+      const mr = mapEl.getBoundingClientRect();
+      const MARGIN = 12;
+
+      const obstacles: DOMRect[] = [];
+      const selectors = [
+        '[data-tourism-directory]',
+        '[data-floating-legend]',
+        '[data-header]',
+        '[data-footer]',
+        '.tourism-directory-panel',
+        '.floating-legend-panel',
+      ];
+      selectors.forEach((sel) => {
+        document.querySelectorAll<HTMLElement>(sel).forEach((el) => {
+          if (el === popupEl || popupEl.contains(el)) return;
+          obstacles.push(el.getBoundingClientRect());
+        });
+      });
+
+      let visLeft = mr.left, visRight = mr.right, visTop = mr.top, visBottom = mr.bottom;
+      obstacles.forEach((o) => {
+        if (o.right <= mr.left || o.left >= mr.right || o.bottom <= mr.top || o.top >= mr.bottom) return;
+        const overlapW = Math.min(o.right, mr.right) - Math.max(o.left, mr.left);
+        const overlapH = Math.min(o.bottom, mr.bottom) - Math.max(o.top, mr.top);
+        if (overlapW < overlapH) {
+          if (o.left - mr.left < mr.right - o.right) visLeft = Math.max(visLeft, o.right);
+          else visRight = Math.min(visRight, o.left);
+        } else {
+          if (o.top - mr.top < mr.bottom - o.bottom) visTop = Math.max(visTop, o.bottom);
+          else visBottom = Math.min(visBottom, o.top);
+        }
+      });
+
+      let dx = 0, dy = 0;
+      if (pr.left   < visLeft   + MARGIN) dx = pr.left   - (visLeft   + MARGIN);
+      if (pr.right  > visRight  - MARGIN) dx = pr.right  - (visRight  - MARGIN);
+      if (pr.top    < visTop    + MARGIN) dy = pr.top    - (visTop    + MARGIN);
+      if (pr.bottom > visBottom - MARGIN) dy = pr.bottom - (visBottom - MARGIN);
+
+      if (dx !== 0 || dy !== 0) {
+        map.panBy([dx, dy], { duration: 350 });
+      }
+    };
 
     const findPOIByUid = (uid: string): { props: any; lngLat: [number, number] } | null => {
       const site = sites.features.find((f: any) => f.properties.uid === uid);
@@ -55,67 +110,8 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       currentPopup = popup;
       currentRoot = root;
 
-      // After the popup mounts, measure it against the obstructing UI panels
-      // (header, footer, directory, legend, etc.) and pan the map so it sits
-      // fully inside the visible, unobstructed area.
-      const panIntoView = () => {
-        if (!currentPopup) return;
-        const popupEl = currentPopup.getElement() as HTMLElement | null;
-        const mapEl = map.getContainer();
-        if (!popupEl || !mapEl) return;
-        const pr = popupEl.getBoundingClientRect();
-        const mr = mapEl.getBoundingClientRect();
-        const MARGIN = 12;
-
-        // Collect bounding rects of overlay panels we must avoid.
-        const obstacles: DOMRect[] = [];
-        const selectors = [
-          '[data-tourism-directory]',
-          '[data-floating-legend]',
-          '[data-header]',
-          '[data-footer]',
-          '.tourism-directory-panel',
-          '.floating-legend-panel',
-        ];
-        selectors.forEach(sel => {
-          document.querySelectorAll<HTMLElement>(sel).forEach(el => {
-            if (el === popupEl || popupEl.contains(el)) return;
-            obstacles.push(el.getBoundingClientRect());
-          });
-        });
-
-        // Effective visible bounds inside the map = map rect minus overlaps
-        // with each obstacle. We compute simple left/right/top/bottom offsets.
-        let visLeft = mr.left, visRight = mr.right, visTop = mr.top, visBottom = mr.bottom;
-        obstacles.forEach(o => {
-          // Only consider overlays that overlap the map area at all.
-          if (o.right <= mr.left || o.left >= mr.right || o.bottom <= mr.top || o.top >= mr.bottom) return;
-          const overlapW = Math.min(o.right, mr.right) - Math.max(o.left, mr.left);
-          const overlapH = Math.min(o.bottom, mr.bottom) - Math.max(o.top, mr.top);
-          // Treat the overlay as carving in from whichever side it is attached.
-          if (overlapW < overlapH) {
-            // Side panel — shrink left or right.
-            if (o.left - mr.left < mr.right - o.right) visLeft = Math.max(visLeft, o.right);
-            else visRight = Math.min(visRight, o.left);
-          } else {
-            // Top/bottom bar.
-            if (o.top - mr.top < mr.bottom - o.bottom) visTop = Math.max(visTop, o.bottom);
-            else visBottom = Math.min(visBottom, o.top);
-          }
-        });
-
-        let dx = 0, dy = 0;
-        if (pr.left   < visLeft   + MARGIN) dx = pr.left   - (visLeft   + MARGIN);
-        if (pr.right  > visRight  - MARGIN) dx = pr.right  - (visRight  - MARGIN);
-        if (pr.top    < visTop    + MARGIN) dy = pr.top    - (visTop    + MARGIN);
-        if (pr.bottom > visBottom - MARGIN) dy = pr.bottom - (visBottom - MARGIN);
-
-        if (dx !== 0 || dy !== 0) {
-          map.panBy([dx, dy], { duration: 350 });
-        }
-      };
       // Wait one frame so the popup has measurable dimensions.
-      requestAnimationFrame(() => requestAnimationFrame(panIntoView));
+      requestAnimationFrame(() => requestAnimationFrame(panPopupIntoView));
     };
 
     const onLayerClick = (e: any) => {
@@ -123,6 +119,82 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       if (!f) return;
       const coords = (f.geometry as any).coordinates as [number, number];
       showPopup(f.properties, coords);
+    };
+
+    // ── Cluster polygon popup ──────────────────────────────────────────────
+    // Compact card: hero photo of an anchor in this cluster + cluster name.
+    const showClusterPopup = (clusterProps: any, lngLat: [number, number]) => {
+      const cid: number = clusterProps?.cluster_id;
+      if (cid == null) return;
+      const mem = getMembershipFor(cid);
+
+      // Photos: prefer anchor sites in the cluster; if none have photos,
+      // fall back to secondary, then supportive. First non-empty wins.
+      const photos: string[] = [];
+      if (mem && sites) {
+        const tiers: Array<keyof typeof mem> = ['anchors', 'secondary', 'supportive'];
+        for (const tier of tiers) {
+          if (photos.length) break;
+          const refs = (mem as any)[tier] as Array<{ name: string; lgu: string }> | undefined;
+          if (!refs) continue;
+          for (const d of refs) {
+            const siteFeat = sites.features.find((s: any) =>
+              s.properties.name === d.name && s.properties.lgu === d.lgu
+            );
+            const uid = (siteFeat?.properties as any)?.uid;
+            if (!uid) continue;
+            for (const url of getPhotosFor(uid)) photos.push(url);
+          }
+        }
+      }
+
+      if (currentPopup) {
+        currentPopup.remove();
+        currentRoot?.unmount();
+        currentRoot = null;
+      }
+      const container = document.createElement('div');
+      const root = createRoot(container);
+      root.render(
+        <TourismClusterPopupContent
+          name={clusterProps.name || mem?.name || `Cluster ${cid}`}
+          photos={photos}
+        />
+      );
+
+      const popup = new maplibregl.Popup({
+        offset: 14, maxWidth: '260px', className: 'tourism-popup tourism-cluster-popup',
+        closeButton: true, closeOnClick: false,
+      })
+        .setLngLat(lngLat)
+        .setDOMContent(container)
+        .addTo(map);
+
+      popup.on('close', () => { root.unmount(); });
+      currentPopup = popup;
+      currentRoot = root;
+
+      requestAnimationFrame(() => requestAnimationFrame(panPopupIntoView));
+    };
+
+    const onClusterFillClick = (e: any) => {
+      // Cluster polygons can sit under point clusters; if a tourism point
+      // layer was clicked, defer to its own handler (don't show cluster popup).
+      const pointLayerIds = [
+        TOURISM_LAYER_IDS.anchor,
+        TOURISM_LAYER_IDS.secondary,
+        TOURISM_LAYER_IDS.supportive,
+        TOURISM_LAYER_IDS.premium,
+        TOURISM_LAYER_IDS.quality,
+      ].filter((id) => !!map.getLayer(id));
+      const pointHits = pointLayerIds.length
+        ? map.queryRenderedFeatures(e.point, { layers: pointLayerIds })
+        : [];
+      if (pointHits.length) return;
+
+      const f = e.features?.[0];
+      if (!f) return;
+      showClusterPopup(f.properties, [e.lngLat.lng, e.lngLat.lat]);
     };
 
     const layers = [
@@ -133,6 +205,13 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       TOURISM_LAYER_IDS.quality,
     ];
     layers.forEach((id) => map.on('click', id, onLayerClick));
+
+    const clusterFillLayers = [
+      TOURISM_LAYER_IDS.clusterPrimaryFill,
+      TOURISM_LAYER_IDS.clusterEmergingFill,
+      TOURISM_LAYER_IDS.clusterSatelliteFill,
+    ];
+    clusterFillLayers.forEach((id) => map.on('click', id, onClusterFillClick));
 
     // Listen for fly-to-site events from the attractions list
     const onFly = (e: any) => {
@@ -156,10 +235,11 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
 
     return () => {
       layers.forEach((id) => map.off('click', id, onLayerClick));
+      clusterFillLayers.forEach((id) => map.off('click', id, onClusterFillClick));
       window.removeEventListener('tourism:fly-to-site', onFly as any);
       window.removeEventListener('tourism:fly-to-cluster', onFlyCluster as any);
       if (currentPopup) currentPopup.remove();
       currentRoot?.unmount();
     };
-  }, [map, active, sites, assets, getPhotosFor]);
+  }, [map, active, sites, assets, clusters, getPhotosFor, getMembershipFor]);
 }

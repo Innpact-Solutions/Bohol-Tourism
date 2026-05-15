@@ -52,6 +52,86 @@ export function TourismPopupContent({ poi, photos }: Props) {
   const catColor = CATEGORY_COLORS[cat] || '#8A8275';
   const accent = tierBadge(tier);
   const isAsset = !!poi.asset_tier;
+  // Hotel/hospitality assets never carry photos — render a compact, image-less
+  // card instead of the tall site-style hero. Sites still use the full layout
+  // (and the placeholder Camera icon when their photos haven't loaded yet).
+  const compact = isAsset;
+
+  if (compact) {
+    return (
+      <div
+        className="w-[240px] text-[#0F172A]"
+        style={{ fontFamily: "'DM Sans', 'Inter', sans-serif" }}
+      >
+        {/* Compact header — tier badge, category dot, title; no photo */}
+        <div className="px-3 pt-2.5 pb-2 border-b border-[#E2E8F0]">
+          <div className="flex items-center gap-1.5 mb-1">
+            {tier && (
+              <span
+                className="px-1 py-[1px] rounded text-[8.5px] uppercase tracking-wider font-bold flex-shrink-0"
+                style={{ color: accent.fg, background: accent.bg }}
+              >
+                {tier}
+              </span>
+            )}
+            <span
+              className="inline-block w-2 h-2 rounded-full flex-shrink-0"
+              style={{ background: catColor }}
+            />
+            <span className="text-[10.5px] font-medium text-[#64748B] leading-none truncate">
+              {cat || 'Asset'}
+            </span>
+          </div>
+          <div className="text-[13.5px] font-semibold leading-snug text-[#0F172A]">
+            {poi.name || '—'}
+          </div>
+        </div>
+
+        {/* Body */}
+        <div className="px-3 py-2.5 space-y-2">
+          {/* Rating row */}
+          {rating !== null ? (
+            <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#FFF7ED] border border-[#FCD34D]">
+                <Star className="w-3 h-3 fill-[#D97706] text-[#D97706]" />
+                <span className="text-[11px] font-semibold text-[#B45309]">{rating.toFixed(1)}</span>
+              </div>
+              {nRatings !== null && (
+                <span className="text-[10.5px] text-[#64748B]">
+                  {nRatings.toLocaleString()} {nRatings === 1 ? 'review' : 'reviews'}
+                </span>
+              )}
+            </div>
+          ) : (
+            <span className="text-[10.5px] italic text-[#94A3B8]">Not yet rated</span>
+          )}
+
+          {/* Location */}
+          {(poi.vicinity || poi.brgy || poi.lgu) && (
+            <div className="flex items-start gap-1.5 text-[11px] text-[#475569] leading-snug">
+              <MapPin className="w-3 h-3 mt-[2px] flex-shrink-0 text-[#94A3B8]" />
+              <span className="flex-1">
+                {poi.vicinity || [poi.brgy, poi.lgu].filter(Boolean).join(', ')}
+              </span>
+            </div>
+          )}
+
+          {/* CTA */}
+          {poi.gmap_url && (
+            <a
+              href={poi.gmap_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-0.5 inline-flex items-center justify-center gap-1.5 w-full px-2.5 py-1.5 text-[11.5px] font-semibold rounded-md bg-[#B45309] hover:bg-[#92400E] text-white transition-colors shadow-sm"
+            >
+              <ExternalLink className="w-3 h-3" />
+              Open in Google Maps
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

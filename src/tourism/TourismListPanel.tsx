@@ -79,13 +79,19 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
     if (ui.showAnchor)     allowedTiers.add('Anchor');
     if (ui.showSecondary)  allowedTiers.add('Secondary');
     if (ui.showSupportive) allowedTiers.add('Supportive');
+    // If the whole Sites layer is off, show every tier in the directory
+    // (the user is browsing the list independently of map visibility).
+    const sitesLayerOff = allowedTiers.size === 0;
 
     const arr = sites.features.filter((f: any) => {
       const p = f.properties;
       if (p.site_cat === 'EXCLUDED') return false;
-      if (!allowedTiers.has(p.perf_tier)) return false;
-      const allowedCats = ui.enabledSiteCategoriesByTier?.[p.perf_tier as 'Anchor' | 'Secondary' | 'Supportive'];
-      if (allowedCats && !allowedCats.has(p.site_cat)) return false;
+      if (!sitesLayerOff && !allowedTiers.has(p.perf_tier)) return false;
+      // Per-tier category filter only applies when that tier is actually on.
+      if (!sitesLayerOff) {
+        const allowedCats = ui.enabledSiteCategoriesByTier?.[p.perf_tier as 'Anchor' | 'Secondary' | 'Supportive'];
+        if (allowedCats && !allowedCats.has(p.site_cat)) return false;
+      }
       if (lgu && p.lgu !== lgu) return false;
       if (brgy && p.brgy !== brgy) return false;
       if (q && !(p.name || '').toLowerCase().includes(q)) return false;
@@ -108,10 +114,12 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
     const allowedTiers = new Set<string>();
     if (ui.showPremium) allowedTiers.add('Premium');
     if (ui.showQuality) allowedTiers.add('Quality');
+    // Layer fully off → show every hotel/F&B record (still honoring LGU / Brgy / search).
+    const hospitalityLayerOff = allowedTiers.size === 0;
 
     const arr = assets.features.filter((f: any) => {
       const p = f.properties;
-      if (!allowedTiers.has(p.asset_tier)) return false;
+      if (!hospitalityLayerOff && !allowedTiers.has(p.asset_tier)) return false;
       if (lgu && p.lgu !== lgu) return false;
       if (brgy && p.brgy !== brgy) return false;
       if (q && !(p.name || '').toLowerCase().includes(q)) return false;
@@ -137,10 +145,12 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
     if (ui.showClusterPrimary)   allowedTiers.add('Primary');
     if (ui.showClusterEmerging)  allowedTiers.add('Emerging');
     if (ui.showClusterSatellite) allowedTiers.add('Satellite');
+    // Layer fully off → show every cluster.
+    const clustersLayerOff = allowedTiers.size === 0;
 
     const arr = clusters.features.filter((f: any) => {
       const p = f.properties;
-      if (!allowedTiers.has(p.tier)) return false;
+      if (!clustersLayerOff && !allowedTiers.has(p.tier)) return false;
       if (lgu && p.lgu !== lgu) return false;
       if (q) {
         const hay = ((p.anchors_names || '') + ' ' + (p.name || '')).toLowerCase();
