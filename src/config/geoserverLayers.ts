@@ -195,6 +195,56 @@ const layerScenarioMap: Record<string, Record<string, string>> = {
     ssp5_2040: 'YOUR_WORKSPACE:Multi_Hazard',
   },
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // Bohol Heat Stress sub-layers (UI uses these IDs from LeftDrawer).
+  // Map all scenarios to the single GeoServer layer for now — Bohol does not
+  // publish per-year / per-SSP variants.
+  // ─────────────────────────────────────────────────────────────────────────
+  heat_stress_index: {
+    '2015': 'WorldBank_Bohol:HS_HSI', '2016': 'WorldBank_Bohol:HS_HSI',
+    '2017': 'WorldBank_Bohol:HS_HSI', '2018': 'WorldBank_Bohol:HS_HSI',
+    '2019': 'WorldBank_Bohol:HS_HSI', '2020': 'WorldBank_Bohol:HS_HSI',
+    '2021': 'WorldBank_Bohol:HS_HSI', '2022': 'WorldBank_Bohol:HS_HSI',
+    '2023': 'WorldBank_Bohol:HS_HSI', '2024': 'WorldBank_Bohol:HS_HSI',
+    baseline_2025: 'WorldBank_Bohol:HS_HSI',
+    ssp1_2040: 'WorldBank_Bohol:HS_HSI',
+    ssp2_2040: 'WorldBank_Bohol:HS_HSI',
+    ssp5_2040: 'WorldBank_Bohol:HS_HSI',
+  },
+  land_surface_temperature: {
+    '2015': 'WorldBank_Bohol:HS_LST', '2016': 'WorldBank_Bohol:HS_LST',
+    '2017': 'WorldBank_Bohol:HS_LST', '2018': 'WorldBank_Bohol:HS_LST',
+    '2019': 'WorldBank_Bohol:HS_LST', '2020': 'WorldBank_Bohol:HS_LST',
+    '2021': 'WorldBank_Bohol:HS_LST', '2022': 'WorldBank_Bohol:HS_LST',
+    '2023': 'WorldBank_Bohol:HS_LST', '2024': 'WorldBank_Bohol:HS_LST',
+    baseline_2025: 'WorldBank_Bohol:HS_LST',
+    ssp1_2040: 'WorldBank_Bohol:HS_LST',
+    ssp2_2040: 'WorldBank_Bohol:HS_LST',
+    ssp5_2040: 'WorldBank_Bohol:HS_LST',
+  },
+  urban_heat_island: {
+    '2015': 'WorldBank_Bohol:HS_UHI', '2016': 'WorldBank_Bohol:HS_UHI',
+    '2017': 'WorldBank_Bohol:HS_UHI', '2018': 'WorldBank_Bohol:HS_UHI',
+    '2019': 'WorldBank_Bohol:HS_UHI', '2020': 'WorldBank_Bohol:HS_UHI',
+    '2021': 'WorldBank_Bohol:HS_UHI', '2022': 'WorldBank_Bohol:HS_UHI',
+    '2023': 'WorldBank_Bohol:HS_UHI', '2024': 'WorldBank_Bohol:HS_UHI',
+    baseline_2025: 'WorldBank_Bohol:HS_UHI',
+    ssp1_2040: 'WorldBank_Bohol:HS_UHI',
+    ssp2_2040: 'WorldBank_Bohol:HS_UHI',
+    ssp5_2040: 'WorldBank_Bohol:HS_UHI',
+  },
+  wet_bulb_temperature: {
+    '2015': 'WorldBank_Bohol:HS_WBT', '2016': 'WorldBank_Bohol:HS_WBT',
+    '2017': 'WorldBank_Bohol:HS_WBT', '2018': 'WorldBank_Bohol:HS_WBT',
+    '2019': 'WorldBank_Bohol:HS_WBT', '2020': 'WorldBank_Bohol:HS_WBT',
+    '2021': 'WorldBank_Bohol:HS_WBT', '2022': 'WorldBank_Bohol:HS_WBT',
+    '2023': 'WorldBank_Bohol:HS_WBT', '2024': 'WorldBank_Bohol:HS_WBT',
+    baseline_2025: 'WorldBank_Bohol:HS_WBT',
+    ssp1_2040: 'WorldBank_Bohol:HS_WBT',
+    ssp2_2040: 'WorldBank_Bohol:HS_WBT',
+    ssp5_2040: 'WorldBank_Bohol:HS_WBT',
+  },
+
   // ═══════════════════════════════════════════════════════════════════════════════
   // CWIS CLIMATE HAZARD LAYERS (6 layers for Bohol CWIS Dashboard)
   // ⚠️ IMPORTANT: CWIS layers do NOT use scenario mapping
@@ -339,6 +389,38 @@ export const geoserverLayers: Record<string, GeoServerLayer> = {
     name: 'Multi-Hazard Assessment',
     geoserverLayer: 'YOUR_WORKSPACE:Multi_Hazard',
     sector: 'multihazard',
+    opacity: 0.7,
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Bohol Heat Stress sub-layers — IDs used by the Left Drawer UI.
+  // ─────────────────────────────────────────────────────────────────────────
+  heat_stress_index: {
+    id: 'heat_stress_index',
+    name: 'Heat Stress Index',
+    geoserverLayer: 'WorldBank_Bohol:HS_HSI',
+    sector: 'heat',
+    opacity: 0.7,
+  },
+  land_surface_temperature: {
+    id: 'land_surface_temperature',
+    name: 'Land Surface Temperature',
+    geoserverLayer: 'WorldBank_Bohol:HS_LST',
+    sector: 'heat',
+    opacity: 0.7,
+  },
+  urban_heat_island: {
+    id: 'urban_heat_island',
+    name: 'Urban Heat Island',
+    geoserverLayer: 'WorldBank_Bohol:HS_UHI',
+    sector: 'heat',
+    opacity: 0.7,
+  },
+  wet_bulb_temperature: {
+    id: 'wet_bulb_temperature',
+    name: 'Wet Bulb Temperature',
+    geoserverLayer: 'WorldBank_Bohol:HS_WBT',
+    sector: 'heat',
     opacity: 0.7,
   },
 
