@@ -110,9 +110,9 @@ function AppContent({
   // All useState hooks MUST be called before any returns
   const [activeSector, setActiveSector] = useState<Sector>('heat');
   const [activeLayerPerSector, setActiveLayerPerSector] = useState({
-    heat: 'heat_hhi',
-    air: 'air_aqi',
-    flood: 'flood_fhi',
+    heat: '',
+    air: '',
+    flood: '',
     base_layers: '',
     climate_hazard: '',
     env_vulnerability: ''
