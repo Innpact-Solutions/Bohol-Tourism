@@ -720,11 +720,12 @@ function ClusterDetailSection() {
   const ndviClusterId = (cluster?.properties as any)?.cluster_id ?? null;
   const ndviClusterName = String((cluster?.properties as any)?.name ?? '');
   const { data: ndviData } = useClusterNdvi(ndviClusterId);
-  let { builtupPct, greenPct } = deriveLandCover(ndviData);
+  let { builtupPct, openLandPct, greenPct } = deriveLandCover(ndviData);
   // Balicasag Marine Sanctuary is an offshore island with no NDVI coverage in
   // the source raster — use curated land-cover values instead of "NA".
-  if (/balicasag/i.test(ndviClusterName) && builtupPct == null && greenPct == null) {
+  if (/balicasag/i.test(ndviClusterName) && builtupPct == null && openLandPct == null && greenPct == null) {
     builtupPct = 27;
+    openLandPct = 8;
     greenPct = 65;
   }
   const fmtPct = (v: number | null) => (v == null ? 'NA' : `${v}%`);
@@ -804,8 +805,9 @@ function ClusterDetailSection() {
           label="Land Area"
           value={landStr === '—' ? '—' : `${landStr} km²`}
           captionItems={[
-            { label: 'Built-up', value: fmtPct(builtupPct) },
-            { label: 'Green',    value: fmtPct(greenPct) },
+            { label: 'Built-up',  value: fmtPct(builtupPct) },
+            { label: 'Open Land', value: fmtPct(openLandPct) },
+            { label: 'Green',     value: fmtPct(greenPct) },
           ]}
           accent="#16A34A"
           tint="#DCFCE7"
