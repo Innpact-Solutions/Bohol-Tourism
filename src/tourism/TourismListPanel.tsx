@@ -33,7 +33,7 @@ const TIER_BADGE: Record<string, { bg: string; fg: string }> = {
   Premium:    { bg: '#FED7AA', fg: '#9A3412' },
   Quality:    { bg: '#FFEDD5', fg: '#C2410C' },
   Primary:    { bg: '#FFF7ED', fg: '#E07A18' }, // canonical amber (Primary cluster)
-  Emerging:   { bg: '#F5F3FF', fg: '#6D28D9' }, // canonical violet (Emerging cluster)
+  Emerging:   { bg: '#ECFDF5', fg: '#059669' }, // emerald (Emerging cluster)
   Satellite:  { bg: '#EFF6FF', fg: '#2563EB' }, // canonical blue   (Satellite cluster)
 };
 

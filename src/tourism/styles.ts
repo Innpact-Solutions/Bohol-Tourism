@@ -4,8 +4,8 @@
 export const TIER_COLORS = {
   // Vivid amber
   Primary:   { stroke: '#E07A18', fillOpacity: 0.22 },
-  // Deep violet — different hue family from amber/teal so it never reads as "reddish-orange"
-  Emerging:  { stroke: '#6D28D9', fillOpacity: 0.16 },
+  // Emerald green — distinct hue from amber + blue, semantically reads "emerging/growing"
+  Emerging:  { stroke: '#059669', fillOpacity: 0.16 },
   // Strong blue — high-contrast cool tone, far more visible than the previous muted teal
   Satellite: { stroke: '#2563EB', fillOpacity: 0.18 },
 } as const;

@@ -49,7 +49,7 @@ export const ASSET_TIER_TOKENS: Record<'Premium' | 'Quality' | 'TouristHome', Co
 // ---------------------------------------------------------------------------
 export const CLUSTER_TIER_TOKENS: Record<'Primary' | 'Emerging' | 'Satellite', ColorToken & { icon: LucideIcon }> = {
   Primary:   { accent: TIER_COLORS.Primary.stroke,   tint: '#FFF7ED', icon: Sparkles },
-  Emerging:  { accent: TIER_COLORS.Emerging.stroke,  tint: '#F5F3FF', icon: CircleDot },
+  Emerging:  { accent: TIER_COLORS.Emerging.stroke,  tint: '#ECFDF5', icon: CircleDot },
   Satellite: { accent: TIER_COLORS.Satellite.stroke, tint: '#EFF6FF', icon: Circle },
 };
 

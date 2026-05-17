@@ -12,7 +12,7 @@ import { TOURISM_INTERVENTIONS } from '../config/tourismConfig';
 
 const TIER_BG: Record<string, string> = {
   Primary:   TIER_COLORS.Primary.stroke,   // #E07A18 amber
-  Emerging:  TIER_COLORS.Emerging.stroke,  // #6D28D9 violet
+  Emerging:  TIER_COLORS.Emerging.stroke,  // #059669 emerald
   Satellite: TIER_COLORS.Satellite.stroke, // #2563EB blue
 };
 

@@ -524,9 +524,9 @@ export function TourismLayers({
               'circle-color': color,
               'circle-radius': [
                 'step', ['get', 'point_count'],
-                11, 10,
-                14, 25,
-                17,
+                9, 10,
+                11, 25,
+                13,
               ] as any,
               'circle-stroke-color': '#FFFFFF',
               'circle-stroke-width': 2,
