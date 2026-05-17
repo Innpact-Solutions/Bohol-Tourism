@@ -535,9 +535,36 @@ export function TourismLayers({
             } as any,
           });
         }
-        // Asset (hotel/restaurant) cluster COUNT labels are intentionally
-        // NOT created — the user wants only the cluster bubble, no number.
-        void countId;
+        // Cluster count label — shown only when 2+ points are aggregated.
+        // Text sized so digits always sit inside the bubble (which is 9/11/13 px
+        // radius). `allow-overlap: true` guarantees the number is never culled
+        // by colliding basemap labels.
+        if (!map.getLayer(countId)) {
+          map.addLayer({
+            id: countId,
+            type: 'symbol',
+            source: srcId,
+            filter: ['all', ['has', 'point_count'], ['>=', ['get', 'point_count'], 2]],
+            layout: {
+              'text-field': ['to-string', ['get', 'point_count']],
+              'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+              'text-size': [
+                'step', ['get', 'point_count'],
+                9.5, 10,
+                10.5, 25,
+                11.5,
+              ] as any,
+              'text-allow-overlap': true,
+              'text-ignore-placement': true,
+              visibility: 'none',
+            } as any,
+            paint: {
+              'text-color': '#FFFFFF',
+              'text-halo-color': 'rgba(0,0,0,0.55)',
+              'text-halo-width': 1.1,
+            } as any,
+          });
+        }
       };
       addAssetClusterStack(
         LYR.assetsQualityCluster,
