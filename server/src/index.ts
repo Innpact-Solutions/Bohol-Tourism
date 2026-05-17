@@ -8,6 +8,7 @@ import heatStressBuildingsRouter from "./routes/heatStressBuildings";
 import infiltrationBuildingsRouter from "./routes/infiltrationBuildings";
 import adminRebuildRouter from "./routes/adminRebuild";
 import clusterHazardsRouter from "./routes/clusterHazards";
+import clusterNdviRouter from "./routes/clusterNdvi";
 
 const app = express();
 const PORT = process.env.PORT ?? 8080;
@@ -46,6 +47,7 @@ app.use("/api/heat-stress-buildings", heatStressBuildingsRouter);
 app.use("/api/infiltration-buildings", infiltrationBuildingsRouter);
 app.use("/api/admin", adminRebuildRouter);
 app.use("/api/cluster-hazards", clusterHazardsRouter);
+app.use("/api/cluster-ndvi", clusterNdviRouter);
 
 // 404 fallback
 app.use((_req, res) => {

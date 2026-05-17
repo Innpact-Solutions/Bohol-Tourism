@@ -10,6 +10,7 @@ import { BarChart, Bar, Cell, XAxis, YAxis, ResponsiveContainer, Tooltip, LabelL
 import { useTourismData } from './TourismContext';
 import { useTourismUI } from './tourismStore';
 import { useClusterHazards } from './useClusterHazards';
+import { useClusterNdvi, deriveLandCover } from './useClusterNdvi';
 import { useClusterHazardsSummary } from './useClusterHazardsSummary';
 import { useHazardLayerBreakdown } from './useHazardLayerBreakdown';
 import type { HazardSummary } from './useClusterHazards';
@@ -702,6 +703,11 @@ function ClusterDetailSection() {
   const nQual  = mem.quality?.length || 0;
   const landStr = typeof landKm2 === 'number' ? landKm2.toFixed(2) : (landKm2 ?? '—');
 
+  // NDVI-derived land cover for the Land Area KPI footer.
+  const { data: ndviData } = useClusterNdvi(p.cluster_id ?? null);
+  const { builtupPct, greenPct } = deriveLandCover(ndviData);
+  const fmtPct = (v: number | null) => (v == null ? 'NA' : `${v}%`);
+
   return (
     <div className="px-3 pt-3 pb-2">
       {/* Section heading — "Cluster Assessment" eyebrow + prominent cluster name */}
@@ -753,8 +759,8 @@ function ClusterDetailSection() {
           label="Land Area"
           value={landStr === '—' ? '—' : `${landStr} km²`}
           captionItems={[
-            { label: 'Built-up', value: 'NA' },
-            { label: 'Green',    value: 'NA' },
+            { label: 'Built-up', value: fmtPct(builtupPct) },
+            { label: 'Green',    value: fmtPct(greenPct) },
           ]}
           accent="#16A34A"
           tint="#DCFCE7"
