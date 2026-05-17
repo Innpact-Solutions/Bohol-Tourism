@@ -121,6 +121,7 @@ export type PhotoIndex = Record<string, PhotoIndexEntry>;
 export interface BookingAccommodationProps {
   bk_id: string;
   name: string;
+  description?: string;
   address?: string;
   price?: string;
   rating?: string;
