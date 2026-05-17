@@ -1165,8 +1165,8 @@ export function LeftDrawer({
               <TourismPanel embedded selectedLgu={selectedLguName} selectedBrgy={selectedWardName} />
             </div>
 
-            {/* Climate Hazards Title Card (collapsible) */}
-            <div className="w-full bg-[#F8FAFC] px-4 py-3 hover:bg-[#F1F5F9] transition-colors flex items-center gap-3 border-b border-[#E2E8F0]">
+            {/* Climate Hazards Title Card (collapsible) — blue-tinted to distinguish from Tourism */}
+            <div className="w-full px-4 py-3 hover:brightness-[0.98] transition flex items-center gap-3 border-b border-[#E2E8F0] border-l-[3px] border-l-[#2563EB] bg-gradient-to-r from-[#EFF6FF] to-[#F0F9FF]">
               <button
                 onClick={() => setClimateHazardsExpanded(!climateHazardsExpanded)}
                 className="flex items-center gap-3 flex-1 min-w-0 text-left cursor-pointer"

@@ -346,8 +346,8 @@ export function TourismPanel({
     };
     return (
       <div className="w-full bg-white text-[#0F172A]" style={{ fontFamily: 'DM Sans, Segoe UI, sans-serif' }}>
-        {/* Section header */}
-        <div className="w-full bg-[#F8FAFC] px-4 py-3 hover:bg-[#F1F5F9] transition-colors flex items-center gap-3 border-b border-[#E2E8F0]">
+        {/* Section header — amber-tinted to distinguish Tourism from Climate Hazards */}
+        <div className="w-full px-4 py-3 hover:brightness-[0.98] transition flex items-center gap-3 border-b border-[#E2E8F0] border-l-[3px] border-l-[#D97706] bg-gradient-to-r from-[#FFFBEB] to-[#FFF7ED]">
           <button
             onClick={() => setSectionExpanded(!sectionExpanded)}
             className="flex items-center gap-3 flex-1 min-w-0 text-left cursor-pointer"
