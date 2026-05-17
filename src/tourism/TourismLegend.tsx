@@ -75,7 +75,7 @@ export function TourismLegend() {
 
   const anyOn =
     ui.showAnchor || ui.showSecondary || ui.showSupportive ||
-    ui.showPremium || ui.showQuality ||
+    ui.showPremium || ui.showQuality || ui.showBookingAccommodations ||
     ui.showClusterPrimary || ui.showClusterEmerging || ui.showClusterSatellite;
 
   if (!anyOn) return null;
@@ -93,6 +93,7 @@ export function TourismLegend() {
   const hospitalityRows: Row[] = [
     { label: 'Premium (hotels & restaurants)', color: '#6D28D9', style: 'solid', size: 9, active: ui.showPremium },
     { label: 'Quality (hotels & restaurants)', color: '#A78BFA', style: 'solid', size: 8, active: ui.showQuality },
+    { label: 'Booking.com accommodations',     color: '#2563EB', style: 'solid', size: 8, active: ui.showBookingAccommodations },
   ];
 
   const clustersRows: Row[] = [

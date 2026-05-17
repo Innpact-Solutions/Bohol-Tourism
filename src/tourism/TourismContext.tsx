@@ -1,7 +1,7 @@
 // Tourism module — React context for data loading
 // Loads all 5 tourism JSONs once on mount, exposes them to descendants.
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import type { ClusterFC, SiteFC, AssetFC, ClusterMembership, PhotoIndex } from './types';
+import type { ClusterFC, SiteFC, AssetFC, ClusterMembership, PhotoIndex, BookingAccommodationFC, BookingPhotoIndex } from './types';
 import { TOURISM_PATHS } from '../config/tourismConfig';
 
 interface TourismData {
@@ -11,6 +11,8 @@ interface TourismData {
   membership: ClusterMembership[] | null;
   photoIndex: PhotoIndex | null;
   assetPhotoIndex: PhotoIndex | null;
+  accommodationsBooking: BookingAccommodationFC | null;
+  bookingPhotoIndex: BookingPhotoIndex | null;
 }
 
 interface TourismContextValue extends TourismData {
@@ -19,6 +21,7 @@ interface TourismContextValue extends TourismData {
   // Helpers
   getPhotosFor:      (uid: string | undefined) => string[];       // site photos (local)
   getAssetPhotosFor: (uid: string | undefined) => string[];       // hotel/asset photos (Google Places, local)
+  getBookingPhotosFor: (bk_id: string | undefined) => string[];   // booking accommodation photos
   getMembershipFor:  (cluster_id: number) => ClusterMembership | undefined;
 }
 
@@ -27,6 +30,7 @@ const TourismContext = createContext<TourismContextValue | null>(null);
 export function TourismProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<TourismData>({
     clusters: null, sites: null, assets: null, membership: null, photoIndex: null, assetPhotoIndex: null,
+    accommodationsBooking: null, bookingPhotoIndex: null,
   });
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState<string | null>(null);
@@ -35,7 +39,7 @@ export function TourismProvider({ children }: { children: ReactNode }) {
     let cancelled = false;
     async function load() {
       try {
-        const [clusters, sites, assets, membership, photoIndex, assetPhotoIndex] = await Promise.all([
+        const [clusters, sites, assets, membership, photoIndex, assetPhotoIndex, accommodationsBooking, bookingPhotoIndex] = await Promise.all([
           fetch(TOURISM_PATHS.clusters).then(r => r.ok ? r.json() : Promise.reject(r.status)),
           fetch(TOURISM_PATHS.sites).then(r => r.ok ? r.json() : Promise.reject(r.status)),
           fetch(TOURISM_PATHS.assets).then(r => r.ok ? r.json() : Promise.reject(r.status)),
@@ -44,6 +48,9 @@ export function TourismProvider({ children }: { children: ReactNode }) {
           // Asset photo index is optional — empty object if file missing so the
           // app still loads in older builds before the backfill ran.
           fetch(TOURISM_PATHS.assetPhotoIndex).then(r => r.ok ? r.json() : {}).catch(() => ({})),
+          // Booking.com accommodations — optional, graceful fallback.
+          fetch(TOURISM_PATHS.accommodationsBooking).then(r => r.ok ? r.json() : null).catch(() => null),
+          fetch(TOURISM_PATHS.accommodationBookingPhotoIndex).then(r => r.ok ? r.json() : {}).catch(() => ({})),
         ]);
         if (cancelled) return;
         // Restrict tourism sites to the 66 ranked attractions (Anchor / Secondary / Supportive).
@@ -53,7 +60,7 @@ export function TourismProvider({ children }: { children: ReactNode }) {
         const filteredSites = sites && Array.isArray(sites.features)
           ? { ...sites, features: sites.features.filter((f: any) => RANKED_TIERS.has(f?.properties?.perf_tier)) }
           : sites;
-        setData({ clusters, sites: filteredSites, assets, membership, photoIndex, assetPhotoIndex });
+        setData({ clusters, sites: filteredSites, assets, membership, photoIndex, assetPhotoIndex, accommodationsBooking, bookingPhotoIndex });
         setLoading(false);
       } catch (err) {
         if (cancelled) return;
@@ -79,12 +86,19 @@ export function TourismProvider({ children }: { children: ReactNode }) {
     return entry.photos.map(p => `${TOURISM_PATHS.assetPhotoBase}/${p.file}`);
   };
 
+  const getBookingPhotosFor = (bk_id: string | undefined): string[] => {
+    if (!bk_id || !data.bookingPhotoIndex) return [];
+    const entry = (data.bookingPhotoIndex as any)[bk_id];
+    if (!entry || !entry.photos) return [];
+    return entry.photos.map((p: any) => `${TOURISM_PATHS.accommodationBookingPhotoBase}/${p.file}`);
+  };
+
   const getMembershipFor = (id: number): ClusterMembership | undefined => {
     return data.membership?.find(m => m.cluster_id === id);
   };
 
   const value: TourismContextValue = {
-    ...data, loading, error, getPhotosFor, getAssetPhotosFor, getMembershipFor,
+    ...data, loading, error, getPhotosFor, getAssetPhotosFor, getBookingPhotosFor, getMembershipFor,
   };
   return <TourismContext.Provider value={value}>{children}</TourismContext.Provider>;
 }

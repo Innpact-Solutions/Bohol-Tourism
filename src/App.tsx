@@ -1151,6 +1151,7 @@ function AppContent({
           showSupportive={tourismUI.showSupportive}
           showPremium={tourismUI.showPremium}
           showQuality={tourismUI.showQuality}
+          showBookingAccommodations={tourismUI.showBookingAccommodations}
           showClusterPrimary={tourismUI.showClusterPrimary}
           showClusterEmerging={tourismUI.showClusterEmerging}
           showClusterSatellite={tourismUI.showClusterSatellite}

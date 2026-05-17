@@ -8,6 +8,7 @@ import { CATEGORY_COLORS } from './styles';
 
 interface PopupPOI {
   uid?: string;
+  bk_id?: string;
   name?: string;
   site_cat?: string;
   asset_cat?: string;
@@ -19,6 +20,11 @@ interface PopupPOI {
   n_ratings?: number | string;
   vicinity?: string;
   gmap_url?: string;
+  // Booking.com accommodation fields
+  address?: string;
+  price?: string;
+  source?: string;
+  url?: string;
 }
 
 interface Props {
@@ -52,11 +58,113 @@ export function TourismPopupContent({ poi, photos }: Props) {
   const catColor = CATEGORY_COLORS[cat] || '#8A8275';
   const accent = tierBadge(tier);
   const isAsset = !!poi.asset_tier;
+  const isBooking = !!poi.bk_id;
   // Hospitality assets fall back to the compact, image-less card only when no
   // photo is available (e.g. older deploys before the Google Places backfill
   // ran). When photos are present, hotels render the same hero-image layout
   // as tourism sites for visual parity.
-  const compact = isAsset && photos.length === 0;
+  const compact = isAsset && photos.length === 0 && !isBooking;
+
+  // ── Booking.com accommodation card ──────────────────────────────────────
+  if (isBooking) {
+    const bookingRating = poi.rating && poi.rating !== 'NULL' && Number(poi.rating) > 0 ? Number(poi.rating) : null;
+    const bookingPrice = poi.price && poi.price !== 'NULL' && poi.price !== 'N/A' ? poi.price : null;
+
+    return (
+      <div
+        className="w-[300px] text-[#0F172A]"
+        style={{ fontFamily: "'DM Sans', 'Inter', sans-serif" }}
+      >
+        {/* Photo header */}
+        <div className="relative">
+          {photos.length > 0 ? (
+            <PhotoCarousel
+              photos={photos}
+              altPrefix={poi.name || 'Accommodation'}
+              height={160}
+              onZoom={(i) => { setLbIdx(i); setLightbox(true); }}
+            />
+          ) : (
+            <div
+              className="h-[120px] flex items-center justify-center"
+              style={{ background: 'linear-gradient(135deg, #DBEAFE 0%, #E2E8F0 100%)' }}
+            >
+              <Camera className="w-7 h-7 text-[#94A3B8]" />
+            </div>
+          )}
+          <div
+            className="absolute inset-0 pointer-events-none z-[5]"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(15,23,42,0) 30%, rgba(15,23,42,0.85) 100%)',
+            }}
+          />
+          {/* Booking.com badge */}
+          <div
+            className="absolute top-2 left-2 px-1.5 py-[2px] rounded text-[8.5px] uppercase tracking-wider font-bold z-[6] pointer-events-none"
+            style={{ color: '#fff', background: '#2563EB' }}
+          >
+            Booking.com
+          </div>
+          {/* Title */}
+          <div className="absolute bottom-0 left-0 right-0 px-3.5 pb-3 pt-8 pointer-events-none z-[6]">
+            <div
+              className="text-[16px] font-semibold leading-snug text-white"
+              style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}
+            >
+              {poi.name || '—'}
+            </div>
+          </div>
+        </div>
+
+        {/* Body */}
+        <div className="px-3.5 py-3 space-y-2.5">
+          {/* Rating + Price row */}
+          <div className="flex items-center gap-2 flex-wrap">
+            {bookingRating !== null && (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-[#EFF6FF] border border-[#93C5FD]">
+                <Star className="w-3.5 h-3.5 fill-[#2563EB] text-[#2563EB]" />
+                <span className="text-[12px] font-semibold text-[#1D4ED8]">{bookingRating.toFixed(1)}</span>
+              </div>
+            )}
+            {bookingPrice && (
+              <span className="px-2 py-1 rounded-md bg-[#F0FDF4] border border-[#86EFAC] text-[12px] font-semibold text-[#166534]">
+                {bookingPrice}
+              </span>
+            )}
+          </div>
+
+          {/* Address */}
+          {poi.address && (
+            <div className="flex items-start gap-1.5 text-[11.5px] text-[#475569] leading-snug">
+              <MapPin className="w-3.5 h-3.5 mt-[1px] flex-shrink-0 text-[#94A3B8]" />
+              <span className="flex-1">{poi.address}</span>
+            </div>
+          )}
+
+          {/* CTA — Booking.com link */}
+          {poi.url && (
+            <a
+              href={poi.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-0.5 inline-flex items-center justify-center gap-1.5 w-full px-3 py-2 text-[12px] font-semibold rounded-md bg-[#2563EB] hover:bg-[#1D4ED8] text-white transition-colors shadow-sm"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              View on Booking.com
+            </a>
+          )}
+        </div>
+
+        <PhotoLightbox
+          open={lightbox}
+          onOpenChange={setLightbox}
+          photos={photos}
+          startIndex={lbIdx}
+          caption={poi.name || ''}
+        />
+      </div>
+    );
+  }
 
   if (compact) {
     return (

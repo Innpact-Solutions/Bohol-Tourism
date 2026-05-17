@@ -38,6 +38,9 @@ interface TourismUIState {
   showPremium: boolean;
   showQuality: boolean;
 
+  // Booking.com accommodations layer
+  showBookingAccommodations: boolean;
+
   // Tourism Clusters — by cluster tier
   showClusterPrimary: boolean;
   showClusterEmerging: boolean;
@@ -66,6 +69,7 @@ interface TourismUIState {
   setShowSupportive: (v: boolean) => void;
   setShowPremium: (v: boolean) => void;
   setShowQuality: (v: boolean) => void;
+  setShowBookingAccommodations: (v: boolean) => void;
   setShowClusterPrimary: (v: boolean) => void;
   setShowClusterEmerging: (v: boolean) => void;
   setShowClusterSatellite: (v: boolean) => void;
@@ -114,6 +118,7 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
   const [showSupportive, setShowSupportiveRaw] = useState(true);
   const [showPremium, setShowPremium] = useState(false);
   const [showQuality, setShowQuality] = useState(false);
+  const [showBookingAccommodations, setShowBookingAccommodations] = useState(false);
   const [showClusterPrimary, setShowClusterPrimary] = useState(false);
   const [showClusterEmerging, setShowClusterEmerging] = useState(false);
   const [showClusterSatellite, setShowClusterSatellite] = useState(false);
@@ -215,6 +220,7 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
     activeSection,
     showAnchor, showSecondary, showSupportive,
     showPremium, showQuality,
+    showBookingAccommodations,
     showClusterPrimary, showClusterEmerging, showClusterSatellite,
     enabledSiteCategoriesByTier, enabledSiteCategories,
     toggleSiteCategoryForTier, setAllSiteCategoriesForTier,
@@ -224,6 +230,7 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
     setActiveSection,
     setShowAnchor, setShowSecondary, setShowSupportive,
     setShowPremium, setShowQuality,
+    setShowBookingAccommodations,
     setShowClusterPrimary, setShowClusterEmerging, setShowClusterSatellite,
     clearAllFilters, hasActiveFilters,
   };

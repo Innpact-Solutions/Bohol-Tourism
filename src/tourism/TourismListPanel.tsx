@@ -45,7 +45,7 @@ const norm = (v?: string | null): string | null => {
 };
 
 export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanelProps) {
-  const { sites, assets, clusters, getPhotosFor, getAssetPhotosFor } = useTourismData();
+  const { sites, assets, clusters, accommodationsBooking, getPhotosFor, getAssetPhotosFor, getBookingPhotosFor } = useTourismData();
   const ui = useTourismUI();
 
   const [collapsed, setCollapsed] = useState(false);
@@ -138,6 +138,22 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
     return arr;
   }, [assets, lgu, brgy, search, ui.showPremium, ui.showQuality]);
 
+  const bookingList = useMemo(() => {
+    if (!accommodationsBooking) return [];
+    const q = search.trim().toLowerCase();
+    const arr = accommodationsBooking.features.filter((f: any) => {
+      const p = f.properties;
+      if (q && !(p.name || '').toLowerCase().includes(q)) return false;
+      return true;
+    });
+    arr.sort((a: any, b: any) => {
+      const ra = Number(a.properties.rating) || 0;
+      const rb = Number(b.properties.rating) || 0;
+      return rb - ra;
+    });
+    return arr;
+  }, [accommodationsBooking, search]);
+
   const clusterList = useMemo(() => {
     if (!clusters) return [];
     const q = search.trim().toLowerCase();
@@ -170,7 +186,7 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
 
   const counts: Record<TabId, number> = {
     sites: sitesList.length,
-    hospitality: hospitalityList.length,
+    hospitality: hospitalityList.length + (ui.showBookingAccommodations ? bookingList.length : 0),
     clusters: clusterList.length,
   };
 
@@ -308,7 +324,9 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
           {tab === 'hospitality' && (
             <HospitalityList
               items={hospitalityList}
+              bookingItems={ui.showBookingAccommodations ? bookingList : []}
               getAssetPhotosFor={getAssetPhotosFor}
+              getBookingPhotosFor={getBookingPhotosFor}
               onOpenLightbox={setLb}
               ui={ui}
             />
@@ -434,14 +452,16 @@ function SitesList({
 }
 
 function HospitalityList({
-  items, getAssetPhotosFor, onOpenLightbox, ui,
+  items, bookingItems, getAssetPhotosFor, getBookingPhotosFor, onOpenLightbox, ui,
 }: {
   items: any[];
+  bookingItems: any[];
   getAssetPhotosFor: (uid: string) => string[];
+  getBookingPhotosFor: (bk_id: string) => string[];
   onOpenLightbox: (s: { open: boolean; photos: string[]; idx: number; caption: string }) => void;
   ui: any;
 }) {
-  if (items.length === 0) return <EmptyRow label="No hospitality assets match the current filters." />;
+  if (items.length === 0 && bookingItems.length === 0) return <EmptyRow label="No hospitality assets match the current filters." />;
   return (
     <div className="flex flex-col">
       {items.map((f: any) => {
@@ -520,6 +540,83 @@ function HospitalityList({
                   </>
                 ) : null}
                 <span className="truncate">{p.asset_cat || p.subcat || '—'} · {p.lgu}</span>
+              </div>
+            </div>
+          </button>
+        );
+      })}
+
+      {/* ── Booking.com accommodations ── */}
+      {bookingItems.length > 0 && items.length > 0 && (
+        <div className="flex items-center gap-2 px-1.5 pt-2 pb-1">
+          <div className="h-px flex-1 bg-[#E2E8F0]" />
+          <span className="text-[9px] font-semibold text-[#2563EB] uppercase tracking-wider">Booking.com</span>
+          <div className="h-px flex-1 bg-[#E2E8F0]" />
+        </div>
+      )}
+      {bookingItems.map((f: any) => {
+        const p = f.properties;
+        const photos = getBookingPhotosFor(p.bk_id);
+        const hero = photos[0];
+        const rating = p.rating && p.rating !== 'NULL' && Number(p.rating) > 0 ? Number(p.rating) : null;
+        const price = p.price && p.price !== 'NULL' && p.price !== 'N/A' ? p.price : null;
+        const coords = f.geometry?.coordinates;
+
+        return (
+          <button
+            key={p.bk_id}
+            onClick={() => {
+              if (coords) {
+                window.dispatchEvent(new CustomEvent('tourism:fly-to-booking', {
+                  detail: { bk_id: p.bk_id, lngLat: [coords[0], coords[1]], props: p },
+                }));
+              }
+            }}
+            className="relative w-full text-left flex gap-2 items-center px-1.5 py-1.5 rounded-md transition-colors hover:bg-white/70"
+          >
+            <div className="absolute left-0 top-2 bottom-2 w-[2px] rounded-r" style={{ background: '#2563EB' }} />
+            {hero ? (
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onOpenLightbox({ open: true, photos, idx: 0, caption: p.name || '' });
+                }}
+                className="w-10 h-10 shrink-0 bg-center bg-cover rounded ml-1 cursor-zoom-in"
+                style={{ backgroundImage: `url("${hero}")` }}
+              />
+            ) : (
+              <div className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center ml-1 bg-[#DBEAFE]">
+                <Hotel className="w-3.5 h-3.5 text-[#2563EB]" />
+              </div>
+            )}
+
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start gap-1.5">
+                <div className="text-[11.5px] font-semibold leading-tight flex-1 line-clamp-1 text-[#0F172A]">
+                  {p.name || '—'}
+                </div>
+                <span
+                  className="px-1 py-[1px] text-[8px] uppercase tracking-wider font-bold shrink-0 mt-0.5 rounded"
+                  style={{ background: '#DBEAFE', color: '#1D4ED8' }}
+                >
+                  Booking
+                </span>
+              </div>
+              <div className="mt-0.5 flex items-center gap-1 text-[10px] text-[#64748B] truncate">
+                {rating ? (
+                  <>
+                    <Star className="w-2.5 h-2.5 fill-[#2563EB] text-[#2563EB]" />
+                    <span className="font-medium text-[#0F172A] tabular-nums">{rating.toFixed(1)}</span>
+                    <span className="text-[#CBD5E1]">·</span>
+                  </>
+                ) : null}
+                {price ? (
+                  <span className="font-medium text-[#166534]">{price}</span>
+                ) : (
+                  <span className="truncate">{p.address || '—'}</span>
+                )}
               </div>
             </div>
           </button>

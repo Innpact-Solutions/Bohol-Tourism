@@ -60,11 +60,14 @@ const ASSET_QUALITY_COLOR = '#A78BFA'; // light lavender — Quality
 const ASSET_CLUSTER_PREMIUM_MAX_ZOOM = 15;
 const ASSET_CLUSTER_QUALITY_MAX_ZOOM = 13;
 
+const BOOKING_COLOR = '#2563EB'; // blue-600 for Booking.com accommodations
+
 const SRC = {
-  clusters:        'tourism-clusters',
-  sites:           'tourism-sites',
-  assetsPremium:   'tourism-assets-premium-src',
-  assetsQuality:   'tourism-assets-quality-src',
+  clusters:              'tourism-clusters',
+  sites:                 'tourism-sites',
+  assetsPremium:         'tourism-assets-premium-src',
+  assetsQuality:         'tourism-assets-quality-src',
+  bookingAccommodations: 'tourism-booking-accommodations',
 } as const;
 
 const LYR = {
@@ -100,6 +103,8 @@ const LYR = {
   // Assets
   premium: 'tourism-assets-premium',
   quality: 'tourism-assets-quality',
+  // Booking.com accommodations
+  bookingAccommodations: 'tourism-booking-accommodations',
 } as const;
 
 interface Props {
@@ -110,6 +115,7 @@ interface Props {
   showSupportive?: boolean;
   showPremium?: boolean;
   showQuality?: boolean;
+  showBookingAccommodations?: boolean;
   showClusterPrimary?: boolean;
   showClusterEmerging?: boolean;
   showClusterSatellite?: boolean;
@@ -122,6 +128,7 @@ interface Props {
   onClusterClick?: (cluster_id: number) => void;
   onSiteClick?:    (uid: string) => void;
   onAssetClick?:   (uid: string) => void;
+  onBookingClick?: (bk_id: string) => void;
 }
 
 // Normalize header "all"/empty values to null
@@ -195,6 +202,7 @@ export function TourismLayers({
   showSupportive = false,
   showPremium = true,
   showQuality = false,
+  showBookingAccommodations = false,
   showClusterPrimary = true,
   showClusterEmerging = true,
   showClusterSatellite = true,
@@ -207,8 +215,9 @@ export function TourismLayers({
   onClusterClick,
   onSiteClick,
   onAssetClick,
+  onBookingClick,
 }: Props) {
-  const { clusters, sites, assets } = useTourismData();
+  const { clusters, sites, assets, accommodationsBooking } = useTourismData();
   const dataReady = !!(clusters && sites && assets);
   const catsAnchor     = anchorCategories     ?? enabledSiteCategories;
   const catsSecondary  = secondaryCategories  ?? enabledSiteCategories;
@@ -594,6 +603,28 @@ export function TourismLayers({
       if (map.getLayer(LYR.premium)) map.setFilter(LYR.premium, assetTierFilter('Premium', selectedLgu, selectedBrgy));
       if (map.getLayer(LYR.quality)) map.setFilter(LYR.quality, assetTierFilter('Quality', selectedLgu, selectedBrgy));
 
+      // ── Booking.com accommodations — simple circle layer, no clustering.
+      if (accommodationsBooking && !map.getSource(SRC.bookingAccommodations)) {
+        map.addSource(SRC.bookingAccommodations, {
+          type: 'geojson',
+          data: accommodationsBooking as any,
+        });
+      }
+      if (map.getSource(SRC.bookingAccommodations) && !map.getLayer(LYR.bookingAccommodations)) {
+        map.addLayer({
+          id: LYR.bookingAccommodations,
+          type: 'circle',
+          source: SRC.bookingAccommodations,
+          paint: {
+            'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 3, 14, 7],
+            'circle-color': BOOKING_COLOR,
+            'circle-stroke-color': '#ffffff',
+            'circle-stroke-width': 1.5,
+            'circle-opacity': 0.85,
+          },
+        });
+      }
+
       // ── Layer order: keep tourism POINTS just below basemap labels, on top of everything else.
       // Find the first basemap symbol/label layer and move all tourism point layers below it.
       try {
@@ -608,6 +639,7 @@ export function TourismLayers({
         })?.id;
 
         const pointLayerIds = [
+          LYR.bookingAccommodations,
           LYR.supportive, LYR.secondary, LYR.anchor,
           ...SITE_CATS.flatMap(c => [c.bubbleId, c.countId]),
           LYR.quality, LYR.premium,
@@ -683,6 +715,7 @@ export function TourismLayers({
       initVis(LYR.assetsQualityClusterCount, visible && showQuality);
       initVis(LYR.assetsPremiumCluster,      visible && showPremium);
       initVis(LYR.assetsPremiumClusterCount, visible && showPremium);
+      initVis(LYR.bookingAccommodations, visible && showBookingAccommodations);
       // Signal the visibility effect to re-run with the latest props now
       // that all layers actually exist. Resolves a race where the effect
       // ran before mount() finished and so could not apply the prop values.
@@ -705,6 +738,10 @@ export function TourismLayers({
       const f = e.features?.[0];
       if (f && onAssetClick) onAssetClick(f.properties.uid);
     };
+    const onBooking = (e: any) => {
+      const f = e.features?.[0];
+      if (f && onBookingClick) onBookingClick(f.properties.bk_id);
+    };
 
     const clusterFillIds = [LYR.clusterPrimaryFill, LYR.clusterEmergingFill, LYR.clusterSatelliteFill];
     const siteIds  = [LYR.anchor, LYR.secondary, LYR.supportive];
@@ -713,6 +750,7 @@ export function TourismLayers({
     clusterFillIds.forEach(id => map.on('click', id, onCluster));
     siteIds.forEach(id      => map.on('click', id, onSite));
     assetIds.forEach(id     => map.on('click', id, onAsset));
+    if (map.getLayer(LYR.bookingAccommodations)) map.on('click', LYR.bookingAccommodations, onBooking);
 
     // Click a per-category site cluster bubble → zoom to its expansion zoom
     // (i.e. the next level at which the cluster breaks apart). Each category
@@ -809,6 +847,7 @@ export function TourismLayers({
       ...clusterFillIds, ...siteIds, ...assetIds,
       ...siteBubbleIds, ...SITE_CATS.map(c => c.countId),
       ...assetBubbleIds, LYR.assetsPremiumClusterCount, LYR.assetsQualityClusterCount,
+      LYR.bookingAccommodations,
     ];
     pointerLayerIds.forEach(id => {
       map.on('mouseenter', id, setPointer);
@@ -859,6 +898,7 @@ export function TourismLayers({
       clusterFillIds.forEach(id => map.off('click', id, onCluster));
       siteIds.forEach(id      => map.off('click', id, onSite));
       assetIds.forEach(id     => map.off('click', id, onAsset));
+      if (map.getLayer(LYR.bookingAccommodations)) map.off('click', LYR.bookingAccommodations, onBooking);
       siteClusterHandlers.forEach(([id, h]) => map.off('click', id, h));
       assetClusterHandlers.forEach(([id, h]) => map.off('click', id, h));
       map.off('click', diagnosticClick);
@@ -883,7 +923,7 @@ export function TourismLayers({
         if (map.getSource(sid)) map.removeSource(sid);
       });
     };
-  }, [map, clusters, sites, assets, onClusterClick, onSiteClick, onAssetClick]);
+  }, [map, clusters, sites, assets, accommodationsBooking, onClusterClick, onSiteClick, onAssetClick, onBookingClick]);
 
   // Per-sub-layer visibility
   useEffect(() => {
@@ -930,10 +970,11 @@ export function TourismLayers({
     setVis(LYR.quality,                   qualityOn);
     setVis(LYR.assetsQualityCluster,      qualityOn);
     setVis(LYR.assetsQualityClusterCount, qualityOn);
+    setVis(LYR.bookingAccommodations, !!(visible && showBookingAccommodations));
   }, [
     map, visible, dataReady,
     showAnchor, showSecondary, showSupportive,
-    showPremium, showQuality,
+    showPremium, showQuality, showBookingAccommodations,
     showClusterPrimary, showClusterEmerging, showClusterSatellite,
     layersReadyTick,
   ]);

@@ -82,7 +82,7 @@ export function TourismPanel({
   selectedBrgy?: string | null;
 } = {}) {
   const ui = useTourismUI();
-  const { clusters, sites, assets, loading } = useTourismData();
+  const { clusters, sites, assets, accommodationsBooking, loading } = useTourismData();
   const [openGroup, setOpenGroup] = useState<Record<string, boolean>>({
     sites: true, hospitality: false, clusters: false,
   });
@@ -128,6 +128,7 @@ export function TourismPanel({
     } else if (section === 'hospitality') {
       if (!ui.showPremium) ui.setShowPremium(true);
       if (!ui.showQuality) ui.setShowQuality(true);
+      if (!ui.showBookingAccommodations) ui.setShowBookingAccommodations(true);
     } else if (section === 'clusters') {
       if (!ui.showClusterPrimary)   ui.setShowClusterPrimary(true);
       if (!ui.showClusterEmerging)  ui.setShowClusterEmerging(true);
@@ -189,6 +190,8 @@ export function TourismPanel({
     if (!matchesLgu(p)) return false;
     return p.tier === tier;
   }).length ?? 0;
+
+  const countBookingAccommodations = accommodationsBooking?.features.length ?? 0;
 
   // counts per tier + per (tier, category)
   const countByTierAndCat: Record<string, Record<string, number>> = {
@@ -275,6 +278,17 @@ export function TourismPanel({
           iconStyle: 'solid',
           active: ui.showQuality,
           toggle: () => ui.setShowQuality(!ui.showQuality),
+        },
+        {
+          id: 'booking',
+          label: 'Booking.com Stays',
+          description: 'Accommodations scraped from Booking.com.',
+          count: countBookingAccommodations,
+          icon: Hotel,
+          iconColor: '#2563EB',
+          iconStyle: 'solid',
+          active: ui.showBookingAccommodations,
+          toggle: () => ui.setShowBookingAccommodations(!ui.showBookingAccommodations),
         },
       ],
     },

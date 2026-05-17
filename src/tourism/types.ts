@@ -118,6 +118,24 @@ export interface PhotoIndexEntry {
 }
 export type PhotoIndex = Record<string, PhotoIndexEntry>;
 
+export interface BookingAccommodationProps {
+  bk_id: string;
+  name: string;
+  address?: string;
+  price?: string;
+  rating?: string;
+  source?: string;
+  url?: string;
+  image_file?: string;
+}
+
+export interface BookingPhotoIndexEntry {
+  name: string;
+  source: string;
+  photos: { file: string }[];
+}
+export type BookingPhotoIndex = Record<string, BookingPhotoIndexEntry>;
+
 // GeoJSON-typed records --------------------------------------------------
 import type { Feature, FeatureCollection, Polygon, MultiPolygon, Point } from 'geojson';
 
@@ -127,3 +145,5 @@ export type SiteFeature    = Feature<Point, SiteProps>;
 export type SiteFC         = FeatureCollection<Point, SiteProps>;
 export type AssetFeature   = Feature<Point, AssetProps>;
 export type AssetFC        = FeatureCollection<Point, AssetProps>;
+export type BookingAccommodationFeature = Feature<Point, BookingAccommodationProps>;
+export type BookingAccommodationFC      = FeatureCollection<Point, BookingAccommodationProps>;

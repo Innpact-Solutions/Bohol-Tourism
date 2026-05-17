@@ -12,7 +12,7 @@ import { TourismClusterPopupContent } from './TourismClusterPopup';
 import { TOURISM_LAYER_IDS } from './TourismLayers';
 
 export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
-  const { sites, assets, clusters, getPhotosFor, getAssetPhotosFor, getMembershipFor } = useTourismData();
+  const { sites, assets, clusters, accommodationsBooking, getPhotosFor, getAssetPhotosFor, getBookingPhotosFor, getMembershipFor } = useTourismData();
   const { selectedClusterId, setSelectedClusterId, setClusterMultiSelect } = useTourismUI();
   // Imperative handle filled by the effect below — lets a separate effect
   // close the currently-open popup when the user deselects the cluster from
@@ -182,10 +182,13 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       const container = document.createElement('div');
       const root = createRoot(container);
       // Sites use the curated local photo bank; assets (hotels/restaurants)
-      // use the Google Places backfill index. asset_tier identifies assets.
-      const photos = props?.asset_tier
-        ? getAssetPhotosFor(props.uid)
-        : getPhotosFor(props.uid);
+      // use the Google Places backfill index; booking accommodations use the
+      // booking photo index. asset_tier identifies assets, bk_id identifies booking.
+      const photos = props?.bk_id
+        ? getBookingPhotosFor(props.bk_id)
+        : props?.asset_tier
+          ? getAssetPhotosFor(props.uid)
+          : getPhotosFor(props.uid);
       root.render(<TourismPopupContent poi={props} photos={photos} />);
 
       const popup = new maplibregl.Popup({
@@ -319,6 +322,7 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       TOURISM_LAYER_IDS.supportive,
       TOURISM_LAYER_IDS.premium,
       TOURISM_LAYER_IDS.quality,
+      TOURISM_LAYER_IDS.bookingAccommodations,
     ];
     layers.forEach((id) => map.on('click', id, onLayerClick));
 
@@ -388,14 +392,31 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
     };
     window.addEventListener('tourism:fly-to-cluster', onFlyCluster as any);
 
+    // Fly to a Booking.com accommodation from the list panel
+    const onFlyBooking = (e: any) => {
+      const { bk_id, lngLat, props } = e.detail || {};
+      if (!bk_id || !lngLat) return;
+      captureView();
+      map.flyTo({
+        center: lngLat,
+        zoom: 14,
+        duration: FLY_DURATION,
+        curve: 1.4,
+        essential: true,
+      });
+      setTimeout(() => showPopup(props, lngLat), FLY_DURATION + 50);
+    };
+    window.addEventListener('tourism:fly-to-booking', onFlyBooking as any);
+
     return () => {
       layers.forEach((id) => map.off('click', id, onLayerClick));
       clusterFillLayers.forEach((id) => map.off('click', id, onClusterFillClick));
       window.removeEventListener('tourism:fly-to-site', onFly as any);
       window.removeEventListener('tourism:fly-to-cluster', onFlyCluster as any);
+      window.removeEventListener('tourism:fly-to-booking', onFlyBooking as any);
       if (currentPopup) currentPopup.remove();
       currentRoot?.unmount();
       closeCurrentPopupRef.current = null;
     };
-  }, [map, active, sites, assets, clusters, getPhotosFor, getAssetPhotosFor, getMembershipFor]);
+  }, [map, active, sites, assets, clusters, accommodationsBooking, getPhotosFor, getAssetPhotosFor, getBookingPhotosFor, getMembershipFor]);
 }

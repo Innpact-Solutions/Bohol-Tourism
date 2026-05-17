@@ -12,6 +12,9 @@ export const TOURISM_PATHS = {
   photoBase:  '/data/tourism/photos',
   assetPhotoIndex: '/data/tourism/asset_photo_index.json',
   assetPhotoBase:  '/data/tourism/asset_photos',
+  accommodationsBooking: '/data/tourism/accommodations_booking.geojson',
+  accommodationBookingPhotoIndex: '/data/tourism/accommodation_booking_photo_index.json',
+  accommodationBookingPhotoBase:  '/data/tourism/accommodation_photos',
 } as const;
 
 // Initial map view tuned for the 3-LGU tourism study area
