@@ -346,17 +346,17 @@ export function TourismPanel({
     };
     return (
       <div className="w-full bg-white text-[#0F172A]" style={{ fontFamily: 'DM Sans, Segoe UI, sans-serif' }}>
-        {/* Section header — amber-tinted to distinguish Tourism from Climate Hazards */}
-        <div className="w-full px-4 py-3 hover:brightness-[0.98] transition flex items-center gap-3 border-b border-[#E2E8F0] border-l-[3px] border-l-[#D97706] bg-gradient-to-r from-[#FFFBEB] to-[#FFF7ED]">
+        {/* Section header — blue-tinted */}
+        <div className="w-full px-4 py-2 hover:brightness-[0.98] transition flex items-center gap-2.5 border-b border-[#E2E8F0] border-l-[3px] border-l-[#2563EB] bg-gradient-to-r from-[#EFF6FF] to-[#F0F9FF]">
           <button
             onClick={() => setSectionExpanded(!sectionExpanded)}
             className="flex items-center gap-3 flex-1 min-w-0 text-left cursor-pointer"
           >
-            <div className="w-7 h-7 rounded-md flex items-center justify-center bg-[#FCD34D33] border border-[#D97706]/40 shrink-0">
-              <Palmtree className="w-4 h-4 text-[#B45309]" />
+            <div className="w-6 h-6 rounded-md flex items-center justify-center bg-[#DBEAFE] border border-[#2563EB]/40 shrink-0">
+              <Palmtree className="w-3.5 h-3.5 text-[#1E40AF]" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-[13px] font-semibold text-[#0F172A] truncate">Tourism</div>
+              <div className="text-[13px] font-semibold text-[#0F172A] truncate">Tourism Inventory</div>
             </div>
           </button>
           <button

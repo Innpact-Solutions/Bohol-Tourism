@@ -1165,14 +1165,14 @@ export function LeftDrawer({
               <TourismPanel embedded selectedLgu={selectedLguName} selectedBrgy={selectedWardName} />
             </div>
 
-            {/* Climate Hazards Title Card (collapsible) — blue-tinted to distinguish from Tourism */}
-            <div className="w-full px-4 py-3 hover:brightness-[0.98] transition flex items-center gap-3 border-b border-[#E2E8F0] border-l-[3px] border-l-[#2563EB] bg-gradient-to-r from-[#EFF6FF] to-[#F0F9FF]">
+            {/* Climate Hazards Title Card (collapsible) — blue-tinted */}
+            <div className="w-full px-4 py-2 hover:brightness-[0.98] transition flex items-center gap-2.5 border-b border-[#E2E8F0] border-l-[3px] border-l-[#2563EB] bg-gradient-to-r from-[#EFF6FF] to-[#F0F9FF]">
               <button
                 onClick={() => setClimateHazardsExpanded(!climateHazardsExpanded)}
                 className="flex items-center gap-3 flex-1 min-w-0 text-left cursor-pointer"
               >
-                <div className="w-7 h-7 rounded-md flex items-center justify-center bg-[#DBEAFE] border border-[#2563EB]/40 shrink-0">
-                  <Layers className="w-4 h-4 text-[#1E40AF]" />
+                <div className="w-6 h-6 rounded-md flex items-center justify-center bg-[#DBEAFE] border border-[#2563EB]/40 shrink-0">
+                  <Layers className="w-3.5 h-3.5 text-[#1E40AF]" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-[13px] font-semibold text-[#0F172A] truncate">
