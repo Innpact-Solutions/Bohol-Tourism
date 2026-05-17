@@ -45,6 +45,7 @@ const CLUSTER_CLIMATE_SUMMARY: Record<number, string> = {
   6: '2nd hottest cluster and 4th most at risk of sea flooding — the bridge and church are most exposed.',
   7: 'In the top 3 for every climate risk: 2nd worst flooding, 3rd hottest, 3rd most sinkhole-prone.',
   8: 'Lowest climate risk of any cluster — almost no flooding, heat, or sinking ground.',
+  9: 'Storm surge is the key climate hazard here.',
 };
 
 const FONT = 'DM Sans, Segoe UI, sans-serif';
