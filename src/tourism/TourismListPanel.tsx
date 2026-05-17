@@ -141,9 +141,18 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
   const bookingList = useMemo(() => {
     if (!accommodationsBooking) return [];
     const q = search.trim().toLowerCase();
+    // Airbnb features have no `lgu`/`brgy` fields; derive LGU from address text.
+    const inferLgu = (p: any): string | null => {
+      const blob = `${p?.address || ''} ${p?.name || ''}`.toLowerCase();
+      if (blob.includes('tagbilaran')) return 'Tagbilaran City';
+      if (blob.includes('dauis'))      return 'Dauis';
+      if (blob.includes('panglao'))    return 'Panglao';
+      return null;
+    };
     const arr = accommodationsBooking.features.filter((f: any) => {
       const p = f.properties;
-      if (lgu && p.lgu && p.lgu !== lgu) return false;
+      const featLgu = p.lgu ?? inferLgu(p);
+      if (lgu && featLgu !== lgu) return false;
       if (brgy && p.brgy && p.brgy !== brgy) return false;
       if (q && !(p.name || '').toLowerCase().includes(q)) return false;
       return true;
@@ -186,9 +195,30 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
   }, [clusters, lgu, search,
       ui.showClusterPrimary, ui.showClusterEmerging, ui.showClusterSatellite]);
 
+  // Stays & Dining count: always show the true total of hospitality assets
+  // (Premium + Quality) plus Tourist Homes, regardless of which sub-toggles
+  // are active in the layers panel. LGU/Barangay/search filters still apply
+  // so the tab badge stays consistent with the rest of the directory.
+  const hospitalityFullCount = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    let total = 0;
+    if (assets) {
+      for (const f of assets.features as any[]) {
+        const p = f.properties;
+        if (p.asset_tier !== 'Premium' && p.asset_tier !== 'Quality') continue;
+        if (lgu && p.lgu !== lgu) continue;
+        if (brgy && p.brgy !== brgy) continue;
+        if (q && !(p.name || '').toLowerCase().includes(q)) continue;
+        total++;
+      }
+    }
+    total += bookingList.length;
+    return total;
+  }, [assets, bookingList, lgu, brgy, search]);
+
   const counts: Record<TabId, number> = {
     sites: sitesList.length,
-    hospitality: hospitalityList.length + (ui.showBookingAccommodations ? bookingList.length : 0),
+    hospitality: hospitalityFullCount,
     clusters: clusterList.length,
   };
 
@@ -252,14 +282,14 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
             const theme = TAB_THEME[t];
             const labelMap: Record<TabId, string> = {
               sites: 'Sites',
-              hospitality: 'Hotels',
+              hospitality: 'Stays & Dining',
               clusters: 'Clusters',
             };
             return (
               <button
                 key={t}
                 onClick={() => { setTab(t); ui.setActiveSection(t); }}
-                className="flex-1 flex items-center justify-center gap-1 px-1.5 py-1 rounded text-[10.5px] font-semibold transition-all"
+                className="flex-1 flex items-center justify-center gap-1 px-1 py-1 rounded text-[10px] font-semibold transition-all whitespace-nowrap"
                 style={
                   active
                     ? {

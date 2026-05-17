@@ -191,7 +191,7 @@ export function TourismPanel({
     return p.tier === tier;
   }).length ?? 0;
 
-  const countBookingAccommodations = accommodationsBooking?.features.length ?? 0;
+  const countBookingAccommodations = accommodationsBooking?.features.filter((f: any) => matchesLgu(f.properties)).length ?? 0;
 
   // counts per tier + per (tier, category)
   const countByTierAndCat: Record<string, Record<string, number>> = {

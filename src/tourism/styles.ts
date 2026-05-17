@@ -15,7 +15,7 @@ export const CATEGORY_COLORS: Record<string, string> = {
   Marine:              '#2D7A8C',
   'Nature / Viewpoint':'#4F8454',
   Heritage:            '#800000',
-  Faith:               '#DC2626',
+  Faith:               '#C026D3',
   'Urban Park':        '#7E8B47',
   EXCLUDED:            '#BBB',
 };

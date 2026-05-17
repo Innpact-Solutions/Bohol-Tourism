@@ -4,7 +4,7 @@
 //   tourism-sites     → 3 point layers (Anchor / Secondary / Supportive)  *colors by site_cat*
 //   tourism-assets    → 2 point layers (Premium / Quality)
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type maplibregl from 'maplibre-gl';
 import { useTourismData } from './TourismContext';
 import { useTourismUI } from './tourismStore';
@@ -59,6 +59,7 @@ const ASSET_PREMIUM_COLOR = '#6D28D9'; // deep violet — Premium
 const ASSET_QUALITY_COLOR = '#A78BFA'; // light lavender — Quality
 const ASSET_CLUSTER_PREMIUM_MAX_ZOOM = 15;
 const ASSET_CLUSTER_QUALITY_MAX_ZOOM = 13;
+const ASSET_CLUSTER_BOOKING_MAX_ZOOM = 13;
 
 const BOOKING_COLOR = '#FF5A5F'; // Airbnb rausch for Airbnb accommodations
 
@@ -100,6 +101,8 @@ const LYR = {
   assetsPremiumClusterCount: 'tourism-assets-premium-cluster-count',
   assetsQualityCluster:      'tourism-assets-quality-cluster',
   assetsQualityClusterCount: 'tourism-assets-quality-cluster-count',
+  bookingCluster:            'tourism-booking-cluster',
+  bookingClusterCount:       'tourism-booking-cluster-count',
   // Assets
   premium: 'tourism-assets-premium',
   quality: 'tourism-assets-quality',
@@ -222,6 +225,24 @@ export function TourismLayers({
   const catsAnchor     = anchorCategories     ?? enabledSiteCategories;
   const catsSecondary  = secondaryCategories  ?? enabledSiteCategories;
   const catsSupportive = supportiveCategories ?? enabledSiteCategories;
+
+  // Booking accommodations are filtered by LGU + Barangay at the SOURCE level
+  // so cluster aggregations also reflect the current selection (a layer filter
+  // alone would not change cluster counts since clustering happens on the raw
+  // source data).
+  const filteredBookingFC = useMemo(() => {
+    if (!accommodationsBooking) return null;
+    const l = norm(selectedLgu);
+    const b = norm(selectedBrgy);
+    if (!l && !b) return accommodationsBooking;
+    const features = accommodationsBooking.features.filter((f: any) => {
+      const p = f?.properties ?? {};
+      if (l && p.lgu  !== l) return false;
+      if (b && p.brgy !== b) return false;
+      return true;
+    });
+    return { ...accommodationsBooking, features } as typeof accommodationsBooking;
+  }, [accommodationsBooking, selectedLgu, selectedBrgy]);
 
   // Selection highlight plumbing — the hover-highlight layers double as a
   // selection-highlight layer when no hover is active. Refs let the long-lived
@@ -603,18 +624,22 @@ export function TourismLayers({
       if (map.getLayer(LYR.premium)) map.setFilter(LYR.premium, assetTierFilter('Premium', selectedLgu, selectedBrgy));
       if (map.getLayer(LYR.quality)) map.setFilter(LYR.quality, assetTierFilter('Quality', selectedLgu, selectedBrgy));
 
-      // ── Booking.com accommodations — simple circle layer, no clustering.
-      if (accommodationsBooking && !map.getSource(SRC.bookingAccommodations)) {
+      // ── Booking.com / Airbnb accommodations — clustered like Premium/Quality.
+      if (filteredBookingFC && !map.getSource(SRC.bookingAccommodations)) {
         map.addSource(SRC.bookingAccommodations, {
           type: 'geojson',
-          data: accommodationsBooking as any,
-        });
+          data: filteredBookingFC as any,
+          cluster: true,
+          clusterMaxZoom: ASSET_CLUSTER_BOOKING_MAX_ZOOM,
+          clusterRadius: 40,
+        } as any);
       }
       if (map.getSource(SRC.bookingAccommodations) && !map.getLayer(LYR.bookingAccommodations)) {
         map.addLayer({
           id: LYR.bookingAccommodations,
           type: 'circle',
           source: SRC.bookingAccommodations,
+          filter: ['!', ['has', 'point_count']] as any,
           paint: {
             'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 3, 14, 7],
             'circle-color': BOOKING_COLOR,
@@ -624,6 +649,12 @@ export function TourismLayers({
           },
         });
       }
+      addAssetClusterStack(
+        LYR.bookingCluster,
+        LYR.bookingClusterCount,
+        SRC.bookingAccommodations,
+        BOOKING_COLOR,
+      );
 
       // ── Layer order: keep tourism POINTS just below basemap labels, on top of everything else.
       // Find the first basemap symbol/label layer and move all tourism point layers below it.
@@ -645,6 +676,7 @@ export function TourismLayers({
           LYR.quality, LYR.premium,
           LYR.assetsQualityCluster, LYR.assetsQualityClusterCount,
           LYR.assetsPremiumCluster, LYR.assetsPremiumClusterCount,
+          LYR.bookingCluster, LYR.bookingClusterCount,
         ];
         pointLayerIds.forEach((id) => {
           if (!map.getLayer(id)) return;
@@ -716,6 +748,8 @@ export function TourismLayers({
       initVis(LYR.assetsPremiumCluster,      visible && showPremium);
       initVis(LYR.assetsPremiumClusterCount, visible && showPremium);
       initVis(LYR.bookingAccommodations, visible && showBookingAccommodations);
+      initVis(LYR.bookingCluster,         visible && showBookingAccommodations);
+      initVis(LYR.bookingClusterCount,    visible && showBookingAccommodations);
       // Signal the visibility effect to re-run with the latest props now
       // that all layers actually exist. Resolves a race where the effect
       // ran before mount() finished and so could not apply the prop values.
@@ -777,6 +811,7 @@ export function TourismLayers({
               ...SITE_CATS.map(c => c.bubbleId),
               LYR.assetsPremiumCluster,
               LYR.assetsQualityCluster,
+              LYR.bookingCluster,
             ].filter(id => !!map.getLayer(id)),
           });
           f = queried.find((q: any) => q.properties?.cluster_id != null) || f;
@@ -813,14 +848,17 @@ export function TourismLayers({
     // Click an asset point-cluster bubble → zoom to its expansion zoom.
     const premiumExpand = expandCluster(SRC.assetsPremium);
     const qualityExpand = expandCluster(SRC.assetsQuality);
+    const bookingExpand = expandCluster(SRC.bookingAccommodations);
     const assetClusterHandlers: Array<[string, (e: any) => void]> = [
       [LYR.assetsPremiumCluster,      premiumExpand],
       [LYR.assetsPremiumClusterCount, premiumExpand],
       [LYR.assetsQualityCluster,      qualityExpand],
       [LYR.assetsQualityClusterCount, qualityExpand],
+      [LYR.bookingCluster,            bookingExpand],
+      [LYR.bookingClusterCount,       bookingExpand],
     ];
     assetClusterHandlers.forEach(([id, h]) => map.on('click', id, h));
-    const assetBubbleIds = [LYR.assetsPremiumCluster, LYR.assetsQualityCluster];
+    const assetBubbleIds = [LYR.assetsPremiumCluster, LYR.assetsQualityCluster, LYR.bookingCluster];
 
     // Diagnostic fallback: capture every map click and log which tourism
     // cluster layers (if any) were hit. This also acts as a backup expander
@@ -831,6 +869,7 @@ export function TourismLayers({
         ...SITE_CATS.map(c => c.countId),
         LYR.assetsPremiumCluster, LYR.assetsPremiumClusterCount,
         LYR.assetsQualityCluster, LYR.assetsQualityClusterCount,
+        LYR.bookingCluster, LYR.bookingClusterCount,
       ].filter(id => !!map.getLayer(id));
       const hits = map.queryRenderedFeatures(e.point, { layers: allClusterLayers });
       if (hits.length) {
@@ -846,7 +885,7 @@ export function TourismLayers({
     const pointerLayerIds = [
       ...clusterFillIds, ...siteIds, ...assetIds,
       ...siteBubbleIds, ...SITE_CATS.map(c => c.countId),
-      ...assetBubbleIds, LYR.assetsPremiumClusterCount, LYR.assetsQualityClusterCount,
+      ...assetBubbleIds, LYR.assetsPremiumClusterCount, LYR.assetsQualityClusterCount, LYR.bookingClusterCount,
       LYR.bookingAccommodations,
     ];
     pointerLayerIds.forEach(id => {
@@ -971,6 +1010,8 @@ export function TourismLayers({
     setVis(LYR.assetsQualityCluster,      qualityOn);
     setVis(LYR.assetsQualityClusterCount, qualityOn);
     setVis(LYR.bookingAccommodations, !!(visible && showBookingAccommodations));
+    setVis(LYR.bookingCluster,         !!(visible && showBookingAccommodations));
+    setVis(LYR.bookingClusterCount,    !!(visible && showBookingAccommodations));
   }, [
     map, visible, dataReady,
     showAnchor, showSecondary, showSupportive,
@@ -1072,7 +1113,17 @@ export function TourismLayers({
         console.warn(`Failed to update filter for ${id}:`, err);
       }
     });
-  }, [map, catsAnchor, catsSecondary, catsSupportive, selectedLgu, selectedBrgy]);
+    // Booking accommodations: re-feed the source with the LGU/Brgy-filtered
+    // FeatureCollection so the cluster aggregation reflects the selection.
+    try {
+      const bookingSrc: any = map.getSource(SRC.bookingAccommodations);
+      if (bookingSrc && filteredBookingFC && typeof bookingSrc.setData === 'function') {
+        bookingSrc.setData(filteredBookingFC as any);
+      }
+    } catch (err) {
+      console.warn('Failed to update booking source data:', err);
+    }
+  }, [map, catsAnchor, catsSecondary, catsSupportive, selectedLgu, selectedBrgy, filteredBookingFC]);
 
   return null;
 }

@@ -1512,11 +1512,20 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
     }
 
     // Tourist Home (Airbnb) count — filtered by selected LGU when applicable.
+    // Airbnb features have no `lgu` field; derive it from address/name text.
+    const inferAirbnbLgu = (props: any): string | null => {
+      const blob = `${props?.address || ''} ${props?.name || ''}`.toLowerCase();
+      if (blob.includes('tagbilaran')) return 'Tagbilaran City';
+      if (blob.includes('dauis'))      return 'Dauis';
+      if (blob.includes('panglao'))    return 'Panglao';
+      return null;
+    };
     let airbnbTotal = 0;
     if (accommodationsBooking?.features) {
       for (const f of accommodationsBooking.features as any[]) {
         const p = f.properties || {};
-        if (!matchLgu(p)) continue;
+        const featLgu = p.lgu ?? inferAirbnbLgu(p);
+        if (lguFilter && featLgu !== lguFilter) continue;
         airbnbTotal++;
       }
     }
@@ -1633,11 +1642,12 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
         <StatCard
           icon={BedDouble}
           label="Stays and Dining"
-          value={stats.totalAssets.toLocaleString()}
+          value={(stats.totalAssets + (stats.airbnbTotal || 0)).toLocaleString()}
           captionItems={[
-            { label: 'Hotels',      value: stats.assetCatCounts.Hotel },
-            { label: 'Restaurants', value: stats.assetCatCounts.Restaurant },
-            { label: 'Cafés',       value: stats.assetCatCounts['Café'] },
+            { label: 'Hotels',        value: stats.assetCatCounts.Hotel },
+            { label: 'Restaurants',   value: stats.assetCatCounts.Restaurant },
+            { label: 'Cafés',         value: stats.assetCatCounts['Café'] },
+            { label: 'Tourist Homes', value: stats.airbnbTotal || 0 },
           ]}
           accent="#6D28D9"
           tint="#F5F3FF"
