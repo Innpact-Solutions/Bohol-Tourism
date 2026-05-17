@@ -4,9 +4,10 @@
 //   tourism-sites     → 3 point layers (Anchor / Secondary / Supportive)  *colors by site_cat*
 //   tourism-assets    → 2 point layers (Premium / Quality)
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type maplibregl from 'maplibre-gl';
 import { useTourismData } from './TourismContext';
+import { useTourismUI } from './tourismStore';
 import {
   clusterFillPaint,
   clusterOutlineCasingPaint,
@@ -213,6 +214,24 @@ export function TourismLayers({
   const catsSecondary  = secondaryCategories  ?? enabledSiteCategories;
   const catsSupportive = supportiveCategories ?? enabledSiteCategories;
 
+  // Selection highlight plumbing — the hover-highlight layers double as a
+  // selection-highlight layer when no hover is active. Refs let the long-lived
+  // hover handlers see the latest selectedClusterId without re-binding.
+  const { selectedClusterId } = useTourismUI();
+  // Bumped after every successful mount() so the visibility effect re-runs
+  // and re-applies the latest show* props to layers that were just created.
+  // Without this, the visibility effect would run once with stale (or pre-
+  // mount) values and never re-trigger on prop changes that happened before
+  // the layers existed.
+  const [layersReadyTick, setLayersReadyTick] = useState(0);
+  const selectedClusterIdRef = useRef<number | null>(selectedClusterId);
+  const hoveringRef = useRef(false);
+  const applySelectionHighlightRef = useRef<(() => void) | null>(null);
+  useEffect(() => {
+    selectedClusterIdRef.current = selectedClusterId;
+    applySelectionHighlightRef.current?.();
+  }, [selectedClusterId]);
+
   useEffect(() => {
     if (!map || !clusters || !sites || !assets) return;
 
@@ -409,6 +428,9 @@ export function TourismLayers({
             type: 'circle',
             source: srcId,
             filter: ['has', 'point_count'],
+            // Start hidden — the visibility effect turns this on only when at
+            // least one site tier toggle is active.
+            layout: { visibility: 'none' } as any,
             paint: {
               'circle-color': color,
               'circle-radius': [
@@ -441,6 +463,8 @@ export function TourismLayers({
               'text-allow-overlap': true,
               'text-ignore-placement': false,
               'text-padding': 4,
+              // Start hidden — visibility effect turns this on with the bubble.
+              visibility: 'none',
             } as any,
             paint: {
               'text-color': '#FFFFFF',
@@ -488,6 +512,9 @@ export function TourismLayers({
             type: 'circle',
             source: srcId,
             filter: ['has', 'point_count'],
+            // Start hidden — the visibility effect enables this only when the
+            // corresponding hospitality tier toggle is on.
+            layout: { visibility: 'none' } as any,
             paint: {
               'circle-color': color,
               'circle-radius': [
@@ -517,6 +544,8 @@ export function TourismLayers({
               'text-allow-overlap': true,
               'text-ignore-placement': false,
               'text-padding': 4,
+              // Start hidden — visibility effect enables this with the bubble.
+              visibility: 'none',
             } as any,
             paint: {
               'text-color': '#FFFFFF',
@@ -643,6 +672,10 @@ export function TourismLayers({
       initVis(LYR.assetsQualityClusterCount, visible && showQuality);
       initVis(LYR.assetsPremiumCluster,      visible && showPremium);
       initVis(LYR.assetsPremiumClusterCount, visible && showPremium);
+      // Signal the visibility effect to re-run with the latest props now
+      // that all layers actually exist. Resolves a race where the effect
+      // ran before mount() finished and so could not apply the prop values.
+      setLayersReadyTick((t) => t + 1);
     };
 
     if (map.isStyleLoaded()) mount();
@@ -772,6 +805,9 @@ export function TourismLayers({
     });
 
     // Cluster hover highlight: update filter to match hovered cluster_id.
+    // When nothing is hovered, fall back to the currently-selected cluster
+    // (driven by the left panel / Tourism Directory) so the selection stays
+    // visually highlighted on the map.
     const NEVER: any = ['==', ['get', 'cluster_id'], '__NONE__'];
     const setHoverFilter = (filter: any) => {
       [LYR.clusterHoverFill, LYR.clusterHoverHalo, LYR.clusterHoverOutline].forEach(id => {
@@ -780,14 +816,29 @@ export function TourismLayers({
         }
       });
     };
+    const filterForSelection = () => {
+      const sid = selectedClusterIdRef.current;
+      return sid == null ? NEVER : (['==', ['get', 'cluster_id'], sid] as any);
+    };
+    // Expose so the selectedClusterId effect below can re-apply when there's
+    // no active hover.
+    applySelectionHighlightRef.current = () => {
+      if (!hoveringRef.current) setHoverFilter(filterForSelection());
+    };
     const onClusterHover = (e: any) => {
       const f = e.features?.[0];
       const cid = f?.properties?.cluster_id;
       if (cid != null) {
+        hoveringRef.current = true;
         setHoverFilter(['==', ['get', 'cluster_id'], cid]);
       }
     };
-    const onClusterLeave = () => setHoverFilter(NEVER);
+    const onClusterLeave = () => {
+      hoveringRef.current = false;
+      setHoverFilter(filterForSelection());
+    };
+    // Initial paint: reflect the current selection (if any).
+    setHoverFilter(filterForSelection());
     clusterFillIds.forEach(id => {
       map.on('mousemove', id, onClusterHover);
       map.on('mouseleave', id, onClusterLeave);
@@ -868,6 +919,7 @@ export function TourismLayers({
     showAnchor, showSecondary, showSupportive,
     showPremium, showQuality,
     showClusterPrimary, showClusterEmerging, showClusterSatellite,
+    layersReadyTick,
   ]);
 
   // Animate the cluster pulse glow: oscillate line-width and line-opacity

@@ -106,7 +106,7 @@ export const clusterPulsePaint = {
 };
 
 // Hover overlay — thick bright outline drawn only over the currently-hovered
-// cluster polygon. Filter is updated dynamically from TourismLayers.
+// or selected cluster polygon. Filter is updated dynamically from TourismLayers.
 export const clusterHoverOutlinePaint = {
   'line-color': [
     'match',
@@ -118,7 +118,7 @@ export const clusterHoverOutlinePaint = {
   ] as any,
   'line-width': [
     'interpolate', ['linear'], ['zoom'],
-    9, 3.5, 13, 5, 16, 6.5,
+    9, 6, 13, 8.5, 16, 11,
   ] as any,
   'line-opacity': 1,
   'line-blur': 0,
@@ -132,10 +132,10 @@ export const clusterHoverHaloPaint = {
   'line-color': '#FFFFFF',
   'line-width': [
     'interpolate', ['linear'], ['zoom'],
-    9, 7, 13, 9.5, 16, 12,
+    9, 14, 13, 20, 16, 26,
   ] as any,
-  'line-opacity': 0.65,
-  'line-blur': 2.5,
+  'line-opacity': 0.85,
+  'line-blur': 6,
   'line-join': 'round' as const,
   'line-cap': 'round' as const,
 };
@@ -149,7 +149,7 @@ export const clusterHoverFillPaint = {
     'Satellite', TIER_COLORS.Satellite.stroke,
     '#888',
   ] as any,
-  'fill-opacity': 0.12,
+  'fill-opacity': 0.32,
 };
 
 // Sites — color by category, sized & styled by performance tier

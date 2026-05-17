@@ -102,35 +102,37 @@ export function PhotoLightbox({ open, onOpenChange, photos, startIndex = 0, capt
   if (photos.length === 0) return null;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="!max-w-[95vw] !p-0 !bg-white/95 !border-0 !rounded-none">
-        <div className="relative w-full h-[90vh] flex items-center justify-center">
+      <DialogContent
+        className="!w-screen !h-screen !max-w-none !p-0 !gap-0 !border-0 !rounded-none !shadow-none !bg-black/95 !top-0 !left-0 !translate-x-0 !translate-y-0"
+      >
+        <div className="relative w-screen h-screen flex items-center justify-center overflow-hidden">
           {caption && (
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-black/60 text-white text-base font-serif font-medium max-w-[80vw] text-center">
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-black/60 text-white text-base font-serif font-medium max-w-[80vw] text-center z-10">
               {caption}
             </div>
           )}
-          <DialogClose className="absolute top-4 right-5 text-white hover:opacity-80 z-10">
+          <DialogClose className="absolute top-4 right-5 text-white hover:opacity-80 z-20">
             <X className="w-7 h-7"/>
           </DialogClose>
           {photos.length > 1 && (
             <>
               <button onClick={navPrev}
-                className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/30 text-white z-10"
                 aria-label="Previous photo">
                 <ChevronLeft className="w-7 h-7"/>
               </button>
               <button onClick={navNext}
-                className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 border border-white/30 text-white z-10"
                 aria-label="Next photo">
                 <ChevronRight className="w-7 h-7"/>
               </button>
-              <div className="absolute bottom-7 left-1/2 -translate-x-1/2 px-3.5 py-1.5 text-white font-mono text-sm bg-black/50 tracking-wider">
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3.5 py-1.5 text-white font-mono text-sm bg-black/50 tracking-wider z-10">
                 {idx + 1} / {photos.length}
               </div>
             </>
           )}
           <img src={photos[idx]} alt={caption || `Photo ${idx + 1}`}
-            className="max-w-[95vw] max-h-[88vh] object-contain shadow-2xl" />
+            className="w-screen h-screen object-contain select-none" />
         </div>
       </DialogContent>
     </Dialog>

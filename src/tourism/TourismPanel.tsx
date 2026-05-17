@@ -11,7 +11,7 @@ import {
   MapPin, Hotel, Sparkles, Palmtree, Info,
   Star, Crown, Circle, CircleDot,
   Umbrella, Fish, Mountain, Landmark, Church, Trees,
-  Eye, EyeOff,
+  Eye, EyeOff, RotateCcw,
 } from 'lucide-react';
 import { TourismFilters } from './TourismFilters';
 import { ClusterList } from './ClusterList';
@@ -19,6 +19,7 @@ import { AttractionsList } from './AttractionsList';
 import { useTourismUI, TOURISM_SITE_CATEGORIES } from './tourismStore';
 import { useTourismData } from './TourismContext';
 import { CATEGORY_COLORS, TIER_COLORS } from './styles';
+import { SITE_TIER_TOKENS, ASSET_TIER_TOKENS } from './tokens';
 
 type IconCmp = React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
 
@@ -83,10 +84,11 @@ export function TourismPanel({
   const ui = useTourismUI();
   const { clusters, sites, assets, loading } = useTourismData();
   const [openGroup, setOpenGroup] = useState<Record<string, boolean>>({
-    sites: false, hospitality: false, clusters: false,
+    sites: true, hospitality: false, clusters: false,
   });
   const [openTier, setOpenTier] = useState<Record<string, boolean>>({
     anchor: false, secondary: false, supportive: false,
+    'cluster-primary': true, 'cluster-emerging': true, 'cluster-satellite': true,
   });
   const [sectionExpanded, setSectionExpanded] = useState(true);
 
@@ -101,6 +103,54 @@ export function TourismPanel({
       setOpenTier({ anchor: false, secondary: false, supportive: false });
     }
   }, [ui.showAnchor, ui.showSecondary, ui.showSupportive]);
+
+  // Sync left-panel group expansion with the Tourism Directory tab.
+  // When the user switches between Sites / Hotels / Clusters tabs, the
+  // matching left-panel section expands (and its sub-layers turn on) while
+  // the other two collapse. The first render keeps Sites expanded by default.
+  const didInitSectionSync = useRef(false);
+  useEffect(() => {
+    const section = ui.activeSection;
+    setOpenGroup({
+      sites: section === 'sites',
+      hospitality: section === 'hospitality',
+      clusters: section === 'clusters',
+    });
+    // Skip auto-enabling layers on the very first effect run so the initial
+    // defaults (Anchor + Secondary on, everything else off) are preserved.
+    if (!didInitSectionSync.current) {
+      didInitSectionSync.current = true;
+      return;
+    }
+    if (section === 'sites') {
+      if (!ui.showAnchor)     ui.setShowAnchor(true);
+      if (!ui.showSecondary)  ui.setShowSecondary(true);
+      if (!ui.showSupportive) ui.setShowSupportive(true);
+    } else if (section === 'hospitality') {
+      if (!ui.showPremium) ui.setShowPremium(true);
+      if (!ui.showQuality) ui.setShowQuality(true);
+    } else if (section === 'clusters') {
+      if (!ui.showClusterPrimary)   ui.setShowClusterPrimary(true);
+      if (!ui.showClusterEmerging)  ui.setShowClusterEmerging(true);
+      if (!ui.showClusterSatellite) ui.setShowClusterSatellite(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ui.activeSection]);
+
+  // Default-select all clusters the first time data lands so the user starts
+  // with everything ticked and can untick what they don't want.
+  const didInitMultiSelect = useRef(false);
+  useEffect(() => {
+    if (didInitMultiSelect.current) return;
+    const feats = clusters?.features ?? [];
+    if (feats.length === 0) return;
+    const ids = feats
+      .map((f: any) => f?.properties?.cluster_id)
+      .filter((id: any): id is number => typeof id === 'number');
+    if (ids.length === 0) return;
+    ui.setClusterMultiSelect(ids);
+    didInitMultiSelect.current = true;
+  }, [clusters]);
 
   // ── Helpers ────────────────────────────────────────────────────────────────
   // Combine tourism's own LGU filter (ui.lgu) with the header LGU + Barangay
@@ -168,8 +218,8 @@ export function TourismPanel({
           label: 'Anchor Sites',
           description: 'Top-performing destinations — high traffic, high reviews.',
           count: countSites('Anchor'),
-          icon: Crown,
-          iconColor: '#D97706',
+          icon: SITE_TIER_TOKENS.Anchor.icon,
+          iconColor: SITE_TIER_TOKENS.Anchor.accent,
           iconStyle: 'solid',
           active: ui.showAnchor,
           toggle: () => ui.setShowAnchor(!ui.showAnchor),
@@ -179,8 +229,8 @@ export function TourismPanel({
           label: 'Secondary Sites',
           description: 'Mid-tier attractions worth visiting.',
           count: countSites('Secondary'),
-          icon: Star,
-          iconColor: '#D97706',
+          icon: SITE_TIER_TOKENS.Secondary.icon,
+          iconColor: SITE_TIER_TOKENS.Secondary.accent,
           iconStyle: 'outline',
           active: ui.showSecondary,
           toggle: () => ui.setShowSecondary(!ui.showSecondary),
@@ -190,8 +240,8 @@ export function TourismPanel({
           label: 'Supportive Sites',
           description: 'Background context sites.',
           count: countSites('Supportive'),
-          icon: CircleDot,
-          iconColor: '#64748B',
+          icon: SITE_TIER_TOKENS.Supportive.icon,
+          iconColor: SITE_TIER_TOKENS.Supportive.accent,
           iconStyle: 'outline',
           active: ui.showSupportive,
           toggle: () => ui.setShowSupportive(!ui.showSupportive),
@@ -200,7 +250,7 @@ export function TourismPanel({
     },
     {
       id: 'hospitality',
-      label: 'Hospitality and F&B',
+      label: 'Stays and Dining',
       subtitle: 'Hotels & restaurants',
       icon: Hotel,
       accent: '#6D28D9',
@@ -210,8 +260,8 @@ export function TourismPanel({
           label: 'Premium Stays & Dining',
           description: 'Top-tier hotels & restaurants by ratings and reviews.',
           count: countAssets('Premium'),
-          icon: Crown,
-          iconColor: '#6D28D9',
+          icon: ASSET_TIER_TOKENS.Premium.icon,
+          iconColor: ASSET_TIER_TOKENS.Premium.accent,
           iconStyle: 'solid',
           active: ui.showPremium,
           toggle: () => ui.setShowPremium(!ui.showPremium),
@@ -219,10 +269,10 @@ export function TourismPanel({
         {
           id: 'quality',
           label: 'Quality Stays & Dining',
-          description: 'Mid-tier hotels & restaurants.',
+          description: 'Mid-tier hotels & restaurants by ratings and reviews.',
           count: countAssets('Quality'),
-          icon: Hotel,
-          iconColor: '#A78BFA',
+          icon: ASSET_TIER_TOKENS.Quality.icon,
+          iconColor: ASSET_TIER_TOKENS.Quality.accent,
           iconStyle: 'solid',
           active: ui.showQuality,
           toggle: () => ui.setShowQuality(!ui.showQuality),
@@ -288,25 +338,48 @@ export function TourismPanel({
   // EMBEDDED LAYOUT (used inside LeftDrawer)
   // ────────────────────────────────────────────────────────────────────────────
   if (embedded) {
+    const anyTourismActive = groups.some(g => g.sublayers.some(s => s.active));
+    const resetAllTourism = () => {
+      groups.forEach(g => {
+        suppressTierAutoExpand.current = true;
+        g.sublayers.forEach(s => { if (s.active) s.toggle(); });
+      });
+    };
     return (
       <div className="w-full bg-white text-[#0F172A]" style={{ fontFamily: 'DM Sans, Segoe UI, sans-serif' }}>
         {/* Section header */}
-        <button
-          onClick={() => setSectionExpanded(!sectionExpanded)}
-          className="w-full bg-[#F8FAFC] px-4 py-3 hover:bg-[#F1F5F9] transition-colors text-left flex items-center gap-3 border-b border-[#E2E8F0]"
-        >
-          <div className="w-7 h-7 rounded-md flex items-center justify-center bg-[#FCD34D33] border border-[#D97706]/40 shrink-0">
-            <Palmtree className="w-4 h-4 text-[#B45309]" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="text-[13px] font-semibold text-[#0F172A] truncate">Tourism</div>
-          </div>
-          {sectionExpanded ? (
-            <ChevronDown className="w-4 h-4 text-[#64748B]" />
-          ) : (
-            <ChevronRight className="w-4 h-4 text-[#64748B]" />
-          )}
-        </button>
+        <div className="w-full bg-[#F8FAFC] px-4 py-3 hover:bg-[#F1F5F9] transition-colors flex items-center gap-3 border-b border-[#E2E8F0]">
+          <button
+            onClick={() => setSectionExpanded(!sectionExpanded)}
+            className="flex items-center gap-3 flex-1 min-w-0 text-left cursor-pointer"
+          >
+            <div className="w-7 h-7 rounded-md flex items-center justify-center bg-[#FCD34D33] border border-[#D97706]/40 shrink-0">
+              <Palmtree className="w-4 h-4 text-[#B45309]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[13px] font-semibold text-[#0F172A] truncate">Tourism</div>
+            </div>
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); resetAllTourism(); }}
+            disabled={!anyTourismActive}
+            title="Reset Tourism (turn off all)"
+            className="w-6 h-6 rounded-md flex items-center justify-center text-[#64748B] hover:text-[#0F172A] hover:bg-[#E2E8F0] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+          >
+            <RotateCcw className="w-3.5 h-3.5" strokeWidth={2.25} />
+          </button>
+          <button
+            onClick={() => setSectionExpanded(!sectionExpanded)}
+            className="p-0.5 -m-0.5 cursor-pointer flex-shrink-0"
+            title={sectionExpanded ? 'Collapse' : 'Expand'}
+          >
+            {sectionExpanded ? (
+              <ChevronDown className="w-4 h-4 text-[#64748B]" />
+            ) : (
+              <ChevronRight className="w-4 h-4 text-[#64748B]" />
+            )}
+          </button>
+        </div>
 
         {sectionExpanded && (
           <div className="flex flex-col">
@@ -324,10 +397,6 @@ export function TourismPanel({
                 <div
                   key={group.id}
                   className="border-t border-[#E2E8F0]"
-                  // Any click inside this group section marks it as the active
-                  // section so the Tourism Directory panel auto-switches its
-                  // tab to match.
-                  onClickCapture={() => ui.setActiveSection(group.id as any)}
                 >
                   <GroupHeader
                     Icon={group.icon}
@@ -340,6 +409,9 @@ export function TourismPanel({
                     total={groupTotal}
                     breakdown={groupBreakdown}
                     onClick={() => {
+                      // Mark this group as the active section so the Tourism
+                      // Directory panel auto-switches its tab to match.
+                      ui.setActiveSection(group.id as any);
                       // If the section is fully off, clicking the header turns it
                       // on and expands to the 1st level (group container only).
                       if (activeCount === 0) {
@@ -350,10 +422,12 @@ export function TourismPanel({
                         setOpenGroup(prev => ({ ...prev, [group.id]: true }));
                         return;
                       }
-                      // Otherwise, just toggle the group expansion
-                      setOpenGroup({ ...openGroup, [group.id]: !expanded });
+                      // Otherwise, expand on first click and only collapse when
+                      // the group is already expanded.
+                      setOpenGroup(prev => ({ ...prev, [group.id]: !expanded }));
                     }}
                     onToggleAll={() => {
+                      ui.setActiveSection(group.id as any);
                       // If anything is on, turn everything off; otherwise turn everything on.
                       const turnOn = activeCount === 0;
                       // For the Sites group, the bulk toggle should NOT cascade
@@ -365,14 +439,188 @@ export function TourismPanel({
                       // Auto-expand the group itself when turning on, collapse when off
                       setOpenGroup(prev => ({ ...prev, [group.id]: turnOn }));
                     }}
+                    onReset={() => {
+                      ui.setActiveSection(group.id as any);
+                      // Turn every sublayer off in this group.
+                      if (group.id === 'sites') suppressTierAutoExpand.current = true;
+                      group.sublayers.forEach(s => { if (s.active) s.toggle(); });
+                      setOpenGroup(prev => ({ ...prev, [group.id]: false }));
+                    }}
                   />
 
-                  {expanded && group.id !== 'sites' && (
+                  {expanded && group.id === 'hospitality' && (
                     <div className="px-3 py-3 bg-white">
                       <div className="space-y-1">
                         {group.sublayers.map(sub => (
                           <SubLayerRow key={sub.id} sub={sub} theme={SECTION_THEMES[group.id]} />
                         ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Clusters group: 3-level (tier → cluster names with priority + LGU) */}
+                  {expanded && group.id === 'clusters' && (
+                    <div className="px-3 py-3 bg-white">
+                      <div className="space-y-1">
+                        {group.sublayers.map(sub => {
+                          // Map sublayer id → tier name
+                          const tierName: 'Primary' | 'Emerging' | 'Satellite' =
+                            sub.id === 'cluster-primary' ? 'Primary' :
+                            sub.id === 'cluster-emerging' ? 'Emerging' : 'Satellite';
+                          const tierFeats = (clusters?.features ?? [])
+                            .filter((f: any) => f.properties?.tier === tierName && matchesLgu(f.properties))
+                            .sort((a: any, b: any) =>
+                              (a.properties?.priority ?? 999) - (b.properties?.priority ?? 999)
+                            );
+                          const tierExpanded = openTier[sub.id];
+                          const theme = SECTION_THEMES.clusters;
+                          const accent = TIER_COLORS[tierName].stroke;
+                          // Wrap the layer's visibility toggle: when turning
+                          // OFF, also collapse this tier's cluster list and
+                          // drop any of its clusters from the multi-select
+                          // (and from the right-panel focus) so the UI matches
+                          // what's drawn on the map.
+                          const tierIds = tierFeats
+                            .map((f: any) => f?.properties?.cluster_id)
+                            .filter((id: any): id is number => typeof id === 'number');
+                          const wrappedSub: SubLayer = {
+                            ...sub,
+                            toggle: () => {
+                              const turningOff = sub.active;
+                              sub.toggle();
+                              if (turningOff) {
+                                setOpenTier(prev => ({ ...prev, [sub.id]: false }));
+                                if (tierIds.length > 0) {
+                                  tierIds.forEach((id: number) => {
+                                    if (ui.selectedClusterIds.has(id)) {
+                                      ui.toggleClusterMultiSelect(id);
+                                    }
+                                  });
+                                  if (
+                                    ui.selectedClusterId != null &&
+                                    tierIds.includes(ui.selectedClusterId)
+                                  ) {
+                                    ui.setSelectedClusterId(null);
+                                  }
+                                }
+                              }
+                            },
+                          };
+                          return (
+                            <div key={sub.id}>
+                              <SubLayerRow
+                                sub={wrappedSub}
+                                theme={theme}
+                                expandable={tierFeats.length > 0}
+                                expanded={tierExpanded}
+                                onToggleExpand={() => {
+                                  const willExpand = !tierExpanded;
+                                  setOpenTier({ ...openTier, [sub.id]: willExpand });
+                                  // When opening the tier, make sure every
+                                  // cluster name under it is selected/on so
+                                  // the list reflects what's drawn.
+                                  if (willExpand && tierIds.length > 0) {
+                                    tierIds.forEach((id: number) => {
+                                      if (!ui.selectedClusterIds.has(id)) {
+                                        ui.toggleClusterMultiSelect(id);
+                                      }
+                                    });
+                                  }
+                                }}
+                                // Clicking the row body should expand the
+                                // cluster name list (and auto-enable the layer
+                                // if it's currently off). Visibility is
+                                // controlled via the separate eye toggle.
+                                rowClickMode="expand-and-enable"
+                                showVisibilityToggle
+                              />
+                              {tierExpanded && tierFeats.length > 0 && (
+                                <div className="mt-1 mb-1.5 ml-6 space-y-0.5">
+                                  {tierFeats.map((f: any) => {
+                                    const p = f.properties;
+                                    const selected = ui.selectedClusterId === p.cluster_id;
+                                    const multiSelected = ui.selectedClusterIds.has(p.cluster_id);
+                                    const disabled = !sub.active;
+                                    return (
+                                      <div
+                                        key={p.cluster_id}
+                                        className={`flex items-center gap-2 w-full px-2.5 py-1.5 rounded-md transition-all duration-200 border ${
+                                          selected || multiSelected
+                                            ? 'shadow-sm'
+                                            : disabled
+                                              ? 'border-transparent opacity-50'
+                                              : 'border-transparent hover:bg-[#F1F5F9]'
+                                        }`}
+                                        style={
+                                          selected || multiSelected
+                                            ? { backgroundColor: theme.bg, borderColor: `${theme.border}66` }
+                                            : undefined
+                                        }
+                                      >
+                                        <button
+                                          disabled={disabled}
+                                          onClick={() => {
+                                            // Clicking a cluster name focuses
+                                            // it: select for the right-side
+                                            // detail panel and fly the map to
+                                            // it at zoom 12. Ensure it's part
+                                            // of the visible multi-select set
+                                            // so the highlight is rendered.
+                                            if (!multiSelected) {
+                                              ui.toggleClusterMultiSelect(p.cluster_id);
+                                            }
+                                            ui.setSelectedClusterId(p.cluster_id);
+                                            window.dispatchEvent(
+                                              new CustomEvent('tourism:fly-to-cluster', {
+                                                detail: { cluster_id: p.cluster_id },
+                                              })
+                                            );
+                                          }}
+                                          title={
+                                            disabled
+                                              ? `Enable ${sub.label} to view this cluster`
+                                              : `Focus on ${p.name}`
+                                          }
+                                          className="flex items-center gap-2 flex-1 min-w-0 text-left disabled:cursor-not-allowed"
+                                        >
+                                          <span
+                                            className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                            style={{ background: accent }}
+                                          />
+                                          <span
+                                            className="flex-1 text-[10.5px] font-medium leading-tight truncate"
+                                            style={{
+                                              color: selected || multiSelected ? theme.text : disabled ? '#94A3B8' : '#334155',
+                                            }}
+                                          >
+                                            {p.name}
+                                          </span>
+                                          <span
+                                            className="text-[9px] tabular-nums text-[#94A3B8] truncate max-w-[68px]"
+                                            title={p.lgu}
+                                          >
+                                            {p.lgu}
+                                          </span>
+                                          <span
+                                            className="text-[9px] font-semibold tabular-nums rounded text-center flex-shrink-0"
+                                            style={{
+                                              background: p.priority ? `${accent}1A` : 'transparent',
+                                              color: p.priority ? accent : '#CBD5E1',
+                                              minWidth: 22,
+                                              padding: p.priority ? '0 4px' : '0',
+                                            }}
+                                          >
+                                            {p.priority ? `P${p.priority}` : '—'}
+                                          </span>
+                                        </button>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
@@ -494,7 +742,7 @@ function enabledAll(s: Set<string>): boolean {
 }
 
 function GroupHeader({
-  Icon, label, subtitle, accent, expanded, anyActive, allOn, onClick, onToggleAll,
+  Icon, label, subtitle, accent, expanded, anyActive, allOn, onClick, onToggleAll, onReset,
   total, breakdown,
 }: {
   Icon: IconCmp;
@@ -506,6 +754,7 @@ function GroupHeader({
   allOn: boolean;
   onClick: () => void;
   onToggleAll: () => void;
+  onReset?: () => void;
   total?: number;
   breakdown?: { label: string; count: number }[];
 }) {
@@ -558,6 +807,16 @@ function GroupHeader({
               <EyeOff className="w-3.5 h-3.5" strokeWidth={2} />
             )}
           </button>
+          {onReset && (
+            <button
+              onClick={(e) => { e.stopPropagation(); onReset(); }}
+              disabled={!anyActive}
+              title={`Reset ${label}`}
+              className="w-6 h-6 rounded-md flex items-center justify-center text-[#64748B] hover:text-[#0F172A] hover:bg-[#E2E8F0] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+            >
+              <RotateCcw className="w-3.5 h-3.5" strokeWidth={2.25} />
+            </button>
+          )}
           <button
             onClick={onClick}
             className="cursor-pointer p-0.5 -m-0.5"
@@ -577,17 +836,40 @@ function GroupHeader({
 
 function SubLayerRow({
   sub, theme, expandable, expanded, onToggleExpand,
+  rowClickMode = 'toggle-visibility',
+  showVisibilityToggle = false,
 }: {
   sub: SubLayer;
   theme: SectionTheme;
   expandable?: boolean;
   expanded?: boolean;
   onToggleExpand?: () => void;
+  // Controls what clicking the row body (label + description area) does.
+  //   'toggle-visibility'  → calls sub.toggle (original behaviour)
+  //   'expand-and-enable'  → calls onToggleExpand, and turns the layer ON
+  //                          if it is currently OFF (so newly-revealed list
+  //                          rows are not all disabled-greyed).
+  rowClickMode?: 'toggle-visibility' | 'expand-and-enable';
+  // When true, render a dedicated Eye/EyeOff button on the row header that
+  // toggles the layer's visibility independently of the row click action.
+  showVisibilityToggle?: boolean;
 }) {
   const Icon = sub.icon;
   const activeStyle = sub.active
     ? { backgroundColor: theme.bg, borderColor: `${theme.border}66` }
     : undefined;
+  const handleRowClick = () => {
+    if (rowClickMode === 'expand-and-enable') {
+      if (!sub.active) sub.toggle();
+      if (onToggleExpand) onToggleExpand();
+      return;
+    }
+    sub.toggle();
+  };
+  const rowTitle =
+    rowClickMode === 'expand-and-enable'
+      ? expanded ? `Collapse ${sub.label}` : `Expand ${sub.label}`
+      : sub.active ? `Hide ${sub.label}` : `Show ${sub.label}`;
   return (
     <div
       className={`w-full rounded-md transition-all duration-200 border ${
@@ -599,9 +881,9 @@ function SubLayerRow({
     >
       <div className="flex items-center gap-0.5">
         <button
-          onClick={sub.toggle}
+          onClick={handleRowClick}
           className="flex-1 text-left px-2.5 py-2 cursor-pointer"
-          title={sub.active ? `Hide ${sub.label}` : `Show ${sub.label}`}
+          title={rowTitle}
         >
           <div className="flex items-start gap-2">
             <Icon
@@ -624,6 +906,21 @@ function SubLayerRow({
             </div>
           </div>
         </button>
+        {showVisibilityToggle && (
+          <button
+            onClick={(e) => { e.stopPropagation(); sub.toggle(); }}
+            role="switch"
+            aria-checked={sub.active}
+            title={sub.active ? `Hide ${sub.label}` : `Show ${sub.label}`}
+            className="px-2 py-2 flex-shrink-0 cursor-pointer transition-colors"
+          >
+            {sub.active ? (
+              <Eye className="w-3.5 h-3.5" style={{ color: theme.icon }} strokeWidth={2.25} />
+            ) : (
+              <EyeOff className="w-3.5 h-3.5" style={{ color: '#94A3B8' }} strokeWidth={2} />
+            )}
+          </button>
+        )}
         {expandable && onToggleExpand && (
           <button
             onClick={(e) => { e.stopPropagation(); onToggleExpand(); }}

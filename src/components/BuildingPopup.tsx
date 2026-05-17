@@ -1,4 +1,4 @@
-import { X, Building2, Layers, MapPin, Ruler, SquareStack, Droplets } from 'lucide-react';
+import { X, Building2, Layers, MapPin, SquareStack, Droplets } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface BuildingPopupProps {
@@ -8,7 +8,6 @@ interface BuildingPopupProps {
   barangay?: string;
   municipality?: string;
   floors?: string | number;
-  heightM?: string | number;
   areaSqm?: string | number;
   sewerFeas?: string;     // raw DB value e.g. 'Sewer Feasible'
   showSewerZone?: boolean; // show only when Module 1 buildings mode active
@@ -24,7 +23,6 @@ export function BuildingPopup({
   barangay,
   municipality,
   floors,
-  heightM,
   areaSqm,
   sewerFeas,
   showSewerZone = false,
@@ -77,10 +75,6 @@ export function BuildingPopup({
 
   const displayArea = areaSqm && areaSqm !== 'N/A'
     ? `${Number(areaSqm).toFixed(0)} m²`
-    : 'N/A';
-
-  const displayHeight = heightM && heightM !== 'N/A'
-    ? `${Number(heightM).toFixed(1)} m`
     : 'N/A';
 
   // Map raw DB sewer_feas values to UI-friendly zone labels
@@ -166,7 +160,7 @@ export function BuildingPopup({
 
       {/* Stats row */}
       <div className={`px-2 ${showSewerZone ? 'pt-0 pb-1.5' : 'pb-2'}`}>
-        <div className="grid grid-cols-3 gap-1">
+        <div className="grid grid-cols-2 gap-1">
           {/* Floors */}
           <div className="bg-slate-50 rounded p-1.5 text-center border border-slate-100">
             <Layers className="w-2.5 h-2.5 text-slate-400 mx-auto mb-0.5" />
@@ -174,14 +168,6 @@ export function BuildingPopup({
               {floors && floors !== 'N/A' ? floors : '—'}
             </div>
             <div className="text-[8px] text-slate-500">Floors</div>
-          </div>
-          {/* Height */}
-          <div className="bg-slate-50 rounded p-1.5 text-center border border-slate-100">
-            <Ruler className="w-2.5 h-2.5 text-slate-400 mx-auto mb-0.5" />
-            <div className="text-[10px] font-semibold text-slate-800">
-              {displayHeight}
-            </div>
-            <div className="text-[8px] text-slate-500">Height</div>
           </div>
           {/* Area */}
           <div className="bg-slate-50 rounded p-1.5 text-center border border-slate-100">

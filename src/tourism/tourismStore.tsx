@@ -16,6 +16,12 @@ interface TourismUIState {
   search: string;
   // Selection
   selectedClusterId: number | null;
+  // Multi-select set for compare / multi-highlight workflows.
+  // selectedClusterId remains the "detail view" target (single cluster).
+  selectedClusterIds: Set<number>;
+  toggleClusterMultiSelect: (id: number) => void;
+  setClusterMultiSelect: (ids: number[]) => void;
+  clearClusterMultiSelect: () => void;
   highlightedSiteUid: string | null;
   // View
   activeTab: 'clusters' | 'attractions';
@@ -84,19 +90,33 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
   const [categories, setCategories] = useState<Set<string>>(new Set());
   const [search, setSearch] = useState('');
   const [selectedClusterId, setSelectedClusterId] = useState<number | null>(null);
+  const [selectedClusterIds, setSelectedClusterIds] = useState<Set<number>>(new Set());
+  const toggleClusterMultiSelect = (id: number) => {
+    setSelectedClusterIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+  const setClusterMultiSelect = (ids: number[]) => setSelectedClusterIds(new Set(ids));
+  const clearClusterMultiSelect = () => setSelectedClusterIds(new Set());
   const [highlightedSiteUid, setHighlightedSiteUid] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'clusters' | 'attractions'>('clusters');
   const [activeSection, setActiveSection] = useState<'sites' | 'hospitality' | 'clusters'>('sites');
 
-  // Sub-layer visibility (defaults: site tiers on; hospitality + cluster layers off)
+  // Sub-layer visibility — by default the Tourism Sites group is the only
+  // expanded section in the left panel, with Anchor + Secondary turned on so
+  // the map immediately shows the most relevant attractions. Everything else
+  // stays off until the user enables it (or switches the directory tab,
+  // which auto-enables the matching section's layers).
   const [showAnchor, setShowAnchorRaw] = useState(true);
   const [showSecondary, setShowSecondaryRaw] = useState(true);
-  const [showSupportive, setShowSupportiveRaw] = useState(false);
+  const [showSupportive, setShowSupportiveRaw] = useState(true);
   const [showPremium, setShowPremium] = useState(false);
   const [showQuality, setShowQuality] = useState(false);
-  const [showClusterPrimary, setShowClusterPrimary] = useState(true);
-  const [showClusterEmerging, setShowClusterEmerging] = useState(true);
-  const [showClusterSatellite, setShowClusterSatellite] = useState(true);
+  const [showClusterPrimary, setShowClusterPrimary] = useState(false);
+  const [showClusterEmerging, setShowClusterEmerging] = useState(false);
+  const [showClusterSatellite, setShowClusterSatellite] = useState(false);
 
   // Site point visibility by category — per-tier. Default: all categories
   // enabled for every tier.
@@ -188,7 +208,9 @@ export function TourismUIProvider({ children }: { children: ReactNode }) {
 
   const value: TourismUIState = {
     lgu, tier, categories, search,
-    selectedClusterId, highlightedSiteUid,
+    selectedClusterId,
+    selectedClusterIds, toggleClusterMultiSelect, setClusterMultiSelect, clearClusterMultiSelect,
+    highlightedSiteUid,
     activeTab,
     activeSection,
     showAnchor, showSecondary, showSupportive,

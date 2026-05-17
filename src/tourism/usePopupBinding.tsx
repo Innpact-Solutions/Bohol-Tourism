@@ -2,22 +2,91 @@
 // Listens for clicks on tourism map layers and shows a MapLibre Popup with React content.
 // Also responds to "tourism:fly-to-site" custom events from the attractions list.
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import maplibregl from 'maplibre-gl';
 import { useTourismData } from './TourismContext';
+import { useTourismUI } from './tourismStore';
 import { TourismPopupContent } from './TourismPopup';
 import { TourismClusterPopupContent } from './TourismClusterPopup';
 import { TOURISM_LAYER_IDS } from './TourismLayers';
 
 export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
   const { sites, assets, clusters, getPhotosFor, getMembershipFor } = useTourismData();
+  const { selectedClusterId } = useTourismUI();
+  // Imperative handle filled by the effect below — lets a separate effect
+  // close the currently-open popup when the user deselects the cluster from
+  // somewhere else (e.g. the right-side detail panel's close button).
+  const closeCurrentPopupRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    // When the selection is cleared (and a popup is open), close it. The
+    // popup's own 'close' handler will then animate the map back to the
+    // pre-selection view.
+    if (selectedClusterId == null) {
+      closeCurrentPopupRef.current?.();
+    }
+  }, [selectedClusterId]);
 
   useEffect(() => {
     if (!map || !active || !sites || !assets) return;
 
     let currentPopup: maplibregl.Popup | null = null;
     let currentRoot: Root | null = null;
+
+    // ── Selection-driven camera memory ───────────────────────────────────────
+    // When the user picks a cluster/site from the Tourism Directory we
+    // smoothly flyTo it. We remember the previous camera so closing the
+    // popup (or deselecting) animates the view back to where it was.
+    type CameraSnapshot = { center: [number, number]; zoom: number; bearing: number; pitch: number };
+    let prevView: CameraSnapshot | null = null;
+    // Set briefly while we tear down a popup as part of switching to a new
+    // selection — prevents the popup's 'close' handler from restoring the
+    // view between back-to-back selections.
+    let suppressRestore = false;
+    const FLY_DURATION = 1100;
+
+    const captureView = () => {
+      if (prevView) return;
+      const c = map.getCenter();
+      prevView = {
+        center: [c.lng, c.lat],
+        zoom: map.getZoom(),
+        bearing: map.getBearing(),
+        pitch: map.getPitch(),
+      };
+    };
+    const restoreView = () => {
+      if (suppressRestore) return;
+      const v = prevView;
+      if (!v) return;
+      prevView = null;
+      try {
+        map.flyTo({
+          center: v.center,
+          zoom: v.zoom,
+          bearing: v.bearing,
+          pitch: v.pitch,
+          duration: FLY_DURATION,
+          essential: true,
+        });
+      } catch { /* noop */ }
+    };
+    const closeCurrentForSwitch = () => {
+      if (!currentPopup) return;
+      suppressRestore = true;
+      try { currentPopup.remove(); } catch { /* noop */ }
+      currentRoot?.unmount();
+      currentPopup = null;
+      currentRoot = null;
+      suppressRestore = false;
+    };
+    // Expose a normal (restore-honoring) close so the deselection effect can
+    // dismiss the popup and animate the map back to the original view.
+    closeCurrentPopupRef.current = () => {
+      if (!currentPopup) return;
+      try { currentPopup.remove(); } catch { /* noop */ }
+    };
 
     // After a popup mounts, measure it against obstructing UI panels (header,
     // footer, directory, legend, etc.) and pan the map so the popup sits
@@ -73,6 +142,27 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       }
     };
 
+    // Compute the top-edge anchor point of a polygon/multipolygon cluster
+    // feature. Returns [centroidX, maxY] in lng/lat so a popup anchored at
+    // 'bottom' floats just above the cluster instead of covering it.
+    const clusterTopAnchor = (feat: any): [number, number] | null => {
+      const geom = feat?.geometry;
+      if (!geom) return null;
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      const visit = (coords: any) => {
+        if (typeof coords?.[0] === 'number') {
+          const [x, y] = coords as [number, number];
+          if (x < minX) minX = x; if (x > maxX) maxX = x;
+          if (y < minY) minY = y; if (y > maxY) maxY = y;
+          return;
+        }
+        if (Array.isArray(coords)) coords.forEach(visit);
+      };
+      visit(geom.coordinates);
+      if (!isFinite(minX) || !isFinite(maxY)) return null;
+      return [(minX + maxX) / 2, maxY];
+    };
+
     const findPOIByUid = (uid: string): { props: any; lngLat: [number, number] } | null => {
       const site = sites.features.find((f: any) => f.properties.uid === uid);
       if (site) {
@@ -88,11 +178,7 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
     };
 
     const showPopup = (props: any, lngLat: [number, number]) => {
-      if (currentPopup) {
-        currentPopup.remove();
-        currentRoot?.unmount();
-        currentRoot = null;
-      }
+      closeCurrentForSwitch();
       const container = document.createElement('div');
       const root = createRoot(container);
       const photos = getPhotosFor(props.uid);
@@ -106,7 +192,7 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
         .setDOMContent(container)
         .addTo(map);
 
-      popup.on('close', () => { root.unmount(); });
+      popup.on('close', () => { root.unmount(); restoreView(); });
       currentPopup = popup;
       currentRoot = root;
 
@@ -128,14 +214,17 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       if (cid == null) return;
       const mem = getMembershipFor(cid);
 
-      // Photos: prefer anchor sites in the cluster; if none have photos,
-      // fall back to secondary, then supportive. First non-empty wins.
-      const photos: string[] = [];
+      // Photos: collect across anchor + secondary + supportive sites of the
+      // cluster, with site name and tier so the popup can label each slide.
+      const photos: Array<{ url: string; siteName: string; tier: 'Anchor' | 'Secondary' | 'Supportive' }> = [];
       if (mem && sites) {
-        const tiers: Array<keyof typeof mem> = ['anchors', 'secondary', 'supportive'];
-        for (const tier of tiers) {
-          if (photos.length) break;
-          const refs = (mem as any)[tier] as Array<{ name: string; lgu: string }> | undefined;
+        const tiers: Array<{ key: 'anchors' | 'secondary' | 'supportive'; label: 'Anchor' | 'Secondary' | 'Supportive' }> = [
+          { key: 'anchors',    label: 'Anchor' },
+          { key: 'secondary',  label: 'Secondary' },
+          { key: 'supportive', label: 'Supportive' },
+        ];
+        for (const t of tiers) {
+          const refs = (mem as any)[t.key] as Array<{ name: string; lgu: string }> | undefined;
           if (!refs) continue;
           for (const d of refs) {
             const siteFeat = sites.features.find((s: any) =>
@@ -143,15 +232,15 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
             );
             const uid = (siteFeat?.properties as any)?.uid;
             if (!uid) continue;
-            for (const url of getPhotosFor(uid)) photos.push(url);
+            for (const url of getPhotosFor(uid)) {
+              photos.push({ url, siteName: d.name, tier: t.label });
+            }
           }
         }
       }
 
       if (currentPopup) {
-        currentPopup.remove();
-        currentRoot?.unmount();
-        currentRoot = null;
+        closeCurrentForSwitch();
       }
       const container = document.createElement('div');
       const root = createRoot(container);
@@ -163,6 +252,10 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       );
 
       const popup = new maplibregl.Popup({
+        // Anchor at bottom so the popup floats ABOVE the given lngLat —
+        // callers pass the top edge of the cluster polygon, so the popup
+        // sits over empty space outside the cluster rather than covering it.
+        anchor: 'bottom',
         offset: 14, maxWidth: '260px', className: 'tourism-popup tourism-cluster-popup',
         closeButton: true, closeOnClick: false,
       })
@@ -170,7 +263,7 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
         .setDOMContent(container)
         .addTo(map);
 
-      popup.on('close', () => { root.unmount(); });
+      popup.on('close', () => { root.unmount(); restoreView(); });
       currentPopup = popup;
       currentRoot = root;
 
@@ -194,7 +287,10 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
 
       const f = e.features?.[0];
       if (!f) return;
-      showClusterPopup(f.properties, [e.lngLat.lng, e.lngLat.lat]);
+      // Anchor the popup at the polygon's top edge (centroid X, maxY) so it
+      // floats above the cluster rather than covering it.
+      const top = clusterTopAnchor(f);
+      showClusterPopup(f.properties, top ?? [e.lngLat.lng, e.lngLat.lat]);
     };
 
     const layers = [
@@ -219,8 +315,15 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       if (!uid) return;
       const hit = findPOIByUid(uid);
       if (!hit) return;
-      map.flyTo({ center: hit.lngLat, zoom: 12, duration: 800 });
-      setTimeout(() => showPopup(hit.props, hit.lngLat), 850);
+      captureView();
+      map.flyTo({
+        center: hit.lngLat,
+        zoom: 12,
+        duration: FLY_DURATION,
+        curve: 1.4,
+        essential: true,
+      });
+      setTimeout(() => showPopup(hit.props, hit.lngLat), FLY_DURATION + 50);
     };
     window.addEventListener('tourism:fly-to-site', onFly as any);
 
@@ -249,9 +352,19 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       visit((feat.geometry as any).coordinates);
       if (!isFinite(minX) || !isFinite(minY)) return;
       const center: [number, number] = [(minX + maxX) / 2, (minY + maxY) / 2];
+      // Popup anchor: top edge of the polygon (centroid X, maxY) so the
+      // card sits above the cluster instead of covering it.
+      const topAnchor: [number, number] = [(minX + maxX) / 2, maxY];
 
-      map.flyTo({ center, zoom: 12, duration: 800 });
-      setTimeout(() => showClusterPopup(feat.properties, center), 850);
+      captureView();
+      map.flyTo({
+        center,
+        zoom: 12,
+        duration: FLY_DURATION,
+        curve: 1.4,
+        essential: true,
+      });
+      setTimeout(() => showClusterPopup(feat.properties, topAnchor), FLY_DURATION + 50);
     };
     window.addEventListener('tourism:fly-to-cluster', onFlyCluster as any);
 
@@ -262,6 +375,7 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       window.removeEventListener('tourism:fly-to-cluster', onFlyCluster as any);
       if (currentPopup) currentPopup.remove();
       currentRoot?.unmount();
+      closeCurrentPopupRef.current = null;
     };
   }, [map, active, sites, assets, clusters, getPhotosFor, getMembershipFor]);
 }

@@ -324,6 +324,55 @@ const transformGeoJSONCoordinates = (geojson: any): any => {
   return transformed;
 };
 
+// Build a styled DOM card for the location-search result popup. Matches the
+// tourism popup look-and-feel (white rounded card, red accent stripe tied to
+// the boundary outline color, header chip + close button, name + coordinates).
+const buildSearchLocationCard = (
+  loc: { name: string; lat: number; lng: number },
+  onClose: () => void
+): HTMLElement => {
+  const root = document.createElement('div');
+  root.className = 'search-location-card';
+  root.innerHTML = `
+    <div class="slc-accent"></div>
+    <div class="slc-body">
+      <div class="slc-header">
+        <span class="slc-chip">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Search result
+        </span>
+        <button class="slc-close" aria-label="Close" type="button">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="slc-name"></div>
+      <div class="slc-coords">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+        </svg>
+        <span></span>
+      </div>
+    </div>
+  `;
+  // Set text content via DOM API to avoid HTML injection from place names
+  const nameEl = root.querySelector('.slc-name') as HTMLElement | null;
+  if (nameEl) nameEl.textContent = loc.name;
+  const coordsEl = root.querySelector('.slc-coords span') as HTMLElement | null;
+  if (coordsEl) coordsEl.textContent = `${loc.lat.toFixed(4)}°, ${loc.lng.toFixed(4)}°`;
+  const closeBtn = root.querySelector('.slc-close') as HTMLButtonElement | null;
+  if (closeBtn) closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    onClose();
+  });
+  return root;
+};
+
 interface MapCanvasProps {
   activeSector: Sector;
   activeLayerId?: string;  // Single layer ID (not array)
@@ -1281,13 +1330,16 @@ export function MapCanvas({
     map.on('load', async () => {
       console.log('🎯 Map fully loaded and ready');
       
-      // Fetch Barangay_Boundary extent and fit map to study area (Tagbilaran City, Dauis, Panglao)
-      console.log('📡 Fetching Barangay_Boundary extent from GeoServer...');
-      
-      const BARANGAY_WFS_URL = 'https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WorldBank_Bohol:Barangay_Boundary&outputFormat=application/json&srsName=EPSG:4326';
+      // Fetch Municipal_Boundary extent and fit map to study area
+      // (Tagbilaran City, Dauis, Panglao — including Balicasag Island, which
+      // is part of Panglao's municipal polygon but NOT in Barangay_Boundary).
+      console.log('📡 Fetching Municipal_Boundary extent from GeoServer...');
 
-      // Fallback bounds for Tagbilaran City, Dauis & Panglao (Bohol, Philippines)
-      const FALLBACK_BOUNDS: [[number, number], [number, number]] = [[123.7600, 9.5300], [124.0500, 9.7500]];
+      const BARANGAY_WFS_URL = 'https://geoserver.azure.innpact.ai/geoserver/WorldBank_Bohol/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WorldBank_Bohol:Municipal_Boundary&outputFormat=application/json&srsName=EPSG:4326';
+
+      // Fallback bounds for Tagbilaran City, Dauis, Panglao + Balicasag Island
+      // (Bohol, Philippines). Extended south/west to include Balicasag (~9.515 N, 123.685 E).
+      const FALLBACK_BOUNDS: [[number, number], [number, number]] = [[123.6700, 9.5000], [124.0500, 9.7500]];
 
       let barangayBounds: [[number, number], [number, number]] = FALLBACK_BOUNDS;
 
@@ -5295,6 +5347,19 @@ export function MapCanvas({
           locationBoundaryLayerIdRef.current = null;
         }
 
+        // Reset the map view back to the study-area extent so closing the
+        // search popup also restores the original zoom + position.
+        const barangayBounds = (map as any)._barangayBounds;
+        if (barangayBounds) {
+          map.fitBounds(barangayBounds, {
+            padding: 80,
+            duration: 1200,
+            pitch: 0,
+            bearing: 0,
+            essential: true,
+          });
+        }
+
         // Note: Don't reset map view here - that's handled when a new location is set
       }
       return;
@@ -5697,19 +5762,10 @@ export function MapCanvas({
         offset: 15,
         closeButton: false,
         closeOnClick: false,
-        className: 'location-label-v2'
+        className: 'search-location-popup'
       })
       .setLngLat([selectedLocation.lng, selectedLocation.lat])
-      .setHTML(`
-        <div class="label-box">
-          <span class="label-name">${selectedLocation.name}</span>
-          <button class="label-close" onclick="this.closest('.maplibregl-popup').remove()">
-            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-              <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
-      `)
+      .setDOMContent(buildSearchLocationCard(selectedLocation, () => popup.remove()))
       .addTo(map);
 
       // Clear location when popup is closed or removed
@@ -5753,17 +5809,8 @@ export function MapCanvas({
         offset: 20,
         closeButton: false,
         closeOnClick: false,
-        className: 'location-label-v2'
-      }).setHTML(`
-        <div class="label-box">
-          <span class="label-name">${selectedLocation.name}</span>
-          <button class="label-close" onclick="this.closest('.maplibregl-popup').remove()">
-            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-              <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
-      `);
+        className: 'search-location-popup'
+      }).setDOMContent(buildSearchLocationCard(selectedLocation, () => popup.remove()));
 
       // Clear location when popup is closed or removed
       popup.on('close', () => {
@@ -9405,8 +9452,16 @@ export function MapCanvas({
         }
     }, 3500);
     
-    // Control visibility: show buildings layers if any categories, subcategories, or sewer categories are selected
-    const shouldShowBuildings = activeBuildingCategories.length > 0 || activeBuildingSubcategories.length > 0 || activeSewerCategories.length > 0;
+    // Control visibility: show buildings layers if the Buildings base layer is
+    // active OR any categories / subcategories / sewer categories are selected.
+    // Without the base-layer check, toggling Buildings on from the Base Layers
+    // panel briefly loads the tiles and then this effect (which re-fires on
+    // activeBaseLayers change) hides them again.
+    const shouldShowBuildings =
+      activeBaseLayers.includes('buildings') ||
+      activeBuildingCategories.length > 0 ||
+      activeBuildingSubcategories.length > 0 ||
+      activeSewerCategories.length > 0;
     
     if (buildingsBaseLayer) {
       map.setLayoutProperty('buildings', 'visibility', shouldShowBuildings ? 'visible' : 'none');
@@ -10997,7 +11052,6 @@ export function MapCanvas({
           barangay={buildingPopupData.barangay}
           municipality={buildingPopupData.municipality}
           floors={buildingPopupData.floors}
-          heightM={buildingPopupData.heightM}
           areaSqm={buildingPopupData.areaSqm}
           sewerFeas={buildingPopupData.sewerFeas}
           showSewerZone={(activeSewerCategories ?? []).length > 0}

@@ -1,8 +1,10 @@
 import React from 'react';
 import worldBankLogo from 'figma:asset/28a68ce6f762781887d81ef25d37ca6723765991.png';
 import boholLogo from 'figma:asset/675d206072795155b568af95dfafe18a05d798b5.png';
-import { useState, useEffect, useRef } from 'react';
-import { Building2, MapPin, ChevronDown, Search, X } from 'lucide-react';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { Building2, MapPin, ChevronDown, Search, X, Layers } from 'lucide-react';
+import { useTourismData } from '../tourism/TourismContext';
+import { useTourismUI } from '../tourism/tourismStore';
 
 
 interface HeaderProps {
@@ -52,9 +54,16 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
   const [lgus, setLgus] = useState<LGU[]>([]);
   const [isLguLoading, setIsLguLoading] = useState(true);
   const [lguSearchQuery, setLguSearchQuery] = useState('');
-  
+
+  // Tourism cluster filter (third dropdown alongside LGU / Barangay)
+  const tourismData = useTourismData();
+  const tourismUI = useTourismUI();
+  const [clusterFilterOpen, setClusterFilterOpen] = useState(false);
+  const [clusterSearchQuery, setClusterSearchQuery] = useState('');
+
   const wardFilterRef = useRef<HTMLDivElement>(null);
   const lguFilterRef = useRef<HTMLDivElement>(null);
+  const clusterFilterRef = useRef<HTMLDivElement>(null);
   
   // Dummy user data - will be replaced with actual auth later
   const dummyUser = {
@@ -215,6 +224,9 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
       if (lguFilterRef.current && !lguFilterRef.current.contains(event.target as Node)) {
         setLguFilterOpen(false);
       }
+      if (clusterFilterRef.current && !clusterFilterRef.current.contains(event.target as Node)) {
+        setClusterFilterOpen(false);
+      }
     }
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -231,7 +243,79 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
     if (disableWardFilter && lguFilterOpen) {
       setLguFilterOpen(false);
     }
-  }, [disableWardFilter, wardFilterOpen, lguFilterOpen]);
+    if (disableWardFilter && clusterFilterOpen) {
+      setClusterFilterOpen(false);
+    }
+  }, [disableWardFilter, wardFilterOpen, lguFilterOpen, clusterFilterOpen]);
+
+  // Build sorted cluster list from tourism data (Primary -> Emerging -> Satellite, then name)
+  const clusterList = useMemo(() => {
+    const feats: any[] = tourismData?.clusters?.features ?? [];
+    const tierOrder: Record<string, number> = { Primary: 0, Emerging: 1, Satellite: 2 };
+    return feats
+      .map((f: any) => f?.properties)
+      .filter((p: any) => p && typeof p.cluster_id === 'number')
+      .map((p: any) => ({
+        id: p.cluster_id as number,
+        name: String(p.name ?? `Cluster ${p.cluster_id}`),
+        tier: String(p.tier ?? ''),
+        lgu: String(p.lgu ?? ''),
+      }))
+      .sort((a, b) => {
+        const ta = tierOrder[a.tier] ?? 9;
+        const tb = tierOrder[b.tier] ?? 9;
+        if (ta !== tb) return ta - tb;
+        return a.name.localeCompare(b.name);
+      });
+  }, [tourismData?.clusters]);
+
+  const allClusterIds = useMemo(() => clusterList.map(c => c.id), [clusterList]);
+  const selectedSet = tourismUI.selectedClusterIds;
+  const allClustersSelected = selectedSet.size === 0 || selectedSet.size === allClusterIds.length;
+  const singleClusterSelected = selectedSet.size === 1
+    ? clusterList.find(c => selectedSet.has(c.id)) ?? null
+    : null;
+
+  const clusterLabel = allClustersSelected
+    ? 'Select Cluster'
+    : singleClusterSelected
+      ? singleClusterSelected.name
+      : `${selectedSet.size} clusters`;
+
+  const filteredClusters = clusterList.filter(c => {
+    const q = clusterSearchQuery.trim().toLowerCase();
+    if (!q) return true;
+    return c.name.toLowerCase().includes(q)
+      || c.tier.toLowerCase().includes(q)
+      || c.lgu.toLowerCase().includes(q);
+  });
+
+  const handleClusterSelect = (id: number) => {
+    // Single-select: replace the cluster set with just this id and set detail focus
+    tourismUI.setClusterMultiSelect([id]);
+    tourismUI.setSelectedClusterId(id);
+    // Cluster scope overrides admin filters
+    if (selectedLguId !== 'all') onLguSelect('all', 'all');
+    if (selectedWardId !== 'all') onWardSelect('all', 'all');
+    setClusterFilterOpen(false);
+    setClusterSearchQuery('');
+    // Zoom the map to the cluster
+    window.dispatchEvent(new CustomEvent('tourism:fly-to-cluster', { detail: { cluster_id: id } }));
+  };
+
+  const handleClusterClear = () => {
+    // Restore default — all clusters selected, no detail focus
+    tourismUI.setClusterMultiSelect(allClusterIds);
+    tourismUI.setSelectedClusterId(null);
+    setClusterSearchQuery('');
+  };
+
+  const tierBadgeColor = (tier: string) => {
+    if (tier === 'Primary') return 'bg-[#EDE9FE] text-[#6D28D9]';
+    if (tier === 'Emerging') return 'bg-[#DBEAFE] text-[#1D4ED8]';
+    if (tier === 'Satellite') return 'bg-[#F1F5F9] text-[#475569]';
+    return 'bg-[#F1F5F9] text-[#475569]';
+  };
 
   return (
     <header className="h-12 bg-white border-b border-[#E5E7EB] pl-2 pr-4 flex items-center justify-between flex-shrink-0 shadow-sm">
@@ -508,6 +592,138 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
               }}
               className="h-8 w-8 flex items-center justify-center rounded-lg bg-[#FEE2E2] hover:bg-[#FEF2F2] text-[#DC2626] transition-colors group"
               title="Clear barangay filter"
+            >
+              <X className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+            </button>
+          )}
+        </div>
+
+        {/* Tourism Cluster Filter Dropdown Widget */}
+        <div className="flex items-center gap-1">
+          <div className="relative" ref={clusterFilterRef}>
+            <button
+              onClick={() => {
+                if (disableWardFilter) return;
+                setClusterFilterOpen(!clusterFilterOpen);
+              }}
+              disabled={disableWardFilter}
+              className={`h-8 pl-3 pr-2 bg-white border rounded-lg transition-all duration-200 flex items-center gap-2 ${
+                disableWardFilter
+                  ? 'border-gray-200 opacity-50 cursor-not-allowed'
+                  : 'border-[#E5E7EB] hover:border-[#8B5CF6] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6]/20 focus:border-[#8B5CF6]'
+              }`}
+              title={disableWardFilter ? 'Cluster filtering is disabled when Query Tool is active' : 'Select Tourism Cluster'}
+            >
+              <Layers className={`w-3.5 h-3.5 flex-shrink-0 ${disableWardFilter ? 'text-gray-400' : 'text-[#8B5CF6]'}`} />
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-medium text-[#0F172A]">
+                  {clusterList.length === 0 ? 'Loading...' : clusterLabel}
+                </span>
+                {singleClusterSelected && (
+                  <span className="text-[10px] text-[#64748B]">
+                    ({singleClusterSelected.tier})
+                  </span>
+                )}
+              </div>
+              <ChevronDown className={`w-3.5 h-3.5 text-[#6B7280] transition-transform duration-200 ${clusterFilterOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {/* Cluster Dropdown Menu */}
+            {clusterFilterOpen && (
+              <div className="absolute top-full right-0 mt-1 w-80 bg-white border border-[#E5E7EB] rounded-lg shadow-xl z-50 overflow-hidden">
+                {/* Search inside dropdown */}
+                <div className="p-2 border-b border-[#E5E7EB] bg-[#F8FAFC]">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Filter clusters by name, tier, LGU..."
+                      value={clusterSearchQuery}
+                      onChange={(e) => setClusterSearchQuery(e.target.value)}
+                      autoComplete="off"
+                      onFocus={(e) => {
+                        e.preventDefault();
+                        e.target.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'nearest' });
+                      }}
+                      className="w-full h-7 pl-7 pr-2 border border-[#E5E7EB] rounded-md text-xs focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] bg-white"
+                    />
+                    <Search className="w-3 h-3 text-[#6B7280] absolute left-2 top-2" />
+                  </div>
+                </div>
+
+                {/* "All Clusters" reset row */}
+                <button
+                  onClick={() => {
+                    handleClusterClear();
+                    setClusterFilterOpen(false);
+                  }}
+                  className={`w-full text-left px-3 py-2 transition-colors duration-150 border-b border-[#F1F5F9] ${
+                    allClustersSelected
+                      ? 'bg-gradient-to-r from-[#F5F3FF] to-[#EDE9FE] border-l-2 border-l-[#8B5CF6]'
+                      : 'hover:bg-[#F8FAFC]'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className={`text-xs font-medium ${allClustersSelected ? 'text-[#6D28D9]' : 'text-[#0F172A]'}`}>
+                      All Clusters
+                    </div>
+                    {allClustersSelected && <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6]" />}
+                  </div>
+                </button>
+
+                {/* Cluster List */}
+                <div className="max-h-64 overflow-y-auto">
+                  {filteredClusters.length > 0 ? (
+                    filteredClusters.map((c) => {
+                      const isSelected = singleClusterSelected?.id === c.id;
+                      return (
+                        <button
+                          key={c.id}
+                          onClick={() => handleClusterSelect(c.id)}
+                          className={`w-full text-left px-3 py-2 transition-colors duration-150 border-b border-[#F1F5F9] last:border-b-0 ${
+                            isSelected
+                              ? 'bg-gradient-to-r from-[#F5F3FF] to-[#EDE9FE] border-l-2 border-l-[#8B5CF6]'
+                              : 'hover:bg-[#F8FAFC]'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1 min-w-0">
+                              <div className={`text-xs font-medium mb-0.5 truncate ${
+                                isSelected ? 'text-[#6D28D9]' : 'text-[#0F172A]'
+                              }`}>
+                                {c.name}
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded ${tierBadgeColor(c.tier)}`}>
+                                  {c.tier || '—'}
+                                </span>
+                                {c.lgu && (
+                                  <span className="text-[10px] text-[#6B7280] truncate">{c.lgu}</span>
+                                )}
+                              </div>
+                            </div>
+                            {isSelected && (
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] ml-2 flex-shrink-0" />
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })
+                  ) : (
+                    <div className="px-3 py-6 text-center">
+                      <p className="text-xs text-[#64748B]">No clusters found</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Clear Filter Button - Only show when not in default (all-selected) state */}
+          {!allClustersSelected && (
+            <button
+              onClick={handleClusterClear}
+              className="h-8 w-8 flex items-center justify-center rounded-lg bg-[#FEE2E2] hover:bg-[#FEF2F2] text-[#DC2626] transition-colors group"
+              title="Clear cluster filter"
             >
               <X className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
             </button>

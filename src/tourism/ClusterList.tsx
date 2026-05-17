@@ -4,18 +4,21 @@
 import React from 'react';
 import { useTourismData } from './TourismContext';
 import { useTourismUI } from './tourismStore';
+import { TIER_COLORS } from './styles';
 import type { ClusterFeature } from './types';
 
+// Tier badge stroke/text color — canonical TIER_COLORS (single source of truth).
 const TIER_BADGE_BG: Record<string, string> = {
-  Primary:   '#B47228',
-  Emerging:  '#C84A35',
-  Satellite: '#5C7A87',
+  Primary:   TIER_COLORS.Primary.stroke,   // #E07A18 amber
+  Emerging:  TIER_COLORS.Emerging.stroke,  // #6D28D9 violet
+  Satellite: TIER_COLORS.Satellite.stroke, // #2563EB blue
 };
 
+// Soft tier tints (matching hue, light value) for chip/row backgrounds.
 const TIER_TINT_BG: Record<string, string> = {
-  Primary:   '#FEF3C7',
-  Emerging:  '#FEE2E2',
-  Satellite: '#E0F2FE',
+  Primary:   '#FFF7ED', // amber-50
+  Emerging:  '#F5F3FF', // violet-50
+  Satellite: '#EFF6FF', // blue-50
 };
 
 export function ClusterList() {

@@ -1165,25 +1165,45 @@ export function LeftDrawer({
               <TourismPanel embedded selectedLgu={selectedLguName} selectedBrgy={selectedWardName} />
             </div>
 
-            {/* Climate & Hazards Title Card (collapsible) */}
-            <button
-              onClick={() => setClimateHazardsExpanded(!climateHazardsExpanded)}
-              className="w-full bg-[#F8FAFC] px-4 py-3 hover:bg-[#F1F5F9] transition-colors text-left flex items-center gap-3 border-b border-[#E2E8F0]"
-            >
-              <div className="w-7 h-7 rounded-md flex items-center justify-center bg-[#DBEAFE] border border-[#2563EB]/40 shrink-0">
-                <Layers className="w-4 h-4 text-[#1E40AF]" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[13px] font-semibold text-[#0F172A] truncate">
-                  Climate &amp; Hazards
+            {/* Climate Hazards Title Card (collapsible) */}
+            <div className="w-full bg-[#F8FAFC] px-4 py-3 hover:bg-[#F1F5F9] transition-colors flex items-center gap-3 border-b border-[#E2E8F0]">
+              <button
+                onClick={() => setClimateHazardsExpanded(!climateHazardsExpanded)}
+                className="flex items-center gap-3 flex-1 min-w-0 text-left cursor-pointer"
+              >
+                <div className="w-7 h-7 rounded-md flex items-center justify-center bg-[#DBEAFE] border border-[#2563EB]/40 shrink-0">
+                  <Layers className="w-4 h-4 text-[#1E40AF]" />
                 </div>
-              </div>
-              {climateHazardsExpanded ? (
-                <ChevronDown className="w-4 h-4 text-[#64748B]" />
-              ) : (
-                <ChevronRight className="w-4 h-4 text-[#64748B]" />
-              )}
-            </button>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[13px] font-semibold text-[#0F172A] truncate">
+                    Climate Hazards
+                  </div>
+                </div>
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveBaseLayers([]);
+                  onLayerChange('');
+                }}
+                disabled={activeBaseLayers.length === 0 && !activeLayerId}
+                title="Reset Climate Hazards (clear all layers)"
+                className="w-6 h-6 rounded-md flex items-center justify-center text-[#64748B] hover:text-[#0F172A] hover:bg-[#E2E8F0] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+              >
+                <RotateCcw className="w-3.5 h-3.5" strokeWidth={2.25} />
+              </button>
+              <button
+                onClick={() => setClimateHazardsExpanded(!climateHazardsExpanded)}
+                className="p-0.5 -m-0.5 cursor-pointer flex-shrink-0"
+                title={climateHazardsExpanded ? 'Collapse' : 'Expand'}
+              >
+                {climateHazardsExpanded ? (
+                  <ChevronDown className="w-4 h-4 text-[#64748B]" />
+                ) : (
+                  <ChevronRight className="w-4 h-4 text-[#64748B]" />
+                )}
+              </button>
+            </div>
 
             {climateHazardsExpanded && (
             <>
@@ -1202,26 +1222,38 @@ export function LeftDrawer({
               {/* Base Layers Section */}
               <div className="border-b border-[#E2E8F0]" data-tutorial="base-layers-section">
                 {/* Base Layers Header - Collapsible */}
-                <button
-                  onClick={() => setBaseLayersExpanded(!baseLayersExpanded)}
-                  className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 text-left cursor-pointer group"
-                >
-                  <div className="flex items-start justify-between text-left">
-                    <div className="flex items-start gap-2 flex-1">
-                      <div className="w-1 h-3.5 bg-gradient-to-b from-[#64748B] to-[#475569] rounded-full mt-0.5 flex-shrink-0" />
-                      <div className="flex-1 text-left">
-                        <h3 className="text-xs font-semibold text-[#0F172A] text-left">Base Layers</h3>
-                      </div>
+                <div className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 group flex items-center justify-between">
+                  <button
+                    onClick={() => setBaseLayersExpanded(!baseLayersExpanded)}
+                    className="flex items-start gap-2 flex-1 text-left cursor-pointer"
+                  >
+                    <div className="w-1 h-3.5 bg-gradient-to-b from-[#64748B] to-[#475569] rounded-full mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <h3 className="text-xs font-semibold text-[#0F172A] text-left">Base Layers</h3>
                     </div>
-                    <div className="ml-2 flex-shrink-0">
+                  </button>
+                  <div className="ml-2 flex items-center gap-1.5 flex-shrink-0">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setActiveBaseLayers([]); }}
+                      disabled={activeBaseLayers.length === 0}
+                      title="Reset base layers"
+                      className="w-6 h-6 rounded-md flex items-center justify-center text-[#64748B] hover:text-[#0F172A] hover:bg-[#E2E8F0] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" strokeWidth={2.25} />
+                    </button>
+                    <button
+                      onClick={() => setBaseLayersExpanded(!baseLayersExpanded)}
+                      className="p-0.5 -m-0.5 cursor-pointer"
+                      title={baseLayersExpanded ? 'Collapse' : 'Expand'}
+                    >
                       {baseLayersExpanded ? (
                         <ChevronDown className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                       ) : (
                         <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
                       )}
-                    </div>
+                    </button>
                   </div>
-                </button>
+                </div>
 
                 {/* Base Layers List */}
                 {baseLayersExpanded && (
@@ -1664,30 +1696,42 @@ export function LeftDrawer({
               {(activeSector === 'heat' || activeSector === 'flood') && (
               <div className="border-b border-[#E2E8F0]" data-tutorial="hazard-layers-section">
                 {/* Layer List Section Header - Collapsible */}
-                <button
-                  onClick={() => setDataLayersExpanded(!dataLayersExpanded)}
-                  className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 text-left cursor-pointer group"
-                >
-                <div className="flex items-start justify-between text-left">
-                  <div className="flex items-start gap-2 flex-1">
+                <div className="w-full bg-[#F8FAFC] px-4 py-2.5 hover:bg-[#F1F5F9] transition-all duration-200 group flex items-center justify-between">
+                  <button
+                    onClick={() => setDataLayersExpanded(!dataLayersExpanded)}
+                    className="flex items-start gap-2 flex-1 text-left cursor-pointer"
+                  >
                     <div className="w-1 h-3.5 bg-gradient-to-b from-[#2563EB] to-[#1E40AF] rounded-full mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
                       <h3 className="text-xs font-semibold text-[#0F172A] text-left">
-                        {(activeSector === 'heat' || activeSector === 'air' || activeSector === 'flood' || activeSector === 'multihazard') 
-                          ? 'Climate & Hazard Layers' 
+                        {(activeSector === 'heat' || activeSector === 'air' || activeSector === 'flood' || activeSector === 'multihazard')
+                          ? 'Climate Hazards Layer'
                           : 'Data Layers'}
                       </h3>
                     </div>
-                  </div>
-                  <div className="ml-2 flex-shrink-0">
-                    {dataLayersExpanded ? (
-                      <ChevronDown className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
-                    ) : (
-                      <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
-                    )}
+                  </button>
+                  <div className="ml-2 flex items-center gap-1.5 flex-shrink-0">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onLayerChange(''); }}
+                      disabled={!activeLayerId}
+                      title="Reset hazard layer"
+                      className="w-6 h-6 rounded-md flex items-center justify-center text-[#64748B] hover:text-[#0F172A] hover:bg-[#E2E8F0] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" strokeWidth={2.25} />
+                    </button>
+                    <button
+                      onClick={() => setDataLayersExpanded(!dataLayersExpanded)}
+                      className="p-0.5 -m-0.5 cursor-pointer"
+                      title={dataLayersExpanded ? 'Collapse' : 'Expand'}
+                    >
+                      {dataLayersExpanded ? (
+                        <ChevronDown className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0F172A] transition-colors" />
+                      )}
+                    </button>
                   </div>
                 </div>
-              </button>
 
               {/* Layer List */}
               {dataLayersExpanded && (

@@ -79,12 +79,14 @@ export default defineConfig({
       allowedHosts: 'all',
       proxy: {
         '/api': {
-          target: 'http://localhost:8080',
+          target: 'https://bohol-cwis-api.azurewebsites.net',
           changeOrigin: true,
+          secure: true,
         },
         '/health': {
-          target: 'http://localhost:8080',
+          target: 'https://bohol-cwis-api.azurewebsites.net',
           changeOrigin: true,
+          secure: true,
         },
       },
     },

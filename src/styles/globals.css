@@ -979,6 +979,100 @@ html, body {
   filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08)) !important;
 }
 
+/* Search Location Result Popup — richer card matching tourism popup style */
+.search-location-popup .maplibregl-popup-content {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+.search-location-popup .maplibregl-popup-tip {
+  border-top-color: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.12)) !important;
+}
+.search-location-card {
+  display: flex;
+  width: 240px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.search-location-card .slc-accent {
+  width: 4px;
+  background: linear-gradient(to bottom, #E3000F, #B80009);
+  flex-shrink: 0;
+}
+.search-location-card .slc-body {
+  flex: 1;
+  padding: 8px 10px 10px 10px;
+  min-width: 0;
+}
+.search-location-card .slc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.search-location-card .slc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #E3000F;
+  background: rgba(227, 0, 15, 0.08);
+  padding: 3px 7px;
+  border-radius: 999px;
+  line-height: 1;
+}
+.search-location-card .slc-close {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #64748B;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.search-location-card .slc-close:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+.search-location-card .slc-close:active {
+  transform: scale(0.94);
+}
+.search-location-card .slc-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1.3;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.search-location-card .slc-coords {
+  margin-top: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  color: #64748B;
+  font-variant-numeric: tabular-nums;
+}
+
 /* Modal animations */
 @keyframes fadeIn {
   from {

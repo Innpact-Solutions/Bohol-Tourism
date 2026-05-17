@@ -6,12 +6,14 @@ import React, { useState, useMemo } from 'react';
 import { X, Star } from 'lucide-react';
 import { useTourismData } from './TourismContext';
 import { useTourismUI } from './tourismStore';
-import { CATEGORY_COLORS } from './styles';
+import { CATEGORY_COLORS, TIER_COLORS } from './styles';
 import { PhotoLightbox } from './PhotoGallery';
 import { TOURISM_INTERVENTIONS } from '../config/tourismConfig';
 
 const TIER_BG: Record<string, string> = {
-  Primary: '#B47228', Emerging: '#C84A35', Satellite: '#5C7A87',
+  Primary:   TIER_COLORS.Primary.stroke,   // #E07A18 amber
+  Emerging:  TIER_COLORS.Emerging.stroke,  // #6D28D9 violet
+  Satellite: TIER_COLORS.Satellite.stroke, // #2563EB blue
 };
 
 export function TourismDetailPanel() {

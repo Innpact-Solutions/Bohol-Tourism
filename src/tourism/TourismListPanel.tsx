@@ -32,9 +32,9 @@ const TIER_BADGE: Record<string, { bg: string; fg: string }> = {
   Supportive: { bg: '#FEF3C7', fg: '#A16207' },
   Premium:    { bg: '#FED7AA', fg: '#9A3412' },
   Quality:    { bg: '#FFEDD5', fg: '#C2410C' },
-  Primary:    { bg: '#FEF3C7', fg: '#854D0E' },
-  Emerging:   { bg: '#FECACA', fg: '#9B1C1C' },
-  Satellite:  { bg: '#DBEAFE', fg: '#1E40AF' },
+  Primary:    { bg: '#FFF7ED', fg: '#E07A18' }, // canonical amber (Primary cluster)
+  Emerging:   { bg: '#F5F3FF', fg: '#6D28D9' }, // canonical violet (Emerging cluster)
+  Satellite:  { bg: '#EFF6FF', fg: '#2563EB' }, // canonical blue   (Satellite cluster)
 };
 
 const norm = (v?: string | null): string | null => {
@@ -502,16 +502,27 @@ function HospitalityList({ items, ui }: { items: any[]; ui: any }) {
 
 function ClustersList({ items, ui }: { items: any[]; ui: any }) {
   if (items.length === 0) return <EmptyRow label="No clusters match the current filters." />;
-  return (
-    <div className="flex flex-col">
-      {items.map((f: any) => {
+
+  // Group items by tier (Primary → Emerging → Satellite).
+  const TIER_ORDER: Array<'Primary' | 'Emerging' | 'Satellite'> = ['Primary', 'Emerging', 'Satellite'];
+  const grouped: Record<string, any[]> = { Primary: [], Emerging: [], Satellite: [], Other: [] };
+  items.forEach((f: any) => {
+    const t = f.properties?.tier;
+    if (t === 'Primary' || t === 'Emerging' || t === 'Satellite') grouped[t].push(f);
+    else grouped.Other.push(f);
+  });
+
+  const TIER_ACCENT: Record<string, string> = {
+    Primary:   '#B47228',
+    Emerging:  '#C84A35',
+    Satellite: '#5C7A87',
+  };
+
+  const renderRow = (f: any) => {
         const p = f.properties;
         const tier = p.tier;
         const tierTheme = TIER_BADGE[tier] || { bg: '#E2E8F0', fg: '#475569' };
-        const accent =
-          tier === 'Primary' ? '#B47228' :
-          tier === 'Emerging' ? '#C84A35' :
-          '#5C7A87';
+        const accent = TIER_ACCENT[tier] ?? '#5C7A87';
         const selected = ui.selectedClusterId === p.cluster_id;
         const priority = p.priority ? `P${p.priority}` : '';
         const nAnchor = p.n_anchor ?? 0;
@@ -582,7 +593,41 @@ function ClustersList({ items, ui }: { items: any[]; ui: any }) {
             </div>
           </button>
         );
+  };
+
+  return (
+    <div className="flex flex-col">
+      {TIER_ORDER.map((tier) => {
+        const list = grouped[tier];
+        if (!list || list.length === 0) return null;
+        const accent = TIER_ACCENT[tier];
+        return (
+          <div key={tier} className="mb-1.5">
+            <div
+              className="sticky top-0 z-10 flex items-center justify-between px-1.5 py-1 mb-0.5 backdrop-blur-sm"
+              style={{ background: 'rgba(255,255,255,0.85)' }}
+            >
+              <div className="flex items-center gap-1.5">
+                <span
+                  className="inline-block w-1.5 h-1.5 rounded-full"
+                  style={{ background: accent }}
+                />
+                <span
+                  className="text-[9.5px] uppercase tracking-[0.08em] font-bold"
+                  style={{ color: accent }}
+                >
+                  {tier} clusters
+                </span>
+              </div>
+              <span className="text-[9.5px] font-semibold tabular-nums text-[#94A3B8]">
+                {list.length}
+              </span>
+            </div>
+            {list.map(renderRow)}
+          </div>
+        );
       })}
+      {grouped.Other.length > 0 && grouped.Other.map(renderRow)}
     </div>
   );
 }

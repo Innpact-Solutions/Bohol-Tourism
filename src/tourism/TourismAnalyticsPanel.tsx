@@ -4,7 +4,7 @@
 //   titles = 12.5px font-semibold, body = 12px, muted = #64748B / #94A3B8.
 
 import React, { useMemo, useState } from 'react';
-import { MapPin, X, Star, Landmark, BedDouble, Layers, AlertTriangle, Umbrella, Fish, Mountain, Church, Trees, ChevronDown, ChevronUp } from 'lucide-react';
+import { MapPin, X, Star, Layers, AlertTriangle, ChevronDown, ChevronUp, Route, Utensils, Coffee, Mountain, BedDouble } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { BarChart, Bar, Cell, XAxis, YAxis, ResponsiveContainer, Tooltip, LabelList, PieChart, Pie } from 'recharts';
 import { useTourismData } from './TourismContext';
@@ -14,6 +14,10 @@ import { useClusterHazardsSummary } from './useClusterHazardsSummary';
 import { useHazardLayerBreakdown } from './useHazardLayerBreakdown';
 import type { HazardSummary } from './useClusterHazards';
 import { CATEGORY_COLORS, TIER_COLORS } from './styles';
+import {
+  SITE_TIER_TOKENS, ASSET_TIER_TOKENS, CLUSTER_TIER_TOKENS,
+  HAZARD_TOKENS, CONNECTIVITY_TOKENS, CATEGORY_ICONS, Hotel,
+} from './tokens';
 import { TOURISM_INTERVENTIONS } from '../config/tourismConfig';
 import { geoserverLayers } from '../config/geoserverLayers';
 import { ENVIRONMENTAL_LAYERS } from '../config/environmentalLayers';
@@ -22,9 +26,9 @@ const FONT = 'DM Sans, Segoe UI, sans-serif';
 
 const TIER_ORDER = ['Anchor', 'Secondary', 'Supportive'] as const;
 const TIER_ACCENT: Record<typeof TIER_ORDER[number], string> = {
-  Anchor:     TIER_COLORS.Primary.stroke,    // #E07A18
-  Secondary:  TIER_COLORS.Emerging.stroke,   // #C2185B
-  Supportive: TIER_COLORS.Satellite.stroke,  // #0891B2
+  Anchor:     SITE_TIER_TOKENS.Anchor.accent,
+  Secondary:  SITE_TIER_TOKENS.Secondary.accent,
+  Supportive: SITE_TIER_TOKENS.Supportive.accent,
 };
 
 const CAT_ORDER = [
@@ -36,15 +40,8 @@ const CAT_ORDER = [
   'Urban Park',
 ] as const;
 
-// Category icon + short label (matches the left tourism directory)
-const CAT_META: Record<string, { icon: LucideIcon; short: string }> = {
-  'Beach':              { icon: Umbrella, short: 'Beach' },
-  'Marine':             { icon: Fish,     short: 'Marine' },
-  'Nature / Viewpoint': { icon: Mountain, short: 'Nature' },
-  'Heritage':           { icon: Landmark, short: 'Heritage' },
-  'Faith':              { icon: Church,   short: 'Faith' },
-  'Urban Park':         { icon: Trees,    short: 'Urban' },
-};
+// Category icon + short label — sourced from centralised CATEGORY_ICONS token.
+const CAT_META = CATEGORY_ICONS;
 
 // Custom X-axis tick: lucide icon over short category label.
 function CategoryAxisTick(props: any) {
@@ -162,16 +159,40 @@ function StatCard({
   label,
   value,
   caption,
+  captionItems,
   accent,
   tint,
 }: {
   icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   label: string;
   value: string;
-  caption: string;
+  caption?: string;
+  captionItems?: Array<{ label: string; value: number | string }>;
   accent: string;
   tint: string;
 }) {
+  // When captionItems are provided, render them as a horizontally scrolling
+  // ticker so each "label number" pair stays readable inside the tiny card.
+  // Falls back to the static `caption` string for legacy call sites.
+  const renderTicker = captionItems && captionItems.length > 0;
+  const tickerContent = renderTicker ? (
+    <span className="inline-flex items-center gap-1 pr-6">
+      {captionItems!.map((it, i) => (
+        <span key={`${it.label}-${i}`} className="inline-flex items-center gap-0.5 whitespace-nowrap">
+          <span>{it.label}</span>
+          <span
+            className="tabular-nums font-semibold"
+            style={{ color: accent }}
+          >
+            {it.value}
+          </span>
+          {i < captionItems!.length - 1 && (
+            <span className="opacity-40">·</span>
+          )}
+        </span>
+      ))}
+    </span>
+  ) : null;
   return (
     <div
       className="relative rounded-lg bg-white border border-[#E2E8F0] px-2.5 py-2 overflow-hidden transition-shadow hover:shadow-sm"
@@ -195,7 +216,16 @@ function StatCard({
       <div className="text-[17px] font-semibold leading-none tabular-nums tracking-tight text-[#0F172A]">
         {value}
       </div>
-      <div className="text-[10px] text-[#64748B] mt-1 truncate">{caption}</div>
+      {renderTicker ? (
+        <div className="text-[10px] text-[#64748B] mt-1 overflow-hidden whitespace-nowrap">
+          <div className="inline-flex animate-scroll-text">
+            {tickerContent}
+            {tickerContent}
+          </div>
+        </div>
+      ) : (
+        <div className="text-[10px] text-[#64748B] mt-1 truncate">{caption}</div>
+      )}
     </div>
   );
 }
@@ -253,48 +283,130 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 // ---------------------------------------------------------------------------
-// Active layers callout — small pill list of currently-visible map layers
+// Climate hazards callout — at-a-glance Heat / Flood / Sinkhole exposure
+// across all clusters, shown as a compact card with per-hazard progress bars
+// (avg % across clusters) and a count of clusters above the high-hazard
+// threshold (≥ 25 %).
 // ---------------------------------------------------------------------------
 
-function ActiveLayersCallout() {
-  const ui = useTourismUI();
-  const items: Array<{ label: string; color: string }> = [];
-  if (ui.showAnchor)            items.push({ label: 'Anchor sites',      color: '#1F2738' });
-  if (ui.showSecondary)         items.push({ label: 'Secondary sites',   color: '#4A4137' });
-  if (ui.showSupportive)        items.push({ label: 'Supportive sites',  color: '#7E7567' });
-  if (ui.showPremium)           items.push({ label: 'Premium hospitality', color: '#7C3AED' });
-  if (ui.showQuality)           items.push({ label: 'Quality hospitality', color: '#A78BFA' });
-  if (ui.showClusterPrimary)    items.push({ label: 'Primary clusters',   color: TIER_COLORS.Primary.stroke });
-  if (ui.showClusterEmerging)   items.push({ label: 'Emerging clusters',  color: TIER_COLORS.Emerging.stroke });
-  if (ui.showClusterSatellite)  items.push({ label: 'Satellite clusters', color: TIER_COLORS.Satellite.stroke });
+function ClimateHazardsCallout({
+  rows,
+  lguFilter,
+  totalClusters,
+}: {
+  rows: Array<{ lgu: string; heat_pct: number; flood_pct: number; sinkhole_pct: number }> | null | undefined;
+  lguFilter: string | null;
+  totalClusters: number;
+}) {
+  const HIGH = 25;
+  const MODERATE = 10;
+  const stats = React.useMemo(() => {
+    const out = {
+      heat:     { avg: 0, max: 0, high: 0, moderate: 0 },
+      flood:    { avg: 0, max: 0, high: 0, moderate: 0 },
+      sinkhole: { avg: 0, max: 0, high: 0, moderate: 0 },
+    };
+    if (!rows || rows.length === 0) return out;
+    const filtered = rows.filter((r) => !lguFilter || r.lgu === lguFilter);
+    if (filtered.length === 0) return out;
+    let sH = 0, sF = 0, sS = 0;
+    const bump = (b: { high: number; moderate: number }, v: number) => {
+      if (v >= HIGH) b.high++;
+      else if (v >= MODERATE) b.moderate++;
+    };
+    for (const r of filtered) {
+      sH += r.heat_pct;     if (r.heat_pct     > out.heat.max)     out.heat.max     = r.heat_pct;
+      sF += r.flood_pct;    if (r.flood_pct    > out.flood.max)    out.flood.max    = r.flood_pct;
+      sS += r.sinkhole_pct; if (r.sinkhole_pct > out.sinkhole.max) out.sinkhole.max = r.sinkhole_pct;
+      bump(out.heat,     r.heat_pct);
+      bump(out.flood,    r.flood_pct);
+      bump(out.sinkhole, r.sinkhole_pct);
+    }
+    out.heat.avg     = sH / filtered.length;
+    out.flood.avg    = sF / filtered.length;
+    out.sinkhole.avg = sS / filtered.length;
+    return out;
+  }, [rows, lguFilter]);
+
+  const items = [
+    { key: 'heat',     label: HAZARD_TOKENS.heat.label,     accent: HAZARD_TOKENS.heat.accent,     tint: HAZARD_TOKENS.heat.tint,     data: stats.heat },
+    { key: 'flood',    label: HAZARD_TOKENS.flood.label,    accent: HAZARD_TOKENS.flood.accent,    tint: HAZARD_TOKENS.flood.tint,    data: stats.flood },
+    { key: 'sinkhole', label: HAZARD_TOKENS.sinkhole.label, accent: HAZARD_TOKENS.sinkhole.accent, tint: HAZARD_TOKENS.sinkhole.tint, data: stats.sinkhole },
+  ] as const;
+
+  const loading = !rows;
 
   return (
     <div className="px-3 pb-1">
       <div className="rounded-lg bg-white border border-[#E2E8F0] px-2.5 py-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
-        <div className="flex items-center justify-between mb-1.5">
+        <div className="flex items-center justify-between mb-2">
           <div className="text-[11px] font-semibold text-[#0F172A]">
-            Active layers
+            Climate Hazards
           </div>
-          <div className="text-[10px] text-[#94A3B8] tabular-nums">
-            {items.length}
+          <div className="text-[9.5px] text-[#94A3B8] uppercase tracking-wider">
+            across {totalClusters} clusters
           </div>
         </div>
-        {items.length === 0 ? (
-          <div className="text-[10.5px] text-[#94A3B8]">No layers visible</div>
+        {loading ? (
+          <div className="text-[10.5px] text-[#94A3B8] py-1">Loading hazard exposure…</div>
         ) : (
-          <div className="flex flex-wrap gap-1">
-            {items.map((it) => (
-              <span
-                key={it.label}
-                className="inline-flex items-center gap-1 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] px-1.5 py-0.5 text-[10px] text-[#334155]"
-              >
-                <span
-                  className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ background: it.color }}
-                />
-                {it.label}
-              </span>
-            ))}
+          <div className="space-y-1.5">
+            {items.map((it) => {
+              const pctAvg = Math.round(it.data.avg);
+              const pctMax = Math.round(it.data.max);
+              const barW = Math.min(100, Math.max(0, pctAvg));
+              return (
+                <div key={it.key}>
+                  <div className="flex items-center justify-between gap-2 mb-0.5">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span className="text-[10.5px] font-medium text-[#334155] truncate">
+                        {it.label}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                      <span
+                        className="text-[10.5px] font-semibold tabular-nums"
+                        style={{ color: it.accent }}
+                      >
+                        {pctAvg}%
+                      </span>
+                      <span
+                        className="text-[9px] tabular-nums px-1 py-[1px] rounded font-semibold"
+                        style={{ background: it.tint, color: it.accent }}
+                        title={`${it.data.high} clusters ≥ ${HIGH}%`}
+                      >
+                        {it.data.high} high
+                      </span>
+                      <span
+                        className="text-[9px] tabular-nums px-1 py-[1px] rounded font-medium"
+                        style={{ background: '#F1F5F9', color: '#475569' }}
+                        title={`${it.data.moderate} clusters ${MODERATE}–${HIGH}%`}
+                      >
+                        {it.data.moderate} mod
+                      </span>
+                    </div>
+                  </div>
+                  <div className="h-1.5 rounded-full overflow-hidden bg-[#F1F5F9] relative">
+                    <div
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${barW}%`, background: it.accent }}
+                    />
+                    {/* max marker */}
+                    {pctMax > pctAvg && (
+                      <div
+                        className="absolute top-0 h-full w-[2px] opacity-50"
+                        style={{ left: `calc(${Math.min(100, pctMax)}% - 1px)`, background: it.accent }}
+                        title={`Peak ${pctMax}%`}
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+            <div className="pt-1 flex items-center justify-between text-[9px] text-[#94A3B8] uppercase tracking-wider">
+              <span>Avg exposure</span>
+              <span>Low &lt; {MODERATE}% · Mod {MODERATE}–{HIGH}% · High ≥ {HIGH}%</span>
+            </div>
           </div>
         )}
       </div>
@@ -303,8 +415,34 @@ function ActiveLayersCallout() {
 }
 
 const TIER_BG: Record<string, string> = {
-  Primary: '#E07A18', Emerging: '#C2185B', Satellite: '#0891B2',
+  Primary:   CLUSTER_TIER_TOKENS.Primary.accent,
+  Emerging:  CLUSTER_TIER_TOKENS.Emerging.accent,
+  Satellite: CLUSTER_TIER_TOKENS.Satellite.accent,
 };
+
+// ---------------------------------------------------------------------------
+// Connectivity reference points — three key transport gateways in Bohol.
+// Distances are computed great-circle (haversine) from each cluster's
+// lead anchor destination. Lat/lng sourced from OpenStreetMap. Colour + icon
+// come from CONNECTIVITY_TOKENS so the same gateway reads identically anywhere.
+// ---------------------------------------------------------------------------
+
+const CONNECTIVITY_POIS: Array<{ key: 'airport' | 'port' | 'bus'; label: string; lat: number; lng: number; icon: LucideIcon; accent: string; tint: string }> = [
+  { key: 'airport', ...CONNECTIVITY_TOKENS.airport, lat: 9.6691, lng: 123.8503 },
+  { key: 'port',    ...CONNECTIVITY_TOKENS.port,    lat: 9.6452, lng: 123.8546 },
+  { key: 'bus',     ...CONNECTIVITY_TOKENS.bus,     lat: 9.6491, lng: 123.8722 },
+];
+
+function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
+  const R = 6371;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
 
 // CWIS hazard layers (storm surge, flood, urban waterlogging) are not in
 // `geoserverLayers` — they are handled separately in MapCanvas via
@@ -432,7 +570,7 @@ function HazardDistributionPie({
 }
 
 function ClusterDetailSection() {
-  const { clusters, getMembershipFor } = useTourismData();
+  const { clusters, sites, assets, getMembershipFor } = useTourismData();
   const ui = useTourismUI();
 
   const cluster = ui.selectedClusterId != null
@@ -440,30 +578,151 @@ function ClusterDetailSection() {
     : undefined;
   const mem = ui.selectedClusterId != null ? getMembershipFor(ui.selectedClusterId) : undefined;
 
+  // --- Joined data: pull asset_cat / rating / n_ratings onto Premium & Quality lists
+  const assetIndex = useMemo(() => {
+    const idx = new Map<string, any>();
+    if (!assets) return idx;
+    for (const f of assets.features) {
+      const p: any = f.properties || {};
+      idx.set(`${p.name}|${p.lgu}`, p);
+    }
+    return idx;
+  }, [assets]);
+
+  // Mirror for sites — used to enrich Anchor / Secondary / Supportive lists with
+  // their Google rating + n_ratings (same display as the Premium Stays list).
+  const sitesIndex = useMemo(() => {
+    const idx = new Map<string, any>();
+    if (!sites) return idx;
+    for (const f of sites.features) {
+      const p: any = f.properties || {};
+      idx.set(`${p.name}|${p.lgu}`, p);
+    }
+    return idx;
+  }, [sites]);
+
+  const enrichDest = (list?: any[]) =>
+    (list || []).map((d) => {
+      const s = sitesIndex.get(`${d.name}|${d.lgu}`);
+      return {
+        name: d.name,
+        cat: d.cat || s?.site_cat || '',
+        rating:    s?.rating    as number | undefined,
+        n_ratings: s?.n_ratings as number | undefined,
+        score: d.score,
+      };
+    });
+
+  const anchorsDetailed    = useMemo(() => enrichDest(mem?.anchors),    [mem, sitesIndex]);
+  const secondaryDetailed  = useMemo(() => enrichDest(mem?.secondary),  [mem, sitesIndex]);
+  const supportiveDetailed = useMemo(() => enrichDest(mem?.supportive), [mem, sitesIndex]);
+
+  const stayBreakdown = useMemo(() => {
+    const tally = (list?: any[]) => {
+      const c = { Hotel: 0, Restaurant: 0, 'Café': 0, Other: 0 };
+      if (!list) return c;
+      for (const it of list) {
+        const a = assetIndex.get(`${it.name}|${it.lgu}`);
+        const cat: string = a?.asset_cat || it?.cat || '';
+        if (cat.startsWith('Hotel')) c.Hotel++;
+        else if (cat.startsWith('Restaurant')) c.Restaurant++;
+        else if (cat.startsWith('Cafe') || cat.startsWith('Café')) c['Café']++;
+        else c.Other++;
+      }
+      return c;
+    };
+    if (!mem) return null;
+    return {
+      premium: tally(mem.premium),
+      quality: tally(mem.quality),
+    };
+  }, [mem, assetIndex]);
+
+  const premiumStaysDetailed = useMemo(() => {
+    if (!mem?.premium) return [];
+    return [...mem.premium]
+      .map((d) => {
+        const a = assetIndex.get(`${d.name}|${d.lgu}`);
+        return {
+          name: d.name,
+          cat: a?.asset_cat || d.cat || '',
+          rating: a?.rating as number | undefined,
+          n_ratings: a?.n_ratings as number | undefined,
+          score: d.score,
+        };
+      })
+      .sort((a, b) => (b.score || 0) - (a.score || 0));
+  }, [mem, assetIndex]);
+
+  // --- Per-cluster site category distribution (uses DestinationRef.cat which is site_cat)
+  const memberSiteDist = useMemo(() => {
+    if (!mem) return [] as Array<{ name: string; value: number; color: string }>;
+    const counts: Record<string, number> = {};
+    for (const cat of CAT_ORDER) counts[cat] = 0;
+    for (const list of [mem.anchors, mem.secondary, mem.supportive]) {
+      for (const d of list || []) {
+        const c = String(d.cat || '');
+        if (c in counts) counts[c]++;
+      }
+    }
+    return CAT_ORDER
+      .map((c) => ({ name: c, value: counts[c] || 0, color: CATEGORY_COLORS[c] || '#94A3B8' }))
+      .filter((d) => d.value > 0);
+  }, [mem]);
+  const memberSiteTotal = memberSiteDist.reduce((s, d) => s + d.value, 0);
+
+  // --- Lead anchor coords for connectivity distances
+  const leadAnchor = useMemo(() => {
+    if (!mem || !sites || mem.anchors.length === 0) return null;
+    const lead = mem.anchors[0];
+    const f: any = sites.features.find(
+      (s: any) => s.properties?.name === lead.name && s.properties?.lgu === lead.lgu,
+    );
+    const coords = f?.geometry?.coordinates;
+    if (!coords || typeof coords[0] !== 'number' || typeof coords[1] !== 'number') return null;
+    return { name: lead.name, lng: coords[0], lat: coords[1] };
+  }, [mem, sites]);
+
+  const distances = useMemo(() => {
+    if (!leadAnchor) return null;
+    return CONNECTIVITY_POIS.map((poi) => ({
+      ...poi,
+      km: haversineKm(leadAnchor, poi),
+    }));
+  }, [leadAnchor]);
+
   if (!cluster || !mem) return null;
   const p: any = cluster.properties;
   const landKm2 = p.area_land ?? p.area_km2;
   const interventions = TOURISM_INTERVENTIONS[p.tier] || TOURISM_INTERVENTIONS.Satellite;
   const tierColor = TIER_BG[p.tier] || '#64748B';
 
-  const nAnchor = Number(p.n_anchor || 0);
-  const nOther  = Number(p.n_sec  || 0) + Number(p.n_supp || 0);
-  const nHosp   = Number(p.n_prem || 0) + Number(p.n_qual || 0);
-  const landStr = typeof landKm2 === 'number' ? `${landKm2.toFixed(2)}` : (landKm2 ?? '—');
+  const nSites = (mem.anchors?.length || 0) + (mem.secondary?.length || 0) + (mem.supportive?.length || 0);
+  const nPrem  = mem.premium?.length || 0;
+  const nQual  = mem.quality?.length || 0;
+  const landStr = typeof landKm2 === 'number' ? landKm2.toFixed(2) : (landKm2 ?? '—');
 
   return (
     <div className="px-3 pt-3 pb-2">
-      {/* Section heading — "Cluster Assessment" title with cluster name below */}
+      {/* Section heading — "Cluster Assessment" eyebrow + prominent cluster name */}
       <div className="flex items-start justify-between mb-2 gap-2">
-        <div className="min-w-0">
-          <div className="text-[11px] font-semibold tracking-wide text-[#475569]">
+        <div className="min-w-0 flex-1">
+          <div className="text-[9.5px] font-bold tracking-[0.14em] uppercase text-[#94A3B8] mb-1">
             Cluster Assessment
           </div>
-          <div
-            className="text-[12.5px] font-semibold text-[#0F172A] truncate mt-0.5"
-            title={p.name}
-          >
-            {p.name}
+          <div className="flex items-center gap-2">
+            <span
+              aria-hidden
+              className="inline-block w-1 self-stretch rounded-full flex-shrink-0"
+              style={{ background: tierColor, minHeight: 22 }}
+            />
+            <h2
+              className="text-[18px] font-bold text-[#0F172A] leading-tight tracking-tight truncate"
+              title={p.name}
+              style={{ letterSpacing: '-0.01em' }}
+            >
+              {p.name}
+            </h2>
           </div>
         </div>
         <button
@@ -475,7 +734,7 @@ function ClusterDetailSection() {
         </button>
       </div>
 
-      {/* Meta row — tier badge + priority + LGU + potential */}
+      {/* Meta row — tier badge + priority + LGU (Potential removed per spec) */}
       <div className="flex items-center flex-wrap gap-1.5 mb-2 text-[10.5px] text-[#64748B]">
         <span
           className="inline-block px-1.5 py-0.5 rounded text-[10px] font-semibold text-white"
@@ -485,85 +744,326 @@ function ClusterDetailSection() {
         </span>
         {p.priority && <span>Priority P{p.priority}</span>}
         {p.lgu && <><span className="text-[#CBD5E1]">·</span><span>{p.lgu}</span></>}
-        {mem.potential_score != null && (
-          <><span className="text-[#CBD5E1]">·</span><span>Potential {mem.potential_score.toFixed(1)}</span></>
-        )}
       </div>
 
-      {/* KPI grid — same StatCard style as main panel */}
+      {/* KPI grid — Land Area · Tourism Sites · Road Length · Stay & Dining */}
       <div className="grid grid-cols-2 gap-2 mb-2">
-        <StatCard
-          icon={Star}
-          label="Anchor Tourist Sites"
-          value={nAnchor.toLocaleString()}
-          caption="Headline destinations"
-          accent="#D97706"
-          tint="#FEF3C7"
-        />
-        <StatCard
-          icon={MapPin}
-          label="Other Sites"
-          value={nOther.toLocaleString()}
-          caption="Secondary · Supportive"
-          accent="#0EA5E9"
-          tint="#E0F2FE"
-        />
-        <StatCard
-          icon={BedDouble}
-          label="Hospitality and F&B"
-          value={nHosp.toLocaleString()}
-          caption="Premium · Quality"
-          accent="#6D28D9"
-          tint="#F5F3FF"
-        />
         <StatCard
           icon={Mountain}
           label="Land Area"
-          value={landStr === '—' ? '—' : `${landStr}`}
-          caption="Square kilometres (km²)"
+          value={landStr === '—' ? '—' : `${landStr} km²`}
+          captionItems={[
+            { label: 'Built-up', value: 'NA' },
+            { label: 'Green',    value: 'NA' },
+          ]}
           accent="#16A34A"
           tint="#DCFCE7"
         />
+        <StatCard
+          icon={SITE_TIER_TOKENS.Anchor.icon}
+          label="Tourism Sites"
+          value={nSites.toLocaleString()}
+          captionItems={[
+            { label: 'Anchor',     value: mem.anchors?.length || 0 },
+            { label: 'Secondary',  value: mem.secondary?.length || 0 },
+            { label: 'Supportive', value: mem.supportive?.length || 0 },
+          ]}
+          accent={SITE_TIER_TOKENS.Anchor.accent}
+          tint={SITE_TIER_TOKENS.Anchor.tint}
+        />
+        <StatCard
+          icon={Route}
+          label="Road Length"
+          value="NA"
+          captionItems={[
+            { label: 'Single', value: 'NA' },
+            { label: 'Double', value: 'NA' },
+            { label: '4+',     value: 'NA' },
+          ]}
+          accent="#475569"
+          tint="#F1F5F9"
+        />
+        <StatCard
+          icon={ASSET_TIER_TOKENS.Premium.icon}
+          label="Stay and Dining"
+          value={(nPrem + nQual).toLocaleString()}
+          captionItems={[
+            { label: 'Premium',      value: nPrem },
+            { label: 'Quality',      value: nQual },
+            { label: 'Tourist Home', value: 'NA' },
+          ]}
+          accent={ASSET_TIER_TOKENS.Premium.accent}
+          tint={ASSET_TIER_TOKENS.Premium.tint}
+        />
       </div>
 
-      {/* Detail card — holds destinations, hazards, interventions */}
-      <div className="rounded-md bg-white border border-[#E2E8F0] overflow-hidden">
-        {mem.anchors.length > 0 && (
-          <DetailSection title="Anchor Destinations">
-            <CollapsibleDestList items={mem.anchors} initial={3} />
-          </DetailSection>
-        )}
+      {/* --- Layer 2: Site Distribution mini bar chart --- */}
+      {memberSiteDist.length > 0 && (
+        <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2.5 pb-2 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+          <div className="flex items-baseline justify-between mb-1.5">
+            <div className="text-[12px] font-semibold text-[#0F172A]">Site Distribution</div>
+            <div className="text-[10px] text-[#94A3B8] tabular-nums">{memberSiteTotal} sites</div>
+          </div>
+          <div className="h-36">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={memberSiteDist} margin={{ top: 12, right: 4, left: -22, bottom: 0 }} barCategoryGap="22%">
+                <XAxis
+                  dataKey="name"
+                  tick={<CategoryAxisTick />}
+                  height={42}
+                  tickLine={false}
+                  axisLine={{ stroke: '#E2E8F0' }}
+                  interval={0}
+                />
+                <YAxis
+                  tick={{ fontSize: 9.5, fill: '#94A3B8', fontFamily: FONT }}
+                  tickLine={false}
+                  axisLine={false}
+                  width={22}
+                  allowDecimals={false}
+                />
+                <Tooltip cursor={{ fill: '#F1F5F9' }} content={<CategoryTooltip total={memberSiteTotal} />} />
+                <Bar dataKey="value" radius={[5, 5, 0, 0]}>
+                  <LabelList
+                    dataKey="value"
+                    position="top"
+                    style={{ fontSize: 10, fill: '#0F172A', fontFamily: FONT, fontWeight: 700 }}
+                  />
+                  {memberSiteDist.map((d) => (
+                    <Cell key={d.name} fill={d.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
 
-        {mem.secondary.length > 0 && (
-          <DetailSection title="Secondary Destinations">
-            <CollapsibleDestList items={mem.secondary} initial={3} />
-          </DetailSection>
-        )}
+      {/* --- Layer 3: Stay & Dining detail (Premium/Quality H/R/C + Tourist Home) --- */}
+      {stayBreakdown && (
+        <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+          <div className="text-[12px] font-semibold text-[#0F172A] mb-2">Stay &amp; Dining Breakdown</div>
+          <div className="space-y-1.5">
+            <StayTierRow label={ASSET_TIER_TOKENS.Premium.label}     accent={ASSET_TIER_TOKENS.Premium.accent}     total={nPrem} counts={stayBreakdown.premium} />
+            <StayTierRow label={ASSET_TIER_TOKENS.Quality.label}     accent={ASSET_TIER_TOKENS.Quality.accent}     total={nQual} counts={stayBreakdown.quality} />
+            <StayTierRow label={ASSET_TIER_TOKENS.TouristHome.label} accent={ASSET_TIER_TOKENS.TouristHome.accent} total={null}  counts={null} />
+          </div>
+        </div>
+      )}
 
-        {mem.premium && mem.premium.length > 0 && (
-          <DetailSection title="Top Premium Hospitality" helper="inside polygon">
-            <CollapsibleDestList
-              items={[...mem.premium].sort((a, b) => (b.score || 0) - (a.score || 0))}
-              initial={3}
-            />
-          </DetailSection>
-        )}
-
-        {/* Hazard exposure */}
+      {/* --- Layer 4: Hazard exposure (unchanged) --- */}
+      <div className="rounded-md bg-white border border-[#E2E8F0] overflow-hidden mb-2">
         <ClusterHazardExposure clusterId={p.cluster_id} tierColor={tierColor} />
+      </div>
 
-        {/* Interventions */}
-        <DetailSection title="Recommended Interventions">
+      {/* --- Layer 5: Connectivity (from lead anchor) --- */}
+      <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+        <div className="flex items-baseline justify-between mb-2">
+          <div className="text-[12px] font-semibold text-[#0F172A]">Connectivity</div>
+          <div className="text-[9.5px] text-[#94A3B8] uppercase tracking-wider truncate ml-2 max-w-[60%] text-right" title={leadAnchor?.name || ''}>
+            {leadAnchor ? `from ${leadAnchor.name}` : 'from cluster anchor'}
+          </div>
+        </div>
+        <div className="space-y-1">
+          {CONNECTIVITY_POIS.map((poi) => {
+            const d = distances?.find((x) => x.key === poi.key);
+            const Icon = poi.icon;
+            return (
+              <div
+                key={poi.key}
+                className="flex items-center gap-2 rounded-md border border-[#E2E8F0] bg-white px-2 py-1.5"
+                style={{ borderLeft: `3px solid ${poi.accent}` }}
+              >
+                <div
+                  className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{ background: poi.tint, color: poi.accent }}
+                >
+                  <Icon className="w-3.5 h-3.5" strokeWidth={2.2} />
+                </div>
+                <div className="text-[11.5px] font-medium text-[#0F172A] flex-1 truncate" title={poi.label}>
+                  {poi.label}
+                </div>
+                <div className="text-[12px] font-semibold tabular-nums text-[#0F172A] flex-shrink-0">
+                  {d ? `${d.km.toFixed(1)} km` : 'NA'}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* --- Layer 6: Recommendations (highlighted) --- */}
+      <div
+        className="rounded-md border overflow-hidden mb-2"
+        style={{ borderColor: `${tierColor}33`, background: `${tierColor}0D` }}
+      >
+        <div className="px-3 pt-2 pb-2">
+          <div
+            className="inline-flex items-center gap-1.5 mb-1.5 px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-[0.12em]"
+            style={{ background: tierColor, color: '#fff' }}
+          >
+            <span className="text-[9px]">◆</span>
+            Recommended Interventions
+          </div>
           <ul className="space-y-1">
             {interventions.map((line, i) => (
-              <li key={i} className="flex gap-1.5 text-[11.5px] text-[#475569] leading-snug">
+              <li key={i} className="flex gap-1.5 text-[11.5px] text-[#0F172A] leading-snug">
                 <span className="text-[8px] mt-1 flex-shrink-0" style={{ color: tierColor }}>◆</span>
                 <span>{line}</span>
               </li>
             ))}
           </ul>
-        </DetailSection>
+        </div>
       </div>
+
+      {/* --- Layer 7: Listings — single parent heading over the 3 sequential lists --- */}
+      <div className="mb-1">
+        <div className="flex items-center gap-2 mb-1.5 mt-1">
+          <div className="h-[1px] flex-1 bg-[#E2E8F0]" />
+          <div className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#475569]">
+            Top Performers Inside Cluster
+          </div>
+          <div className="h-[1px] flex-1 bg-[#E2E8F0]" />
+        </div>
+        <div className="rounded-md bg-white border border-[#E2E8F0] overflow-hidden">
+          {anchorsDetailed.length > 0 && (
+            <DetailSection title="Anchor Destinations">
+              <RatedDestList items={anchorsDetailed} initial={3} />
+            </DetailSection>
+          )}
+
+          {secondaryDetailed.length > 0 && (
+            <DetailSection title="Secondary Destinations">
+              <RatedDestList items={secondaryDetailed} initial={3} />
+            </DetailSection>
+          )}
+
+          {supportiveDetailed.length > 0 && (
+            <DetailSection title="Supportive Destinations">
+              <RatedDestList items={supportiveDetailed} initial={3} />
+            </DetailSection>
+          )}
+
+          {premiumStaysDetailed.length > 0 && (
+            <DetailSection title="Top Premium Stays & Dining" helper="inside polygon">
+              <RatedDestList items={premiumStaysDetailed} initial={3} />
+            </DetailSection>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Stay & Dining tier row — shows total + Hotel/Restaurant/Café split chips.
+function StayTierRow({
+  label,
+  accent,
+  total,
+  counts,
+}: {
+  label: string;
+  accent: string;
+  total: number | null;
+  counts: { Hotel: number; Restaurant: number; 'Café': number; Other: number } | null;
+}) {
+  const chips: Array<{ label: string; value: number | string; icon: LucideIcon }> = counts
+    ? [
+        { label: 'Hotel',      value: counts.Hotel,        icon: Hotel },
+        { label: 'Restaurant', value: counts.Restaurant,   icon: Utensils },
+        { label: 'Café',       value: counts['Café'],      icon: Coffee },
+      ]
+    : [
+        { label: 'Hotel',      value: 'NA', icon: Hotel },
+        { label: 'Restaurant', value: 'NA', icon: Utensils },
+        { label: 'Café',       value: 'NA', icon: Coffee },
+      ];
+  return (
+    <div
+      className="rounded-md bg-white border border-[#E2E8F0] px-2.5 py-1.5"
+      style={{ borderLeft: `3px solid ${accent}` }}
+    >
+      <div className="flex items-center justify-between gap-2 mb-1">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[11.5px] font-semibold text-[#0F172A]">{label}</span>
+        </div>
+        <div className="text-[11.5px] font-semibold tabular-nums" style={{ color: accent }}>
+          {total == null ? 'NA' : total.toLocaleString()}
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-1">
+        {chips.map((c) => {
+          const Icon = c.icon;
+          return (
+            <span
+              key={c.label}
+              className="inline-flex items-center gap-1 px-1.5 py-[1px] rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[10px] text-[#475569]"
+            >
+              <Icon className="w-2.5 h-2.5" strokeWidth={2.2} />
+              <span>{c.label}</span>
+              <span className="tabular-nums text-[#0F172A] font-semibold">{c.value}</span>
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Rated destination/stay list — shows Google rating + review count next to each row.
+// Used for Anchor / Secondary / Supportive sites and Top Premium Stays & Dining.
+function RatedDestList({
+  items,
+  initial = 3,
+}: {
+  items: Array<{ name: string; cat: string; rating?: number; n_ratings?: number; score?: number }>;
+  initial?: number;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const visible = expanded ? items : items.slice(0, initial);
+  const hidden = items.length - initial;
+
+  return (
+    <div>
+      {visible.map((x, i) => (
+        <div
+          key={i}
+          className="flex justify-between gap-2 py-1 text-[11.5px] border-b border-dotted border-[#E2E8F0] last:border-b-0"
+        >
+          <span className="flex-1 text-[#0F172A] leading-snug truncate">
+            <span
+              className="inline-block w-1.5 h-1.5 rounded-full mr-1.5 align-middle"
+              style={{ background: CATEGORY_COLORS[x.cat] || '#94A3B8' }}
+            />
+            {x.name}
+          </span>
+          <span className="text-[10.5px] text-[#64748B] tabular-nums whitespace-nowrap flex items-center gap-1">
+            {typeof x.rating === 'number' ? (
+              <>
+                <Star className="inline w-2.5 h-2.5 fill-amber-500 text-amber-500" />
+                <span className="font-semibold text-[#0F172A]">{x.rating.toFixed(1)}</span>
+                <span className="text-[#94A3B8]">
+                  · {typeof x.n_ratings === 'number' ? `${x.n_ratings.toLocaleString()} reviews` : 'NA reviews'}
+                </span>
+              </>
+            ) : (
+              <span className="text-[#94A3B8]">NA</span>
+            )}
+          </span>
+        </div>
+      ))}
+      {hidden > 0 && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mt-1 flex items-center gap-1 text-[10.5px] font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors"
+        >
+          {expanded
+            ? (<>Show less <ChevronUp className="w-3 h-3" /></>)
+            : (<>Show more <span className="text-[#94A3B8] font-normal">({hidden})</span> <ChevronDown className="w-3 h-3" /></>)
+          }
+        </button>
+      )}
     </div>
   );
 }
@@ -657,9 +1157,9 @@ function CollapsibleDestList({ items, initial = 3 }: { items: any[]; initial?: n
 // ---------------------------------------------------------------------------
 
 const HAZARD_META: Array<{ key: 'heat_stress' | 'flood' | 'sinkhole'; label: string; accent: string }> = [
-  { key: 'heat_stress', label: 'Heat Stress', accent: '#D97706' },
-  { key: 'flood',       label: 'Flood Risk',  accent: '#0EA5E9' },
-  { key: 'sinkhole',    label: 'Sinkhole',    accent: '#7C3AED' },
+  { key: 'heat_stress', label: HAZARD_TOKENS.heat.label,     accent: HAZARD_TOKENS.heat.accent },
+  { key: 'flood',       label: HAZARD_TOKENS.flood.label,    accent: HAZARD_TOKENS.flood.accent },
+  { key: 'sinkhole',    label: HAZARD_TOKENS.sinkhole.label, accent: HAZARD_TOKENS.sinkhole.accent },
 ];
 
 function ClusterHazardExposure({ clusterId, tierColor }: { clusterId: number; tierColor: string }) {
@@ -788,7 +1288,7 @@ function HazardRow({
 export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHazardLayerId }: { selectedLguName?: string | null; activeLayerId?: string | null; activeHazardLayerId?: string | null } = {}) {
   const { sites, assets, clusters, loading, error } = useTourismData();
   const { data: hazardRows } = useClusterHazardsSummary();
-  const { lgu } = useTourismUI();
+  const { lgu, selectedClusterId } = useTourismUI();
 
   // Resolve effective LGU filter — header prop takes priority, then internal store.
   const normLgu = (v?: string | null): string | null => {
@@ -824,6 +1324,7 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
     }
 
     const assetCounts: Record<string, number> = { Premium: 0, Quality: 0 };
+    const assetCatCounts: Record<string, number> = { Hotel: 0, Restaurant: 0, 'Café': 0 };
     let assetTotal = 0;
     for (const f of assets.features) {
       const p = f.properties || {};
@@ -831,6 +1332,10 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       assetTotal++;
       const t = p.asset_tier;
       if (t && t in assetCounts) assetCounts[t]++;
+      const cat: string = p.asset_cat || '';
+      if (cat.startsWith('Hotel'))      assetCatCounts.Hotel++;
+      else if (cat.startsWith('Restaurant')) assetCatCounts.Restaurant++;
+      else if (cat.startsWith('Cafe') || cat.startsWith('Café')) assetCatCounts['Café']++;
     }
 
     let clusterTotal = 0;
@@ -855,6 +1360,7 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       tierCounts,
       catCounts,
       assetCounts,
+      assetCatCounts,
       totalSites: siteTotal,
       totalAssets: assetTotal,
       totalClusters: clusterTotal,
@@ -877,6 +1383,19 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
           r.flood_pct >= HIGH_HAZARD_THRESHOLD ||
           r.sinkhole_pct >= HIGH_HAZARD_THRESHOLD)
     ).length;
+  }, [hazardRows, lguFilter]);
+
+  // Per-hazard counts of clusters above the high-hazard threshold.
+  const hazardHighCounts = useMemo(() => {
+    const z = { heat: 0, flood: 0, sinkhole: 0 };
+    if (!hazardRows) return z;
+    for (const r of hazardRows) {
+      if (lguFilter && r.lgu !== lguFilter) continue;
+      if (r.heat_pct     >= HIGH_HAZARD_THRESHOLD) z.heat++;
+      if (r.flood_pct    >= HIGH_HAZARD_THRESHOLD) z.flood++;
+      if (r.sinkhole_pct >= HIGH_HAZARD_THRESHOLD) z.sinkhole++;
+    }
+    return z;
   }, [hazardRows, lguFilter]);
 
   if (loading) {
@@ -922,21 +1441,32 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       {/* Cluster detail (only when a cluster is selected) */}
       <ClusterDetailSection />
 
+      {/* When a cluster is selected, hide the global Tourism Analytics blocks below
+          (per spec — nothing should render under the cluster's "Top Premium Stays & Dining"). */}
+      {selectedClusterId == null && (<>
       {/* 2. KPI grid — modern card design */}
-      <div className="px-3 pt-3 pb-2 grid grid-cols-2 gap-2">
+      <div className="px-3 pt-3 pb-1.5 grid grid-cols-2 gap-1.5">
         <StatCard
           icon={MapPin}
           label="Tourism Sites"
           value={stats.totalSites.toLocaleString()}
-          caption="Anchor · Secondary · Supportive"
+          captionItems={[
+            { label: 'Anchor',     value: stats.tierCounts.Anchor },
+            { label: 'Secondary',  value: stats.tierCounts.Secondary },
+            { label: 'Supportive', value: stats.tierCounts.Supportive },
+          ]}
           accent="#E07A18"
           tint="#FFF7ED"
         />
         <StatCard
           icon={BedDouble}
-          label="Hospitality & F&B"
+          label="Stays and Dining"
           value={stats.totalAssets.toLocaleString()}
-          caption="Hotels · Restaurants · Cafés"
+          captionItems={[
+            { label: 'Hotels',      value: stats.assetCatCounts.Hotel },
+            { label: 'Restaurants', value: stats.assetCatCounts.Restaurant },
+            { label: 'Cafés',       value: stats.assetCatCounts['Café'] },
+          ]}
           accent="#6D28D9"
           tint="#F5F3FF"
         />
@@ -944,22 +1474,34 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
           icon={Layers}
           label="Tourism Clusters"
           value={stats.totalClusters.toLocaleString()}
-          caption="Primary · Emerging · Satellite"
+          captionItems={[
+            { label: 'Primary',   value: stats.clusterTierCounts.Primary },
+            { label: 'Emerging',  value: stats.clusterTierCounts.Emerging },
+            { label: 'Satellite', value: stats.clusterTierCounts.Satellite },
+          ]}
           accent="#2563EB"
           tint="#EFF6FF"
         />
         <StatCard
           icon={AlertTriangle}
-          label="High Climate Hazard"
+          label="High Hazard"
           value={highHazardCount == null ? '…' : `${highHazardCount}/${stats.totalClusters}`}
-          caption="Heat · Flood · Sinkhole ≥ 25%"
+          captionItems={[
+            { label: 'Heat',     value: hazardHighCounts.heat },
+            { label: 'Flood',    value: hazardHighCounts.flood },
+            { label: 'Sinkhole', value: hazardHighCounts.sinkhole },
+          ]}
           accent="#DC2626"
           tint="#FEF2F2"
         />
       </div>
 
-      {/* 3. Active layers callout */}
-      <ActiveLayersCallout />
+      {/* 3. Climate hazards across clusters */}
+      <ClimateHazardsCallout
+        rows={hazardRows}
+        lguFilter={lguFilter}
+        totalClusters={stats.totalClusters}
+      />
 
       {/* 4. Site distribution — vertical bar chart */}
       <div className="px-3 pt-1 pb-3">
@@ -1037,7 +1579,7 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
 
       {/* 5. Hospitality */}
       <div className="px-3 pb-3">
-        <SectionLabel>Hospitality Stock</SectionLabel>
+        <SectionLabel>Stays and Dining</SectionLabel>
         <div className="space-y-1.5">
           <CategoryRow
             label="Premium"
@@ -1053,9 +1595,7 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
           />
         </div>
       </div>
-
-      {/* 6. Hazard distribution — only when a Climate & Hazard layer is on */}
-      <HazardDistributionPie activeLayerId={activeLayerId} activeHazardLayerId={activeHazardLayerId} />
+      </>)}
     </div>
   );
 }
