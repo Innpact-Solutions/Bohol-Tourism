@@ -692,6 +692,14 @@ function ClusterDetailSection() {
     }));
   }, [leadAnchor]);
 
+  // NDVI-derived land cover for the Land Area KPI footer.
+  // NOTE: this hook MUST be called before any early return so React's hook
+  // order stays stable across renders (cluster may be null on first paint).
+  const ndviClusterId = (cluster?.properties as any)?.cluster_id ?? null;
+  const { data: ndviData } = useClusterNdvi(ndviClusterId);
+  const { builtupPct, greenPct } = deriveLandCover(ndviData);
+  const fmtPct = (v: number | null) => (v == null ? 'NA' : `${v}%`);
+
   if (!cluster || !mem) return null;
   const p: any = cluster.properties;
   const landKm2 = p.area_land ?? p.area_km2;
@@ -702,11 +710,6 @@ function ClusterDetailSection() {
   const nPrem  = mem.premium?.length || 0;
   const nQual  = mem.quality?.length || 0;
   const landStr = typeof landKm2 === 'number' ? landKm2.toFixed(2) : (landKm2 ?? '—');
-
-  // NDVI-derived land cover for the Land Area KPI footer.
-  const { data: ndviData } = useClusterNdvi(p.cluster_id ?? null);
-  const { builtupPct, greenPct } = deriveLandCover(ndviData);
-  const fmtPct = (v: number | null) => (v == null ? 'NA' : `${v}%`);
 
   return (
     <div className="px-3 pt-3 pb-2">
