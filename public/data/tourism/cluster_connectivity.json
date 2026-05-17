@@ -1,0 +1,176 @@
+{
+  "1": {
+    "anchor_name": "Alona Beach",
+    "anchor_coords": {
+      "lng": 123.7722784,
+      "lat": 9.5481436
+    },
+    "bus": {
+      "km": 19.73,
+      "min": 34
+    },
+    "port": {
+      "km": 17.77,
+      "min": 33
+    },
+    "airport": {
+      "km": 20.41,
+      "min": 40
+    }
+  },
+  "2": {
+    "anchor_name": "St. Joseph the Worker Cathedral Shrine",
+    "anchor_coords": {
+      "lng": 123.8558799,
+      "lat": 9.639506899999995
+    },
+    "bus": {
+      "km": 2.37,
+      "min": 6
+    },
+    "airport": {
+      "km": 3.95,
+      "min": 12
+    },
+    "port": {
+      "km": 1.31,
+      "min": 5
+    }
+  },
+  "3": {
+    "anchor_name": null,
+    "anchor_coords": null,
+    "airport": {
+      "km": null,
+      "min": null,
+      "status": "NO_ANCHOR"
+    },
+    "port": {
+      "km": null,
+      "min": null,
+      "status": "NO_ANCHOR"
+    },
+    "bus": {
+      "km": null,
+      "min": null,
+      "status": "NO_ANCHOR"
+    }
+  },
+  "4": {
+    "anchor_name": "Napaling Reef",
+    "anchor_coords": {
+      "lng": 123.77394349999999,
+      "lat": 9.618215499999998
+    },
+    "bus": {
+      "km": 13.03,
+      "min": 24
+    },
+    "port": {
+      "km": 11.98,
+      "min": 22
+    },
+    "airport": {
+      "km": 14.62,
+      "min": 29
+    }
+  },
+  "5": {
+    "anchor_name": "Hinagdanan Cave",
+    "anchor_coords": {
+      "lng": 123.8009056,
+      "lat": 9.6252806
+    },
+    "port": {
+      "km": 8.67,
+      "min": 18
+    },
+    "airport": {
+      "km": 11.31,
+      "min": 25
+    },
+    "bus": {
+      "km": 9.72,
+      "min": 20
+    }
+  },
+  "6": {
+    "anchor_name": "Church of Our Lady of the Assumption (Dauis Church)",
+    "anchor_coords": {
+      "lng": 123.86499699999997,
+      "lat": 9.625756799999998
+    },
+    "bus": {
+      "km": 4.19,
+      "min": 10
+    },
+    "port": {
+      "km": 4.52,
+      "min": 11
+    },
+    "airport": {
+      "km": 7.44,
+      "min": 19
+    }
+  },
+  "7": {
+    "anchor_name": null,
+    "anchor_coords": null,
+    "airport": {
+      "km": null,
+      "min": null,
+      "status": "NO_ANCHOR"
+    },
+    "port": {
+      "km": null,
+      "min": null,
+      "status": "NO_ANCHOR"
+    },
+    "bus": {
+      "km": null,
+      "min": null,
+      "status": "NO_ANCHOR"
+    }
+  },
+  "8": {
+    "anchor_name": "Blood Compact Shrine",
+    "anchor_coords": {
+      "lng": 123.87876550000001,
+      "lat": 9.627315699999995
+    },
+    "port": {
+      "km": 3.98,
+      "min": 9
+    },
+    "bus": {
+      "km": 3.65,
+      "min": 8
+    },
+    "airport": {
+      "km": 7.07,
+      "min": 17
+    }
+  },
+  "9": {
+    "anchor_name": "Balicasag Marine Sanctuary",
+    "anchor_coords": {
+      "lng": 123.68194629999999,
+      "lat": 9.515310299999996
+    },
+    "airport": {
+      "km": null,
+      "min": null,
+      "status": "ROUTE_NOT_FOUND"
+    },
+    "port": {
+      "km": null,
+      "min": null,
+      "status": "ROUTE_NOT_FOUND"
+    },
+    "bus": {
+      "km": null,
+      "min": null,
+      "status": "ROUTE_NOT_FOUND"
+    }
+  }
+}

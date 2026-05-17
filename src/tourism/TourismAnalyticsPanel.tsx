@@ -23,6 +23,16 @@ import {
 import { TOURISM_INTERVENTIONS } from '../config/tourismConfig';
 import { geoserverLayers } from '../config/geoserverLayers';
 import { ENVIRONMENTAL_LAYERS } from '../config/environmentalLayers';
+import clusterConnectivity from '../../public/data/tourism/cluster_connectivity.json';
+
+type ConnectivityEntry = {
+  anchor_name: string | null;
+  anchor_coords: { lat: number; lng: number } | null;
+  airport: { km: number | null; min: number | null; status?: string };
+  port:    { km: number | null; min: number | null; status?: string };
+  bus:     { km: number | null; min: number | null; status?: string };
+};
+const CONNECTIVITY_BY_CLUSTER: Record<string, ConnectivityEntry> = clusterConnectivity as any;
 
 const FONT = 'DM Sans, Segoe UI, sans-serif';
 
@@ -685,13 +695,24 @@ function ClusterDetailSection() {
     return { name: lead.name, lng: coords[0], lat: coords[1] };
   }, [mem, sites]);
 
+  // Driving distance + duration from precomputed Google Routes API matrix
+  // (scripts/fetch_connectivity_distances.mjs → cluster_connectivity.json).
+  // Falls back to great-circle haversine when no driving route exists
+  // (e.g. Balicasag island) or the cluster has no resolved anchor.
   const distances = useMemo(() => {
-    if (!leadAnchor) return null;
-    return CONNECTIVITY_POIS.map((poi) => ({
-      ...poi,
-      km: haversineKm(leadAnchor, poi),
-    }));
-  }, [leadAnchor]);
+    const cid = (cluster?.properties as any)?.cluster_id;
+    const entry = cid != null ? CONNECTIVITY_BY_CLUSTER[String(cid)] : undefined;
+    return CONNECTIVITY_POIS.map((poi) => {
+      const cell = entry?.[poi.key];
+      if (cell && typeof cell.km === 'number') {
+        return { ...poi, km: cell.km, min: cell.min ?? null, source: 'drive' as const };
+      }
+      if (leadAnchor) {
+        return { ...poi, km: haversineKm(leadAnchor, poi), min: null, source: 'air' as const };
+      }
+      return { ...poi, km: null as number | null, min: null, source: 'none' as const };
+    });
+  }, [cluster, leadAnchor]);
 
   // NDVI-derived land cover for the Land Area KPI footer.
   // NOTE: this hook MUST be called before any early return so React's hook
@@ -910,11 +931,21 @@ function ClusterDetailSection() {
                 >
                   <Icon className="w-3.5 h-3.5" strokeWidth={2.2} />
                 </div>
-                <div className="text-[11.5px] font-medium text-[#0F172A] flex-1 truncate" title={poi.label}>
-                  {poi.label}
+                <div className="flex-1 min-w-0">
+                  <div className="text-[11.5px] font-medium text-[#0F172A] truncate" title={poi.label}>
+                    {poi.label}
+                  </div>
+                  {d?.source === 'air' && d.km != null && (
+                    <div className="text-[9.5px] text-[#94A3B8] uppercase tracking-wider">straight-line</div>
+                  )}
                 </div>
-                <div className="text-[12px] font-semibold tabular-nums text-[#0F172A] flex-shrink-0">
-                  {d ? `${d.km.toFixed(1)} km` : 'NA'}
+                <div className="text-right flex-shrink-0">
+                  <div className="text-[12px] font-semibold tabular-nums text-[#0F172A] leading-tight">
+                    {d && d.km != null ? `${d.km.toFixed(1)} km` : 'NA'}
+                  </div>
+                  {d?.min != null && (
+                    <div className="text-[10px] text-[#64748B] tabular-nums leading-tight">{d.min} min drive</div>
+                  )}
                 </div>
               </div>
             );
