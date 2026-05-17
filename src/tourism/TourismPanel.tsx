@@ -159,7 +159,9 @@ export function TourismPanel({
   const normHeader = (v?: string | null): string | null => {
     if (!v) return null;
     const t = v.trim();
-    if (!t || t.toLowerCase() === 'all' || t === 'All LGUs') return null;
+    if (!t) return null;
+    const low = t.toLowerCase();
+    if (low === 'all' || low === 'all lgus' || low === 'all barangays') return null;
     return t;
   };
   const headerLgu  = normHeader(selectedLgu);

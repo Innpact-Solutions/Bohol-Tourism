@@ -138,7 +138,9 @@ interface Props {
 const norm = (v?: string | null): string | null => {
   if (!v) return null;
   const t = v.trim();
-  if (!t || t.toLowerCase() === 'all' || t === 'All LGUs') return null;
+  if (!t) return null;
+  const low = t.toLowerCase();
+  if (low === 'all' || low === 'all lgus' || low === 'all barangays') return null;
   return t;
 };
 
@@ -244,6 +246,34 @@ export function TourismLayers({
     return { ...accommodationsBooking, features } as typeof accommodationsBooking;
   }, [accommodationsBooking, selectedLgu, selectedBrgy]);
 
+  // Premium / Quality assets are also clustered, so they need source-level
+  // filtering for the cluster bubble counts to reflect the LGU + Barangay
+  // selection. Pre-filter by tier here and feed each tier its own FC.
+  const premiumFeatures = useMemo(() => {
+    const feats: any[] = (assets as any)?.features ?? [];
+    const l = norm(selectedLgu);
+    const b = norm(selectedBrgy);
+    return feats.filter((f) => {
+      const p = f?.properties ?? {};
+      if (p.asset_tier !== 'Premium') return false;
+      if (l && p.lgu  !== l) return false;
+      if (b && p.brgy !== b) return false;
+      return true;
+    });
+  }, [assets, selectedLgu, selectedBrgy]);
+  const qualityFeatures = useMemo(() => {
+    const feats: any[] = (assets as any)?.features ?? [];
+    const l = norm(selectedLgu);
+    const b = norm(selectedBrgy);
+    return feats.filter((f) => {
+      const p = f?.properties ?? {};
+      if (p.asset_tier !== 'Quality') return false;
+      if (l && p.lgu  !== l) return false;
+      if (b && p.brgy !== b) return false;
+      return true;
+    });
+  }, [assets, selectedLgu, selectedBrgy]);
+
   // Selection highlight plumbing — the hover-highlight layers double as a
   // selection-highlight layer when no hover is active. Refs let the long-lived
   // hover handlers see the latest selectedClusterId without re-binding.
@@ -298,15 +328,12 @@ export function TourismLayers({
       // independently. Each filters its features by asset_tier and uses a
       // different clusterMaxZoom so they break apart into individual points
       // at different zoom levels (Quality first, then Premium).
-      const assetFeatures: any[] = (assets as any)?.features ?? [];
       if (!map.getSource(SRC.assetsPremium)) {
         map.addSource(SRC.assetsPremium, {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
-            features: assetFeatures.filter(
-              (f) => f?.properties?.asset_tier === 'Premium',
-            ),
+            features: premiumFeatures,
           } as any,
           cluster: true,
           clusterMaxZoom: ASSET_CLUSTER_PREMIUM_MAX_ZOOM,
@@ -318,9 +345,7 @@ export function TourismLayers({
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
-            features: assetFeatures.filter(
-              (f) => f?.properties?.asset_tier === 'Quality',
-            ),
+            features: qualityFeatures,
           } as any,
           cluster: true,
           clusterMaxZoom: ASSET_CLUSTER_QUALITY_MAX_ZOOM,
@@ -1123,7 +1148,20 @@ export function TourismLayers({
     } catch (err) {
       console.warn('Failed to update booking source data:', err);
     }
-  }, [map, catsAnchor, catsSecondary, catsSupportive, selectedLgu, selectedBrgy, filteredBookingFC]);
+    // Premium / Quality: same treatment so their cluster bubbles re-aggregate.
+    try {
+      const premSrc: any = map.getSource(SRC.assetsPremium);
+      if (premSrc && typeof premSrc.setData === 'function') {
+        premSrc.setData({ type: 'FeatureCollection', features: premiumFeatures } as any);
+      }
+      const qualSrc: any = map.getSource(SRC.assetsQuality);
+      if (qualSrc && typeof qualSrc.setData === 'function') {
+        qualSrc.setData({ type: 'FeatureCollection', features: qualityFeatures } as any);
+      }
+    } catch (err) {
+      console.warn('Failed to update asset cluster source data:', err);
+    }
+  }, [map, catsAnchor, catsSecondary, catsSupportive, selectedLgu, selectedBrgy, filteredBookingFC, premiumFeatures, qualityFeatures]);
 
   return null;
 }
