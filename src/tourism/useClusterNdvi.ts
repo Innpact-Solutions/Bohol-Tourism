@@ -100,37 +100,29 @@ export function useClusterNdvi(clusterId: number | null) {
 }
 
 /**
- * Convenience: derive Built-up %, Open Land % and Green % from the cluster
- * breakdown.
+ * Convenience: derive Built-up % and Green % from the cluster breakdown.
  *
- * Built-up   = gridcode 2 (Bare / built-up; NDVI 0–0.2)
- * Open Land  = gridcode 3 (Sparse vegetation; NDVI 0.2–0.4)
- * Green      = gridcodes 4 + 5 + 6 (Moderate + Dense + Very dense vegetation)
+ * Built-up  = gridcodes 2 + 3 (Bare / built-up + Sparse vegetation;
+ *             NDVI 0–0.4 — essentially non-canopy land)
+ * Green     = gridcodes 4 + 5 + 6 (Moderate + Dense + Very dense vegetation)
  *
- * Water (gridcode 1) is intentionally excluded — the three values describe
- * land cover composition and therefore may sum to <100% when a cluster
- * polygon contains water.
+ * Water (gridcode 1) is intentionally excluded — the two values describe
+ * land cover composition, so they may sum to <100% when a cluster polygon
+ * contains water.
  */
 export function deriveLandCover(resp: ClusterNdviResponse | null) {
   if (!resp || !resp.cluster.breakdown.length) {
-    return {
-      builtupPct:  null as number | null,
-      openLandPct: null as number | null,
-      greenPct:    null as number | null,
-    };
+    return { builtupPct: null as number | null, greenPct: null as number | null };
   }
   let builtup = 0;
-  let openLand = 0;
   let green = 0;
   for (const b of resp.cluster.breakdown) {
-    if (b.gridcode === 2) builtup  += b.pct;
-    else if (b.gridcode === 3) openLand += b.pct;
+    if (b.gridcode === 2 || b.gridcode === 3) builtup += b.pct;
     else if (b.gridcode === 4 || b.gridcode === 5 || b.gridcode === 6) green += b.pct;
     // gridcode 1 (water) intentionally ignored
   }
   return {
-    builtupPct:  Number(builtup.toFixed(1)),
-    openLandPct: Number(openLand.toFixed(1)),
-    greenPct:    Number(green.toFixed(1)),
+    builtupPct: Number(builtup.toFixed(1)),
+    greenPct:   Number(green.toFixed(1)),
   };
 }
