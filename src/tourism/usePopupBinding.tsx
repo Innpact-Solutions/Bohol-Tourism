@@ -13,7 +13,7 @@ import { TOURISM_LAYER_IDS } from './TourismLayers';
 
 export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
   const { sites, assets, clusters, getPhotosFor, getAssetPhotosFor, getMembershipFor } = useTourismData();
-  const { selectedClusterId } = useTourismUI();
+  const { selectedClusterId, setSelectedClusterId, setClusterMultiSelect } = useTourismUI();
   // Imperative handle filled by the effect below — lets a separate effect
   // close the currently-open popup when the user deselects the cluster from
   // somewhere else (e.g. the right-side detail panel's close button).
@@ -267,7 +267,23 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
         .setDOMContent(container)
         .addTo(map);
 
-      popup.on('close', () => { root.unmount(); restoreView(); });
+      popup.on('close', () => {
+        root.unmount();
+        restoreView();
+        // Only clear the cluster filter when the user actually closed the
+        // popup (clicked × or pressed Esc). Programmatic closes triggered
+        // by closeCurrentForSwitch set suppressRestore=true — we keep the
+        // selection intact in that case so the next cluster popup can show.
+        if (!suppressRestore) {
+          // Restore default: all clusters selected, no detail focus —
+          // mirrors Header.handleClusterClear.
+          const allIds = (clusters?.features ?? [])
+            .map((f: any) => f?.properties?.cluster_id)
+            .filter((id: any): id is number => typeof id === 'number');
+          setClusterMultiSelect(allIds);
+          setSelectedClusterId(null);
+        }
+      });
       currentPopup = popup;
       currentRoot = root;
 

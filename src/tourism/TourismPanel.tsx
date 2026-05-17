@@ -107,8 +107,11 @@ export function TourismPanel({
   // Sync left-panel group expansion with the Tourism Directory tab.
   // When the user switches between Sites / Hotels / Clusters tabs, the
   // matching left-panel section expands (and its sub-layers turn on) while
-  // the other two collapse. The first render keeps Sites expanded by default.
+  // the other two collapse AND their sub-layers turn off — so leaving a
+  // tab cleans up the layers it activated, restoring the previous default.
+  // The first render keeps Sites expanded by default.
   const didInitSectionSync = useRef(false);
+  const prevSectionRef = useRef<typeof ui.activeSection | null>(null);
   useEffect(() => {
     const section = ui.activeSection;
     setOpenGroup({
@@ -120,8 +123,27 @@ export function TourismPanel({
     // defaults (Anchor + Secondary on, everything else off) are preserved.
     if (!didInitSectionSync.current) {
       didInitSectionSync.current = true;
+      prevSectionRef.current = section;
       return;
     }
+    // Turn OFF the previous section's sub-layers so switching tabs reverts
+    // it to its collapsed/off state.
+    const prev = prevSectionRef.current;
+    if (prev && prev !== section) {
+      if (prev === 'sites') {
+        if (ui.showAnchor)     ui.setShowAnchor(false);
+        if (ui.showSecondary)  ui.setShowSecondary(false);
+        if (ui.showSupportive) ui.setShowSupportive(false);
+      } else if (prev === 'hospitality') {
+        if (ui.showPremium) ui.setShowPremium(false);
+        if (ui.showQuality) ui.setShowQuality(false);
+      } else if (prev === 'clusters') {
+        if (ui.showClusterPrimary)   ui.setShowClusterPrimary(false);
+        if (ui.showClusterEmerging)  ui.setShowClusterEmerging(false);
+        if (ui.showClusterSatellite) ui.setShowClusterSatellite(false);
+      }
+    }
+    prevSectionRef.current = section;
     if (section === 'sites') {
       if (!ui.showAnchor)     ui.setShowAnchor(true);
       if (!ui.showSecondary)  ui.setShowSecondary(true);
@@ -409,9 +431,12 @@ export function TourismPanel({
                     total={groupTotal}
                     breakdown={groupBreakdown}
                     onClick={() => {
-                      // Mark this group as the active section so the Tourism
-                      // Directory panel auto-switches its tab to match.
-                      ui.setActiveSection(group.id as any);
+                      // Left-panel header clicks operate INDEPENDENTLY of the
+                      // Tourism Directory tab — multiple sections can stay on
+                      // at the same time. We deliberately do NOT call
+                      // ui.setActiveSection here so the exclusive
+                      // "switch tab → turn previous section off" behaviour
+                      // only fires from the directory tab itself.
                       // If the section is fully off, clicking the header turns it
                       // on and expands to the 1st level (group container only).
                       if (activeCount === 0) {
@@ -427,7 +452,7 @@ export function TourismPanel({
                       setOpenGroup(prev => ({ ...prev, [group.id]: !expanded }));
                     }}
                     onToggleAll={() => {
-                      ui.setActiveSection(group.id as any);
+                      // Independent of directory tab — see onClick.
                       // If anything is on, turn everything off; otherwise turn everything on.
                       const turnOn = activeCount === 0;
                       // For the Sites group, the bulk toggle should NOT cascade
@@ -440,7 +465,7 @@ export function TourismPanel({
                       setOpenGroup(prev => ({ ...prev, [group.id]: turnOn }));
                     }}
                     onReset={() => {
-                      ui.setActiveSection(group.id as any);
+                      // Independent of directory tab — see onClick.
                       // Turn every sublayer off in this group.
                       if (group.id === 'sites') suppressTierAutoExpand.current = true;
                       group.sublayers.forEach(s => { if (s.active) s.toggle(); });

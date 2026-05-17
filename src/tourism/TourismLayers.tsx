@@ -478,11 +478,15 @@ export function TourismLayers({
       // Hospitality — individual (un-clustered) points read from each tier's
       // own clustered source. The `!has point_count` filter hides points
       // that are still aggregated into a cluster at the current zoom.
+      // Start hidden so the only way these become visible is via the
+      // visibility effect — guarantees points + cluster bubble + cluster
+      // count toggle together as one logical layer.
       if (!map.getLayer(LYR.quality)) {
         map.addLayer({
           id: LYR.quality,
           type: 'circle',
           source: SRC.assetsQuality,
+          layout: { visibility: 'none' } as any,
           paint: qualityAssetPaint as any,
           filter: assetTierFilter('Quality', selectedLgu, selectedBrgy),
         });
@@ -492,6 +496,7 @@ export function TourismLayers({
           id: LYR.premium,
           type: 'circle',
           source: SRC.assetsPremium,
+          layout: { visibility: 'none' } as any,
           paint: premiumAssetPaint as any,
           filter: assetTierFilter('Premium', selectedLgu, selectedBrgy),
         });
@@ -530,30 +535,9 @@ export function TourismLayers({
             } as any,
           });
         }
-        if (!map.getLayer(countId)) {
-          map.addLayer({
-            id: countId,
-            type: 'symbol',
-            source: srcId,
-            filter: ['has', 'point_count'],
-            layout: {
-              'text-field': ['to-string', ['get', 'point_count']],
-              'text-size': 10.5,
-              'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-              // See site-category cluster count layer above for rationale.
-              'text-allow-overlap': true,
-              'text-ignore-placement': false,
-              'text-padding': 4,
-              // Start hidden — visibility effect enables this with the bubble.
-              visibility: 'none',
-            } as any,
-            paint: {
-              'text-color': '#FFFFFF',
-              'text-halo-color': 'rgba(0,0,0,0.55)',
-              'text-halo-width': 1.2,
-            } as any,
-          });
-        }
+        // Asset (hotel/restaurant) cluster COUNT labels are intentionally
+        // NOT created — the user wants only the cluster bubble, no number.
+        void countId;
       };
       addAssetClusterStack(
         LYR.assetsQualityCluster,
@@ -906,14 +890,19 @@ export function TourismLayers({
       setVis(countId,  visible && anySiteOn);
     });
 
-    setVis(LYR.premium, visible && showPremium);
-    setVis(LYR.quality, visible && showQuality);
-
-    // Asset point clusters: each tier toggles with its own visibility.
-    setVis(LYR.assetsQualityCluster,      visible && showQuality);
-    setVis(LYR.assetsQualityClusterCount, visible && showQuality);
-    setVis(LYR.assetsPremiumCluster,      visible && showPremium);
-    setVis(LYR.assetsPremiumClusterCount, visible && showPremium);
+    // Hospitality tiers are treated as one logical layer per tier:
+    // the unclustered point + the cluster bubble + the cluster count
+    // all share the SAME visibility state, so they appear and disappear
+    // together. When the tier is off, every one of its 3 sub-layers is
+    // forced to 'none' regardless of zoom.
+    const premiumOn = !!(visible && showPremium);
+    const qualityOn = !!(visible && showQuality);
+    setVis(LYR.premium,                   premiumOn);
+    setVis(LYR.assetsPremiumCluster,      premiumOn);
+    setVis(LYR.assetsPremiumClusterCount, premiumOn);
+    setVis(LYR.quality,                   qualityOn);
+    setVis(LYR.assetsQualityCluster,      qualityOn);
+    setVis(LYR.assetsQualityClusterCount, qualityOn);
   }, [
     map, visible, dataReady,
     showAnchor, showSecondary, showSupportive,

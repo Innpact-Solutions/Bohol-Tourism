@@ -484,6 +484,11 @@ html, body {
 }
 
 /* Tourism POI popup — light editorial style */
+.tourism-popup {
+  /* Float above floating panels (Tourism Directory uses z-30,
+     Floating Legend / drawers may sit just below 40). */
+  z-index: 50 !important;
+}
 .tourism-popup .maplibregl-popup-content {
   padding: 0 !important;
   border-radius: 12px !important;

@@ -52,10 +52,11 @@ export function TourismPopupContent({ poi, photos }: Props) {
   const catColor = CATEGORY_COLORS[cat] || '#8A8275';
   const accent = tierBadge(tier);
   const isAsset = !!poi.asset_tier;
-  // Hotel/hospitality assets never carry photos — render a compact, image-less
-  // card instead of the tall site-style hero. Sites still use the full layout
-  // (and the placeholder Camera icon when their photos haven't loaded yet).
-  const compact = isAsset;
+  // Hospitality assets fall back to the compact, image-less card only when no
+  // photo is available (e.g. older deploys before the Google Places backfill
+  // ran). When photos are present, hotels render the same hero-image layout
+  // as tourism sites for visual parity.
+  const compact = isAsset && photos.length === 0;
 
   if (compact) {
     return (
