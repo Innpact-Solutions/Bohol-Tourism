@@ -822,7 +822,15 @@ export function LeftDrawer({
       id: 'ndvi', 
       name: 'Green Cover (NDVI)', 
       icon: Trees, 
-      color: '#16A34A'
+      color: '#16A34A',
+      tooltip: (
+        <>
+          <div style={{ fontWeight: 600, marginBottom: 4 }}>NDVI (Normalised Difference Vegetation Index)</div>
+          <div>Vegetation density and greenness — proxy for cooling capacity, shade availability and environmental quality; complements heat stress maps to identify compound vulnerability.</div>
+          <div style={{ marginTop: 6, opacity: 0.85 }}><b>Source:</b> Sentinel-2 surface reflectance (ESA Copernicus)</div>
+          <div style={{ opacity: 0.85 }}><b>Period:</b> 2025 median composite</div>
+        </>
+      ),
     },
     { 
       id: 'buildings', 
@@ -1335,6 +1343,16 @@ export function LeftDrawer({
                                     {layer.name}
                                   </div>
                                 </div>
+                                {('tooltip' in layer && layer.tooltip) && (
+                                  <div
+                                    className="flex-shrink-0 p-1 -m-1 cursor-help"
+                                    onClick={(e) => e.stopPropagation()}
+                                    onMouseEnter={(e) => handleTooltipShow(e, (layer as any).tooltip)}
+                                    onMouseLeave={handleTooltipHide}
+                                  >
+                                    <Info className="w-3.5 h-3.5 text-[#64748B]" />
+                                  </div>
+                                )}
                                 {isActive && (
                                   <div className="w-1.5 h-1.5 rounded-full bg-white ml-1.5 flex-shrink-0" />
                                 )}
@@ -2010,10 +2028,38 @@ export function LeftDrawer({
                         {heatStressExpanded && (
                           <div className="ml-3 mt-1 space-y-1 border-l border-[#E2E8F0] pl-2">
                             {[
-                              { id: 'heat_stress_index', name: 'Heat Stress Index', unit: 'Composite Heat Stress Score', tooltip: 'Composite index combining temperature, humidity and urban heat factors to assess heat stress risk.', icon: Flame },
-                              { id: 'land_surface_temperature', name: 'Land Surface Temperature', unit: '°C (Degrees Celsius)', tooltip: 'Shows how hot urban surfaces become due to buildings, roads, and low greenery.', icon: Thermometer },
-                              { id: 'urban_heat_island', name: 'Urban Heat Island', unit: '°C (Anomaly)', tooltip: 'Shows excess heating caused by dense buildings and paved surfaces.', icon: ThermometerSun },
-                              { id: 'wet_bulb_temperature', name: 'Wet Bulb Temperature', unit: '°C (Degrees Celsius)', tooltip: 'Measures human heat tolerance by combining temperature and humidity.', icon: Gauge },
+                              { id: 'heat_stress_index', name: 'Heat Stress Index', unit: 'Composite Heat Stress Score', tooltip: (
+                                <>
+                                  <div style={{ fontWeight: 600, marginBottom: 4 }}>Heat Stress Index (HSI)</div>
+                                  <div>Composite vulnerability index combining LST, WBT and UHI into a single 0–1 score — the headline indicator for CWIS heat-risk prioritisation.</div>
+                                  <div style={{ marginTop: 6, opacity: 0.85 }}><b>Source:</b> Weighted normalisation of LST (40%), WBT (40%) and UHI (20%)</div>
+                                  <div style={{ opacity: 0.85 }}><b>Period:</b> Apr–May 2023, 2024, 2025 (peak hot season, 3-year average)</div>
+                                </>
+                              ), icon: Flame },
+                              { id: 'land_surface_temperature', name: 'Land Surface Temperature', unit: '°C (Degrees Celsius)', tooltip: (
+                                <>
+                                  <div style={{ fontWeight: 600, marginBottom: 4 }}>Land Surface Temperature (LST)</div>
+                                  <div>Direct radiative temperature of the ground — identifies hotspots driving outdoor heat exposure and infrastructure thermal stress.</div>
+                                  <div style={{ marginTop: 6, opacity: 0.85 }}><b>Source:</b> Landsat 8/9 C2 L2 (USGS) · band ST_B10</div>
+                                  <div style={{ opacity: 0.85 }}><b>Period:</b> Apr–May 2023, 2024, 2025 (peak hot season, 3-year average)</div>
+                                </>
+                              ), icon: Thermometer },
+                              { id: 'urban_heat_island', name: 'Urban Heat Island', unit: '°C (Anomaly)', tooltip: (
+                                <>
+                                  <div style={{ fontWeight: 600, marginBottom: 4 }}>Urban Heat Island Intensity (UHI)</div>
+                                  <div>Local temperature anomaly relative to rural surroundings — pinpoints built-up areas amplifying heat, key for green infrastructure prioritisation.</div>
+                                  <div style={{ marginTop: 6, opacity: 0.85 }}><b>Source:</b> Derived from Landsat 8/9 LST (departure from 5 km focal mean)</div>
+                                  <div style={{ opacity: 0.85 }}><b>Period:</b> Apr–May 2023, 2024, 2025 (peak hot season, 3-year average)</div>
+                                </>
+                              ), icon: ThermometerSun },
+                              { id: 'wet_bulb_temperature', name: 'Wet Bulb Temperature', unit: '°C (Degrees Celsius)', tooltip: (
+                                <>
+                                  <div style={{ fontWeight: 600, marginBottom: 4 }}>Wet Bulb Temperature (WBT)</div>
+                                  <div>Combined heat-and-humidity stress on the human body — the critical metric for occupational health risk and survivability thresholds.</div>
+                                  <div style={{ marginTop: 6, opacity: 0.85 }}><b>Source:</b> Landsat 8/9 LST + ERA5-Land dewpoint (ECMWF)</div>
+                                  <div style={{ opacity: 0.85 }}><b>Period:</b> Apr–May 2023, 2024, 2025 (peak hot season, 3-year average)</div>
+                                </>
+                              ), icon: Gauge },
                             ].map((layer) => {
                               const isActive = activeLayerId === layer.id;
                               const LayerIcon = layer.icon;
