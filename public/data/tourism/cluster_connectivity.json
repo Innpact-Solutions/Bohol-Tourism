@@ -5,17 +5,17 @@
       "lng": 123.7722784,
       "lat": 9.5481436
     },
-    "bus": {
-      "km": 19.73,
-      "min": 34
+    "airport": {
+      "km": 1.34,
+      "min": 7
     },
     "port": {
       "km": 17.77,
       "min": 33
     },
-    "airport": {
-      "km": 20.41,
-      "min": 40
+    "bus": {
+      "km": 19.73,
+      "min": 34
     }
   },
   "2": {
@@ -28,13 +28,13 @@
       "km": 2.37,
       "min": 6
     },
-    "airport": {
-      "km": 3.95,
-      "min": 12
-    },
     "port": {
       "km": 1.31,
       "min": 5
+    },
+    "airport": {
+      "km": 17.73,
+      "min": 34
     }
   },
   "3": {
@@ -66,13 +66,13 @@
       "km": 13.03,
       "min": 24
     },
+    "airport": {
+      "km": 10.5,
+      "min": 21
+    },
     "port": {
       "km": 11.98,
       "min": 22
-    },
-    "airport": {
-      "km": 14.62,
-      "min": 29
     }
   },
   "5": {
@@ -86,7 +86,7 @@
       "min": 18
     },
     "airport": {
-      "km": 11.31,
+      "km": 12.92,
       "min": 25
     },
     "bus": {
@@ -104,13 +104,13 @@
       "km": 4.19,
       "min": 10
     },
+    "airport": {
+      "km": 16.46,
+      "min": 29
+    },
     "port": {
       "km": 4.52,
       "min": 11
-    },
-    "airport": {
-      "km": 7.44,
-      "min": 19
     }
   },
   "7": {
@@ -142,13 +142,13 @@
       "km": 3.98,
       "min": 9
     },
+    "airport": {
+      "km": 18.34,
+      "min": 32
+    },
     "bus": {
       "km": 3.65,
       "min": 8
-    },
-    "airport": {
-      "km": 7.07,
-      "min": 17
     }
   },
   "9": {
@@ -157,7 +157,7 @@
       "lng": 123.68194629999999,
       "lat": 9.515310299999996
     },
-    "airport": {
+    "bus": {
       "km": null,
       "min": null,
       "status": "ROUTE_NOT_FOUND"
@@ -167,7 +167,7 @@
       "min": null,
       "status": "ROUTE_NOT_FOUND"
     },
-    "bus": {
+    "airport": {
       "km": null,
       "min": null,
       "status": "ROUTE_NOT_FOUND"

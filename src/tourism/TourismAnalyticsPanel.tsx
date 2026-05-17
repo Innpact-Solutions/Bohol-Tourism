@@ -440,7 +440,7 @@ const TIER_BG: Record<string, string> = {
 // ---------------------------------------------------------------------------
 
 const CONNECTIVITY_POIS: Array<{ key: 'airport' | 'port' | 'bus'; label: string; lat: number; lng: number; icon: LucideIcon; accent: string; tint: string }> = [
-  { key: 'airport', ...CONNECTIVITY_TOKENS.airport, lat: 9.6691, lng: 123.8503 },
+  { key: 'airport', ...CONNECTIVITY_TOKENS.airport, lat: 9.5587, lng: 123.7711 },
   { key: 'port',    ...CONNECTIVITY_TOKENS.port,    lat: 9.6452, lng: 123.8546 },
   { key: 'bus',     ...CONNECTIVITY_TOKENS.bus,     lat: 9.6491, lng: 123.8722 },
 ];

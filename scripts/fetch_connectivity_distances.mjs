@@ -31,7 +31,7 @@ if (!API_KEY) {
 
 // Same coords used by the frontend Connectivity card (TourismAnalyticsPanel.tsx).
 const DESTINATIONS = [
-  { key: 'airport', label: "Bohol-Panglao Int'l Airport", lat: 9.6691, lng: 123.8503 },
+  { key: 'airport', label: "Bohol-Panglao Int'l Airport", lat: 9.5587, lng: 123.7711 },
   { key: 'port',    label: 'Tagbilaran City Port',        lat: 9.6452, lng: 123.8546 },
   { key: 'bus',     label: 'Dao Integrated Bus Terminal', lat: 9.6491, lng: 123.8722 },
 ];
