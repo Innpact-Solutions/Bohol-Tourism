@@ -710,8 +710,15 @@ function ClusterDetailSection() {
 
   // Per-cluster road network from the precomputed `ovl_cluster_roads` table.
   const { data: roadsData } = useClusterRoads(ndviClusterId);
-  const { totalKm: roadTotalKm, nationalPct, municipalPct, otherPct } =
+  let { totalKm: roadTotalKm, nationalPct, municipalPct, otherPct } =
     deriveRoadShares(roadsData);
+  // Balicasag is an offshore island with no national/municipal roads — its
+  // internal paths are all unclassified, so treat as 100% "Other".
+  if (/balicasag/i.test(ndviClusterName) && nationalPct == null && municipalPct == null && otherPct == null) {
+    nationalPct = 0;
+    municipalPct = 0;
+    otherPct = 100;
+  }
   const roadTotalStr = roadTotalKm == null ? 'NA' : `${roadTotalKm.toFixed(2)} km`;
 
   if (!cluster || !mem) return null;
