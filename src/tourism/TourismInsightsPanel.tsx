@@ -37,8 +37,8 @@ export function TourismInsightsPanel() {
             <Palmtree className="w-3.5 h-3.5 text-[#B45309]" />
           </div>
           <div>
-            <div className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#B45309]">Tourism Insights</div>
-            <div className="text-[12.5px] font-semibold text-[#0F172A]">Clusters &amp; Attractions</div>
+            <div className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#B45309]">Tourism Inventory</div>
+            <div className="text-[12.5px] font-semibold text-[#0F172A]">Clusters, Anchors &amp; Assets</div>
           </div>
         </div>
         {expanded ? (
