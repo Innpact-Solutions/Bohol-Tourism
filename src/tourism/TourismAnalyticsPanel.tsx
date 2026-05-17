@@ -34,6 +34,19 @@ type ConnectivityEntry = {
 };
 const CONNECTIVITY_BY_CLUSTER: Record<string, ConnectivityEntry> = clusterConnectivity as any;
 
+// Plain-English climate-risk summary per cluster (rendered after the Hazard
+// Exposure card). Keys are cluster_id from clusters.geojson.
+const CLUSTER_CLIMATE_SUMMARY: Record<number, string> = {
+  1: 'Some beach flooding in storms. Heat and rain flooding are low — mid-pack overall.',
+  2: 'The hottest cluster by far (5× the next worst) and the most at risk of ground sinking. Also the worst for rainwater flooding.',
+  3: 'Highest storm-flooding risk of any cluster — 99.8% of the area can flood in storms. Heat is near zero.',
+  4: '3rd worst for storm flooding. No heat risk. The bigger worry is reef damage, not buildings.',
+  5: '2nd worst for rainwater flooding and 3rd most sinkhole-prone. Cave water is at risk.',
+  6: '2nd hottest cluster and 4th most at risk of sea flooding — the bridge and church are most exposed.',
+  7: 'In the top 3 for every climate risk: 2nd worst flooding, 3rd hottest, 3rd most sinkhole-prone.',
+  8: 'Lowest climate risk of any cluster — almost no flooding, heat, or sinking ground.',
+};
+
 const FONT = 'DM Sans, Segoe UI, sans-serif';
 
 const TIER_ORDER = ['Anchor', 'Secondary', 'Supportive'] as const;
@@ -906,6 +919,21 @@ function ClusterDetailSection() {
       <div className="rounded-md bg-white border border-[#E2E8F0] overflow-hidden mb-2">
         <ClusterHazardExposure clusterId={p.cluster_id} tierColor={tierColor} />
       </div>
+
+      {/* --- Layer 4b: Plain-English climate summary per cluster --- */}
+      {CLUSTER_CLIMATE_SUMMARY[p.cluster_id] && (
+        <div
+          className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
+          style={{ borderLeft: '3px solid #2563EB' }}
+        >
+          <div className="text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#1E40AF] mb-1">
+            Climate Risk Summary
+          </div>
+          <div className="text-[11.5px] leading-snug text-[#334155]">
+            {CLUSTER_CLIMATE_SUMMARY[p.cluster_id]}
+          </div>
+        </div>
+      )}
 
       {/* --- Layer 5: Connectivity (from lead anchor) --- */}
       <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
