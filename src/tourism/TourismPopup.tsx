@@ -20,7 +20,7 @@ interface PopupPOI {
   n_ratings?: number | string;
   vicinity?: string;
   gmap_url?: string;
-  // Booking.com accommodation fields
+  // Airbnb accommodation fields
   address?: string;
   price?: string;
   source?: string;
@@ -65,7 +65,7 @@ export function TourismPopupContent({ poi, photos }: Props) {
   // as tourism sites for visual parity.
   const compact = isAsset && photos.length === 0 && !isBooking;
 
-  // ── Booking.com accommodation card ──────────────────────────────────────
+  // ── Airbnb accommodation card ──────────────────────────────────────────
   if (isBooking) {
     const bookingRating = poi.rating && poi.rating !== 'NULL' && Number(poi.rating) > 0 ? Number(poi.rating) : null;
     const bookingPrice = poi.price && poi.price !== 'NULL' && poi.price !== 'N/A' ? poi.price : null;
@@ -98,12 +98,12 @@ export function TourismPopupContent({ poi, photos }: Props) {
               background: 'linear-gradient(to bottom, rgba(15,23,42,0) 30%, rgba(15,23,42,0.85) 100%)',
             }}
           />
-          {/* Booking.com badge */}
+          {/* Airbnb badge */}
           <div
             className="absolute top-2 left-2 px-1.5 py-[2px] rounded text-[8.5px] uppercase tracking-wider font-bold z-[6] pointer-events-none"
-            style={{ color: '#fff', background: '#2563EB' }}
+            style={{ color: '#fff', background: '#FF5A5F' }}
           >
-            Booking.com
+            Airbnb
           </div>
           {/* Title */}
           <div className="absolute bottom-0 left-0 right-0 px-3.5 pb-3 pt-8 pointer-events-none z-[6]">
@@ -121,9 +121,9 @@ export function TourismPopupContent({ poi, photos }: Props) {
           {/* Rating + Price row */}
           <div className="flex items-center gap-2 flex-wrap">
             {bookingRating !== null && (
-              <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-[#EFF6FF] border border-[#93C5FD]">
-                <Star className="w-3.5 h-3.5 fill-[#2563EB] text-[#2563EB]" />
-                <span className="text-[12px] font-semibold text-[#1D4ED8]">{bookingRating.toFixed(1)}</span>
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-[#FFF1F2] border border-[#FECDD3]">
+                <Star className="w-3.5 h-3.5 fill-[#FF5A5F] text-[#FF5A5F]" />
+                <span className="text-[12px] font-semibold text-[#BE123C]">{bookingRating.toFixed(1)}</span>
               </div>
             )}
             {bookingPrice && (
@@ -141,16 +141,16 @@ export function TourismPopupContent({ poi, photos }: Props) {
             </div>
           )}
 
-          {/* CTA — Booking.com link */}
+          {/* CTA — Airbnb link */}
           {poi.url && (
             <a
               href={poi.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-0.5 inline-flex items-center justify-center gap-1.5 w-full px-3 py-2 text-[12px] font-semibold rounded-md bg-[#2563EB] hover:bg-[#1D4ED8] text-white transition-colors shadow-sm"
+              className="mt-0.5 inline-flex items-center justify-center gap-1.5 w-full px-3 py-2 text-[12px] font-semibold rounded-md bg-[#FF5A5F] hover:bg-[#E04E53] text-white transition-colors shadow-sm"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              View on Booking.com
+              View on Airbnb
             </a>
           )}
         </div>

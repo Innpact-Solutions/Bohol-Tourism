@@ -60,7 +60,7 @@ const ASSET_QUALITY_COLOR = '#A78BFA'; // light lavender — Quality
 const ASSET_CLUSTER_PREMIUM_MAX_ZOOM = 15;
 const ASSET_CLUSTER_QUALITY_MAX_ZOOM = 13;
 
-const BOOKING_COLOR = '#2563EB'; // blue-600 for Booking.com accommodations
+const BOOKING_COLOR = '#FF5A5F'; // Airbnb rausch for Airbnb accommodations
 
 const SRC = {
   clusters:              'tourism-clusters',

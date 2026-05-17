@@ -546,11 +546,11 @@ function HospitalityList({
         );
       })}
 
-      {/* ── Booking.com accommodations ── */}
+      {/* ── Airbnb accommodations ── */}
       {bookingItems.length > 0 && items.length > 0 && (
         <div className="flex items-center gap-2 px-1.5 pt-2 pb-1">
           <div className="h-px flex-1 bg-[#E2E8F0]" />
-          <span className="text-[9px] font-semibold text-[#2563EB] uppercase tracking-wider">Booking.com</span>
+          <span className="text-[9px] font-semibold text-[#FF5A5F] uppercase tracking-wider">Airbnb</span>
           <div className="h-px flex-1 bg-[#E2E8F0]" />
         </div>
       )}
@@ -574,7 +574,7 @@ function HospitalityList({
             }}
             className="relative w-full text-left flex gap-2 items-center px-1.5 py-1.5 rounded-md transition-colors hover:bg-white/70"
           >
-            <div className="absolute left-0 top-2 bottom-2 w-[2px] rounded-r" style={{ background: '#2563EB' }} />
+            <div className="absolute left-0 top-2 bottom-2 w-[2px] rounded-r" style={{ background: '#FF5A5F' }} />
             {hero ? (
               <div
                 role="button"
@@ -587,8 +587,8 @@ function HospitalityList({
                 style={{ backgroundImage: `url("${hero}")` }}
               />
             ) : (
-              <div className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center ml-1 bg-[#DBEAFE]">
-                <Hotel className="w-3.5 h-3.5 text-[#2563EB]" />
+              <div className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center ml-1 bg-[#FFE4E6]">
+                <Hotel className="w-3.5 h-3.5 text-[#FF5A5F]" />
               </div>
             )}
 
@@ -599,9 +599,9 @@ function HospitalityList({
                 </div>
                 <span
                   className="px-1 py-[1px] text-[8px] uppercase tracking-wider font-bold shrink-0 mt-0.5 rounded"
-                  style={{ background: '#DBEAFE', color: '#1D4ED8' }}
+                  style={{ background: '#FFE4E6', color: '#BE123C' }}
                 >
-                  Booking
+                  Airbnb
                 </span>
               </div>
               <div className="mt-0.5 flex items-center gap-1 text-[10px] text-[#64748B] truncate">
