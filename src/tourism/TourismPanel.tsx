@@ -106,44 +106,21 @@ export function TourismPanel({
 
   // Sync left-panel group expansion with the Tourism Directory tab.
   // When the user switches between Sites / Hotels / Clusters tabs, the
-  // matching left-panel section expands (and its sub-layers turn on) while
-  // the other two collapse AND their sub-layers turn off — so leaving a
-  // tab cleans up the layers it activated, restoring the previous default.
-  // The first render keeps Sites expanded by default.
+  // matching left-panel section expands and its sub-layers turn on. Other
+  // sections are left ALONE — whatever the user enabled stays enabled,
+  // multiple sections can be on simultaneously.
   const didInitSectionSync = useRef(false);
-  const prevSectionRef = useRef<typeof ui.activeSection | null>(null);
   useEffect(() => {
     const section = ui.activeSection;
-    setOpenGroup({
-      sites: section === 'sites',
-      hospitality: section === 'hospitality',
-      clusters: section === 'clusters',
-    });
+    // Expand the matching group; preserve whatever expansion state the
+    // user set for the other groups.
+    setOpenGroup(prev => ({ ...prev, [section]: true }));
     // Skip auto-enabling layers on the very first effect run so the initial
     // defaults (Anchor + Secondary on, everything else off) are preserved.
     if (!didInitSectionSync.current) {
       didInitSectionSync.current = true;
-      prevSectionRef.current = section;
       return;
     }
-    // Turn OFF the previous section's sub-layers so switching tabs reverts
-    // it to its collapsed/off state.
-    const prev = prevSectionRef.current;
-    if (prev && prev !== section) {
-      if (prev === 'sites') {
-        if (ui.showAnchor)     ui.setShowAnchor(false);
-        if (ui.showSecondary)  ui.setShowSecondary(false);
-        if (ui.showSupportive) ui.setShowSupportive(false);
-      } else if (prev === 'hospitality') {
-        if (ui.showPremium) ui.setShowPremium(false);
-        if (ui.showQuality) ui.setShowQuality(false);
-      } else if (prev === 'clusters') {
-        if (ui.showClusterPrimary)   ui.setShowClusterPrimary(false);
-        if (ui.showClusterEmerging)  ui.setShowClusterEmerging(false);
-        if (ui.showClusterSatellite) ui.setShowClusterSatellite(false);
-      }
-    }
-    prevSectionRef.current = section;
     if (section === 'sites') {
       if (!ui.showAnchor)     ui.setShowAnchor(true);
       if (!ui.showSecondary)  ui.setShowSecondary(true);
