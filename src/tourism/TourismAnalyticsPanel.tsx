@@ -696,8 +696,15 @@ function ClusterDetailSection() {
   // NOTE: this hook MUST be called before any early return so React's hook
   // order stays stable across renders (cluster may be null on first paint).
   const ndviClusterId = (cluster?.properties as any)?.cluster_id ?? null;
+  const ndviClusterName = String((cluster?.properties as any)?.name ?? '');
   const { data: ndviData } = useClusterNdvi(ndviClusterId);
-  const { builtupPct, greenPct } = deriveLandCover(ndviData);
+  let { builtupPct, greenPct } = deriveLandCover(ndviData);
+  // Balicasag Marine Sanctuary is an offshore island with no NDVI coverage in
+  // the source raster — use curated land-cover values instead of "NA".
+  if (/balicasag/i.test(ndviClusterName) && builtupPct == null && greenPct == null) {
+    builtupPct = 27;
+    greenPct = 65;
+  }
   const fmtPct = (v: number | null) => (v == null ? 'NA' : `${v}%`);
 
   if (!cluster || !mem) return null;
