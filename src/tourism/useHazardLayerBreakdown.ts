@@ -13,11 +13,18 @@ export interface HazardLayerSlice {
   pct: number;    // share of total area, 0–100
 }
 
-// Module-level cache keyed by GeoServer layer name (e.g. "WorldBank_Bohol:Sinkhole").
+// Module-level cache keyed by GeoServer layer name + filter signature.
 const cache = new Map<string, HazardLayerSlice[]>();
 const inflight = new Map<string, Promise<HazardLayerSlice[]>>();
 
-function buildUrl(layerName: string): string {
+function buildCqlFilter(munName?: string | null, brgyName?: string | null): string | null {
+  const parts: string[] = [];
+  if (munName && munName !== 'all') parts.push(`MunName='${munName.replace(/'/g, "''")}'`);
+  if (brgyName && brgyName !== 'all') parts.push(`BrgyName='${brgyName.replace(/'/g, "''")}'`);
+  return parts.length ? parts.join(' AND ') : null;
+}
+
+function buildUrl(layerName: string, cql: string | null): string {
   const params = new URLSearchParams({
     service: 'WFS',
     version: '1.0.0',
@@ -27,14 +34,15 @@ function buildUrl(layerName: string): string {
     srsName: 'EPSG:4326',
     propertyName: 'Type,Shape_Area,color_code',
   });
+  if (cql) params.set('CQL_FILTER', cql);
   return `${GEOSERVER_WFS}?${params.toString()}`;
 }
 
-async function fetchHazardLayer(layerName: string): Promise<HazardLayerSlice[]> {
-  if (cache.has(layerName)) return cache.get(layerName)!;
-  if (inflight.has(layerName)) return inflight.get(layerName)!;
+async function fetchHazardLayer(layerName: string, cql: string | null, cacheKey: string): Promise<HazardLayerSlice[]> {
+  if (cache.has(cacheKey)) return cache.get(cacheKey)!;
+  if (inflight.has(cacheKey)) return inflight.get(cacheKey)!;
 
-  const p = fetch(buildUrl(layerName))
+  const p = fetch(buildUrl(layerName, cql))
     .then(async (r) => {
       if (!r.ok) throw new Error(`WFS HTTP ${r.status}`);
       const json = await r.json();
@@ -66,19 +74,24 @@ async function fetchHazardLayer(layerName: string): Promise<HazardLayerSlice[]> 
       }
       // sort by area desc for stable visual order
       slices.sort((a, b) => b.area - a.area);
-      cache.set(layerName, slices);
+      cache.set(cacheKey, slices);
       return slices;
     })
     .finally(() => {
-      inflight.delete(layerName);
+      inflight.delete(cacheKey);
     });
-  inflight.set(layerName, p);
+  inflight.set(cacheKey, p);
   return p;
 }
 
-export function useHazardLayerBreakdown(layerName: string | null | undefined) {
+export function useHazardLayerBreakdown(
+  layerName: string | null | undefined,
+  filter?: { munName?: string | null; brgyName?: string | null },
+) {
+  const cql = buildCqlFilter(filter?.munName, filter?.brgyName);
+  const cacheKey = layerName ? `${layerName}::${cql || 'ALL'}` : '';
   const [data, setData] = useState<HazardLayerSlice[] | null>(
-    layerName ? cache.get(layerName) ?? null : null
+    cacheKey ? cache.get(cacheKey) ?? null : null
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,7 +103,7 @@ export function useHazardLayerBreakdown(layerName: string | null | undefined) {
       setError(null);
       return;
     }
-    const cached = cache.get(layerName);
+    const cached = cache.get(cacheKey);
     if (cached) {
       setData(cached);
       setLoading(false);
@@ -99,7 +112,7 @@ export function useHazardLayerBreakdown(layerName: string | null | undefined) {
     }
     let cancelled = false;
     setLoading(true);
-    fetchHazardLayer(layerName)
+    fetchHazardLayer(layerName, cql, cacheKey)
       .then((d) => {
         if (!cancelled) {
           setData(d);
@@ -115,7 +128,7 @@ export function useHazardLayerBreakdown(layerName: string | null | undefined) {
     return () => {
       cancelled = true;
     };
-  }, [layerName]);
+  }, [layerName, cacheKey]);
 
   return { data, loading, error };
 }

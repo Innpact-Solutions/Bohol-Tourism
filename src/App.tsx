@@ -1138,6 +1138,8 @@ function AppContent({
             activeFstpBands={[]}
             fstpOpacity={fstpOpacity}
             onFstpOpacityChange={setFstpOpacity}
+            selectedLguName={selectedLguName}
+            selectedWardName={selectedWardName}
           >
             <TourismLegend />
           </FloatingLegendPanel>

@@ -2,6 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { ChevronUp, ChevronDown, Layers, Minimize2, Maximize2, Flame, Sun, Thermometer, ThermometerSun, Droplets, CloudRain, Wind, Waves, Route, ShieldAlert, Car, Bike, User, AlertTriangle, Home, TreePine, Building2, Mountain, Gauge, Info, Truck, Clock } from 'lucide-react';
 import { getUILayerLegend, type LegendEntry } from '../utils/legendLoader';
 import { LEGEND_DATA } from '../data/legendDefinitions';
+import { getLayerNameForScenario } from '../config/geoserverLayers';
+import { ENVIRONMENTAL_LAYERS } from '../config/environmentalLayers';
+import { useHazardLayerBreakdown } from '../tourism/useHazardLayerBreakdown';
+
+// Mirror of the CWIS hazard mapping used elsewhere (e.g. TourismAnalyticsPanel).
+// Maps a frontend layerId to its full GeoServer WFS typeName so per-class
+// percentages can be fetched directly.
+const LEGEND_CWIS_HAZARD_LAYERS: Record<string, string> = {
+  storm_surge:        'WorldBank_Bohol:StormSurge',
+  flood_hazard:       'WorldBank_Bohol:Flood',
+  urban_waterlogging: 'WorldBank_Bohol:Flood',
+};
 
 interface LegendClass {
   label: string;
@@ -46,6 +58,10 @@ interface FloatingLegendPanelProps {
   activeFstpBands?: string[]; // Module 3 FSTP drive-time active bands
   fstpOpacity?: number; // 0–1, FSTP service area layer opacity
   onFstpOpacityChange?: (opacity: number) => void;
+  /** LGU filter from header — scopes per-class % breakdown in legend */
+  selectedLguName?: string;
+  /** Barangay filter from header — scopes per-class % breakdown in legend */
+  selectedWardName?: string;
   children?: React.ReactNode; // Extra legend blocks rendered above the standard legends (e.g., Tourism)
 }
 
@@ -82,6 +98,8 @@ export function FloatingLegendPanel({
   activeFstpBands = [],
   fstpOpacity = 0.75,
   onFstpOpacityChange,
+  selectedLguName,
+  selectedWardName,
   children,
 }: FloatingLegendPanelProps) {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -93,6 +111,29 @@ export function FloatingLegendPanel({
     setLegendTooltip({ text, x: rect.right + 8, y: rect.top + rect.height / 2 });
   };
   const handleLegendTooltipHide = () => setLegendTooltip(null);
+
+  // ── Per-class % area breakdown for the active hazard / environmental layer.
+  // Resolves the GeoServer WFS typeName for the active layer (scenario-aware),
+  // then applies an optional LGU/Brgy CQL filter from the header. Used to
+  // render percentages next to each legend class. Raster layers (heat, NDVI)
+  // have no polygon features and will return null data.
+  const legendBreakdownLayerName: string | null = (() => {
+    if (!activeLayerId) return null;
+    if (LEGEND_CWIS_HAZARD_LAYERS[activeLayerId]) return LEGEND_CWIS_HAZARD_LAYERS[activeLayerId];
+    const envCfg = ENVIRONMENTAL_LAYERS[activeLayerId];
+    if (envCfg) return `${envCfg.workspace}:${envCfg.geoserverLayer}`;
+    const scenarioName = getLayerNameForScenario(activeLayerId, scenario);
+    return scenarioName ? `WorldBank_Bohol:${scenarioName}` : null;
+  })();
+  const { data: legendBreakdown } = useHazardLayerBreakdown(legendBreakdownLayerName, {
+    munName: selectedLguName,
+    brgyName: selectedWardName,
+  });
+  const legendBreakdownByClass: Record<string, number> = React.useMemo(() => {
+    const m: Record<string, number> = {};
+    for (const s of legendBreakdown || []) m[String(s.class).toLowerCase()] = s.pct;
+    return m;
+  }, [legendBreakdown]);
 
   // Sync external minimized prop with internal state
   useEffect(() => {
@@ -771,18 +812,23 @@ export function FloatingLegendPanel({
                                       <span className="text-[10px] text-[#1F2937] font-medium truncate flex-1">
                                         {cls.label}
                                       </span>
-                                      <div
-                                        className="flex-shrink-0 p-0.5 cursor-help"
-                                        onMouseEnter={(e) => handleLegendTooltipShow(e, cls.value!)}
-                                        onMouseLeave={handleLegendTooltipHide}
-                                      >
-                                        <Info className="w-3 h-3 text-[#64748B] hover:text-[#64748B]" />
-                                      </div>
+                                      {legendBreakdownByClass[String(cls.label).toLowerCase()] != null && (
+                                        <span className="text-[10px] font-semibold text-[#0F172A] tabular-nums ml-2 flex-shrink-0">
+                                          {legendBreakdownByClass[String(cls.label).toLowerCase()].toFixed(1)}%
+                                        </span>
+                                      )}
                                     </>
                                   ) : (
-                                    <span className="text-[10px] text-[#1F2937] font-medium truncate">
-                                      {cls.label}
-                                    </span>
+                                    <>
+                                      <span className="text-[10px] text-[#1F2937] font-medium truncate flex-1">
+                                        {cls.label}
+                                      </span>
+                                      {legendBreakdownByClass[String(cls.label).toLowerCase()] != null && (
+                                        <span className="text-[10px] font-semibold text-[#0F172A] tabular-nums ml-2 flex-shrink-0">
+                                          {legendBreakdownByClass[String(cls.label).toLowerCase()].toFixed(1)}%
+                                        </span>
+                                      )}
+                                    </>
                                   )}
                                 </div>
                               </div>
