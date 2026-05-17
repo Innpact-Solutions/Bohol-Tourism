@@ -548,11 +548,11 @@ function HospitalityList({
         );
       })}
 
-      {/* ── Airbnb accommodations ── */}
+      {/* ── Tourist Homes ── */}
       {bookingItems.length > 0 && items.length > 0 && (
         <div className="flex items-center gap-2 px-1.5 pt-2 pb-1">
           <div className="h-px flex-1 bg-[#E2E8F0]" />
-          <span className="text-[9px] font-semibold text-[#FF5A5F] uppercase tracking-wider">Airbnb</span>
+          <span className="text-[9px] font-semibold text-[#FF5A5F] uppercase tracking-wider">Tourist Homes</span>
           <div className="h-px flex-1 bg-[#E2E8F0]" />
         </div>
       )}
@@ -603,7 +603,7 @@ function HospitalityList({
                   className="px-1 py-[1px] text-[8px] uppercase tracking-wider font-bold shrink-0 mt-0.5 rounded"
                   style={{ background: '#FFE4E6', color: '#BE123C' }}
                 >
-                  Airbnb
+                  Tourist Home
                 </span>
               </div>
               <div className="mt-0.5 flex items-center gap-1 text-[10px] text-[#64748B] truncate">

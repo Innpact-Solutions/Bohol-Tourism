@@ -98,12 +98,12 @@ export function TourismPopupContent({ poi, photos }: Props) {
               background: 'linear-gradient(to bottom, rgba(15,23,42,0) 30%, rgba(15,23,42,0.85) 100%)',
             }}
           />
-          {/* Airbnb badge */}
+          {/* Tourist Home badge */}
           <div
             className="absolute top-2 left-2 px-1.5 py-[2px] rounded text-[8.5px] uppercase tracking-wider font-bold z-[6] pointer-events-none"
             style={{ color: '#fff', background: '#FF5A5F' }}
           >
-            Airbnb
+            Tourist Home
           </div>
           {/* Title */}
           <div className="absolute bottom-0 left-0 right-0 px-3.5 pb-3 pt-8 pointer-events-none z-[6]">
@@ -141,7 +141,7 @@ export function TourismPopupContent({ poi, photos }: Props) {
             </div>
           )}
 
-          {/* CTA — Airbnb link */}
+          {/* CTA — listing link */}
           {poi.url && (
             <a
               href={poi.url}
@@ -150,7 +150,7 @@ export function TourismPopupContent({ poi, photos }: Props) {
               className="mt-0.5 inline-flex items-center justify-center gap-1.5 w-full px-3 py-2 text-[12px] font-semibold rounded-md bg-[#FF5A5F] hover:bg-[#E04E53] text-white transition-colors shadow-sm"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              View on Airbnb
+              View Listing
             </a>
           )}
         </div>

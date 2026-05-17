@@ -281,8 +281,8 @@ export function TourismPanel({
         },
         {
           id: 'booking',
-          label: 'Airbnb Stays',
-          description: 'Short-term rentals from Airbnb.',
+          label: 'Tourist Homes',
+          description: 'Short-term rental homes & vacation stays.',
           count: countBookingAccommodations,
           icon: Hotel,
           iconColor: '#FF5A5F',

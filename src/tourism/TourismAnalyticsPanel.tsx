@@ -20,7 +20,7 @@ import {
   SITE_TIER_TOKENS, ASSET_TIER_TOKENS, CLUSTER_TIER_TOKENS,
   HAZARD_TOKENS, CONNECTIVITY_TOKENS, CATEGORY_ICONS, Hotel,
 } from './tokens';
-import { TOURISM_INTERVENTIONS } from '../config/tourismConfig';
+import { TOURISM_INTERVENTIONS, TOURISM_INTERVENTIONS_BY_CLUSTER } from '../config/tourismConfig';
 import { geoserverLayers } from '../config/geoserverLayers';
 import { ENVIRONMENTAL_LAYERS } from '../config/environmentalLayers';
 import clusterConnectivity from '../../public/data/tourism/cluster_connectivity.json';
@@ -270,22 +270,22 @@ function CategoryRow({
   const pct = total > 0 ? (count / total) * 100 : 0;
   return (
     <div
-      className="rounded-md bg-white border border-[#E2E8F0] px-2.5 py-2"
+      className="rounded-md bg-white border border-[#E2E8F0] px-2.5 py-1.5"
       style={{ borderLeft: `3px solid ${color}` }}
     >
-      <div className="flex items-center justify-between mb-1.5">
+      <div className="flex items-center justify-between mb-1">
         <div className="flex items-center gap-1.5 min-w-0">
           <span
             className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
             style={{ background: color }}
           />
-          <span className="text-[12.5px] font-semibold text-[#0F172A] truncate">{label}</span>
+          <span className="text-[11.5px] font-semibold text-[#0F172A] truncate">{label}</span>
         </div>
         <div className="flex items-baseline gap-1.5 flex-shrink-0">
-          <span className="text-[12.5px] font-semibold text-[#0F172A] tabular-nums">
+          <span className="text-[11.5px] font-semibold text-[#0F172A] tabular-nums">
             {count.toLocaleString()}
           </span>
-          <span className="text-[10px] tabular-nums" style={{ color }}>
+          <span className="text-[9.5px] tabular-nums" style={{ color }}>
             {pct.toFixed(1)}%
           </span>
         </div>
@@ -369,7 +369,7 @@ function ClimateHazardsCallout({
           <div className="text-[11px] font-semibold text-[#0F172A]">
             Climate Hazards
           </div>
-          <div className="text-[9.5px] text-[#94A3B8] uppercase tracking-wider">
+          <div className="text-[9.5px] text-[#94A3B8] tracking-wide">
             across {totalClusters} clusters
           </div>
         </div>
@@ -429,7 +429,7 @@ function ClimateHazardsCallout({
                 </div>
               );
             })}
-            <div className="pt-1 flex items-center justify-between text-[9px] text-[#94A3B8] uppercase tracking-wider">
+            <div className="pt-1 flex items-center justify-between text-[9px] text-[#94A3B8] tracking-wide">
               <span>Avg exposure</span>
               <span>Low &lt; {MODERATE}% · Mod {MODERATE}–{HIGH}% · High ≥ {HIGH}%</span>
             </div>
@@ -548,7 +548,7 @@ function HazardDistributionPie({
   return (
     <div className="px-3 pb-3">
       <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2.5 pb-3 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
-        <div className="text-[12.5px] font-semibold text-[#0F172A] mb-1.5 text-center">
+        <div className="text-[12px] font-semibold text-[#0F172A] mb-1.5 text-center">
           {title}
         </div>
         <div className="w-full h-[160px]">
@@ -596,7 +596,7 @@ function HazardDistributionPie({
 }
 
 function ClusterDetailSection() {
-  const { clusters, sites, assets, getMembershipFor } = useTourismData();
+  const { clusters, sites, assets, accommodationsBooking, getMembershipFor } = useTourismData();
   const ui = useTourismUI();
 
   const cluster = ui.selectedClusterId != null
@@ -663,6 +663,32 @@ function ClusterDetailSection() {
       quality: tally(mem.quality),
     };
   }, [mem, assetIndex]);
+
+  // --- Count Airbnb (Tourist Home) listings whose point falls inside the
+  // currently-selected cluster polygon. Lazy import keeps turf out of the main
+  // bundle for users who never open the analytics panel.
+  const [pip, setPip] = React.useState<null | ((pt: any, poly: any) => boolean)>(null);
+  React.useEffect(() => {
+    let alive = true;
+    import('@turf/boolean-point-in-polygon').then((m) => {
+      if (alive) setPip(() => (m.default || (m as any).booleanPointInPolygon) as any);
+    });
+    return () => { alive = false; };
+  }, []);
+  const airbnbCount = useMemo(() => {
+    if (!cluster || !accommodationsBooking || !pip) return null;
+    const geom: any = (cluster as any).geometry;
+    if (!geom) return 0;
+    let n = 0;
+    for (const f of accommodationsBooking.features as any[]) {
+      const c = f?.geometry?.coordinates;
+      if (!Array.isArray(c) || typeof c[0] !== 'number' || typeof c[1] !== 'number') continue;
+      try {
+        if (pip({ type: 'Point', coordinates: c } as any, geom)) n++;
+      } catch { /* skip invalid geometry */ }
+    }
+    return n;
+  }, [cluster, accommodationsBooking, pip]);
 
   const premiumStaysDetailed = useMemo(() => {
     if (!mem?.premium) return [];
@@ -759,7 +785,8 @@ function ClusterDetailSection() {
   if (!cluster || !mem) return null;
   const p: any = cluster.properties;
   const landKm2 = p.area_land ?? p.area_km2;
-  const interventions = TOURISM_INTERVENTIONS[p.tier] || TOURISM_INTERVENTIONS.Satellite;
+  const perCluster = TOURISM_INTERVENTIONS_BY_CLUSTER[p.cluster_id as number];
+  const interventions = perCluster?.items ?? (TOURISM_INTERVENTIONS[p.tier] || TOURISM_INTERVENTIONS.Satellite);
   const tierColor = TIER_BG[p.tier] || '#64748B';
 
   const nSites = (mem.anchors?.length || 0) + (mem.secondary?.length || 0) + (mem.supportive?.length || 0);
@@ -772,7 +799,7 @@ function ClusterDetailSection() {
       {/* Section heading — "Cluster Assessment" eyebrow + prominent cluster name */}
       <div className="flex items-start justify-between mb-2 gap-2">
         <div className="min-w-0 flex-1">
-          <div className="text-[9.5px] font-bold tracking-[0.14em] uppercase text-[#94A3B8] mb-1">
+          <div className="text-[9.5px] font-semibold tracking-wide text-[#94A3B8] mb-1">
             Cluster Assessment
           </div>
           <div className="flex items-center gap-2">
@@ -909,9 +936,13 @@ function ClusterDetailSection() {
         <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
           <div className="text-[12px] font-semibold text-[#0F172A] mb-2">Stay &amp; Dining Breakdown</div>
           <div className="space-y-1.5">
-            <StayTierRow label={ASSET_TIER_TOKENS.Premium.label}     accent={ASSET_TIER_TOKENS.Premium.accent}     total={nPrem} counts={stayBreakdown.premium} />
-            <StayTierRow label={ASSET_TIER_TOKENS.Quality.label}     accent={ASSET_TIER_TOKENS.Quality.accent}     total={nQual} counts={stayBreakdown.quality} />
-            <StayTierRow label={ASSET_TIER_TOKENS.TouristHome.label} accent={ASSET_TIER_TOKENS.TouristHome.accent} total={null}  counts={null} />
+            <StayTierRow label="Premium Stays & Dining"             accent={ASSET_TIER_TOKENS.Premium.accent}     total={nPrem} counts={stayBreakdown.premium} />
+            <StayTierRow label="Quality Stays & Dining"             accent={ASSET_TIER_TOKENS.Quality.accent}     total={nQual} counts={stayBreakdown.quality} />
+            <TouristHomeRow
+              label={ASSET_TIER_TOKENS.TouristHome.label}
+              accent={ASSET_TIER_TOKENS.TouristHome.accent}
+              airbnb={airbnbCount}
+            />
           </div>
         </div>
       )}
@@ -927,7 +958,11 @@ function ClusterDetailSection() {
           className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
           style={{ borderLeft: '3px solid #2563EB' }}
         >
-          <div className="text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#1E40AF] mb-1">
+          <div
+            className="inline-flex items-center gap-1.5 mb-1.5 px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide"
+            style={{ background: '#2563EB', color: '#fff' }}
+          >
+            <span className="text-[9px]">◆</span>
             Climate Risk Summary
           </div>
           <div className="text-[11.5px] leading-snug text-[#334155]">
@@ -940,7 +975,7 @@ function ClusterDetailSection() {
       <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
         <div className="flex items-baseline justify-between mb-2">
           <div className="text-[12px] font-semibold text-[#0F172A]">Connectivity</div>
-          <div className="text-[9.5px] text-[#94A3B8] uppercase tracking-wider truncate ml-2 max-w-[60%] text-right" title={leadAnchor?.name || ''}>
+          <div className="text-[9.5px] text-[#94A3B8] tracking-wide truncate ml-2 max-w-[60%] text-right" title={leadAnchor?.name || ''}>
             {leadAnchor ? `from ${leadAnchor.name}` : 'from cluster anchor'}
           </div>
         </div>
@@ -965,7 +1000,7 @@ function ClusterDetailSection() {
                     {poi.label}
                   </div>
                   {d?.source === 'air' && d.km != null && (
-                    <div className="text-[9.5px] text-[#94A3B8] uppercase tracking-wider">straight-line</div>
+                    <div className="text-[9.5px] text-[#94A3B8] tracking-wide">straight-line</div>
                   )}
                 </div>
                 <div className="text-right flex-shrink-0">
@@ -989,7 +1024,7 @@ function ClusterDetailSection() {
       >
         <div className="px-3 pt-2 pb-2">
           <div
-            className="inline-flex items-center gap-1.5 mb-1.5 px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-[0.12em]"
+            className="inline-flex items-center gap-1.5 mb-1.5 px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide"
             style={{ background: tierColor, color: '#fff' }}
           >
             <span className="text-[9px]">◆</span>
@@ -1010,7 +1045,7 @@ function ClusterDetailSection() {
       <div className="mb-1">
         <div className="flex items-center gap-2 mb-1.5 mt-1">
           <div className="h-[1px] flex-1 bg-[#E2E8F0]" />
-          <div className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#475569]">
+          <div className="text-[10px] font-semibold tracking-wide text-[#475569]">
             Top Performers Inside Cluster
           </div>
           <div className="h-[1px] flex-1 bg-[#E2E8F0]" />
@@ -1095,6 +1130,42 @@ function StayTierRow({
             </span>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+// Tourist Home tier row — shows only the Airbnb listing count for the cluster.
+function TouristHomeRow({
+  label,
+  accent,
+  airbnb,
+}: {
+  label: string;
+  accent: string;
+  airbnb: number | null;
+}) {
+  return (
+    <div
+      className="rounded-md bg-white border border-[#E2E8F0] px-2.5 py-1.5"
+      style={{ borderLeft: `3px solid ${accent}` }}
+    >
+      <div className="flex items-center justify-between gap-2 mb-1">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[11.5px] font-semibold text-[#0F172A]">{label}</span>
+        </div>
+        <div className="text-[11.5px] font-semibold tabular-nums" style={{ color: accent }}>
+          {airbnb == null ? 'NA' : airbnb.toLocaleString()}
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-1">
+        <span className="inline-flex items-center gap-1 px-1.5 py-[1px] rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[10px] text-[#475569]">
+          <BedDouble className="w-2.5 h-2.5" strokeWidth={2.2} />
+          <span>Airbnb</span>
+          <span className="tabular-nums text-[#0F172A] font-semibold">
+            {airbnb == null ? 'NA' : airbnb.toLocaleString()}
+          </span>
+        </span>
       </div>
     </div>
   );
@@ -1326,10 +1397,10 @@ function HazardRow({
       {/* Header row — label, headline % */}
       <div className="flex items-center justify-between gap-2 mb-1.5">
         <div className="flex items-center gap-1.5 min-w-0">
-          <span className="text-[12px] font-semibold text-[#0F172A] truncate">{label}</span>
+          <span className="text-[11.5px] font-semibold text-[#0F172A] truncate">{label}</span>
         </div>
         <div className="text-right leading-none flex-shrink-0">
-          <div className="text-[13.5px] font-semibold tabular-nums" style={{ color: accent }}>
+          <div className="text-[12px] font-semibold tabular-nums" style={{ color: accent }}>
             {pct.toFixed(1)}%
           </div>
           <div className="text-[9px] text-[#94A3B8] mt-0.5">high + extreme</div>
@@ -1376,7 +1447,7 @@ function HazardRow({
 // ---------------------------------------------------------------------------
 
 export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHazardLayerId }: { selectedLguName?: string | null; activeLayerId?: string | null; activeHazardLayerId?: string | null } = {}) {
-  const { sites, assets, clusters, loading, error } = useTourismData();
+  const { sites, assets, clusters, accommodationsBooking, loading, error } = useTourismData();
   const { data: hazardRows } = useClusterHazardsSummary();
   const { lgu, selectedClusterId } = useTourismUI();
 
@@ -1440,6 +1511,16 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       }
     }
 
+    // Tourist Home (Airbnb) count — filtered by selected LGU when applicable.
+    let airbnbTotal = 0;
+    if (accommodationsBooking?.features) {
+      for (const f of accommodationsBooking.features as any[]) {
+        const p = f.properties || {};
+        if (!matchLgu(p)) continue;
+        airbnbTotal++;
+      }
+    }
+
     const activeCats = CAT_ORDER.filter(c => (catCounts[c] || 0) > 0).length;
 
     const donutData = CAT_ORDER
@@ -1459,8 +1540,9 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       topName,
       activeCats,
       donutData,
+      airbnbTotal,
     };
-  }, [sites, assets, clusters, lguFilter]);
+  }, [sites, assets, clusters, accommodationsBooking, lguFilter]);
 
   // Clusters with high climate hazard: any hazard headline % >= 25%.
   const HIGH_HAZARD_THRESHOLD = 25;
@@ -1518,10 +1600,10 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
             <MapPin className="w-3 h-3 text-[#0F766E]" strokeWidth={2.5} />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-[13px] font-semibold text-[#0F172A] leading-tight tracking-tight">
+            <div className="text-[12.5px] font-semibold text-[#0F172A] leading-tight tracking-tight">
               Tourism Analytics
             </div>
-            <div className="text-[10.5px] text-[#64748B] mt-0.5 leading-tight">
+            <div className="text-[10px] text-[#64748B] mt-0.5 leading-tight">
               {lguFilter ?? 'Tagbilaran · Dauis · Panglao'}
             </div>
           </div>
@@ -1597,7 +1679,7 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       <div className="px-3 pt-1 pb-3">
         <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2.5 pb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
           <div className="flex items-baseline justify-between mb-2">
-            <div className="text-[12.5px] font-semibold text-[#0F172A]">
+            <div className="text-[12px] font-semibold text-[#0F172A]">
               Tourism Site Distribution
             </div>
             <div className="text-[10px] text-[#94A3B8] tabular-nums">
@@ -1671,18 +1753,31 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       <div className="px-3 pb-3">
         <SectionLabel>Stays and Dining</SectionLabel>
         <div className="space-y-1.5">
-          <CategoryRow
-            label="Premium"
-            count={stats.assetCounts.Premium || 0}
-            total={stats.totalAssets}
-            color="#6D28D9"
-          />
-          <CategoryRow
-            label="Quality"
-            count={stats.assetCounts.Quality || 0}
-            total={stats.totalAssets}
-            color="#A78BFA"
-          />
+          {(() => {
+            const stayTotal = (stats.totalAssets || 0) + (stats.airbnbTotal || 0);
+            return (
+              <>
+                <CategoryRow
+                  label="Premium Stays & Dining"
+                  count={stats.assetCounts.Premium || 0}
+                  total={stayTotal}
+                  color="#6D28D9"
+                />
+                <CategoryRow
+                  label="Quality Stays & Dining"
+                  count={stats.assetCounts.Quality || 0}
+                  total={stayTotal}
+                  color="#A78BFA"
+                />
+                <CategoryRow
+                  label="Tourist Home"
+                  count={stats.airbnbTotal || 0}
+                  total={stayTotal}
+                  color="#94A3B8"
+                />
+              </>
+            );
+          })()}
         </div>
       </div>
       </>)}

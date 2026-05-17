@@ -93,7 +93,7 @@ export function TourismLegend() {
   const hospitalityRows: Row[] = [
     { label: 'Premium (hotels & restaurants)', color: '#6D28D9', style: 'solid', size: 9, active: ui.showPremium },
     { label: 'Quality (hotels & restaurants)', color: '#A78BFA', style: 'solid', size: 8, active: ui.showQuality },
-    { label: 'Airbnb accommodations',          color: '#FF5A5F', style: 'solid', size: 8, active: ui.showBookingAccommodations },
+    { label: 'Tourist homes',                  color: '#FF5A5F', style: 'solid', size: 8, active: ui.showBookingAccommodations },
   ];
 
   const clustersRows: Row[] = [

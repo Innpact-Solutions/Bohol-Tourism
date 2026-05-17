@@ -8,7 +8,7 @@ import { useTourismData } from './TourismContext';
 import { useTourismUI } from './tourismStore';
 import { CATEGORY_COLORS, TIER_COLORS } from './styles';
 import { PhotoLightbox } from './PhotoGallery';
-import { TOURISM_INTERVENTIONS } from '../config/tourismConfig';
+import { TOURISM_INTERVENTIONS, TOURISM_INTERVENTIONS_BY_CLUSTER } from '../config/tourismConfig';
 
 const TIER_BG: Record<string, string> = {
   Primary:   TIER_COLORS.Primary.stroke,   // #E07A18 amber
@@ -49,7 +49,9 @@ export function TourismDetailPanel() {
   const p: any = cluster.properties;
   const landKm2 = p.area_land ?? p.area_km2;
   const waterKm2 = p.area_water;
-  const interventions = TOURISM_INTERVENTIONS[p.tier] || TOURISM_INTERVENTIONS.Satellite;
+  const interventions =
+    TOURISM_INTERVENTIONS_BY_CLUSTER[p.cluster_id as number]?.items ??
+    (TOURISM_INTERVENTIONS[p.tier] || TOURISM_INTERVENTIONS.Satellite);
 
   const close = () => ui.setSelectedClusterId(null);
 
