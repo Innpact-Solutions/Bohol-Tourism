@@ -11,6 +11,7 @@ import { useTourismData } from './TourismContext';
 import { useTourismUI } from './tourismStore';
 import { useClusterHazards } from './useClusterHazards';
 import { useClusterNdvi, deriveLandCover } from './useClusterNdvi';
+import { useClusterRoads, deriveRoadShares } from './useClusterRoads';
 import { useClusterHazardsSummary } from './useClusterHazardsSummary';
 import { useHazardLayerBreakdown } from './useHazardLayerBreakdown';
 import type { HazardSummary } from './useClusterHazards';
@@ -707,6 +708,12 @@ function ClusterDetailSection() {
   }
   const fmtPct = (v: number | null) => (v == null ? 'NA' : `${v}%`);
 
+  // Per-cluster road network from the precomputed `ovl_cluster_roads` table.
+  const { data: roadsData } = useClusterRoads(ndviClusterId);
+  const { totalKm: roadTotalKm, nationalPct, municipalPct, otherPct } =
+    deriveRoadShares(roadsData);
+  const roadTotalStr = roadTotalKm == null ? 'NA' : `${roadTotalKm.toFixed(2)} km`;
+
   if (!cluster || !mem) return null;
   const p: any = cluster.properties;
   const landKm2 = p.area_land ?? p.area_km2;
@@ -790,11 +797,11 @@ function ClusterDetailSection() {
         <StatCard
           icon={Route}
           label="Road Length"
-          value="NA"
+          value={roadTotalStr}
           captionItems={[
-            { label: 'Single', value: 'NA' },
-            { label: 'Double', value: 'NA' },
-            { label: '4+',     value: 'NA' },
+            { label: 'National',  value: fmtPct(nationalPct) },
+            { label: 'Municipal', value: fmtPct(municipalPct) },
+            { label: 'Other',     value: fmtPct(otherPct) },
           ]}
           accent="#475569"
           tint="#F1F5F9"
