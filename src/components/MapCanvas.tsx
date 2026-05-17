@@ -11794,6 +11794,13 @@ function isDataLayer(layerId: string): boolean {
     'fstp-building-coverage',    // fstp-building-coverage-circles (legacy, kept for safety)
     'fstp-bldg-band-',           // fstp-bldg-band-* (2D fill) and fstp-bldg-band-3d-* (3D extrusion)
     'tourism-',                  // tourism clusters, sites, assets, hover layers
+    // Standalone base-raster / overlay layers that have NO common prefix —
+    // listed exactly so they are NEVER treated as basemap layers (otherwise
+    // a basemap swap can push the satellite raster ABOVE them).
+    'ndvi',                      // Green Cover (NDVI) raster
+    'elevation',                 // Elevation raster
+    '3d-hillshade',              // 3D hillshade raster
+    'panorama-pins',             // 360° panorama pins
   ];
   
   return ourLayerPatterns.some(pattern => id.startsWith(pattern));
