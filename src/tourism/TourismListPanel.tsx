@@ -114,12 +114,12 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
     const allowedTiers = new Set<string>();
     if (ui.showPremium) allowedTiers.add('Premium');
     if (ui.showQuality) allowedTiers.add('Quality');
-    // Layer fully off → show every hotel/F&B record (still honoring LGU / Brgy / search).
-    const hospitalityLayerOff = allowedTiers.size === 0;
+    // Both Premium & Quality toggles off → show no hospitality assets.
+    if (allowedTiers.size === 0) return [];
 
     const arr = assets.features.filter((f: any) => {
       const p = f.properties;
-      if (!hospitalityLayerOff && !allowedTiers.has(p.asset_tier)) return false;
+      if (!allowedTiers.has(p.asset_tier)) return false;
       if (lgu && p.lgu !== lgu) return false;
       if (brgy && p.brgy !== brgy) return false;
       if (q && !(p.name || '').toLowerCase().includes(q)) return false;
@@ -143,6 +143,8 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
     const q = search.trim().toLowerCase();
     const arr = accommodationsBooking.features.filter((f: any) => {
       const p = f.properties;
+      if (lgu && p.lgu && p.lgu !== lgu) return false;
+      if (brgy && p.brgy && p.brgy !== brgy) return false;
       if (q && !(p.name || '').toLowerCase().includes(q)) return false;
       return true;
     });
@@ -152,7 +154,7 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
       return rb - ra;
     });
     return arr;
-  }, [accommodationsBooking, search]);
+  }, [accommodationsBooking, lgu, brgy, search]);
 
   const clusterList = useMemo(() => {
     if (!clusters) return [];
