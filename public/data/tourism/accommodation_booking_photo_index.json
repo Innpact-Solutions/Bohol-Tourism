@@ -835,5 +835,113 @@
         "file": "rental-unit-in-city-of-tagbilaran-capital-484-1-bedroom-1-be-972944070647031657.png"
       }
     ]
+  },
+  "BK_0093": {
+    "name": "Home in Dauis · ★4.86 · 5 bedrooms · 5 shared bathrooms",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "home-in-dauis-486-5-bedrooms-5-shared-bathrooms-1066409177949634898.jpg"
+      }
+    ]
+  },
+  "BK_0094": {
+    "name": "Airbnb: Holiday Rentals, Cabins, Beach Houses, Unique Homes &amp; Experiences",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "airbnb-holiday-rentals-cabins-beach-houses-unique-homes-amp-1342426387292550848.jpg"
+      }
+    ]
+  },
+  "BK_0095": {
+    "name": "Hotel in Panglao · ★4.88 · 1 bedroom · 1 bed · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "hotel-in-panglao-488-1-bedroom-1-bed-1-private-bathroom-1400446730521759907.jpg"
+      }
+    ]
+  },
+  "BK_0096": {
+    "name": "Home in Dauis · ★4.93 · 1 bedroom · 2 beds · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "home-in-dauis-493-1-bedroom-2-beds-1-private-bathroom-1501073922721384100.jpg"
+      }
+    ]
+  },
+  "BK_0097": {
+    "name": "Apartment in Dauis · 1 bedroom · 1 bed · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "apartment-in-dauis-1-bedroom-1-bed-1-private-bathroom-1535148637125481286.jpg"
+      }
+    ]
+  },
+  "BK_0098": {
+    "name": "Guest house in Panglao · ★4.96 · 1 bedroom · 1 bed · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "guest-house-in-panglao-496-1-bedroom-1-bed-1-private-bathroo-1535429975288438682.jpg"
+      }
+    ]
+  },
+  "BK_0099": {
+    "name": "Rental unit in Dauis · ★5.0 · 1 bedroom · 1 bed · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "rental-unit-in-dauis-50-1-bedroom-1-bed-1-private-bathroom-1652552284795625406.jpg"
+      }
+    ]
+  },
+  "BK_0100": {
+    "name": "Home in City of Tagbilaran (Capital) · ★New · 3 bedrooms · 3 beds · 2.5 private bathrooms",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "home-in-city-of-tagbilaran-capital-new-3-bedrooms-3-beds-25-1686836694288741473.jpg"
+      }
+    ]
+  },
+  "BK_0101": {
+    "name": "Villa in Tawala · ★4.93 · 1 bedroom · 2 beds · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "villa-in-tawala-493-1-bedroom-2-beds-1-private-bathroom-33533024.jpg"
+      }
+    ]
+  },
+  "BK_0102": {
+    "name": "Villa in Panglao · 2 bedrooms · 2 beds · 2 private bathrooms",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "villa-in-panglao-2-bedrooms-2-beds-2-private-bathrooms-40544979.jpg"
+      }
+    ]
+  },
+  "BK_0103": {
+    "name": "Rental unit in City of Tagbilaran (Capital) · ★4.68 · 1 bedroom · 1 bed · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "rental-unit-in-city-of-tagbilaran-capital-468-1-bedroom-1-be-663112318627995310.jpg"
+      }
+    ]
+  },
+  "BK_0104": {
+    "name": "Bed and breakfast in Panglao · ★4.73 · 1 bedroom · 1 bed · 1 private bathroom",
+    "source": "Airbnb",
+    "photos": [
+      {
+        "file": "bed-and-breakfast-in-panglao-473-1-bedroom-1-bed-1-private-b-667867368823398871.jpg"
+      }
+    ]
   }
 }
