@@ -45,7 +45,7 @@ const norm = (v?: string | null): string | null => {
 };
 
 export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanelProps) {
-  const { sites, assets, clusters, getPhotosFor } = useTourismData();
+  const { sites, assets, clusters, getPhotosFor, getAssetPhotosFor } = useTourismData();
   const ui = useTourismUI();
 
   const [collapsed, setCollapsed] = useState(false);
@@ -305,7 +305,14 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
           {tab === 'sites' && (
             <SitesList items={sitesList} getPhotosFor={getPhotosFor} onOpenLightbox={setLb} ui={ui} />
           )}
-          {tab === 'hospitality' && <HospitalityList items={hospitalityList} ui={ui} />}
+          {tab === 'hospitality' && (
+            <HospitalityList
+              items={hospitalityList}
+              getAssetPhotosFor={getAssetPhotosFor}
+              onOpenLightbox={setLb}
+              ui={ui}
+            />
+          )}
           {tab === 'clusters' && <ClustersList items={clusterList} ui={ui} />}
         </div>
       </div>
@@ -426,7 +433,14 @@ function SitesList({
   );
 }
 
-function HospitalityList({ items, ui }: { items: any[]; ui: any }) {
+function HospitalityList({
+  items, getAssetPhotosFor, onOpenLightbox, ui,
+}: {
+  items: any[];
+  getAssetPhotosFor: (uid: string) => string[];
+  onOpenLightbox: (s: { open: boolean; photos: string[]; idx: number; caption: string }) => void;
+  ui: any;
+}) {
   if (items.length === 0) return <EmptyRow label="No hospitality assets match the current filters." />;
   return (
     <div className="flex flex-col">
@@ -439,6 +453,8 @@ function HospitalityList({ items, ui }: { items: any[]; ui: any }) {
         const nRatings =
           p.n_ratings && p.n_ratings !== 'NULL' && Number(p.n_ratings) > 0 ? Number(p.n_ratings) : null;
         const highlighted = ui.highlightedSiteUid === p.uid;
+        const photos = getAssetPhotosFor(p.uid);
+        const hero = photos[0];
 
         return (
           <button
@@ -452,16 +468,29 @@ function HospitalityList({ items, ui }: { items: any[]; ui: any }) {
             }`}
           >
             <div className="absolute left-0 top-2 bottom-2 w-[2px] rounded-r" style={{ background: accent }} />
-            <div
-              className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center ml-1"
-              style={{ background: tierTheme.bg }}
-            >
-              {tier === 'Premium' ? (
-                <Crown className="w-3.5 h-3.5" style={{ color: tierTheme.fg }} />
-              ) : (
-                <Hotel className="w-3.5 h-3.5" style={{ color: tierTheme.fg }} />
-              )}
-            </div>
+            {hero ? (
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onOpenLightbox({ open: true, photos, idx: 0, caption: p.name || '' });
+                }}
+                className="w-10 h-10 shrink-0 bg-center bg-cover rounded ml-1 cursor-zoom-in"
+                style={{ backgroundImage: `url(\"${hero}\")` }}
+              />
+            ) : (
+              <div
+                className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center ml-1"
+                style={{ background: tierTheme.bg }}
+              >
+                {tier === 'Premium' ? (
+                  <Crown className="w-3.5 h-3.5" style={{ color: tierTheme.fg }} />
+                ) : (
+                  <Hotel className="w-3.5 h-3.5" style={{ color: tierTheme.fg }} />
+                )}
+              </div>
+            )}
 
             <div className="flex-1 min-w-0">
               <div className="flex items-start gap-1.5">

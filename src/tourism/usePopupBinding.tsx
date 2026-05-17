@@ -12,7 +12,7 @@ import { TourismClusterPopupContent } from './TourismClusterPopup';
 import { TOURISM_LAYER_IDS } from './TourismLayers';
 
 export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
-  const { sites, assets, clusters, getPhotosFor, getMembershipFor } = useTourismData();
+  const { sites, assets, clusters, getPhotosFor, getAssetPhotosFor, getMembershipFor } = useTourismData();
   const { selectedClusterId } = useTourismUI();
   // Imperative handle filled by the effect below — lets a separate effect
   // close the currently-open popup when the user deselects the cluster from
@@ -181,7 +181,11 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       closeCurrentForSwitch();
       const container = document.createElement('div');
       const root = createRoot(container);
-      const photos = getPhotosFor(props.uid);
+      // Sites use the curated local photo bank; assets (hotels/restaurants)
+      // use the Google Places backfill index. asset_tier identifies assets.
+      const photos = props?.asset_tier
+        ? getAssetPhotosFor(props.uid)
+        : getPhotosFor(props.uid);
       root.render(<TourismPopupContent poi={props} photos={photos} />);
 
       const popup = new maplibregl.Popup({
@@ -377,5 +381,5 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
       currentRoot?.unmount();
       closeCurrentPopupRef.current = null;
     };
-  }, [map, active, sites, assets, clusters, getPhotosFor, getMembershipFor]);
+  }, [map, active, sites, assets, clusters, getPhotosFor, getAssetPhotosFor, getMembershipFor]);
 }

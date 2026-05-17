@@ -4,3 +4,6 @@ build
 dist
 .env
 *.log
+
+# Debug cache from scripts/fetch_asset_photos.mjs — not needed in repo
+public/data/tourism/asset_search_cache.json

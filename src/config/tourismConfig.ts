@@ -10,6 +10,8 @@ export const TOURISM_PATHS = {
   membership: '/data/tourism/cluster_membership.json',
   photoIndex: '/data/tourism/photo_index.json',
   photoBase:  '/data/tourism/photos',
+  assetPhotoIndex: '/data/tourism/asset_photo_index.json',
+  assetPhotoBase:  '/data/tourism/asset_photos',
 } as const;
 
 // Initial map view tuned for the 3-LGU tourism study area

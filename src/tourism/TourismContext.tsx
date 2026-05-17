@@ -10,21 +10,23 @@ interface TourismData {
   assets:     AssetFC | null;
   membership: ClusterMembership[] | null;
   photoIndex: PhotoIndex | null;
+  assetPhotoIndex: PhotoIndex | null;
 }
 
 interface TourismContextValue extends TourismData {
   loading: boolean;
   error:   string | null;
   // Helpers
-  getPhotosFor:    (uid: string | undefined) => string[];        // returns relative URLs
-  getMembershipFor:(cluster_id: number) => ClusterMembership | undefined;
+  getPhotosFor:      (uid: string | undefined) => string[];       // site photos (local)
+  getAssetPhotosFor: (uid: string | undefined) => string[];       // hotel/asset photos (Google Places, local)
+  getMembershipFor:  (cluster_id: number) => ClusterMembership | undefined;
 }
 
 const TourismContext = createContext<TourismContextValue | null>(null);
 
 export function TourismProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<TourismData>({
-    clusters: null, sites: null, assets: null, membership: null, photoIndex: null,
+    clusters: null, sites: null, assets: null, membership: null, photoIndex: null, assetPhotoIndex: null,
   });
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState<string | null>(null);
@@ -33,12 +35,15 @@ export function TourismProvider({ children }: { children: ReactNode }) {
     let cancelled = false;
     async function load() {
       try {
-        const [clusters, sites, assets, membership, photoIndex] = await Promise.all([
+        const [clusters, sites, assets, membership, photoIndex, assetPhotoIndex] = await Promise.all([
           fetch(TOURISM_PATHS.clusters).then(r => r.ok ? r.json() : Promise.reject(r.status)),
           fetch(TOURISM_PATHS.sites).then(r => r.ok ? r.json() : Promise.reject(r.status)),
           fetch(TOURISM_PATHS.assets).then(r => r.ok ? r.json() : Promise.reject(r.status)),
           fetch(TOURISM_PATHS.membership).then(r => r.ok ? r.json() : Promise.reject(r.status)),
           fetch(TOURISM_PATHS.photoIndex).then(r => r.ok ? r.json() : Promise.reject(r.status)),
+          // Asset photo index is optional — empty object if file missing so the
+          // app still loads in older builds before the backfill ran.
+          fetch(TOURISM_PATHS.assetPhotoIndex).then(r => r.ok ? r.json() : {}).catch(() => ({})),
         ]);
         if (cancelled) return;
         // Restrict tourism sites to the 66 ranked attractions (Anchor / Secondary / Supportive).
@@ -48,7 +53,7 @@ export function TourismProvider({ children }: { children: ReactNode }) {
         const filteredSites = sites && Array.isArray(sites.features)
           ? { ...sites, features: sites.features.filter((f: any) => RANKED_TIERS.has(f?.properties?.perf_tier)) }
           : sites;
-        setData({ clusters, sites: filteredSites, assets, membership, photoIndex });
+        setData({ clusters, sites: filteredSites, assets, membership, photoIndex, assetPhotoIndex });
         setLoading(false);
       } catch (err) {
         if (cancelled) return;
@@ -67,12 +72,19 @@ export function TourismProvider({ children }: { children: ReactNode }) {
     return entry.photos.map(p => `${TOURISM_PATHS.photoBase}/${p.file}`);
   };
 
+  const getAssetPhotosFor = (uid: string | undefined): string[] => {
+    if (!uid || !data.assetPhotoIndex) return [];
+    const entry = data.assetPhotoIndex[uid];
+    if (!entry || !entry.photos) return [];
+    return entry.photos.map(p => `${TOURISM_PATHS.assetPhotoBase}/${p.file}`);
+  };
+
   const getMembershipFor = (id: number): ClusterMembership | undefined => {
     return data.membership?.find(m => m.cluster_id === id);
   };
 
   const value: TourismContextValue = {
-    ...data, loading, error, getPhotosFor, getMembershipFor,
+    ...data, loading, error, getPhotosFor, getAssetPhotosFor, getMembershipFor,
   };
   return <TourismContext.Provider value={value}>{children}</TourismContext.Provider>;
 }
