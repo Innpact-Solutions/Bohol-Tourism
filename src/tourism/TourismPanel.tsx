@@ -97,6 +97,59 @@ export function TourismPanel({
   // list only expands when the user explicitly clicks a tier header.
   const suppressTierAutoExpand = useRef(false);
 
+  // Set to true by the left-panel → activeSection sync effect below so the
+  // existing activeSection effect (which would otherwise enable every
+  // sublayer in the new section) skips its enable-all step for that single
+  // run. This lets the user turn ON a single sublayer in the left panel
+  // and have the directory tab follow, without the side effect of also
+  // turning on its sibling sublayers.
+  const skipEnableAllOnNextSectionSync = useRef(false);
+
+  // Watch the per-section show* flags. When a sublayer in a section flips
+  // off→on, mirror that to ui.activeSection so the right-side Tourism
+  // Directory auto-switches to the matching tab. This is the reverse of
+  // the directory→left-panel sync above.
+  const prevShowFlagsRef = useRef({
+    sites:       { anchor: ui.showAnchor, secondary: ui.showSecondary, supportive: ui.showSupportive },
+    hospitality: { premium: ui.showPremium, quality: ui.showQuality, booking: ui.showBookingAccommodations },
+    clusters:    { primary: ui.showClusterPrimary, emerging: ui.showClusterEmerging, satellite: ui.showClusterSatellite },
+  });
+  useEffect(() => {
+    const prev = prevShowFlagsRef.current;
+    const sitesUp =
+      (ui.showAnchor && !prev.sites.anchor) ||
+      (ui.showSecondary && !prev.sites.secondary) ||
+      (ui.showSupportive && !prev.sites.supportive);
+    const hospitalityUp =
+      (ui.showPremium && !prev.hospitality.premium) ||
+      (ui.showQuality && !prev.hospitality.quality) ||
+      (ui.showBookingAccommodations && !prev.hospitality.booking);
+    const clustersUp =
+      (ui.showClusterPrimary && !prev.clusters.primary) ||
+      (ui.showClusterEmerging && !prev.clusters.emerging) ||
+      (ui.showClusterSatellite && !prev.clusters.satellite);
+    // Prefer the section the user most likely just interacted with. Only one
+    // sublayer toggles per click, so at most one of these will be true.
+    let target: 'sites' | 'hospitality' | 'clusters' | null = null;
+    if (sitesUp) target = 'sites';
+    else if (hospitalityUp) target = 'hospitality';
+    else if (clustersUp) target = 'clusters';
+    if (target && target !== ui.activeSection) {
+      skipEnableAllOnNextSectionSync.current = true;
+      ui.setActiveSection(target);
+    }
+    prevShowFlagsRef.current = {
+      sites:       { anchor: ui.showAnchor, secondary: ui.showSecondary, supportive: ui.showSupportive },
+      hospitality: { premium: ui.showPremium, quality: ui.showQuality, booking: ui.showBookingAccommodations },
+      clusters:    { primary: ui.showClusterPrimary, emerging: ui.showClusterEmerging, satellite: ui.showClusterSatellite },
+    };
+  }, [
+    ui.showAnchor, ui.showSecondary, ui.showSupportive,
+    ui.showPremium, ui.showQuality, ui.showBookingAccommodations,
+    ui.showClusterPrimary, ui.showClusterEmerging, ui.showClusterSatellite,
+    ui.activeSection,
+  ]);
+
   useEffect(() => {
     if (suppressTierAutoExpand.current) {
       suppressTierAutoExpand.current = false;
@@ -147,6 +200,14 @@ export function TourismPanel({
     // defaults (Anchor + Secondary on, everything else off) are preserved.
     if (!didInitSectionSync.current) {
       didInitSectionSync.current = true;
+      return;
+    }
+    // When activeSection changed because the user just toggled a single
+    // sublayer ON in the left panel, do NOT also enable the other sublayers
+    // in that section — only mirror the tab. The flag is set by the reverse
+    // sync effect above.
+    if (skipEnableAllOnNextSectionSync.current) {
+      skipEnableAllOnNextSectionSync.current = false;
       return;
     }
     if (section === 'sites') {
