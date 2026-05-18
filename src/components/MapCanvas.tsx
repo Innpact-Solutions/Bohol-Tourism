@@ -1390,20 +1390,20 @@ export function MapCanvas({
 
       console.log('   Study area: Tagbilaran City, Dauis, Panglao barangays');
       
-      // Wait 2 seconds to show full Philippines country before animating to study area
-      console.log('⏸️ Showing full Philippines country view for 2 seconds before zooming to study area...');
+      // Brief pause to show full Philippines country before animating to study area
+      console.log('⏸️ Showing full Philippines country view briefly before zooming to study area...');
       setTimeout(() => {
         // Fit map to actual barangay boundary extent with smooth animation
         console.log('🔒 ANIMATING MAP TO BARANGAY EXTENT (Tagbilaran City, Dauis, Panglao)');
         map.fitBounds(barangayBounds, {
           padding: 80,  // 80px padding around bounds
-          duration: 3500,  // 3.5 second smooth, slower animation from Philippines to study area
+          duration: 1800,  // smooth animation from Philippines to study area
           maxZoom: 14,   // Prevent excessive zoom-in on small areas
           easing: (t) => t * (2 - t) // Ease out quad for smooth deceleration
         });
         console.log('📍 Map animating to Barangay_Boundary extent - SMOOTH ZOOM');
         
-        // Clear initial loading state after animation completes (2s delay + 3.5s animation = 5.5s total)
+        // Clear initial loading state after animation completes (~0.8s delay + 1.8s animation)
         setTimeout(() => {
           console.log('✅ Initial map animation complete - layers will continue loading');
           setInitialAnimationComplete(true);
@@ -1414,8 +1414,8 @@ export function MapCanvas({
           } catch {
             /* ignore */
           }
-        }, 3600); // Slightly longer than animation duration to ensure completion
-      }, 2000); // 2 second delay to show full Philippines country view
+        }, 1900); // Slightly longer than animation duration to ensure completion
+      }, 800); // brief delay to show full Philippines country view
       
       // Store bounds in map instance for later use (reset functions, etc.)
       (map as any)._barangayBounds = barangayBounds;
