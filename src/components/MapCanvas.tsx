@@ -2752,6 +2752,13 @@ export function MapCanvas({
         }
       });
 
+      // Force an immediate canvas repaint so removed raster overlays (NDVI / Green
+      // Cover, elevation, built-up, etc.) disappear in the next frame instead of
+      // lingering on screen while the rest of this async function awaits.
+      if (layersToRemove.length > 0 || layersToHide.length > 0) {
+        map.triggerRepaint();
+      }
+
       // Add active base layers (only if they don't already exist)
       // Include 'buildings' if any building categories are selected
       const layersToAdd = [...activeBaseLayers];
