@@ -430,11 +430,19 @@ export function TourismPanel({
             {groups.map((group) => {
               const expanded = openGroup[group.id];
               const activeCount = group.sublayers.filter(s => s.active).length;
-              const groupTotal = group.sublayers.reduce((a, s) => a + (s.count || 0), 0);
-              const groupBreakdown = group.sublayers.map(s => ({
-                label: s.label,
-                count: s.count || 0,
-              }));
+              // Header total + breakdown reflect only the sublayers that are
+              // currently toggled ON — turning Premium / Quality / Tourist
+              // Homes off should immediately update the Stays & Dining count.
+              const groupTotal = group.sublayers.reduce(
+                (a, s) => a + (s.active ? (s.count || 0) : 0),
+                0,
+              );
+              const groupBreakdown = group.sublayers
+                .filter(s => s.active)
+                .map(s => ({
+                  label: s.label,
+                  count: s.count || 0,
+                }));
 
               return (
                 <div
