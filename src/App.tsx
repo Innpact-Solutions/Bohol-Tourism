@@ -105,6 +105,21 @@ function AppContent({
   // Check if hazard data is still loading (but don't block UI)
   const { isLoading: hazardDataLoading, isInitialLoad, refreshData } = useHazardData();
   const tourismUI = useTourismUI();
+
+  // Tracks the initial Philippines→study-area fly-in completion so tourism
+  // overlays stay hidden during the wide view and only appear once the map
+  // settles on Tagbilaran / Dauis / Panglao.
+  const [mapAnimationComplete, setMapAnimationComplete] = useState(false);
+  useEffect(() => {
+    const onAnimationDone = () => setMapAnimationComplete(true);
+    window.addEventListener('bohol-map:initial-animation-complete', onAnimationDone);
+    // Safety net so tourism layers still appear if the map event never fires.
+    const fallback = setTimeout(onAnimationDone, 8000);
+    return () => {
+      window.removeEventListener('bohol-map:initial-animation-complete', onAnimationDone);
+      clearTimeout(fallback);
+    };
+  }, []);
   
   console.log('🏢 Tutorial building popup prop received:', tutorialBuildingPopup);
 
@@ -1179,7 +1194,7 @@ function AppContent({
           </FloatingLegendPanel>
         <TourismLayers
           map={mapInstance}
-          visible={true}
+          visible={mapAnimationComplete}
           showAnchor={tourismUI.showAnchor}
           showSecondary={tourismUI.showSecondary}
           showSupportive={tourismUI.showSupportive}
@@ -1463,15 +1478,28 @@ export default function App() {
   const [compareRightLayer, setCompareRightLayer] = useState<string>('flood_hazard');
   const [compareRightScenario, setCompareRightScenario] = useState<Scenario>('baseline_2025');
 
-  // Welcome guide — auto-opens on first visit (gated by localStorage flag set
-  // inside the guide on finish/skip), and is replayable via the header button.
+  // Welcome guide — auto-opens after the initial Philippines→study-area
+  // fly-in completes (plus a small breather), and is replayable via the
+  // header button. Tile/layer loading continues in the background while the
+  // guide overlay is shown.
   const [showWelcomeGuide, setShowWelcomeGuide] = useState(false);
   useEffect(() => {
-    if (shouldAutoStartGuide()) {
-      // Delay so the map + initial style load settle before the overlay mounts.
-      const t = setTimeout(() => setShowWelcomeGuide(true), 1200);
-      return () => clearTimeout(t);
-    }
+    if (!shouldAutoStartGuide()) return;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    let fallbackId: ReturnType<typeof setTimeout> | null = null;
+    const onAnimationDone = () => {
+      if (timeoutId !== null) return;
+      timeoutId = setTimeout(() => setShowWelcomeGuide(true), 400);
+    };
+    window.addEventListener('bohol-map:initial-animation-complete', onAnimationDone);
+    // Safety net: even if the map never fires the event (e.g. style-load
+    // failure), still surface the guide after a generous fallback delay.
+    fallbackId = setTimeout(onAnimationDone, 8000);
+    return () => {
+      window.removeEventListener('bohol-map:initial-animation-complete', onAnimationDone);
+      if (timeoutId !== null) clearTimeout(timeoutId);
+      if (fallbackId !== null) clearTimeout(fallbackId);
+    };
   }, []);
   useEffect(() => {
     const handler = () => setShowWelcomeGuide(true);

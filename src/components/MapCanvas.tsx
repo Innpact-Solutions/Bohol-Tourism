@@ -856,6 +856,11 @@ export function MapCanvas({
   const [isLoadingLayers, setIsLoadingLayers] = useState(true); // Track all layers loading from start
   const [initialLoadComplete, setInitialLoadComplete] = useState(false); // Track if initial loading phase is done
   const [buildingsInitialLoadDone, setBuildingsInitialLoadDone] = useState(false); // Track if buildings completed initial load
+  // True once the Philippines→study-area fly-in animation has finished.
+  // We hide the loading widget during this animation so users see the smooth
+  // zoom uninterrupted, then surface the loader for the default visible
+  // layers once the map has settled on the study extent.
+  const [initialAnimationComplete, setInitialAnimationComplete] = useState(false);
   const module3LoadingCountRef = useRef(0); // counts concurrent Module 3 fetch ops (service area + building IDs)
 
   // Cycling messages for Module 1 (sewer scenario) loader overlay
@@ -1401,6 +1406,14 @@ export function MapCanvas({
         // Clear initial loading state after animation completes (2s delay + 3.5s animation = 5.5s total)
         setTimeout(() => {
           console.log('✅ Initial map animation complete - layers will continue loading');
+          setInitialAnimationComplete(true);
+          // Notify the rest of the app (e.g. WelcomeGuide auto-start) that
+          // the Philippines→study-area fly-in has settled.
+          try {
+            window.dispatchEvent(new CustomEvent('bohol-map:initial-animation-complete'));
+          } catch {
+            /* ignore */
+          }
         }, 3600); // Slightly longer than animation duration to ensure completion
       }, 2000); // 2 second delay to show full Philippines country view
       
@@ -10828,8 +10841,10 @@ export function MapCanvas({
            Displayed for: initial boot, layer switches, buildings load,
            scenario builder.  Always blocks interaction so users cannot
            queue up more layer changes mid-load.
+           Suppressed during the initial Philippines→study-area fly-in
+           animation so users see that zoom uninterrupted.
           ───────────────────────────────────────────────────────────── */}
-      {(isLoadingLayers || isBuildingsLoading || isLayerLoading || isScenarioRunning) && (
+      {initialAnimationComplete && (isLoadingLayers || isBuildingsLoading || isLayerLoading || isScenarioRunning) && (
         <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-auto cursor-wait bg-black/20 backdrop-blur-[1.5px]">
           <div className="bg-white/85 backdrop-blur-sm rounded-xl shadow-md px-3 py-2 flex items-center gap-2">
             <div className="relative w-4 h-4 flex-shrink-0">
