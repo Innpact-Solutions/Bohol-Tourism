@@ -195,26 +195,32 @@ export function TourismListPanel({ selectedLgu, selectedBrgy }: TourismListPanel
   }, [clusters, lgu, search,
       ui.showClusterPrimary, ui.showClusterEmerging, ui.showClusterSatellite]);
 
-  // Stays & Dining count: always show the true total of hospitality assets
-  // (Premium + Quality) plus Tourist Homes, regardless of which sub-toggles
-  // are active in the layers panel. LGU/Barangay/search filters still apply
-  // so the tab badge stays consistent with the rest of the directory.
+  // Stays & Dining count: reflect ONLY the sub-toggles that are currently
+  // active in the left-side layers panel (Premium / Quality / Tourist
+  // Homes). Turning a sub-layer off should immediately drop the tab badge.
+  // LGU/Barangay/search filters still apply.
   const hospitalityFullCount = useMemo(() => {
     const q = search.trim().toLowerCase();
     let total = 0;
-    if (assets) {
+    if (assets && (ui.showPremium || ui.showQuality)) {
       for (const f of assets.features as any[]) {
         const p = f.properties;
-        if (p.asset_tier !== 'Premium' && p.asset_tier !== 'Quality') continue;
+        const tierOn =
+          (p.asset_tier === 'Premium' && ui.showPremium) ||
+          (p.asset_tier === 'Quality' && ui.showQuality);
+        if (!tierOn) continue;
         if (lgu && p.lgu !== lgu) continue;
         if (brgy && p.brgy !== brgy) continue;
         if (q && !(p.name || '').toLowerCase().includes(q)) continue;
         total++;
       }
     }
-    total += bookingList.length;
+    if (ui.showBookingAccommodations) {
+      total += bookingList.length;
+    }
     return total;
-  }, [assets, bookingList, lgu, brgy, search]);
+  }, [assets, bookingList, lgu, brgy, search,
+      ui.showPremium, ui.showQuality, ui.showBookingAccommodations]);
 
   const counts: Record<TabId, number> = {
     sites: sitesList.length,
