@@ -1,7 +1,7 @@
 {
   "name": "giz-climate-dashboard",
   "version": "1.0.0",
-  "description": "Multi-Hazard Climate Screening & Mobility Exposure Dashboard for GIZ",
+  "description": "Bohol Tourism Potential & Development Insights Dashboard",
   "dependencies": {
     "maplibre-gl": "5.15.0"
   },

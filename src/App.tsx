@@ -308,7 +308,7 @@ function AppContent({
   // Set document title
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.title = 'Multi-Hazard Climate Screening & Mobility Exposure Dashboard';
+      document.title = 'Bohol Tourism Potential & Development Insights Dashboard';
     }
   }, []);
 
