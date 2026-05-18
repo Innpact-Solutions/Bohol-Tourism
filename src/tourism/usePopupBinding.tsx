@@ -219,6 +219,11 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
     const showClusterPopup = (clusterProps: any, lngLat: [number, number]) => {
       const cid: number = clusterProps?.cluster_id;
       if (cid == null) return;
+      // Snapshot the current camera so closing the popup (× / Esc) animates
+      // the view back. Pre-existing fly-to-cluster events already capture
+      // their own snapshot before flying; captureView() is a no-op when a
+      // snapshot is already pending.
+      captureView();
       const mem = getMembershipFor(cid);
 
       // Photos: collect across anchor + secondary + supportive sites of the
