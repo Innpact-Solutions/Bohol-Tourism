@@ -1397,13 +1397,13 @@ export function MapCanvas({
         console.log('🔒 ANIMATING MAP TO BARANGAY EXTENT (Tagbilaran City, Dauis, Panglao)');
         map.fitBounds(barangayBounds, {
           padding: 80,  // 80px padding around bounds
-          duration: 1800,  // smooth animation from Philippines to study area
+          duration: 1100,  // smooth animation from Philippines to study area
           maxZoom: 14,   // Prevent excessive zoom-in on small areas
           easing: (t) => t * (2 - t) // Ease out quad for smooth deceleration
         });
         console.log('📍 Map animating to Barangay_Boundary extent - SMOOTH ZOOM');
         
-        // Clear initial loading state after animation completes (~0.8s delay + 1.8s animation)
+        // Clear initial loading state after animation completes (~0.4s delay + 1.1s animation = 1.5s total)
         setTimeout(() => {
           console.log('✅ Initial map animation complete - layers will continue loading');
           setInitialAnimationComplete(true);
@@ -1414,8 +1414,8 @@ export function MapCanvas({
           } catch {
             /* ignore */
           }
-        }, 1900); // Slightly longer than animation duration to ensure completion
-      }, 800); // brief delay to show full Philippines country view
+        }, 1200); // Slightly longer than animation duration to ensure completion
+      }, 400); // brief delay to show full Philippines country view
       
       // Store bounds in map instance for later use (reset functions, etc.)
       (map as any)._barangayBounds = barangayBounds;

@@ -1489,7 +1489,7 @@ export default function App() {
     let fallbackId: ReturnType<typeof setTimeout> | null = null;
     const onAnimationDone = () => {
       if (timeoutId !== null) return;
-      timeoutId = setTimeout(() => setShowWelcomeGuide(true), 400);
+      timeoutId = setTimeout(() => setShowWelcomeGuide(true), 500);
     };
     window.addEventListener('bohol-map:initial-animation-complete', onAnimationDone);
     // Safety net: even if the map never fires the event (e.g. style-load
