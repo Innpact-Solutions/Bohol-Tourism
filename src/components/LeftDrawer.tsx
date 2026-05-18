@@ -462,7 +462,33 @@ export function LeftDrawer({
     irap_bicycle: 0,
     irap_pedestrian: 0,
   });
-  
+
+  // Guide-driven panel reset: on finish/skip, return every section in this
+  // drawer to its initial expansion state so the dashboard looks like a
+  // fresh load.
+  useEffect(() => {
+    const onReset = () => {
+      setEnvironmentalExpanded(true);
+      setGwInfiltrationExpanded(false);
+      setFloodHazardExpanded(false);
+      setHeatStressExpanded(false);
+      setInfraExpanded(true);
+      setRoadSafetyExpanded(false);
+      setScenarioExpanded(false);
+      setDataLayersExpanded(true);
+      setClimateHazardsExpanded(true);
+      setBaseLayersExpanded(false);
+      setBuildingUseExpanded(true);
+      setBuildingUseLayerExpanded(true);
+      setBuildingHeightLayerExpanded(false);
+      setBuildingAreaLayerExpanded(false);
+      setRoadNetworkLegendExpanded(false);
+      setExpandedBuildingCategories([]);
+    };
+    window.addEventListener('bohol-guide:reset-panels', onReset);
+    return () => window.removeEventListener('bohol-guide:reset-panels', onReset);
+  }, []);
+
   // Fetch live use_sub counts from GeoServer WFS whenever admin filter changes
   useEffect(() => {
     const ALL_SUBS = [

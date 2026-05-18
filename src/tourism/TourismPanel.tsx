@@ -117,6 +117,21 @@ export function TourismPanel({
     return () => window.removeEventListener('bohol-guide:expand-group', onExpand as any);
   }, []);
 
+  // Guide-driven panel reset: on finish/skip, return the left-panel tourism
+  // section to its initial expansion state.
+  useEffect(() => {
+    const onReset = () => {
+      setSectionExpanded(true);
+      setOpenGroup({ sites: true, hospitality: false, clusters: false });
+      setOpenTier({
+        anchor: false, secondary: false, supportive: false,
+        'cluster-primary': true, 'cluster-emerging': true, 'cluster-satellite': true,
+      });
+    };
+    window.addEventListener('bohol-guide:reset-panels', onReset);
+    return () => window.removeEventListener('bohol-guide:reset-panels', onReset);
+  }, []);
+
   // Sync left-panel group expansion with the Tourism Directory tab.
   // When the user switches between Sites / Hotels / Clusters tabs, the
   // matching left-panel section expands and its sub-layers turn on. Other

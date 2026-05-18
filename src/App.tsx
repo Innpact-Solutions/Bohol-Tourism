@@ -11,7 +11,7 @@ import { AlertsPanel } from './components/AlertsPanel';
 import { InfoModal } from './components/InfoModal';
 import { ComparisonView } from './components/ComparisonView';
 import { TutorialOverlay } from './components/TutorialOverlay';
-import { WelcomeGuide } from './components/WelcomeGuide';
+import { WelcomeGuide, shouldAutoStartGuide } from './components/WelcomeGuide';
 import { Toaster } from './components/ui/sonner';
 import { fetchUniqueHealthcareCategories } from './utils/healthcareData';
 import { getLayerNameForScenario } from './config/geoserverLayers';
@@ -494,13 +494,16 @@ function AppContent({
   const resetToDefaultState = () => {
     console.log('🔄 [APP] Resetting application to default state');
     
-    // Reset sector and layers
+    // Reset sector and layers — clear every active hazard/environment layer
+    // so the dashboard returns to its initial "no thematic overlay" view.
     setActiveSector('heat');
     setActiveLayerPerSector({
-      heat: 'heat_hhi',
-      air: 'air_aqi',
-      flood: 'flood_fhi',
-      multihazard: 'multihazard_assessment'
+      heat: '',
+      air: '',
+      flood: '',
+      base_layers: '',
+      climate_hazard: '',
+      env_vulnerability: ''
     });
     
     // Reset scenario and basemap
@@ -1460,9 +1463,16 @@ export default function App() {
   const [compareRightLayer, setCompareRightLayer] = useState<string>('flood_hazard');
   const [compareRightScenario, setCompareRightScenario] = useState<Scenario>('baseline_2025');
 
-  // Welcome guide — opened on demand via the header button (window event).
-  // Auto-start is disabled to avoid racing with the map's style-loading sequence.
+  // Welcome guide — auto-opens on first visit (gated by localStorage flag set
+  // inside the guide on finish/skip), and is replayable via the header button.
   const [showWelcomeGuide, setShowWelcomeGuide] = useState(false);
+  useEffect(() => {
+    if (shouldAutoStartGuide()) {
+      // Delay so the map + initial style load settle before the overlay mounts.
+      const t = setTimeout(() => setShowWelcomeGuide(true), 1200);
+      return () => clearTimeout(t);
+    }
+  }, []);
   useEffect(() => {
     const handler = () => setShowWelcomeGuide(true);
     window.addEventListener('bohol-guide:open', handler);
@@ -1600,7 +1610,11 @@ export default function App() {
       {/* First-load onboarding tour */}
       <WelcomeGuide
         open={showWelcomeGuide}
-        onClose={() => setShowWelcomeGuide(false)}
+        onClose={() => {
+          setShowWelcomeGuide(false);
+          // After finish/skip, return the dashboard to its default starting view.
+          resetToDefaultState();
+        }}
       />
         </TourismUIProvider>
       </TourismProvider>

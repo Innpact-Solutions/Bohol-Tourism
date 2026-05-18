@@ -434,11 +434,17 @@ function GuideTour({ onClose }: { onClose: () => void }) {
         setClusterMultiSelect: ui.setClusterMultiSelect,
       });
     }
-    if (step.scrollIntoView && step.target) {
-      // Defer to let any state-driven re-render finish before scrolling.
+    if (step.target) {
+      // Always bring the target into view — both the left drawer and right
+      // panel are independently scrollable, and steps near the bottom of
+      // either panel (e.g. Climate Hazards) would otherwise sit below the
+      // fold. `block: 'center'` works against the nearest scrollable
+      // ancestor, so each panel scrolls itself without moving the page.
+      // Defer so any state-driven re-render (group expansion, etc.) finishes
+      // before we measure & scroll.
       setTimeout(() => {
         const el = document.querySelector(step.target!) as HTMLElement | null;
-        el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
       }, 80);
     }
   }, [stepIndex, step, ui]);
@@ -458,9 +464,9 @@ function GuideTour({ onClose }: { onClose: () => void }) {
       const cs = window.getComputedStyle(el);
       setBorderRadius(cs.borderRadius || '10px');
     };
-    // Slightly longer delay so cluster-select fly + render settles.
-    const t = setTimeout(measure, step.scrollIntoView ? 260 : 80);
-    const t2 = setTimeout(measure, step.scrollIntoView ? 700 : 300);
+    // Slightly longer delay so cluster-select fly + render + scroll settles.
+    const t = setTimeout(measure, step.target ? 260 : 80);
+    const t2 = setTimeout(measure, step.target ? 700 : 300);
     window.addEventListener('resize', measure);
     window.addEventListener('scroll', measure, true);
     return () => {
@@ -482,6 +488,10 @@ function GuideTour({ onClose }: { onClose: () => void }) {
     }
     clearHazards();
     ui.setSelectedClusterId(null);
+    ui.setClusterMultiSelect([]);
+    // Ask the left drawer and tourism panel to collapse back to their initial
+    // expansion / selection state.
+    window.dispatchEvent(new CustomEvent('bohol-guide:reset-panels'));
     onClose();
   };
 
@@ -602,9 +612,9 @@ function GuideTour({ onClose }: { onClose: () => void }) {
 }
 
 /**
- * Auto-opens on every load so the latest guide is always surfaced. The
- * `STORAGE_KEY` flag is still written on finish/skip to support future
- * once-only behaviour if we ever want to opt back in.
+ * Auto-opens on every load and on every browser refresh, so the latest guide
+ * is always surfaced. The `STORAGE_KEY` flag is still written on finish/skip
+ * to support future once-only behaviour if we ever want to opt back in.
  */
 export function shouldAutoStartGuide(): boolean {
   return true;
