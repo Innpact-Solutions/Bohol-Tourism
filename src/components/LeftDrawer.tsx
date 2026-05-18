@@ -2160,7 +2160,7 @@ export function LeftDrawer({
                               <div className="flex items-center gap-2">
                                 <AlertTriangle className={`w-3.5 h-3.5 flex-shrink-0 ${isActive ? 'text-white' : 'text-[#F59E0B]'}`} />
                                 <div>
-                                  <div className={`text-[11px] font-medium ${isActive ? 'text-white' : 'text-[#475569]'}`}>Sink Hole</div>
+                                  <div className={`text-[11px] font-medium ${isActive ? 'text-white' : 'text-[#475569]'}`}>Sinkhole</div>
                                   <div className={`text-[9px] leading-tight ${isActive ? 'text-white/85' : 'text-[#64748B]'}`}>Risk Level</div>
                                 </div>
                               </div>
