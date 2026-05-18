@@ -270,6 +270,12 @@ export function useTourismPopups(map: maplibregl.Map | null, active: boolean) {
         .setDOMContent(container)
         .addTo(map);
 
+      // Activate this cluster in the right-side analytics panel.
+      // Restrict the multi-select to just this cluster so any filtered
+      // visuals (charts/tables) focus on the clicked cluster only.
+      setSelectedClusterId(cid);
+      setClusterMultiSelect([cid]);
+
       popup.on('close', () => {
         root.unmount();
         restoreView();
