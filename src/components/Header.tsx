@@ -2,7 +2,7 @@ import React from 'react';
 import worldBankLogo from 'figma:asset/28a68ce6f762781887d81ef25d37ca6723765991.png';
 import boholLogo from 'figma:asset/675d206072795155b568af95dfafe18a05d798b5.png';
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { Building2, MapPin, ChevronDown, Search, X, Layers } from 'lucide-react';
+import { Building2, MapPin, ChevronDown, Search, X, Layers, HelpCircle } from 'lucide-react';
 import { useTourismData } from '../tourism/TourismContext';
 import { useTourismUI } from '../tourism/tourismStore';
 
@@ -345,7 +345,7 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3" data-guide="area-filters">
 
         {/* LGU (Local Government Unit) Filter Dropdown Widget */}
         <div className="flex items-center gap-1">
@@ -729,6 +729,16 @@ export function Header({ onReset, onQueryToggle, isQueryActive, onCompareToggle,
             </button>
           )}
         </div>
+
+        {/* Guide button — opens the onboarding tour */}
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent('bohol-guide:open'))}
+          className="h-8 px-2.5 flex items-center gap-1.5 rounded-lg bg-white border border-[#E2E8F0] text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
+          title="Open dashboard guide"
+        >
+          <HelpCircle className="w-3.5 h-3.5 text-[#2563EB]" strokeWidth={2.25} />
+          <span className="text-xs font-medium">Guide</span>
+        </button>
 
         {/* Exit Comparison Button - Only in comparison mode */}
         {isComparisonMode && onExitComparison && (

@@ -104,6 +104,19 @@ export function TourismPanel({
     }
   }, [ui.showAnchor, ui.showSecondary, ui.showSupportive]);
 
+  // Guide-driven imperative expansion: allow the WelcomeGuide to expand a
+  // specific group (sites / hospitality / clusters) while it highlights it.
+  useEffect(() => {
+    const onExpand = (e: any) => {
+      const id = e?.detail?.id;
+      if (id !== 'sites' && id !== 'hospitality' && id !== 'clusters') return;
+      setSectionExpanded(true);
+      setOpenGroup(prev => ({ ...prev, [id]: true }));
+    };
+    window.addEventListener('bohol-guide:expand-group', onExpand as any);
+    return () => window.removeEventListener('bohol-guide:expand-group', onExpand as any);
+  }, []);
+
   // Sync left-panel group expansion with the Tourism Directory tab.
   // When the user switches between Sites / Hotels / Clusters tabs, the
   // matching left-panel section expands and its sub-layers turn on. Other
@@ -411,6 +424,7 @@ export function TourismPanel({
               return (
                 <div
                   key={group.id}
+                  data-guide-group={group.id}
                   className="border-t border-[#E2E8F0]"
                 >
                   <GroupHeader

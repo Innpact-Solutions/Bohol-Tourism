@@ -839,7 +839,7 @@ function ClusterDetailSection() {
       </div>
 
       {/* KPI grid — Land Area · Tourism Sites · Road Length · Stay & Dining */}
-      <div className="grid grid-cols-2 gap-2 mb-2">
+      <div data-guide="ca-header" className="grid grid-cols-2 gap-2 mb-2">
         <StatCard
           icon={Mountain}
           label="Land Area"
@@ -891,7 +891,7 @@ function ClusterDetailSection() {
 
       {/* --- Layer 2: Site Distribution mini bar chart --- */}
       {memberSiteDist.length > 0 && (
-        <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2.5 pb-2 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+        <div data-guide="ca-distribution" className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2.5 pb-2 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
           <div className="flex items-baseline justify-between mb-1.5">
             <div className="text-[12px] font-semibold text-[#0F172A]">Site Distribution</div>
             <div className="text-[10px] text-[#94A3B8] tabular-nums">{memberSiteTotal} sites</div>
@@ -933,7 +933,7 @@ function ClusterDetailSection() {
 
       {/* --- Layer 3: Stay & Dining detail (Premium/Quality H/R/C + Tourist Home) --- */}
       {stayBreakdown && (
-        <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+        <div data-guide="ca-stays" className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
           <div className="text-[12px] font-semibold text-[#0F172A] mb-2">Stay &amp; Dining Breakdown</div>
           <div className="space-y-1.5">
             <StayTierRow label="Premium Stays & Dining"             accent={ASSET_TIER_TOKENS.Premium.accent}     total={nPrem} counts={stayBreakdown.premium} />
@@ -948,7 +948,7 @@ function ClusterDetailSection() {
       )}
 
       {/* --- Layer 4: Hazard exposure (unchanged) --- */}
-      <div className="rounded-md bg-white border border-[#E2E8F0] overflow-hidden mb-2">
+      <div data-guide="ca-hazards" className="rounded-md bg-white border border-[#E2E8F0] overflow-hidden mb-2">
         <ClusterHazardExposure clusterId={p.cluster_id} tierColor={tierColor} />
       </div>
 
@@ -972,7 +972,7 @@ function ClusterDetailSection() {
       )}
 
       {/* --- Layer 5: Connectivity (from lead anchor) --- */}
-      <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+      <div data-guide="ca-connectivity" className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2 pb-2.5 mb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
         <div className="flex items-baseline justify-between mb-2">
           <div className="text-[12px] font-semibold text-[#0F172A]">Connectivity</div>
           <div className="text-[9.5px] text-[#94A3B8] tracking-wide truncate ml-2 max-w-[60%] text-right" title={leadAnchor?.name || ''}>
@@ -1019,6 +1019,7 @@ function ClusterDetailSection() {
 
       {/* --- Layer 6: Recommendations (highlighted) --- */}
       <div
+        data-guide="ca-recommendations"
         className="rounded-md border overflow-hidden mb-2"
         style={{ borderColor: `${tierColor}33`, background: `${tierColor}0D` }}
       >
@@ -1042,7 +1043,7 @@ function ClusterDetailSection() {
       </div>
 
       {/* --- Layer 7: Listings — single parent heading over the 3 sequential lists --- */}
-      <div className="mb-1">
+      <div data-guide="ca-listings" className="mb-1">
         <div className="flex items-center gap-2 mb-1.5 mt-1">
           <div className="h-[1px] flex-1 bg-[#E2E8F0]" />
           <div className="text-[10px] font-semibold tracking-wide text-[#475569]">
@@ -1626,7 +1627,7 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
           (per spec — nothing should render under the cluster's "Top Premium Stays & Dining"). */}
       {selectedClusterId == null && (<>
       {/* 2. KPI grid — modern card design */}
-      <div className="px-3 pt-3 pb-1.5 grid grid-cols-2 gap-1.5">
+      <div data-guide="ta-overview" className="px-3 pt-3 pb-1.5 grid grid-cols-2 gap-1.5">
         <StatCard
           icon={MapPin}
           label="Tourism Sites"
@@ -1679,14 +1680,16 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       </div>
 
       {/* 3. Climate hazards across clusters */}
-      <ClimateHazardsCallout
-        rows={hazardRows}
-        lguFilter={lguFilter}
-        totalClusters={stats.totalClusters}
-      />
+      <div data-guide="ta-hazards">
+        <ClimateHazardsCallout
+          rows={hazardRows}
+          lguFilter={lguFilter}
+          totalClusters={stats.totalClusters}
+        />
+      </div>
 
       {/* 4. Site distribution — vertical bar chart */}
-      <div className="px-3 pt-1 pb-3">
+      <div data-guide="ta-distribution" className="px-3 pt-1 pb-3">
         <div className="rounded-lg bg-white border border-[#E2E8F0] px-3 pt-2.5 pb-2 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
           <div className="flex items-baseline justify-between mb-2">
             <div className="text-[12px] font-semibold text-[#0F172A]">
@@ -1760,7 +1763,7 @@ export function TourismAnalyticsPanel({ selectedLguName, activeLayerId, activeHa
       </div>
 
       {/* 5. Hospitality */}
-      <div className="px-3 pb-3">
+      <div data-guide="ta-hospitality" className="px-3 pb-3">
         <SectionLabel>Stays and Dining</SectionLabel>
         <div className="space-y-1.5">
           {(() => {

@@ -2511,12 +2511,39 @@ export function MapCanvas({
       }
     };
 
-    // Wait for map style to be loaded before adding layers
-    if (map.isStyleLoaded()) {
-      addGeoServerLayers();
-    } else {
-      map.once('styledata', addGeoServerLayers);
-    }
+    // Wait for map style to be loaded before adding layers.
+    // Using only `map.once('styledata', ...)` is unreliable here: tourism layers
+    // toggle `isStyleLoaded()` back to false right after initial load, so the
+    // single styledata listener can race and never re-fire. Instead, run when
+    // ready, otherwise poll on animation frames (bounded) so this effect
+    // always executes when `activeLayerId` changes.
+    let cancelled = false;
+    let rafId: number | null = null;
+    let attempts = 0;
+    const MAX_ATTEMPTS = 120; // ~2s at 60fps
+
+    const runWhenStyleReady = () => {
+      if (cancelled) return;
+      if (map.isStyleLoaded()) {
+        addGeoServerLayers();
+        return;
+      }
+      if (attempts++ >= MAX_ATTEMPTS) {
+        // Final fallback — attempt anyway; addLayer will throw harmlessly if
+        // the style truly isn't ready, but in practice this guard prevents an
+        // infinite wait when styledata events have already drained.
+        addGeoServerLayers();
+        return;
+      }
+      rafId = requestAnimationFrame(runWhenStyleReady);
+    };
+
+    runWhenStyleReady();
+
+    return () => {
+      cancelled = true;
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
 
   }, [activeSector, activeLayerId, scenario, mapReady, selectedWardId, styleLoadCounter, selectedDonutCategory, selectedLguName, selectedWardName]);
 

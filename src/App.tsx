@@ -11,6 +11,7 @@ import { AlertsPanel } from './components/AlertsPanel';
 import { InfoModal } from './components/InfoModal';
 import { ComparisonView } from './components/ComparisonView';
 import { TutorialOverlay } from './components/TutorialOverlay';
+import { WelcomeGuide } from './components/WelcomeGuide';
 import { Toaster } from './components/ui/sonner';
 import { fetchUniqueHealthcareCategories } from './utils/healthcareData';
 import { getLayerNameForScenario } from './config/geoserverLayers';
@@ -296,6 +297,34 @@ function AppContent({
     console.log('🔄 Layer changed, resetting donut category filter');
     setSelectedDonutCategory(null);
   }, [activeLayerId]);
+
+  // Guide-driven hazard layer activation. The WelcomeGuide dispatches this
+  // event when walking the user through Climate Hazards so the requested
+  // layer (flood / heat / sinkhole) lights up on the map live.
+  useEffect(() => {
+    const onActivate = (e: any) => {
+      const sector = e?.detail?.sector as Sector | undefined;
+      const layerId = e?.detail?.layerId as string | undefined;
+      if (!sector || !layerId) return;
+      setActiveSector(sector);
+      setActiveLayerPerSector(prev => ({ ...prev, [sector]: layerId }));
+      setDrawerOpen(true);
+    };
+    const onClear = () => {
+      setActiveLayerPerSector(prev => ({
+        ...prev, heat: '', air: '', flood: '', env_vulnerability: '', climate_hazard: '',
+      }));
+      // Restore the default sector so the Climate Hazards layer list
+      // (which only renders for heat/flood) reappears in the LeftDrawer.
+      setActiveSector('heat');
+    };
+    window.addEventListener('bohol-guide:activate-hazard', onActivate as any);
+    window.addEventListener('bohol-guide:clear-hazards', onClear as any);
+    return () => {
+      window.removeEventListener('bohol-guide:activate-hazard', onActivate as any);
+      window.removeEventListener('bohol-guide:clear-hazards', onClear as any);
+    };
+  }, []);
   
   // Refresh hazard data when scenario or ward changes
   useEffect(() => {
@@ -402,9 +431,11 @@ function AppContent({
       [activeSector]: newLayerId
     });
 
-    // When activating a layer, turn off elevation and builtup_density base layers (they are mutually exclusive with thematic layers)
-    if (newLayerId && (activeBaseLayers.includes('elevation') || activeBaseLayers.includes('builtup_density'))) {
-      setActiveBaseLayers(activeBaseLayers.filter(id => id !== 'elevation' && id !== 'builtup_density'));
+    // When activating a layer, turn off thematic raster base layers (elevation,
+    // builtup_density, ndvi/green cover) — they are mutually exclusive with
+    // hazard/environment thematic layers.
+    if (newLayerId && (activeBaseLayers.includes('elevation') || activeBaseLayers.includes('builtup_density') || activeBaseLayers.includes('ndvi'))) {
+      setActiveBaseLayers(activeBaseLayers.filter(id => id !== 'elevation' && id !== 'builtup_density' && id !== 'ndvi'));
     }
 
     console.log('🎯 [APP] Updated activeLayerPerSector[' + activeSector + '] to:', newLayerId);
@@ -1429,6 +1460,15 @@ export default function App() {
   const [compareRightLayer, setCompareRightLayer] = useState<string>('flood_hazard');
   const [compareRightScenario, setCompareRightScenario] = useState<Scenario>('baseline_2025');
 
+  // Welcome guide — opened on demand via the header button (window event).
+  // Auto-start is disabled to avoid racing with the map's style-loading sequence.
+  const [showWelcomeGuide, setShowWelcomeGuide] = useState(false);
+  useEffect(() => {
+    const handler = () => setShowWelcomeGuide(true);
+    window.addEventListener('bohol-guide:open', handler);
+    return () => window.removeEventListener('bohol-guide:open', handler);
+  }, []);
+
   // Handle tutorial close
   const handleTutorialClose = () => {
     setShowTutorial(false);
@@ -1556,6 +1596,12 @@ export default function App() {
       
       {/* Toast notifications */}
       <Toaster position="top-right" richColors />
+
+      {/* First-load onboarding tour */}
+      <WelcomeGuide
+        open={showWelcomeGuide}
+        onClose={() => setShowWelcomeGuide(false)}
+      />
         </TourismUIProvider>
       </TourismProvider>
     </HazardDataProvider>

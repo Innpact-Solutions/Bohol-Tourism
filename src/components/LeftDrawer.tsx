@@ -1169,12 +1169,12 @@ export function LeftDrawer({
             style={{ overflowY: 'auto', overflowX: 'visible', animationDelay: '150ms' }}
           >
             {/* Tourism Section (always visible at top) */}
-            <div className="border-b border-[#E2E8F0]">
+            <div className="border-b border-[#E2E8F0]" data-guide="tourism-section">
               <TourismPanel embedded selectedLgu={selectedLguName} selectedBrgy={selectedWardName} />
             </div>
 
             {/* Climate Hazards Title Card (collapsible) — blue-tinted */}
-            <div className="w-full px-4 py-2 hover:brightness-[0.98] transition flex items-center gap-2.5 border-b border-[#E2E8F0] border-l-[3px] border-l-[#2563EB] bg-gradient-to-r from-[#EFF6FF] to-[#F0F9FF]">
+            <div data-guide="climate-hazards" className="w-full px-4 py-2 hover:brightness-[0.98] transition flex items-center gap-2.5 border-b border-[#E2E8F0] border-l-[3px] border-l-[#2563EB] bg-gradient-to-r from-[#EFF6FF] to-[#F0F9FF]">
               <button
                 onClick={() => setClimateHazardsExpanded(!climateHazardsExpanded)}
                 className="flex items-center gap-3 flex-1 min-w-0 text-left cursor-pointer"
@@ -1313,12 +1313,20 @@ export function LeftDrawer({
                                     onLayerChange(activeLayerId);
                                   }
                                   
-                                  // elevation and builtup_density are mutually exclusive with each other
+                                  // When ndvi (Green Cover) is turned ON, turn off any active hazard/environment layer
+                                  if (layer.id === 'ndvi' && activeLayerId) {
+                                    onLayerChange(activeLayerId);
+                                  }
+                                  
+                                  // elevation, builtup_density and ndvi are mutually exclusive with each other
                                   if (layer.id === 'builtup_density') {
-                                    newLayers = newLayers.filter(id => id !== 'elevation');
+                                    newLayers = newLayers.filter(id => id !== 'elevation' && id !== 'ndvi');
                                   }
                                   if (layer.id === 'elevation') {
-                                    newLayers = newLayers.filter(id => id !== 'builtup_density');
+                                    newLayers = newLayers.filter(id => id !== 'builtup_density' && id !== 'ndvi');
+                                  }
+                                  if (layer.id === 'ndvi') {
+                                    newLayers = newLayers.filter(id => id !== 'elevation' && id !== 'builtup_density');
                                   }
                                   
                                   setActiveBaseLayers(newLayers);
