@@ -645,6 +645,16 @@ function AppContent({
     setShowQueryPanel(!showQueryPanel);
   };
 
+  // Allow components rendered outside AppContent (e.g. the WelcomeGuide,
+  // which lives at the App wrapper level) to trigger a full state reset.
+  useEffect(() => {
+    const handler = () => resetToDefaultState();
+    window.addEventListener('bohol-app:reset', handler);
+    return () => window.removeEventListener('bohol-app:reset', handler);
+    // resetToDefaultState closes over many setters but they are stable refs.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Handler to zoom to a specific infrastructure point
   const handleZoomToPoint = (lat: number, lng: number, name: string) => {
     console.log(`🎯 [APP] Zooming to point: ${name} at [${lat}, ${lng}]`);
@@ -1641,7 +1651,9 @@ export default function App() {
         onClose={() => {
           setShowWelcomeGuide(false);
           // After finish/skip, return the dashboard to its default starting view.
-          resetToDefaultState();
+          // `resetToDefaultState` lives inside AppContent — dispatch an event
+          // so AppContent's effect handles the reset.
+          window.dispatchEvent(new CustomEvent('bohol-app:reset'));
         }}
       />
         </TourismUIProvider>

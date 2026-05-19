@@ -603,11 +603,16 @@ export function LeftDrawer({
 
   // Fetch road safety lengths when ward or road name changes
   useEffect(() => {
-    const loadRoadSafetyLengths = async () => {
-      const lengths = await fetchRoadSafetyLengths(selectedWard, selectedRoadName);
-      setRoadSafetyLengths(lengths);
-    };
-    loadRoadSafetyLengths();
+    // TODO: wire up a real `fetchRoadSafetyLengths(ward, roadName)` util.
+    // The previous implementation referenced an undefined function which
+    // crashed the production build (ReferenceError). For now, reset to zeros.
+    void selectedRoadName;
+    setRoadSafetyLengths({
+      irap_vehicle: 0,
+      irap_motorcycle: 0,
+      irap_bicycle: 0,
+      irap_pedestrian: 0,
+    });
   }, [selectedWard, selectedRoadName]);
 
   // Sync external road safety expanded state from tutorial

@@ -10,9 +10,13 @@ export const appInsights = new ApplicationInsights({
     connectionString,
     extensions: [reactPlugin],
     enableAutoRouteTracking: true,
-    enableCorsCorrelation: true,
-    enableRequestHeaderTracking: true,
-    enableResponseHeaderTracking: true,
+    // Cross-origin correlation injects `Request-Id` / `traceparent` headers
+    // into outgoing fetch/XHR calls. Third-party hosts (CARTO basemaps,
+    // GeoServer, etc.) don't allow these custom headers in CORS preflight,
+    // causing the request to fail. Keep correlation off so the map can load.
+    enableCorsCorrelation: false,
+    enableRequestHeaderTracking: false,
+    enableResponseHeaderTracking: false,
     disableFetchTracking: false,
     disableAjaxTracking: false,
   },
